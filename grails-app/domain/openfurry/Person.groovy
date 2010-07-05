@@ -1,11 +1,13 @@
 package openfurry
 
 import openfurry.Role
+import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 
 /**
  * User domain class.
  */
 class Person {
+
 	/** Username */
 	String username
 
@@ -35,7 +37,7 @@ class Person {
     String memberType = "Lurker"
 
     /** Maximum rating that will appear in lists */
-    String maxViewableRating = grailsApplication.config.openfurry.ratings.low
+    String maxViewableRating = CH.config.openfurry.ratings.low
 
     /** Pennies used for transactions on the site */
     Long pennies = 0

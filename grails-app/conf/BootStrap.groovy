@@ -99,6 +99,9 @@ class BootStrap {
         
         // Submission request
         def secureSubmit = new Requestmap(url: '/submit/**', configAttribute: 'ROLE_USER').save()
+
+        // Flatpage request
+        def secureFlatpageCreate = new Requestmap(url:'/flatpage/**', configAttribute: 'ROLE_STAFF').save()
     }
     def destroy = {
     }

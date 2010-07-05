@@ -22,7 +22,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 2em;
+    height: 3em;
     float: left;
     background-color: #F0F0F0;
     border-bottom: 1px solid dashed;
@@ -32,8 +32,10 @@ body {
 #content {
     display: block;
     position: relative;
-    top: 2.1em;
+    top: 3.1em;
     clear: both;
+    width: 90%;
+    margin: auto;
 }
 
 #footer {
@@ -169,7 +171,7 @@ td, th {
     vertical-align: top;
 }
 th {
-    background: #fff url(../images/skin/shadow.jpg);
+    background: #fff url(../images/skin/shadow.jpg) repeat-x;
     color: #666;
     font-size: 11px;
     font-weight: bold;

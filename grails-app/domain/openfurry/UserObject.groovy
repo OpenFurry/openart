@@ -1,5 +1,7 @@
 package openfurry
 
+import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
+
 class UserObject implements Comparable {
     
     String title
@@ -10,7 +12,7 @@ class UserObject implements Comparable {
     Date lastUpdated
     Boolean published = true
     Boolean friendsOnly = false
-    String rating = grailsApplication.config.openfurry.ratings.low
+    String rating = CH.config.openfurry.ratings.low
     String tags
     Integer weight = 0
     Long viewCount = 0
@@ -18,14 +20,6 @@ class UserObject implements Comparable {
     Collection collection
     Person owner
     License license
-
-    def beforeInsert = {
-        ctime = new Date()
-    }
-
-    def beforeUpdate = {
-        mtime = new Date()
-    }
 
     static constraints = {
         title(maxSize: 120, blank: false)
