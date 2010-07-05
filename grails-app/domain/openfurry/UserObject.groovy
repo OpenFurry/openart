@@ -36,11 +36,15 @@ class UserObject implements Comparable {
         tablePerHierarchy false
     }
 
-    static hasMany = [comments: Comment]
+    static hasMany = [comments: Comment, species: Species, categories: Category]
     
     static belongsTo = Person
 
     int compareTo(obj) {
         weight.compareTo(obj.weight)
+    }
+
+    String toString() {
+        this.title
     }
 }

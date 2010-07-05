@@ -37,6 +37,18 @@
             </td>
         </tr>
         <tr class="prop">
+            <th class="name">Species</th>
+            <td class="value ${hasErrors(bean: instance, field: 'species', 'errors')}">
+                <select name="species" multiple="multiple">
+                    <g:render template="/speciesOptions" collection="${openfurry.Species.createCriteria().list() { isEmpty: parent }}" />
+                </select>
+            </td>
+        </tr>
+        <tr class="prop">
+            <th class="name">Categories</th>
+            <td class="value ${hasErrors(bean: instance, field: 'categories', 'errors')}">TODO</td>
+        </tr>
+        <tr class="prop">
             <th class="name">Tags</th>
             <td class="value ${hasErrors(bean: instance, field: 'tags', 'errors')}">
                 <g:textField name="tags" value="${instance?.tags}" />

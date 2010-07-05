@@ -14,4 +14,8 @@ class License {
     }
 
     static hasMany = [userObjects: UserObject, preferedLicenseForUsers: Person, userObjects: UserObject]
+
+    String toString() {
+        this.title
+    }
 }
