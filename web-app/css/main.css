@@ -22,13 +22,24 @@ body {
     top: 0;
     left: 0;
     width: 100%;
+    height: 2em;
+    float: left;
     background-color: #F0F0F0;
     border-bottom: 1px solid dashed;
     clear: both;
 }
 
 #content {
+    display: block;
+    position: relative;
+    top: 2.1em;
     clear: both;
+}
+
+#footer {
+    display: block;
+    clear: both;
+    margin: auto;
 }
 
 a:link, a:visited, a:hover {

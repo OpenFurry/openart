@@ -31,6 +31,17 @@ class BootStrap {
         speciesTestSubject.save()
 
         /**
+         * License definitions
+         */
+        def licenseCopyright = new License(
+            title: "Copyright",
+            description: "All rights reserved",
+            display: "&copy;",
+            url: "http://loc.gov"
+        ).save()
+
+
+        /**
          * User definitions
          */
         def userGod = new Person(
@@ -42,6 +53,7 @@ class BootStrap {
             passwd: authenticateService.encodePassword('god'),
             memberType: "Lurker",
             maxViewableRating: "Adult",
+            preferedLicense: licenseCopyright,
             species: speciesDeity
         )
         userGod.save()
@@ -59,6 +71,7 @@ class BootStrap {
             email: "slave@hotmail.com",
             passwd: authenticateService.encodePassword('slave'),
             memberType: "Lurker",
+            preferedLicense: licenseCopyright,
             species: speciesTestSubject
         )
         userSlave.save()

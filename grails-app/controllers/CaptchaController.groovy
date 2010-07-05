@@ -86,7 +86,7 @@ class CaptchaController {
 		}
 
 		// Draw the String
-		g2d.setColor(Color.BLACK)
+		g2d.setColor(Color.BLUE)
 
 		g2d.drawString(b.toString(), (int)(space/2), (int)(space/4) + (int)fontRect.getHeight())
 

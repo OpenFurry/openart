@@ -1,4 +1,3 @@
-dd
 <head>
     <meta name="layout" content="main" />
     <title>Submit</title>
