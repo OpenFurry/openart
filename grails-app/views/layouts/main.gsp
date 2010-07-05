@@ -18,6 +18,11 @@
                 <g:isNotLoggedIn>Please log in to continue</g:isNotLoggedIn>
             </div>
         </div>
+        <g:if test="${flash.message}">
+            <div id="message">
+                ${flash.message}
+            </div>
+        </g:if>
         <div id="content">
             <g:layoutBody />
         </div>

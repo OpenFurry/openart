@@ -94,6 +94,12 @@
                         <li class="controller"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></li>
                     </g:each>
                 </ul>
+                <h2>Available Domain Classes:</h2>
+                <ul>
+                    <g:each var="c" in="${grailsApplication.domainClasses.sort { it.fullName } }">
+                        <li class="controller">${c.fullName}</li>
+                    </g:each>
+                </ul>
             </div>
         </div>
     </body>

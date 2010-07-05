@@ -8,7 +8,7 @@ import javax.imageio.ImageIO
 
 class CaptchaController {
 
-	private static final String SOURCECHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+	private static final String SOURCECHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
 
 	def index = {
 		response.setContentType('image/png')

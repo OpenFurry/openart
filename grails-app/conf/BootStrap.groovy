@@ -84,6 +84,8 @@ class BootStrap {
         def secureIssueVote = new Requestmap(url: '/issue/vote/**', configAttribute: 'ROLE_USER').save()
         def secureIssueDelete = new Requestmap(url: '/issue/delete/**', configAttribute: 'ROLE_STAFF').save()
         
+        // Submission request
+        def secureSubmit = new Requestmap(url: '/submit/**', configAttribute: 'ROLE_USER').save()
     }
     def destroy = {
     }
