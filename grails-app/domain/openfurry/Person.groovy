@@ -62,6 +62,6 @@ class Person {
 	}
 
 	static transients = ['pass']
-	static hasMany = [authorities: Role]
+	static hasMany = [authorities: Role, votes: IssueVote, userObjects: UserObject, comments: Comment]
 	static belongsTo = Role
 }

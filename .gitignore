@@ -1,2 +1,3 @@
 webapp/WEB-INF*
 run-app
+*.class
