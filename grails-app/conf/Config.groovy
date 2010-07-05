@@ -84,3 +84,20 @@ log4j = {
 
 
 //log4j.logger.org.springframework.security='off,stdout'
+
+/**
+ * OpenFurry Constants
+ */
+
+// Warning levels
+openfurry.user.warning.small = 1
+openfurry.user.warning.medium = 5
+openfurry.user.warning.large = 10
+openfurry.user.warning.min = 0
+openfurry.user.warning.max = 100
+
+// Rating levels
+// Other instances due to static typing:
+// - grails-app/domain/openfurry/Person.groovy
+// - grails-app/domain/openfurry/UserObject.groovy
+openfurry.ratings = [low: "General", medium: "Mature", high: "Adult"]

@@ -10,7 +10,7 @@ class UserObject implements Comparable {
     Date lastUpdated
     Boolean published = true
     Boolean friendsOnly = false
-    String rating = "General"
+    String rating = grailsApplication.config.openfurry.ratings.low
     String tags
     Integer weight = 0
     Long viewCount = 0

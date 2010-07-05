@@ -35,10 +35,13 @@ class Person {
     String memberType = "Lurker"
 
     /** Maximum rating that will appear in lists */
-    String maxViewableRating = "General"
+    String maxViewableRating = grailsApplication.config.openfurry.ratings.low
 
     /** Pennies used for transactions on the site */
     Long pennies = 0
+
+    /** User's warning level */
+    Integer warningLevel = 0
 
 	static constraints = {
 		username(blank: false, unique: true)
@@ -58,13 +61,14 @@ class Person {
             ])
         maxViewableRating(inList: ["General", "Mature", "Adult"])
         pennies()
+        warningLevel(min: 0, max: 100)
     }
 
     static mapping = {
         profile type: "text"
 	}
 
-	static transients = ['pass']
+	static transients = ['pass', 'constantsService']
 	static hasMany = [authorities: Role, votes: IssueVote, userObjects: UserObject, comments: Comment]
 	static belongsTo = Role
 }
