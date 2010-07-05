@@ -1,3 +1,5 @@
+import openfurry.*
+
 class BootStrap {
 
     def authenticateService
@@ -7,16 +9,16 @@ class BootStrap {
         /**
          * Role definitions
          */
-        def roleAdmin = new Authority(authority: "ROLE_ADMIN", description: "Site administrator")
+        def roleAdmin = new Role(authority: "ROLE_ADMIN", description: "Site administrator")
         roleAdmin.save()
 
-        def roleStaff = new Authority(authority: "ROLE_STAFF", description: "Staff member")
+        def roleStaff = new Role(authority: "ROLE_STAFF", description: "Staff member")
         roleStaff.save()
 
-        def roleGovernor = new Authority(authority: "ROLE_GOVERNOR", description: "Governing board member")
+        def roleGovernor = new Role(authority: "ROLE_GOVERNOR", description: "Governing board member")
         roleGovernor.save()
 
-        def roleUser  = new Authority(authority: "ROLE_USER", description: "Authenticated user")
+        def roleUser  = new Role(authority: "ROLE_USER", description: "Authenticated user")
         roleUser.save()
 
         /**
@@ -73,7 +75,7 @@ class BootStrap {
          */
         // Acegi requests
         def secureUser = new Requestmap(url: '/person/**', configAttribute: 'ROLE_STAFF').save()
-        def secureAuthority = new Requestmap(url: '/authority/**', configAttribute: 'ROLE_ADMIN').save()
+        def secureRole = new Requestmap(url: '/authority/**', configAttribute: 'ROLE_ADMIN').save()
         def secureRequestmap = new Requestmap(url: '/requestmap/**', configAttribute: 'ROLE_ADMIN').save()
 
         // Issue requests

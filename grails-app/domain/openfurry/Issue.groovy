@@ -4,7 +4,7 @@ class Issue {
     String title
     String description
     Long votes
-    STring status = "Suggestion"
+    String status = "Suggestion"
     String JIRAIssue
 
     static constraints = {
