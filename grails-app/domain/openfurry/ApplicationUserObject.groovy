@@ -1,6 +1,6 @@
 package openfurry
 
-class ApplicationUserObject {
+class ApplicationUserObject extends UserObject {
     String screenShot
 
     static constraints = {

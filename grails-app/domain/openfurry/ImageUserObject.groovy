@@ -1,6 +1,6 @@
 package openfurry
 
-class ImageUserObject {
+class ImageUserObject extends UserObject {
     String sizedFile
     String fullFile
 

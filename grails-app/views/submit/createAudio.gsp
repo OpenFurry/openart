@@ -4,8 +4,12 @@
 </head>
 
 <body>
-    <h2>New Audio Submission</h2>
-    <g:form action="saveAudio">
+    <g:hasErrors bean="${instance}">
+    <div class="errors">
+        <g:renderErrors bean="${instance}" as="list" />
+    </div>
+    </g:hasErrors>
+    <g:uploadForm action="saveAudio" method="post">
         <div class="dialog">
             <g:render template="uoform" />
             <table>
@@ -15,9 +19,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th>Audio file</th>
-                        <td>TODO</td>
+                    <tr class="prop">
+                        <th class="name">Audio file</th>
+                        <td class="value"><input type="file" name="file" /></td>
                     </tr>
                 </tbody>
             </table>
@@ -25,5 +29,5 @@
         <div class="buttons">
             <span class="button"><input type="submit" value="Create submission" /></span>
         </div>
-    </g:form>
+    </g:uploadForm>
 </body>

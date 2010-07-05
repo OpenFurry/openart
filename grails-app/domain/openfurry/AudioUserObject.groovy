@@ -1,6 +1,6 @@
 package openfurry
 
-class AudioUserObject {
+class AudioUserObject extends UserObject {
     String file
 
     static constraints = {

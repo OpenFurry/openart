@@ -1,6 +1,6 @@
 package openfurry
 
-class VideoUserObject {
+class VideoUserObject extends UserObject {
     String file
 
     static constraints = {

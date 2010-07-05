@@ -8,7 +8,7 @@ import javax.imageio.ImageIO
 
 class CaptchaController {
 
-	private static final String SOURCECHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
+	private static final String SOURCECHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 	def index = {
 		response.setContentType('image/png')
@@ -86,7 +86,7 @@ class CaptchaController {
 		}
 
 		// Draw the String
-		g2d.setColor(Color.BLUE)
+		g2d.setColor(Color.BLACK)
 
 		g2d.drawString(b.toString(), (int)(space/2), (int)(space/4) + (int)fontRect.getHeight())
 

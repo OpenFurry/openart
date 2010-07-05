@@ -13,5 +13,5 @@ class License {
         url(url: true)
     }
 
-    static hasMany = [userObjects: UserObject, preferedLicenseForUsers: Person]
+    static hasMany = [userObjects: UserObject, preferedLicenseForUsers: Person, userObjects: UserObject]
 }

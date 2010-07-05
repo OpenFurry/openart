@@ -5,43 +5,64 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <th>Title</th>
-            <td><input type="text" name="title" /></td>
+        <tr class="prop">
+            <th class="name">Title</th>
+            <td class="value ${hasErrors(bean: instance, field: 'title', 'errors')}">
+                <g:textField name="title" value="${instance?.title}" />
+            </td>
         </tr>
-        <tr>
-            <th>Description</th>
-            <td><textarea name="description"></textarea></td>
+        <tr class="prop">
+            <th class="name">Description</th>
+            <td class="value ${hasErrors(bean: instance, field: 'description', 'errors')}">
+                <g:textArea name="description" rows="10" cols="100" value="${instance?.description}" />
+            </td>
         </tr>
-        <tr>
-            <th>External link</th>
-            <td><input type="text" name="externalLink" value="http://" /></td>
+        <tr class="prop">
+            <th class="name">External link</th>
+            <td class="value ${hasErrors(bean: instance, field: 'externalLink', 'errors')}">
+                <g:textField name="externalLink" value="${instance?.externalLink}" />
+            </td>
         </tr>
-        <tr>
-            <th>Rating</th>
-            <td>
+        <tr class="prop">
+            <th class="name">Rating</th>
+            <td class="value ${hasErrors(bean: instance, field: 'rating', 'errors')}">
                 <g:each in="${grailsApplication.config.openfurry.ratings.values().toList()}">
-                <input type="radio" name="rating" value="${it}" /> ${it}<br />
+                    <g:if test="${instance?.rating == it}">
+                        <g:radio name="rating" value="${it}" checked="true" /> ${it}<br />
+                    </g:if>
+                    <g:else>
+                        <g:radio name="rating" value="${it}" /> ${it}<br />
+                    </g:else>
                 </g:each>
             </td>
         </tr>
-        <tr>
-            <th>Tags</th>
-            <td><input type="text" name="tags" /></td>
+        <tr class="prop">
+            <th class="name">Tags</th>
+            <td class="value ${hasErrors(bean: instance, field: 'tags', 'errors')}">
+                <g:textField name="tags" value="${instance?.tags}" />
+            </td>
         </tr>
-        <tr>
-            <th>Collection</th>
-            <td>TODO</td>
+        <tr class="prop">
+            <th class="name">Collection</th>
+            <td class="value ${hasErrors(bean: instance, field: 'collection', 'errors')}">TODO</td>
         </tr>
-        <tr>
-            <th>License</th>
-            <td>TODO</td>
+        <tr class="prop">
+            <th class="name">License</th>
+            <td class="value ${hasErrors(bean: instance, field: 'license', 'errors')}">
+                <g:select name="license" from="${openfurry.License.list()}" value="${instance?.license.id}", optionKey="id" />
+            </td>
         </tr>
-        <tr>
-            <th>Published</th>
-            <td><input type="checkbox" name="published" />
+        <tr class="prop">
+            <th class="name">Published</th>
+            <td class="value ${hasErrors(bean: instance, field: 'published', 'errors')}">
+                <g:checkBox name="published" value="${instance?.published}" />
+            </td>
         </tr>
-        <tr>
-            <th>Friends only</th>
-            <td><input type="checkbox" name="friendsOnly" />
+        <tr class="prop">
+            <th class="name">Friends only</th>
+            <td class="value ${hasErrors(bean: instance, field: 'friendsOnly', 'errors')}">
+                <g:checkBox name="friendsOnly" value="${instance?.friendsOnly}" />
+            </td>
         </tr>
+    </tbody>
+</table>

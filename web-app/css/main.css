@@ -22,7 +22,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 3em;
+    height: 100px;
     float: left;
     background-color: #F0F0F0;
     border-bottom: 1px solid dashed;
@@ -32,7 +32,7 @@ body {
 #content {
     display: block;
     position: relative;
-    top: 3.1em;
+    top: 105px;
     clear: both;
     width: 90%;
     margin: auto;
@@ -40,8 +40,11 @@ body {
 
 #footer {
     display: block;
+    position: relative;
     clear: both;
     margin: auto;
+    width: 100%;
+    text-align: center;
 }
 
 a:link, a:visited, a:hover {
@@ -72,8 +75,6 @@ select {
    padding: 2px 2px 2px 0;
 }
 textarea {
-	width: 250px;
-	height: 150px;
 	vertical-align: top;
 }
 
@@ -89,7 +90,7 @@ input:focus, select:focus, textarea:focus {
 /* NAVIGATION MENU */
 
 .nav {
-    background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
+    background: #ddd url(../images/skin/shadow.png) top repeat-x;
     border: 1px solid #ccc;
     border-style: solid none solid none;
     margin-top: 5px;
@@ -153,6 +154,9 @@ td.errors select {
 td.errors input {
     border: 1px solid red;
 }
+td.errors textarea {
+    border: 1px solid red;
+}
 
 /* TABLES */
 
@@ -171,7 +175,7 @@ td, th {
     vertical-align: top;
 }
 th {
-    background: #fff url(../images/skin/shadow.jpg) repeat-x;
+    background: #ddd url(../images/skin/shadow.png) top repeat-x;
     color: #666;
     font-size: 11px;
     font-weight: bold;
@@ -218,7 +222,7 @@ th.desc a {
 /* PAGINATION */
 
 .paginateButtons {
-    background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
+    background: #ddd url(../images/skin/shadow.png) top repeat-x;
     border: 1px solid #ccc;
     border-top: 0;
     color: #666;
@@ -260,7 +264,7 @@ th.desc a {
 /* ACTION BUTTONS */
 
 .buttons {
-    background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
+    background: #ddd url(../images/skin/shadow.png) top repeat-x;
     border: 1px solid #ccc;
     color: #666;
     font-size: 10px;

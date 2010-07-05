@@ -1,6 +1,9 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
-        <title>OpenFurry - <g:layoutTitle default="Grails" /></title>
+        <title>OpenFurry - <g:layoutTitle default="OpenFurry" /></title>
         <link rel="stylesheet" href="${resource(dir:'css',file:'main.css')}" />
         <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
         <g:layoutHead />
@@ -11,7 +14,7 @@
             <img src="${resource(dir:'images',file:'spinner.gif')}" alt="${message(code:'spinner.alt',default:'Loading...')}" />
         </div>
         <div id="header">
-            [OPENFURRY HEADER]
+            <h1>OpenFurry</h1>[OPENFURRY HEADER]
             <div id="navigation"></div>
             <div id="usercontrol">
                 <g:isLoggedIn>Welcome, <g:loggedInUserInfo field="userRealName" /></g:isLoggedIn>
@@ -24,6 +27,7 @@
             </div>
         </g:if>
         <div id="content">
+            <h2><g:layoutTitle default="OpenFurry" /></h2>
             <g:layoutBody />
         </div>
         <div id="footer">

@@ -1,10 +1,9 @@
 <head>
     <meta name="layout" content="main" />
-    <title>Submit</title>
+    <title>New Submission</title>
 </head>
 
 <body>
-    <h2>New submission</h2>
     <g:form action="chooseType">
         <div class="dialog">
             <select name="type" id="type">

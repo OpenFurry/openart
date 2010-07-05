@@ -1,6 +1,6 @@
 package openfurry
 
-class TextUserObject {
+class TextUserObject extends UserObject {
     String text
     String attachmentFile
     Boolean journal = false

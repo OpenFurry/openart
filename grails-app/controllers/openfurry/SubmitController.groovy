@@ -5,6 +5,9 @@ class SubmitController {
     // Needed for current user
     def authenticateService
 
+    // Needed for uploaded files
+    def fileUploadService
+
     def index = { }
 
     def chooseType = {
@@ -55,13 +58,22 @@ class SubmitController {
      */
     def saveAudio = {
         def audioUserObjectInstance = new AudioUserObject(params)
-        audioUserObjectInstance.owner = authenticateService.principal()
+        def owner = Person.findByUsername(authenticateService.principal().username)
+        audioUserObjectInstance.owner = owner
+        
+        // Handle uploaded file
+        def uploadedFile = request.getFile('file')
+        uploadedFile.transferTo(new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "audio"), uploadedFile.originalFilename))
+        audioUserObjectInstance.file = uploadedFile.originalFilename
+
         if (audioUserObjectInstance.save(flush: true)) {
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'audioUserObject.label', default: 'Audio submission'), params.id])}"
             redirect(controller: "view", action: "audio", id: audioUserObjectInstance.id)
         } else {
-            render(view: "createAudio", model: [audioUserObjectInstance: audioUserObjectInstance])
+            def f = new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "audio"), uploadedFile.originalFilename)
+            f.delete()
+            render(view: "createAudio", model: [instance: audioUserObjectInstance])
         }
     }
     def saveVideo = {
@@ -72,7 +84,7 @@ class SubmitController {
                 "${message(code: 'default.created.message', args: [message(code: 'videoUserObject.label', default: 'Video submission'), params.id])}"
             redirect(controller: "view", action: "video", id: videoUserObjectInstance.id)
         } else {
-            render(view: "createAudio", model: [videoUserObjectInstance: videoUserObjectInstance])
+            render(view: "createAudio", model: [instance: videoUserObjectInstance])
         }
     }
     def saveFlash = {
@@ -83,7 +95,7 @@ class SubmitController {
                 "${message(code: 'default.created.message', args: [message(code: 'flashUserObject.label', default: 'Flash submission'), params.id])}"
             redirect(controller: "view", action: "flash", id: flashUserObjectInstance.id)
         } else {
-            render(view: "createAudio", model: [flashUserObjectInstance: flashUserObjectInstance])
+            render(view: "createAudio", model: [instance: flashUserObjectInstance])
         }
     }
     def saveImage = {
@@ -94,7 +106,7 @@ class SubmitController {
                 "${message(code: 'default.created.message', args: [message(code: 'imageUserObject.label', default: 'Image submission'), params.id])}"
             redirect(controller: "view", action: "image", id: imageUserObjectInstance.id)
         } else {
-            render(view: "createAudio", model: [imageUserObjectInstance: imageUserObjectInstance])
+            render(view: "createAudio", model: [instance: imageUserObjectInstance])
         }
     }
     def saveText = {
@@ -104,9 +116,9 @@ class SubmitController {
         if (textUserObjectInstance.save(flush: true)) {
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'textUserObject.label', default: 'Text submission'), params.id])}"
-            redirect(controller: "view", action: "text", id: audioUserObjectInstance.id)
+            redirect(controller: "view", action: "text", id: textUserObjectInstance.id)
         } else {
-            render(view: "createAudio", model: [textUserObjectInstance: audioUserObjectInstance])
+            render(view: "createAudio", model: [instance: textUserObjectInstance])
         }
     }
     def saveJournal = {
@@ -116,9 +128,9 @@ class SubmitController {
         if (textUserObjectInstance.save(flush: true)) {
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'textUserObject.label', default: 'Journal'), params.id])}"
-            redirect(controller: "view", action: "text", id: audioUserObjectInstance.id)
+            redirect(controller: "view", action: "text", id: textUserObjectInstance.id)
         } else {
-            render(view: "createAudio", model: [textUserObjectInstance: audioUserObjectInstance])
+            render(view: "createAudio", model: [instance: textUserObjectInstance])
         }
     }
     def saveApplication = {
@@ -129,7 +141,7 @@ class SubmitController {
                 "${message(code: 'default.created.message', args: [message(code: 'applicationUserObject.label', default: 'Application submission'), params.id])}"
             redirect(controller: "view", action: "application", id: applicationUserObjectInstance.id)
         } else {
-            render(view: "createAudio", model: [applicationUserObjectInstance: applicationUserObjectInstance])
+            render(view: "createAudio", model: [instance: applicationUserObjectInstance])
         }
     }
 }

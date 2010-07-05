@@ -38,7 +38,8 @@ class BootStrap {
             description: "All rights reserved",
             display: "&copy;",
             url: "http://loc.gov"
-        ).save()
+        )
+        licenseCopyright.save()
 
 
         /**
@@ -82,6 +83,7 @@ class BootStrap {
         roleGovernor.save(flush: true)
         roleStaff.save(flush: true)
         roleAdmin.save(flush: true)
+        licenseCopyright.save(flush: true)
 
         /**
          * Request mapping definitions
