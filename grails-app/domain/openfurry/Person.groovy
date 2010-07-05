@@ -28,6 +28,9 @@ class Person {
     /** User's species */
     Species species
 
+    /** User's prefered license */
+    License preferedLicense
+
     /** Type of user */
     String memberType = "Lurker"
 
