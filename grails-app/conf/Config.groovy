@@ -122,6 +122,14 @@ openfurry.user.classes.gold = 2
 openfurry.user.classes.platinum = 3
 openfurry.user.classes.black = 4
 
+// User message types
+// Range used in: (due to static typing)
+// - grails-app/domain/UserMessage
+openfurry.user.messageTypes.repr = ["success", "warning", "failure" ]
+openfurry.user.messageTypes.success = 0
+openfurry.user.messageTypes.warning = 1
+openfurry.user.messageTypes.failure = 2
+
 // Rating levels
 // Range used in: (due to static typing)
 // - grails-app/domain/Person.groovy

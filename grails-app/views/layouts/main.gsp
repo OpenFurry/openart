@@ -26,6 +26,11 @@
                 ${flash.message}
             </div>
         </g:if>
+        <g:if test="${flash.transact}">
+            <div class="transact">
+                <g:message code="${flash.transact}" args="$flash.transactArgs}" default="${flash.transactDefault}" />
+            </div>
+        </g:if>
         <div id="content">
             <h2><g:layoutTitle default="OpenFurry" /></h2>
             <g:layoutBody />

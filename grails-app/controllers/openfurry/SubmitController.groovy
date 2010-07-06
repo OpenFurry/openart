@@ -8,6 +8,9 @@ class SubmitController {
     // Needed for uploaded files
     def fileUploadService
 
+    // Needed for reimbursement for posting
+    def marketService
+
     def index = { }
 
     def chooseType = {
@@ -67,24 +70,42 @@ class SubmitController {
         audioUserObjectInstance.file = uploadedFile.originalFilename
 
         if (audioUserObjectInstance.save(flush: true)) {
+            // Pay the user for their upload
+            marketService.transact(owner, "AudioUserObject", "userclass:${owner.userClass}")
+
+            // Inform them of the upload
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'audioUserObject.label', default: 'Audio submission'), params.id])}"
+
+            // Redirect to view the upload
             redirect(controller: "view", action: "audio", id: audioUserObjectInstance.id)
         } else {
+            // Make sure to remove the file
             def f = new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "audio"), uploadedFile.originalFilename)
             f.delete()
+
+            // Redirect back with errors
             render(view: "createAudio", model: [instance: audioUserObjectInstance])
         }
     }
     def saveVideo = {
         def videoUserObjectInstance = new VideoUserObject(params)
-        videoUserObjectInstance.owner = authenticateService.principal()
+        def owner = Person.findByUsername(authenticateService.principal().username)
+        videoUserObjectInstance.owner = owner
+        
+        // Handle uploaded file
+        def uploadedFile = request.getFile('file')
+        uploadedFile.transferTo(new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "video"), uploadedFile.originalFilename))
+        videoUserObjectInstance.file = uploadedFile.originalFilename
+
         if (videoUserObjectInstance.save(flush: true)) {
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'videoUserObject.label', default: 'Video submission'), params.id])}"
             redirect(controller: "view", action: "video", id: videoUserObjectInstance.id)
         } else {
-            render(view: "createAudio", model: [instance: videoUserObjectInstance])
+            def f = new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "video"), uploadedFile.originalFilename)
+            f.delete()
+            render(view: "createVideo", model: [instance: videoUserObjectInstance])
         }
     }
     def saveFlash = {

@@ -66,6 +66,13 @@ class Person {
 	}
 
 	static transients = ['pass', 'constantsService']
-	static hasMany = [authorities: Role, votes: IssueVote, userObjects: UserObject, comments: Comment]
+	static hasMany = [
+        authorities: Role, 
+        votes: IssueVote, 
+        userObjects: UserObject, 
+        comments: Comment, 
+        messages: UserMessage, 
+        statuses: UserStatus
+        ]
 	static belongsTo = Role
 }
