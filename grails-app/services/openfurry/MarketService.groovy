@@ -1,19 +1,27 @@
 package openfurry
 
+import org.springframework.web.context.request.RequestContextHolder as RCH
+
 class MarketService {
 
     static transactional = true
 
-    def makePayment(Person userFrom, Person userTo, amount) {
-        if (ammount < 0) {
+    // Required to warn of attempted stealing
+    def warningService
+
+    // Required for reason for warning
+    def messageSource
+
+    def makePayment(Person userFrom, Person userTo, Integer amount) {
+        if (amount < 0) {
             userFrom.pennies -= amount
             userTo.pennies += ammount
             userFrom.save(flush: true)
             userTo.save(flush: true)
         } else {
-            //TODO: warn of error
-            userFrom.warningLevel += grailsApplication.config.openfurry.user.warning.small
-            userFrom.save(flush: true)
+            // Warn the user if they try to steal pennies
+            def locale = RCH.currentRequestAttributes().getSession().locale
+            warningService.warn(userFrom, grailsApplication.config.openfurry.user.warning.small, messageSource.getMessage("openfurry.warning.stealing", null, "A gift of negative pennies would be stealing, you have been warned.", locale))
         }
     }
 
@@ -25,11 +33,10 @@ class MarketService {
             user.pennies -= unitPrice.price
             user.save(flush: true)
 
+            // notify the user
             flash.transact = "openfurry.market.transact.${(unitPrice > 0) ? 'positive' : 'negative'}"
             flash.transactArgs = [ unitPrice.price.abs() ]
             flash.transactDefault = "You ${(unitPrice > 0) ? 'gained' : 'spent'} ${unitPrice.price} pennies"
-        } else {
-            //TODO: let the user know
-        }
+        } // fail silently
     }
 }

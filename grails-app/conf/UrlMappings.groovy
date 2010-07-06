@@ -7,7 +7,7 @@ class UrlMappings {
 			}
 		}
 
-        "/$slug" {
+        "/info/$slug" {
             controller = "flatpage"
             action = "show"
             constraints {
