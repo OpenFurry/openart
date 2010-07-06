@@ -25,9 +25,15 @@ class MarketService {
         }
     }
 
-    def transact(Person user, String component, String params, String action) {
+    def transact(Person user, component, params, action) {
         // Try to grab the unit price
-        def unitPrice = UnitPrice.findByComponentAndParamsAndAction(component, params, action)
+        def unitPrice = UnitPrice.withCriteria(uniqueResult: true) {
+            and {
+                eq("component", component)
+                eq("params", params)
+                eq("action", action)
+            }
+        }
         if (unitPrice) {
             // Modify the user's balance
             user.pennies -= unitPrice.price

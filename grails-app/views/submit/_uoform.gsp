@@ -69,7 +69,7 @@
         <tr class="prop">
             <th class="name"><g:message code="openfurry.uo.license" default="License" /></th>
             <td class="value ${hasErrors(bean: instance, field: 'license', 'errors')}">
-                <g:select name="license" from="${openfurry.License.list()}" value="${instance?.license.id}", optionKey="id" />
+                <g:select name="license.id" from="${openfurry.License.list()}" value="${instance?.license.id}", optionKey="id" />
             </td>
         </tr>
         <tr class="prop">

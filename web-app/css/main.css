@@ -41,6 +41,7 @@ body {
 #footer {
     display: block;
     position: relative;
+    top: 100px
     clear: both;
     margin: auto;
     width: 100%;

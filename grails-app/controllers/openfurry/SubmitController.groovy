@@ -8,6 +8,9 @@ class SubmitController {
     // Needed for uploaded files
     def fileUploadService
 
+    // Needed for resizing images
+    def imagingService
+
     // Needed for reimbursement for posting
     def marketService
 
@@ -71,7 +74,8 @@ class SubmitController {
 
         if (audioUserObjectInstance.save(flush: true)) {
             // Pay the user for their upload
-            marketService.transact(owner, "AudioUserObject", "userclass:${owner.userClass}")
+            String transactParams = "memberclass:${owner.memberClass}"
+            marketService.transact(owner, "AudioUserObject", transactParams, "create")
 
             // Inform them of the upload
             flash.message = 
@@ -121,12 +125,31 @@ class SubmitController {
     }
     def saveImage = {
         def imageUserObjectInstance = new FlashUserObject(params)
-        imageUserObjectInstance.owner = authenticateService.principal()
+        def owner = Person.findByUsername(authenticateService.principal().username)
+        imageUserObjectInstance.owner = owner
+
+        // Handle uploaded file
+        def uploadedFile = request.getFile('file')
+        def files = createImageUserObjectFiles(owner, request.getFile('file'), fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "image"))
+        imageUserObjectInstance.thumbnail = "thumb.${uploadedFile.originalFilename}"
+        imageUserObjectInstance.sizedFile = "sized.${uploadedFile.originalFilename}"
+        imageUserObjectInstance.fullFile = uploadedFile.originalFilename
         if (imageUserObjectInstance.save(flush: true)) {
+            // Pay the user for their upload
+            String transactParams = "memberclass:${owner.memberClass}"
+            marketService.transact(owner, "ImageUserObject", transactParams, "create")
+
+            // Inform the user
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'imageUserObject.label', default: 'Image submission'), params.id])}"
+
+            // Redirect to view the upload
             redirect(controller: "view", action: "image", id: imageUserObjectInstance.id)
         } else {
+            // Make sure to delete the files
+            files.each { it.delete() }
+
+            // Render back with errors
             render(view: "createAudio", model: [instance: imageUserObjectInstance])
         }
     }

@@ -12,7 +12,7 @@ class UserObject implements Comparable {
     Date lastUpdated
     Boolean published = true
     Boolean friendsOnly = false
-    String rating = CH.config.openfurry.ratings.low
+    Integer rating = CH.config.openfurry.ratings.low
     String tags
     Integer weight = 0
     Long viewCount = 0
