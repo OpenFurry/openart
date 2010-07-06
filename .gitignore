@@ -2,3 +2,4 @@ web-app/WEB-INF/*
 run-app
 *.class
 target/*
+stacktrace.log
