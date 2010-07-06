@@ -4,7 +4,7 @@ class UserMessage {
     String message
     Integer type
     Person user
-    Person sender
+    String sender
 
     static constraints = {
         message(maxSize: 1000, blank: false)
