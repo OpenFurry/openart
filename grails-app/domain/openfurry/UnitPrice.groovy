@@ -1,12 +1,15 @@
 package openfurry
 
 class UnitPrice {
-    String objectType
-    String objectAction
+    String signal
+    String params
+    String action
     Integer price
 
     static constraints = {
-        objectType(maxSize: 120, blank: false)
+        signal(maxSize: 120, blank: false)
+        params(maxSize: 250, blank: true, nullable: true)
+        action(maxSize: 60, blank: false)
         price()
     }
 }

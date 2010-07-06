@@ -31,6 +31,20 @@ class BootStrap {
         speciesTestSubject.save()
 
         /**
+         * Category definitions
+         */
+        def categoryVisual = new Category(categoryName: "Visual art")
+        categoryVisual.save()
+
+        def categoryPhotography = new Category(categoryName: "Photography", parent: categoryVisual)
+        categoryPhotography.save(flush: true)
+
+        def categoryPainting = new Category(categoryName: "Painting", parent: categoryVisual)
+        categoryPainting.save(flush: true)
+
+        categoryVisual.save(flush: true)
+
+        /**
          * License definitions
          */
         def licenseCopyright = new License(

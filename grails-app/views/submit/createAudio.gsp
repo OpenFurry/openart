@@ -1,6 +1,6 @@
 <head>
     <meta name="layout" content="main" />
-    <title>New Audio Submission</title>
+    <title><g:message code="openfurry.audioUO.view.create" default="New audio submission" /></title>
 </head>
 
 <body>
@@ -15,13 +15,15 @@
             <table>
                 <thead>
                     <tr>
-                        <th colspan="2">Audio submission details</th>
+                        <th colspan="2"><g:message code="openfurry.audioUO.sectionTitle" default="Audio submission details" /></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="prop">
-                        <th class="name">Audio file</th>
-                        <td class="value"><input type="file" name="file" /></td>
+                        <th class="name"><g:message code="openfurry.audioUO.file" defualt="Audio file" /></th>
+                        <td class="value">
+                            <input type="file" name="file" />
+                            <div class="tip"><g:message code="openfurry.technical.allowedTypes" /> *.wav, *.mp3, *.mid, *.ogg</td>
                     </tr>
                 </tbody>
             </table>

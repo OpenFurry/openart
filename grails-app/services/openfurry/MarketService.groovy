@@ -17,9 +17,9 @@ class MarketService {
         }
     }
 
-    def purchaseItem(Person user, obj, String action) {
+    def purchaseItem(Person user, String signal, String params, String action) {
         // Try to grab the unit price
-        def unitPrice = UnitPrice.findByObjectTypeAndObjectAction(obj.class.toString().split("\\.")[-1], action)
+        def unitPrice = UnitPrice.findBySignalAndParamsAndAction(signal, params, action)
         if (unitPrice) {
             // Modify the user's balance
             user.pennies -= unitPrice.price

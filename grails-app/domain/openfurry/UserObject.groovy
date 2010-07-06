@@ -27,7 +27,7 @@ class UserObject implements Comparable {
         externalLink(url: true, blank: true, nullable: true)
         dateCreated(nullable: true)
         lastUpdated(nullable: true)
-        rating(inList: ["General", "Mature", "Adult"])
+        rating(range: 0..2)
         tags(blank: true)
         collection(blank: true, nullable: true)
     }

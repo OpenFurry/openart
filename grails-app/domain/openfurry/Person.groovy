@@ -34,10 +34,13 @@ class Person {
     License preferedLicense
 
     /** Type of user */
-    String memberType = "Lurker"
+    Integer memberType = CH.config.openfurry.user.types.lurker
+
+    /** User class */
+    Integer memberClass = CH.config.openfurry.user.classes.bronze
 
     /** Maximum rating that will appear in lists */
-    String maxViewableRating = CH.config.openfurry.ratings.low
+    Integer maxViewableRating = CH.config.openfurry.ratings.low
 
     /** Pennies used for transactions on the site */
     Long pennies = 0
@@ -51,17 +54,9 @@ class Person {
 		passwd(blank: false)
 		enabled()
         profile(blank: true, nullable: true)
-        memberType(inList: [
-            "Lurker",
-            "Visual artist",
-            "Sculptor",
-            "Textile artist",
-            "Composer",
-            "Videographer",
-            "Flash artist",
-            "Programmer"
-            ])
-        maxViewableRating(inList: ["General", "Mature", "Adult"])
+        memberType(range: 0..9)
+        memberClass(range: 0..4)
+        maxViewableRating(range: 0..2)
         pennies()
         warningLevel(min: 0, max: 100)
     }

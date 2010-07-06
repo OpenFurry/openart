@@ -6,7 +6,7 @@ class Category {
 
     static constraints = {
         categoryName(maxSize: 60, blank: false)
-        parent(nullable: true)
+        parent(blank: true, nullable: true)
     }
 
     static hasMany = [subcategories: Category]

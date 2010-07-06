@@ -130,7 +130,6 @@ input:focus, select:focus, textarea:focus {
     margin: 10px 0 5px 0;
     padding: 5px 5px 5px 30px
 }
-
 div.errors {
     background: #fff3f3;
     border: 1px solid red;
@@ -174,8 +173,11 @@ td, th {
     text-align: left;
     vertical-align: top;
 }
-th {
+thead th {
     background: #ddd url(../images/skin/shadow.png) top repeat-x;
+}
+th {
+    background-color: #f0f0f0;
     color: #666;
     font-size: 11px;
     font-weight: bold;
