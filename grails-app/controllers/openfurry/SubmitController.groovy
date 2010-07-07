@@ -78,7 +78,7 @@ class SubmitController {
 
         if (audioUserObjectInstance.save(flush: true)) {
             // Pay the user for their upload
-            String transactParams = "memberclass:${owner.memberClass}"
+            String transactParams = "memberClass:${owner.memberClass}"
             marketService.transact(owner, "AudioUserObject", transactParams, "create")
 
             // Inform them of the upload
@@ -111,6 +111,9 @@ class SubmitController {
         }
 
         if (videoUserObjectInstance.save(flush: true)) {
+            String transactParams = "memberClass:${owner.memberClass}"
+            marketService.transact(owner, "VideoUserObject", transactParams, "create")
+
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'videoUserObject.label', default: 'Video submission'), params.id])}"
             redirect(controller: "view", action: "video", id: videoUserObjectInstance.id)
@@ -135,6 +138,9 @@ class SubmitController {
         }
 
         if (flashUserObjectInstance.save(flush: true)) {
+            String transactParams = "memberClass:${owner.memberClass}"
+            marketService.transact(owner, "FlashUserObject", transactParams, "create")
+
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'flashUserObject.label', default: 'Flash submission'), params.id])}"
             redirect(controller: "view", action: "flash", id: flashUserObjectInstance.id)
@@ -160,6 +166,9 @@ class SubmitController {
             imageUserObjectInstance.fullFile = null
         }
         if (imageUserObjectInstance.save(flush: true)) {
+            String transactParams = "memberClass:${owner.memberClass}"
+            marketService.transact(owner, "ImageUserObject", transactParams, "create")
+
             // Pay the user for their upload
             String transactParams = "memberclass:${owner.memberClass}"
             marketService.transact(owner, "ImageUserObject", transactParams, "create")
@@ -191,6 +200,9 @@ class SubmitController {
             textUserObjectInstance.attachment = null
         }
         if (textUserObjectInstance.save(flush: true)) {
+            String transactParams = "memberClass:${owner.memberClass}"
+            marketService.transact(owner, "TextUserObject", transactParams, "create")
+
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'textUserObject.label', default: 'Text submission'), params.id])}"
             redirect(controller: "view", action: "text", id: textUserObjectInstance.id)
@@ -208,6 +220,9 @@ class SubmitController {
         textUserObjectInstance.journal = true
         textUserObjectInstance.attachment = null
         if (textUserObjectInstance.save(flush: true)) {
+            String transactParams = "memberClass:${owner.memberClass}"
+            marketService.transact(owner, "Journal", transactParams, "create")
+
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'textUserObject.label', default: 'Journal'), params.id])}"
             redirect(controller: "view", action: "text", id: textUserObjectInstance.id)
@@ -227,6 +242,9 @@ class SubmitController {
             applicationUserObjectInstance.screenshot = null
         }
         if (applicationUserObjectInstance.save(flush: true)) {
+            String transactParams = "memberClass:${owner.memberClass}"
+            marketService.transact(owner, "ApplicationUserObject", transactParams, "creat")
+
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'applicationUserObject.label', default: 'Application submission'), params.id])}"
             redirect(controller: "view", action: "application", id: applicationUserObjectInstance.id)
