@@ -138,3 +138,23 @@ openfurry.ratings.repr = ["General", "Mature", "Adult"]
 openfurry.ratings.low = 0
 openfurry.ratings.medium = 1
 openfurry.ratings.high = 2
+
+// Maximum upload sizes in MBytes
+openfurry.maxUploadSize = [
+    audio: 10,
+    video: 50,
+    flash: 50,
+    image: 5,
+    text: 2,
+    application: 1
+]
+
+// Acceptable filetypes
+openfurry.fileTypes = [
+    audio: ["wav", "mp3", "mid", "ogg"],
+    video: ["mpg", "mpeg", "mp4", "m4v", "avi", "ogm", "flv"],
+    flash: ["swf"],
+    image: ["jpg", "jpeg", "gif", "png"],
+    text: ["pdf", "doc", "docx", "odt", "rtf", "txt"],
+    application: ["jpg", "jpeg", "gif", "png"]
+]

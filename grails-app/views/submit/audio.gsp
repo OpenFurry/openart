@@ -22,8 +22,11 @@
                     <tr class="prop">
                         <th class="name"><g:message code="openfurry.audioUO.file" defualt="Audio file" /></th>
                         <td class="value">
-                            <input type="file" name="file" />
-                            <div class="tip"><g:message code="openfurry.technical.allowedTypes" /> *.wav, *.mp3, *.mid, *.ogg</td>
+                            <input type="file" name="file" /> <br />
+                            <div class="message"><g:message code="openfurry.technical.allowedTypes" defualt="Allowed file types" /> ${grailsApplication.config.openfurry.fileTypes.audio}<br />
+                                <g:message code="openfurry.technical.maxFileSize" default="Maximum file size" /> ${grailsApplication.config.openfurry.maxUploadSize.audio}MB
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>

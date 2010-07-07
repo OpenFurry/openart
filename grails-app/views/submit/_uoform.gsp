@@ -14,7 +14,7 @@
         <tr class="prop">
             <th class="name"><g:message code="openfurry.uo.description" default="Description" /></th>
             <td class="value ${hasErrors(bean: instance, field: 'description', 'errors')}">
-                <g:textArea name="description" rows="10" cols="100" value="${instance?.description}" />
+                <g:textArea name="description" rows="10" cols="75" value="${instance?.description}" />
             </td>
         </tr>
         <tr class="prop">
