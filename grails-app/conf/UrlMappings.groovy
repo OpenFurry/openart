@@ -7,6 +7,13 @@ class UrlMappings {
 			}
 		}
 
+        "/th/$id" {
+            controller = "theme"
+            action = "show"
+            constraints {
+            }
+        }
+
         "/info/$slug" {
             controller = "flatpage"
             action = "show"

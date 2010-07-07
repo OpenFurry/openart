@@ -42,6 +42,9 @@ class Person {
     /** Maximum rating that will appear in lists */
     Integer maxViewableRating = CH.config.openfurry.ratings.low
 
+    /** Prefered theme for viewing website */
+    Theme preferedTheme
+
     /** Pennies used for transactions on the site */
     Long pennies = 0
 

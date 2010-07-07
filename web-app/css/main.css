@@ -97,7 +97,7 @@ input:focus, select:focus, textarea:focus {
 /* NAVIGATION MENU */
 
 .nav {
-    background: #ddd url(../images/skin/shadow.png) top repeat-x;
+    background: #ddd url(../images/skin/shadow-white.png) top repeat-x;
     border: 1px solid #ccc;
     border-style: solid none solid none;
     margin-top: 5px;
@@ -181,7 +181,7 @@ td, th {
     vertical-align: top;
 }
 thead th {
-    background: #ddd url(../images/skin/shadow.png) top repeat-x;
+    background: #ddd url(../images/skin/shadow-white.png) top repeat-x;
 }
 th {
     background-color: #f0f0f0;
@@ -231,7 +231,7 @@ th.desc a {
 /* PAGINATION */
 
 .paginateButtons {
-    background: #ddd url(../images/skin/shadow.png) top repeat-x;
+    background: #ddd url(../images/skin/shadow-white.png) top repeat-x;
     border: 1px solid #ccc;
     border-top: 0;
     color: #666;
@@ -273,7 +273,7 @@ th.desc a {
 /* ACTION BUTTONS */
 
 .buttons {
-    background: #ddd url(../images/skin/shadow.png) top repeat-x;
+    background: #ddd url(../images/skin/shadow-white.png) top repeat-x;
     border: 1px solid #ccc;
     color: #666;
     font-size: 10px;

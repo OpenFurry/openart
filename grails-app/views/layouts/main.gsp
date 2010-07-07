@@ -4,16 +4,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
         <title>OpenFurry - <g:layoutTitle default="OpenFurry" /></title>
-        <link rel="stylesheet" href="${resource(dir:'css',file:'main.css')}" />
+        <link rel="stylesheet" type="text/css" href="${g.createLink(controller: 'theme', action: 'show', id: 1)}" />
+        <link rel="stylesheet" type="text/css" href="${resource(dir:'css',file:'main.css')}" />
         <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
         <g:layoutHead />
         <g:javascript library="application" />
     </head>
     <body>
         <div id="header">
-            <img src="${resource(dir: 'images', file: 'openfurry-testlogo.gif')}" align="left" alt="Welcome to OpenFurry" /><h1 style="margin-left: 100px">"OpenFurry</h1>
-            <div id="navigation"></div>
-            <div id="usercontrol" style="margin-left: 100px">
+            <img src="${resource(dir: 'images', file: 'openfurry-testlogo.gif')}" align="left" alt="Welcome to OpenFurry" /><h1 style="margin-left: 100px">OpenFurry</h1>
+            <div id="navigation" style="float: left; margin-left: 100px; width: 40%">Navigation</div>
+            <div id="usercontrol" style="float:right; width: 40%; text-align: right">
                 <g:isLoggedIn>Welcome, <g:loggedInUserInfo field="userRealName" /></g:isLoggedIn>
                 <g:isNotLoggedIn>Please log in to continue</g:isNotLoggedIn>
             </div>
