@@ -10,16 +10,16 @@
         <g:javascript library="application" />
     </head>
     <body>
-        <div id="spinner" class="spinner" style="display:none;">
-            <img src="${resource(dir:'images',file:'spinner.gif')}" alt="${message(code:'spinner.alt',default:'Loading...')}" />
-        </div>
         <div id="header">
-            <h1>OpenFurry</h1>[OPENFURRY HEADER]
+            <img src="${resource(dir: 'images', file: 'openfurry-testlogo.gif')}" align="left" alt="Welcome to OpenFurry" /><h1 style="margin-left: 100px">"OpenFurry</h1>
             <div id="navigation"></div>
-            <div id="usercontrol">
+            <div id="usercontrol" style="margin-left: 100px">
                 <g:isLoggedIn>Welcome, <g:loggedInUserInfo field="userRealName" /></g:isLoggedIn>
                 <g:isNotLoggedIn>Please log in to continue</g:isNotLoggedIn>
             </div>
+        </div>
+        <div id="spinner" class="spinner" style="display:none;">
+            <img src="${resource(dir:'images',file:'spinner.gif')}" alt="${message(code:'spinner.alt',default:'Loading...')}" />
         </div>
         <g:if test="${flash.message}">
             <div id="message">

@@ -18,8 +18,8 @@ class ImagingService {
         String format = ImageIO.getImageReaders(multiPartFile.inputStream).get(0).getFormatName()
 
         ImageIO.write(original, format, full)
-        ImageIO.write(resizeImage(original, 400), format, sized))
-        ImageIO.write(resizeImage(original, 100), format, thumb))
+        ImageIO.write(resizeImage(original, 400), format, sized)
+        ImageIO.write(resizeImage(original, 100), format, thumb)
 
         [ full, sized, thumb ]
     }
