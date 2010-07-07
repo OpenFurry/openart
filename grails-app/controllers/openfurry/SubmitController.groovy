@@ -78,8 +78,7 @@ class SubmitController {
 
         if (audioUserObjectInstance.save(flush: true)) {
             // Pay the user for their upload
-            String transactParams = "memberClass:${owner.memberClass}"
-            marketService.transact(owner, "AudioUserObject", transactParams, "create")
+            marketService.transact(owner, "AudioUserObject", "memberClass=${owner.memberClass}", "create")
 
             // Inform them of the upload
             flash.message = 
@@ -111,8 +110,7 @@ class SubmitController {
         }
 
         if (videoUserObjectInstance.save(flush: true)) {
-            String transactParams = "memberClass:${owner.memberClass}"
-            marketService.transact(owner, "VideoUserObject", transactParams, "create")
+            marketService.transact(owner, "VideoUserObject", "memberClass=${owner.memberClass}", "create")
 
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'videoUserObject.label', default: 'Video submission'), params.id])}"
@@ -138,8 +136,7 @@ class SubmitController {
         }
 
         if (flashUserObjectInstance.save(flush: true)) {
-            String transactParams = "memberClass:${owner.memberClass}"
-            marketService.transact(owner, "FlashUserObject", transactParams, "create")
+            marketService.transact(owner, "FlashUserObject", "memberClass=${owner.memberClass}", "create")
 
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'flashUserObject.label', default: 'Flash submission'), params.id])}"
@@ -166,12 +163,8 @@ class SubmitController {
             imageUserObjectInstance.fullFile = null
         }
         if (imageUserObjectInstance.save(flush: true)) {
-            String transactParams = "memberClass:${owner.memberClass}"
-            marketService.transact(owner, "ImageUserObject", transactParams, "create")
-
             // Pay the user for their upload
-            String transactParams = "memberclass:${owner.memberClass}"
-            marketService.transact(owner, "ImageUserObject", transactParams, "create")
+            marketService.transact(owner, "ImageUserObject", "memberClass=${owner.memberClass}", "create")
 
             // Inform the user
             flash.message = 
@@ -200,8 +193,7 @@ class SubmitController {
             textUserObjectInstance.attachment = null
         }
         if (textUserObjectInstance.save(flush: true)) {
-            String transactParams = "memberClass:${owner.memberClass}"
-            marketService.transact(owner, "TextUserObject", transactParams, "create")
+            marketService.transact(owner, "TextUserObject", "memberClass=${owner.memberClass}", "create")
 
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'textUserObject.label', default: 'Text submission'), params.id])}"
@@ -220,8 +212,7 @@ class SubmitController {
         textUserObjectInstance.journal = true
         textUserObjectInstance.attachment = null
         if (textUserObjectInstance.save(flush: true)) {
-            String transactParams = "memberClass:${owner.memberClass}"
-            marketService.transact(owner, "Journal", transactParams, "create")
+            marketService.transact(owner, "Journal", "memberClass=${owner.memberClass}", "create")
 
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'textUserObject.label', default: 'Journal'), params.id])}"
@@ -242,8 +233,7 @@ class SubmitController {
             applicationUserObjectInstance.screenshot = null
         }
         if (applicationUserObjectInstance.save(flush: true)) {
-            String transactParams = "memberClass:${owner.memberClass}"
-            marketService.transact(owner, "ApplicationUserObject", transactParams, "creat")
+            marketService.transact(owner, "ApplicationUserObject", "memberClass=${owner.memberClass}", "creat")
 
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'applicationUserObject.label', default: 'Application submission'), params.id])}"

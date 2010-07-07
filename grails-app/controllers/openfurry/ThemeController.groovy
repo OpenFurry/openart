@@ -40,6 +40,8 @@ class ThemeController {
             owner.preferedTheme = themeInstance
             owner.save(flush: true)
 
+
+
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'theme.label', default: 'Theme'), params.id])}"
             redirect(uri: "/")

@@ -10,4 +10,7 @@ class FileUploadService {
         directory.mkdirs()
         directory
     }
+
+    def getThemeDirectory(String realPath, Long id) {
+    }
 }

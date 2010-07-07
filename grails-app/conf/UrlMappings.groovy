@@ -7,6 +7,13 @@ class UrlMappings {
 			}
 		}
 
+        "/v/$id" {
+            controller = "view"
+            action = "show"
+            constraints {
+            }
+        }
+
         "/th/$id" {
             controller = "theme"
             action = "show"

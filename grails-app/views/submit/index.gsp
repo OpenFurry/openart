@@ -8,13 +8,13 @@
         <div class="dialog">
             <select name="type" id="type">
                 <option selected="selected"><strong>--Select submission type--</strong></option>
-                <option value="createAudio">Audio</option>
-                <option value="createVideo">Video</option>
-                <option value="createFlash">Flash</option>
-                <option value="createImage">Image</option>
-                <option value="createText">Text</option>
-                <option value="createJournal">Journal</option>
-                <option value="createApplication">Program/Website/Application</option>
+                <option value="audio">Audio</option>
+                <option value="video">Video</option>
+                <option value="flash">Flash</option>
+                <option value="image">Image</option>
+                <option value="text">Text</option>
+                <option value="journal">Journal</option>
+                <option value="application">Program/Website/Application</option>
             </select>
         </div>
         <div class="buttons">

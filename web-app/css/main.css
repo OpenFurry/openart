@@ -31,8 +31,33 @@ body {
 
 #header img {
     position: absolute;
-    top: 0;
-    left: 0
+    top: 2;
+    left: 2;
+}
+
+#header h1 {
+    margin-left: 105px;
+}
+
+#navigation {
+    margin-left: 105px;
+    float: left;
+    width: 40%;
+}
+
+#navigation ul {
+    list-style-type: none;
+}
+
+#usercontrol {
+    float: right;
+    width: 40%;
+    text-align: right;
+    margin-right: 1em;
+}
+
+#usercontrol ul {
+    list-style-type: none;
 }
 
 #content {

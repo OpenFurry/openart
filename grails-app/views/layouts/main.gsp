@@ -12,11 +12,22 @@
     </head>
     <body>
         <div id="header">
-            <img src="${resource(dir: 'images', file: 'openfurry-testlogo.gif')}" align="left" alt="Welcome to OpenFurry" /><h1 style="margin-left: 100px">OpenFurry</h1>
-            <div id="navigation" style="float: left; margin-left: 100px; width: 40%">Navigation</div>
-            <div id="usercontrol" style="float:right; width: 40%; text-align: right">
-                <g:isLoggedIn>Welcome, <g:loggedInUserInfo field="userRealName" /></g:isLoggedIn>
-                <g:isNotLoggedIn>Please log in to continue</g:isNotLoggedIn>
+            <img src="${resource(dir: 'images', file: 'of-logo.png')}" align="left" alt="Welcome to OpenFurry" />
+            <h1>OpenFurry</h1>
+            <div id="navigation">Navigation</div>
+            <div id="usercontrol">
+                <g:isLoggedIn>
+                    <g:message code="openfurry.display.usercontrol.welcomeUser" args="${[loggedInUserInfo(field: 'userRealName')]}" />
+                    <ul>
+                        <li><g:link controller="logout"><g:message code="openfurry.display.usercontrol.logout" default="Log out" /></g:link></li>
+                    </ul>
+                </g:isLoggedIn>
+                <g:isNotLoggedIn>
+                    <g:message code="openfurry.display.usercontrol.welcomeUser" args="${['guest']}" />
+                    <ul>
+                        <li><g:link controller="login"><g:message code="openfurry.display.usercontrol.login" default="Log in" /></g:link></li>
+                    </ul>
+                </g:isNotLoggedIn>
             </div>
         </div>
         <div id="spinner" class="spinner" style="display:none;">
