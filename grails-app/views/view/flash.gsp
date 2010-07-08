@@ -1,11 +1,11 @@
 <html>
     <head>
-        <title>Audio - ${audioUserObjectInstance.title.encodeAsHTML()}</title>
+        <title>Flash - ${instance.title.encodeAsHTML()}</title>
         <meta name="layout" content="main" />
     </head>
     <body>
-        <div class="audioDisplay">
-            <a href="${createLinkTo(dir: 'submissions/audio/' + audioUserObjectInstance.owner.username, file: audioUserObjectInstance.file)}">AUDIO FILE</a>
+        <div class="flashDisplay">
+            <a href="${createLinkTo(dir: 'submissions/flash/' + instance.owner.username, file: instance.file)}">FLASH</a>
         </div>
         <g:render template="uo" />
     </body>

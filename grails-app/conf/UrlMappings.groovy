@@ -14,6 +14,13 @@ class UrlMappings {
             }
         }
 
+        "/user/$username" {
+            controller = "person"
+            action = "show"
+            constraints {
+            }
+        }
+
         "/th/$id" {
             controller = "theme"
             action = "show"
