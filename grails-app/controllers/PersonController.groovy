@@ -23,7 +23,7 @@ class PersonController {
 	}
 
 	def show = {
-		def person = Person.get(params.id)
+		def person = params.username ? Person.findByUsername(params.username) : Person.get(params.id)
 		if (!person) {
 			flash.message = "Person not found with id $params.id"
 			redirect action: list

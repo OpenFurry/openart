@@ -100,6 +100,7 @@ openfurry.user.warning.max = 100
 // Range used in: (due to static typing)
 // - grails-app/domain/Person.groovy
 // - grails-app/domain/UserObject.groovy
+// TODO move to i18n
 openfurry.user.types.repr = ["Lurker", "Visual artist", "Sculptor", "Textile artist", "Composer", "Videographer", "Flash artist", "Programmer", "Performer", "Fursuiter"]
 openfurry.user.types.lurker = 0
 openfurry.user.types.visualArtist = 1
@@ -115,6 +116,7 @@ openfurry.user.types.fursuiter = 9
 // User classes
 // Range used in: (due to static typing)
 // - grails-app/domain/Person.groovy
+// TODO move to i18n
 openfurry.user.classes.repr = ["Bronze", "Silver", "Gold", "Platinum", "Black"]
 openfurry.user.classes.bronze = 0
 openfurry.user.classes.silver = 1
@@ -134,6 +136,7 @@ openfurry.user.messageTypes.failure = 2
 // Range used in: (due to static typing)
 // - grails-app/domain/Person.groovy
 // - grails-app/domain/UserObject.groovy
+// TODO move to i18n
 openfurry.ratings.repr = ["General", "Mature", "Adult"]
 openfurry.ratings.low = 0
 openfurry.ratings.medium = 1

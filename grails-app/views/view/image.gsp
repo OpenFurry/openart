@@ -4,7 +4,9 @@
     </head>
     <body>
         <div class="imageDisplay">
-            <a href="${createLinkTo(dir: 'submissions/image/' + instance.owner.username, file: instance.fullFile)}">IMAGE FILE</a>
+            <a href="${createLinkTo(dir: 'submissions/image/' + instance.owner.username, file: instance.sizedFile)}">
+                <img src="${createLinkTo(dir: 'submissions/image/' + instance.owner.username, file: instance.fullFile)}" />
+            </a>
         </div>
         <g:render template="uo" />
     </body>

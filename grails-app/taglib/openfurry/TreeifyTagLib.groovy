@@ -19,6 +19,20 @@ class TreeifyTagLib {
         toReturn.toString()
     }
 
+    def speciesString = { attrs ->
+        out << _speciesString(attrs['species'])
+    }
+
+    private String _speciesString(s) {
+        StringBuffer str = new StringBuffer()
+        if (s?.parent) {
+            str.append(_speciesString(s?.parent))
+            str.append(" -&gt; ")
+        }
+        str.append(s?.speciesName)
+        str.toString()
+    }
+
     def categoryOptions = { attrs ->
         out << _categoryOptions(openfurry.Category.createCriteria().list() { isNull("parent") }, 0)
     }
@@ -32,6 +46,20 @@ class TreeifyTagLib {
             toReturn.append(_categoryOptions(openfurry.Category.findAllWhere(parent: it), depth + 1))
         }
         toReturn.toString()
+    }
+
+    def categoryString = { attrs ->
+        out << _categoryString(attrs['category'])
+    }
+
+    private String _categoryString(s) {
+        StringBuffer str = new StringBuffer()
+        if (s.parent) {
+            str.append(_categoryString(s.parent))
+            str.append(" &gt; ")
+        }
+        str.append(s.categoryName)
+        str.toString()
     }
 
 }

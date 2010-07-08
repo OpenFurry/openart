@@ -70,8 +70,12 @@ class SubmitController {
         // Handle uploaded file
         def uploadedFile = request.getFile('file')
         if (!uploadedFile.empty) {
-            uploadedFile.transferTo(new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "audio"), uploadedFile.originalFilename))
-            audioUserObjectInstance.file = uploadedFile.originalFilename
+            if (uploadedFile.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.audio) {
+                uploadedFile.transferTo(new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "audio"), uploadedFile.originalFilename))
+                audioUserObjectInstance.file = uploadedFile.originalFilename
+            } else {
+                audioUserObjectInstance.errors.rejectValue("file", "openfurry.errors.fileTypeMismatch", "The uploaded file does not meet the approved file-type requirements")
+            }
         } else {
             audioUserObjectInstance.file = null
         }
@@ -103,8 +107,12 @@ class SubmitController {
         // Handle uploaded file
         def uploadedFile = request.getFile('file')
         if (!uploadedFile.empty) {
-            uploadedFile.transferTo(new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "video"), uploadedFile.originalFilename))
-            videoUserObjectInstance.file = uploadedFile.originalFilename
+            if (uploadedFile.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.video) {
+                uploadedFile.transferTo(new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "video"), uploadedFile.originalFilename))
+                videoUserObjectInstance.file = uploadedFile.originalFilename
+            } else {
+                videoUserObjectInstance.errors.rejectValue("file", "openfurry.errors.fileTypeMismatch", "The uploaded file does not meet the approved file-type requirements")
+            }
         } else { 
             videoUserObjectInstance.file = null
         }
@@ -129,8 +137,12 @@ class SubmitController {
         // Handle uploaded file
         def uploadedFile = request.getFile('file')
         if (!uploadedFile.empty) {
-            uploadedFile.transferTo(new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "flash"), uploadedFile.originalFilename))
-            flashUserObjectInstance.file = uploadedFile.originalFilename
+            if (uploadedFile.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.flash) {
+                uploadedFile.transferTo(new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "flash"), uploadedFile.originalFilename))
+                flashUserObjectInstance.file = uploadedFile.originalFilename
+            } else {
+                flashUserObjectInstance.errors.rejectValue("file", "openfurry.errors.fileTypeMismatch", "The uploaded file does not meet the approved file-type requirements")
+            }
         } else {
             flashUserObjectInstance.file = null
         }
@@ -148,17 +160,21 @@ class SubmitController {
         }
     }
     def saveImage = {
-        def imageUserObjectInstance = new FlashUserObject(params)
+        def imageUserObjectInstance = new ImageUserObject(params)
         def owner = Person.findByUsername(authenticateService.principal().username)
         imageUserObjectInstance.owner = owner
 
         // Handle uploaded file
         def uploadedFile = request.getFile('file')
         if (!uploadedFile.empty) {
-            def files = imageUserObjectFiles(owner, request.getFile('file'), fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "image"))
-            imageUserObjectInstance.thumbnail = "thumb.${uploadedFile.originalFilename}"
-            imageUserObjectInstance.sizedFile = "sized.${uploadedFile.originalFilename}"
-            imageUserObjectInstance.fullFile = uploadedFile.originalFilename
+            if (uploadedFile.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.image) {
+                def files = imagingService.createImageUserObjectFiles(owner, request.getFile('file'), fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "image"))
+                imageUserObjectInstance.thumbnail = "thumb.${uploadedFile.originalFilename}"
+                imageUserObjectInstance.sizedFile = "sized.${uploadedFile.originalFilename}"
+                imageUserObjectInstance.fullFile = uploadedFile.originalFilename
+            } else {
+                imageUserObjectInstance.errors.rejectValue("file", "openfurry.errors.fileTypeMismatch", "The uploaded file does not meet the approved file-type requirements")
+            }
         } else {
             imageUserObjectInstance.fullFile = null
         }
@@ -187,8 +203,12 @@ class SubmitController {
 
         def uploadedFile = request.getFile('attachment')
         if (!uploadedFile.empty) {
-            uploadedFile.transferTo(new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "text"), uploadedFile.originalFilename))
-            textUserObjectInstance.attachment = uploadedFile.originalFilename
+            if (uploadedFile.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.text) {
+                uploadedFile.transferTo(new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "text"), uploadedFile.originalFilename))
+                textUserObjectInstance.attachment = uploadedFile.originalFilename
+            } else {
+                textUserObjectInstance.errors.rejectValue("attachment", "openfurry.errors.fileTypeMismatch", "The uploaded file does not meet the approved file-type requirements")
+            }
         } else {
             textUserObjectInstance.attachment = null
         }
@@ -227,8 +247,12 @@ class SubmitController {
 
         def uploadedFile = request.getFile("screenshot")
         if (!uploadedFile.empty) {
-            uploadedFile.transferTo(new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "application"), uploadedFile.originalFilename))
-            applicationUserObjectInstance.screenshot = uploadedFile.originalFilename
+            if (uploadedFile.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.pplication) {
+                uploadedFile.transferTo(new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "application"), uploadedFile.originalFilename))
+                applicationUserObjectInstance.screenshot = uploadedFile.originalFilename
+            } else {
+                applicationUserObjectInstance.errors.rejectValue("screenshot", "openfurry.errors.fileTypeMismatch", "The uploaded file does not meet the approved file-type requirements")
+            }
         } else {
             applicationUserObjectInstance.screenshot = null
         }

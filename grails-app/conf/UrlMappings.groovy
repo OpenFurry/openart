@@ -11,10 +11,11 @@ class UrlMappings {
             controller = "view"
             action = "show"
             constraints {
+                id(matches: /\d+/)
             }
         }
 
-        "/~$id" {
+        "/~$username" {
             controller = "person"
             action = "show"
             constraints {
