@@ -78,7 +78,7 @@ class SubmitController {
 
         if (audioUserObjectInstance.save(flush: true)) {
             // Pay the user for their upload
-            marketService.transact(owner, "AudioUserObject", "memberClass=${owner.memberClass}", "create")
+            marketService.transact(owner, "AudioUserObject.create(memberClass:${owner.memberClass})")
 
             // Inform them of the upload
             flash.message = 
@@ -110,7 +110,7 @@ class SubmitController {
         }
 
         if (videoUserObjectInstance.save(flush: true)) {
-            marketService.transact(owner, "VideoUserObject", "memberClass=${owner.memberClass}", "create")
+            marketService.transact(owner, "VideoUserObject.create(memberClass:${owner.memberClass})")
 
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'videoUserObject.label', default: 'Video submission'), params.id])}"
@@ -136,7 +136,7 @@ class SubmitController {
         }
 
         if (flashUserObjectInstance.save(flush: true)) {
-            marketService.transact(owner, "FlashUserObject", "memberClass=${owner.memberClass}", "create")
+            marketService.transact(owner, "FlashUserObject.create(memberClass:${owner.memberClass})")
 
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'flashUserObject.label', default: 'Flash submission'), params.id])}"
@@ -164,7 +164,7 @@ class SubmitController {
         }
         if (imageUserObjectInstance.save(flush: true)) {
             // Pay the user for their upload
-            marketService.transact(owner, "ImageUserObject", "memberClass=${owner.memberClass}", "create")
+            marketService.transact(owner, "ImageUserObject.create(memberClass:${owner.memberClass})")
 
             // Inform the user
             flash.message = 
@@ -193,7 +193,7 @@ class SubmitController {
             textUserObjectInstance.attachment = null
         }
         if (textUserObjectInstance.save(flush: true)) {
-            marketService.transact(owner, "TextUserObject", "memberClass=${owner.memberClass}", "create")
+            marketService.transact(owner, "TextUserObject.create(memberClass:${owner.memberClass})")
 
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'textUserObject.label', default: 'Text submission'), params.id])}"
@@ -212,7 +212,7 @@ class SubmitController {
         textUserObjectInstance.journal = true
         textUserObjectInstance.attachment = null
         if (textUserObjectInstance.save(flush: true)) {
-            marketService.transact(owner, "Journal", "memberClass=${owner.memberClass}", "create")
+            marketService.transact(owner, "Journal.create(memberClass:${owner.memberClass})")
 
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'textUserObject.label', default: 'Journal'), params.id])}"
@@ -233,7 +233,7 @@ class SubmitController {
             applicationUserObjectInstance.screenshot = null
         }
         if (applicationUserObjectInstance.save(flush: true)) {
-            marketService.transact(owner, "ApplicationUserObject", "memberClass=${owner.memberClass}", "creat")
+            marketService.transact(owner, "ApplicationUserObject.create(memberClass:${owner.memberClass})")
 
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'applicationUserObject.label', default: 'Application submission'), params.id])}"

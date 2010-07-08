@@ -1,4 +1,3 @@
-<html>
     <head>
         <title>Journal - ${instance.title.encodeAsHTML()}</title>
         <meta name="layout" content="main" />
@@ -8,4 +7,3 @@
             JOURNAL TEXT
         </div>
     </body>
-</html

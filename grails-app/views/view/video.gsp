@@ -1,4 +1,3 @@
-<html>
     <head>
         <title>Video - ${instance.title.encodeAsHTML()}</title>
         <meta name="layout" content="main" />
@@ -9,4 +8,3 @@
         </div>
         <g:render template="uo" />
     </body>
-</html

@@ -1,4 +1,3 @@
-<html>
     <head>
         <title>Text - ${instance.title.encodeAsHTML()}</title>
         <meta name="layout" content="main" />
@@ -9,4 +8,3 @@
             FULL TEXT
         </div>
     </body>
-</html

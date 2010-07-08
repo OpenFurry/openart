@@ -7,22 +7,26 @@ class ViewController {
         
         switch (userObject) {
             case AudioUserObject:
-                redirect(action: 'audio', id: userObject.id)
+                render(view: 'audio', model:[instance: userObject])
                 break
             case VideoUserObject:
-                redirect(action: 'video', id: userObject.id)
+                render(view: 'video', model:[instance: userObject])
                 break
             case FlashUserObject:
-                redirect(action: 'flash', id: userObject.id)
+                render(view: 'flash', model:[instance: userObject])
                 break
             case ImageUserObject:
-                redirect(action: 'image', id: userObject.id)
+                render(view: 'image', model:[instance: userObject])
                 break
             case TextUserObject:
-                redirect(action: 'text', id: userObject.id)
+                if (((TextUserObject) userObject).journal) {
+                    redirect(action: 'journal', id: userObject.id)
+                } else {
+                    render(view: 'text', model:[instance: userObject])
+                }
                 break
             case ApplicationUserObject:
-                redirect(action: 'application', id: userObject.id)
+                render(view: 'application', model:[instance: userObject])
                 break
             default:
                 flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'UserObject.label', default: 'UserObject'), params.id])}"

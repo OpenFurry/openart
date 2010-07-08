@@ -25,15 +25,9 @@ class MarketService {
         }
     }
 
-    def transact(Person user, component, params, action) {
+    def transact(Person user, String signal) {
         // Try to grab the unit price
-        def unitPrice = UnitPrice.withCriteria(uniqueResult: true) {
-            and {
-                eq("component", component)
-                eq("params", params)
-                eq("action", action)
-            }
-        }
+        def unitPrice = UnitPrice.findBySignal(signal)
         if (unitPrice) {
             // Modify the user's balance
             user.pennies -= unitPrice.price
