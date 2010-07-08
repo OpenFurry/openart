@@ -17,7 +17,7 @@ class SubmitController {
     def index = { }
 
     def chooseType = {
-        redirect(action: params.type)
+        redirect(action: params.type ?: "index")
     }
 
     /*
@@ -57,6 +57,16 @@ class SubmitController {
         def applicationUserObjectInstance = new ApplicationUserObject()
         applicationUserObjectInstance.properties = params
         return [applicationUserObjectInstance: applicationUserObjectInstance]
+    }
+    def orderedCollection = {
+        def orderedCollectionInstance = new OrderedCollection()
+        orderedCollectionInstance.properties = params
+        return [orderedCollectionInstance: orderedCollectionInstance]
+    }
+    def unorderedCollection = {
+        def unorderedCollectionInstance = new Collection()
+        unorderedCollectionInstance.properties = params
+        return [unorderedCollectionInstance: unorderedCollectionInstance]
     }
 
     /*
@@ -193,12 +203,13 @@ class SubmitController {
             files.each { it.delete() }
 
             // Render back with errors
-            render(view: "audio", model: [instance: imageUserObjectInstance])
+            render(view: "image", model: [instance: imageUserObjectInstance])
         }
     }
     def saveText = {
         def textUserObjectInstance = new TextUserObject(params)
-        textUserObjectInstance.owner = authenticateService.principal()
+        def owner = Person.findByUsername(authenticateService.principal().username)
+        textUserObjectInstance.owner = owner
         textUserObjectInstance.journal = false
 
         def uploadedFile = request.getFile('attachment')
@@ -223,12 +234,13 @@ class SubmitController {
                 def f = new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "text"), uploadedFile.originalFilename)
                 f.delete()
             }
-            render(view: "audio", model: [instance: textUserObjectInstance])
+            render(view: "text", model: [instance: textUserObjectInstance])
         }
     }
     def saveJournal = {
         def textUserObjectInstance = new TextUserObject(params)
-        textUserObjectInstance.owner = authenticateService.principal()
+        def owner = Person.findByUsername(authenticateService.principal().username)
+        textUserObjectInstance.owner = owner
         textUserObjectInstance.journal = true
         textUserObjectInstance.attachment = null
         if (textUserObjectInstance.save(flush: true)) {
@@ -238,12 +250,13 @@ class SubmitController {
                 "${message(code: 'default.created.message', args: [message(code: 'textUserObject.label', default: 'Journal'), params.id])}"
             redirect(controller: "view", action: "text", id: textUserObjectInstance.id)
         } else {
-            render(view: "audio", model: [instance: textUserObjectInstance])
+            render(view: "journal", model: [instance: textUserObjectInstance])
         }
     }
     def saveApplication = {
         def applicationUserObjectInstance = new ApplicationUserObject(params)
-        applicationUserObjectInstance.owner = authenticateService.principal()
+        def owner = Person.findByUsername(authenticateService.principal().username)
+        applicationUserObjectInstance.owner = owner
 
         def uploadedFile = request.getFile("screenshot")
         if (!uploadedFile.empty) {
@@ -263,7 +276,38 @@ class SubmitController {
                 "${message(code: 'default.created.message', args: [message(code: 'applicationUserObject.label', default: 'Application submission'), params.id])}"
             redirect(controller: "view", action: "application", id: applicationUserObjectInstance.id)
         } else {
-            render(view: "audio", model: [instance: applicationUserObjectInstance])
+            render(view: "application", model: [instance: applicationUserObjectInstance])
+        }
+    }
+    def saveOrderedCollection = {
+        def orderedCollectionInstance = new OrderedCollection(params)
+        def owner = Person.findByUsername(authenticateService.principal().username)
+        orderedCollectionInstance.owner = owner
+
+        if (orderedCollectionInstance.save(flush: true)) {
+            marketService.transact(owner, "OrderedCollection.create(memberClass:${owner.memberClass})")
+
+            flash.message = 
+                "${message(code: 'default.created.message', args: [message(code: 'orderedCollection.label', default: 'Ordered collection'), params.id])}"
+            redirect(controller: "view", action:"collection", id: orderedCollectionInstance.id)
+        } else {
+            render(view: "orderedCollection", model: [instance: orderedCollectionInstance])
+        }
+        
+    }
+    def saveUnorderedCollection = {
+        def unorderedCollectionInstance = new UnorderedCollection(params)
+        def owner = Person.findByUsername(authenticateService.principal().username)
+        unorderedCollectionInstance.owner = owner
+
+        if (unorderedCollectionInstance.save(flush: true)) {
+            marketService.transact(owner, "UnorderedCollection.create(memberClass:${owner.memberClass})")
+
+            flash.message = 
+                "${message(code: 'default.created.message', args: [message(code: 'unorderedCollection.label', default: 'Unordered collection'), params.id])}"
+            redirect(controller: "view", action:"collection", id: unorderedCollectionInstance.id)
+        } else {
+            render(view: "unorderedCollection", model: [instance: unorderedCollectionInstance])
         }
     }
 }

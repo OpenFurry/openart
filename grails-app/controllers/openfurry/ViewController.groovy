@@ -30,7 +30,22 @@ class ViewController {
                 break
             default:
                 flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'UserObject.label', default: 'UserObject'), params.id])}"
-                response.sendError(404)
+                response.sendError(404, "${message(code: 'default.not.found.message', args: [message(code: 'UserObject.label', default: 'UserObject'), params.id])}")
+        }
+    }
+
+    def collection = {
+        def collection = Collection.get(params.id)
+        
+        switch (collection) {
+            case OrderedCollection:
+                render(view: "orderedCollection", model:[instance: collection])
+                break
+            case UnorderedCollection:
+                render(view: "unorderedCollection", model:[instance: collection])
+                break
+            default:
+                response.sendError(404, "${message(code: 'default.not.found.message', args: [message(code: 'Collection.label', default: 'Collection'), params.id])}")
         }
     }
 
@@ -38,7 +53,7 @@ class ViewController {
         def audioUserObjectInstance = AudioUserObject.get(params.id)
         if (!audioUserObjectInstance) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'audioUserObject.label', default: 'AudioUserObject'), params.id])}"
-            response.status = 404
+            response.sendError 404
         } else {
             [instance: audioUserObjectInstance]
         }
@@ -47,7 +62,7 @@ class ViewController {
         def videoUserObjectInstance = VideoUserObject.get(params.id)
         if (!videoUserObjectInstance) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'videoUserObject.label', default: 'VideoUserObject'), params.id])}"
-            response.status = 404
+            response.sendError 404
         } else {
             [instance: videoUserObjectInstance]
         }
@@ -56,7 +71,7 @@ class ViewController {
         def flashUserObjectInstance = FlashUserObject.get(params.id)
         if (!flashUserObjectInstance) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'flashUserObject.label', default: 'FlashUserObject'), params.id])}"
-            response.status = 404
+            response.sendError 404
         } else {
             [instance: flashUserObjectInstance]
         }
@@ -65,7 +80,7 @@ class ViewController {
         def imageUserObjectInstance = ImageUserObject.get(params.id)
         if (!imageUserObjectInstance) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'imageUserObject.label', default: 'ImageUserObject'), params.id])}"
-            response.status = 404
+            response.sendError 404
         } else {
             [instance: imageUserObjectInstance]
         }
@@ -74,7 +89,7 @@ class ViewController {
         def textUserObjectInstance = TextUserObject.get(params.id)
         if (!textUserObjectInstance) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'textUserObject.label', default: 'TextUserObject'), params.id])}"
-            response.status = 404
+            response.sendError 404
         } else {
             [instance: textUserObjectInstance]
         }
@@ -83,7 +98,7 @@ class ViewController {
         def journalUserObjectInstance = TextUserObject.get(params.id)
         if (!journalUserObjectInstance) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'journalUserObject.label', default: 'TextUserObject'), params.id])}"
-            response.status = 404
+            response.sendError 404
         } else {
             [instance: journalUserObjectInstance]
         }
@@ -92,7 +107,7 @@ class ViewController {
         def applicationUserObjectInstance = ApplicationUserObject.get(params.id)
         if (!applicationUserObjectInstance) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'applicationUserObject.label', default: 'ApplicationUserObject'), params.id])}"
-            response.status = 404
+            response.sendError 404
         } else {
             [instance: applicationUserObjectInstance]
         }

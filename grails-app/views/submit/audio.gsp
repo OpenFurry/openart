@@ -10,7 +10,7 @@
     </div>
     </g:hasErrors>
     <g:uploadForm action="saveAudio" method="post">
-        <div class="dialog">
+        <div class="block">
             <g:render template="uoform" />
             <table>
                 <thead>
