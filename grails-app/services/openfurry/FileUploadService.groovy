@@ -13,4 +13,11 @@ class FileUploadService {
 
     def getThemeDirectory(String realPath, Long id) {
     }
+
+    def getAvatarDirectory(String realPath, Person user) {
+        def s = File.separatorChar
+        def directory = new File(realPath, "${s}avatars${s}${user.username}")
+        directory.mkdirs()
+        directory
+    }
 }

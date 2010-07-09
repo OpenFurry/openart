@@ -6,6 +6,15 @@
     </thead>
     <tbody>
         <tr class="prop">
+            <th class="name"><g:message code="openfurry.uo.thumbnail" default="Submission thumbnail" /></th>
+            <td class="value ${hasErrors(bean: instance, field: 'thumbnail', 'errors')}">
+                <input type="file" name="thumbnail" />
+                <div class="message"><g:message code="openfurry.technical.allowedTypes" default="Alloewd file types" /> ${grailsApplication.config.openfurry.fileTypes.image}<br />
+                    <g:message code="openfurry.technical.defaultThumb" default="If you do not upload a thumbnail image, a default thumbnail will be used for you" />
+                </div>
+            </td>
+        </tr>
+        <tr class="prop">
             <th class="name"><g:message code="openfurry.uo.title" default="Title" /></th>
             <td class="value ${hasErrors(bean: instance, field: 'title', 'errors')}">
                 <g:textField name="title" value="${instance?.title}" />

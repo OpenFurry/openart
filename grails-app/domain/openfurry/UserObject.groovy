@@ -5,7 +5,7 @@ import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 class UserObject implements Comparable {
     
     String title
-    String thumbnail = "defaultThumb.jpg"
+    String thumbnail = null
     String description
     String externalLink
     Date dateCreated
@@ -23,6 +23,7 @@ class UserObject implements Comparable {
 
     static constraints = {
         title(maxSize: 120, blank: false)
+        thumbnail(blank: true, nullable: true)
         description(maxSize: 5000, blank: true, nullable: true)
         externalLink(url: true, blank: true, nullable: true)
         dateCreated(nullable: true)

@@ -90,6 +90,18 @@ class SubmitController {
             audioUserObjectInstance.file = null
         }
 
+        def thumbnail = request.getFile('thumbnail')
+        if (!thumbnail.empty) {
+            if (thumbnail.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.image) {
+                imagingService.createThumbnailFile(thumbnail, new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "audio"), "thumb.${thumbnail.originalFilename}"))
+                audioUserObjectInstance.thumbnail = thumbnail.originalFilename
+            } else {
+                audioUserObjectInstance.errors.rejectValue("thumbnail", "openfurry.errors.fileTypeMismatch", "The uploaded file does not meet the approved file-type requirements")
+            }
+        } else {
+            audioUserObjectInstance.thumbnail = null
+        }
+
         if (audioUserObjectInstance.save(flush: true)) {
             // Pay the user for their upload
             marketService.transact(owner, "AudioUserObject.create(memberClass:${owner.memberClass})")
@@ -127,6 +139,18 @@ class SubmitController {
             videoUserObjectInstance.file = null
         }
 
+        def thumbnail = request.getFile('thumbnail')
+        if (!thumbnail.empty) {
+            if (thumbnail.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.image) {
+                imagingService.createThumbnailFile(new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "video"), "thumb.${thumbnail.originalFilename}"))
+                videoUserObjectInstance.thumbnail = thumbnail.originalFilename
+            } else {
+                videoUserObjectInstance.errors.rejectValue("thumbnail", "openfurry.errors.fileTypeMismatch", "The uploaded file does not meet the approved file-type requirements")
+            }
+        } else {
+            videoUserObjectInstance.thumbnail = null
+        }
+
         if (videoUserObjectInstance.save(flush: true)) {
             marketService.transact(owner, "VideoUserObject.create(memberClass:${owner.memberClass})")
 
@@ -157,6 +181,18 @@ class SubmitController {
             flashUserObjectInstance.file = null
         }
 
+        def thumbnail = request.getFile('thumbnail')
+        if (!thumbnail.empty) {
+            if (thumbnail.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.image) {
+                imagingService.createThumbnailFile(new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "flash"), "thumb.${thumbnail.originalFilename}"))
+                flashUserObjectInstance.thumbnail = thumbnail.originalFilename
+            } else {
+                flashUserObjectInstance.errors.rejectValue("thumbnail", "openfurry.errors.fileTypeMismatch", "The uploaded file does not meet the approved file-type requirements")
+            }
+        } else {
+            flashUserObjectInstance.thumbnail = null
+        }
+
         if (flashUserObjectInstance.save(flush: true)) {
             marketService.transact(owner, "FlashUserObject.create(memberClass:${owner.memberClass})")
 
@@ -178,7 +214,7 @@ class SubmitController {
         def uploadedFile = request.getFile('file')
         if (!uploadedFile.empty) {
             if (uploadedFile.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.image) {
-                def files = imagingService.createImageUserObjectFiles(owner, request.getFile('file'), fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "image"))
+                files = imagingService.createImageUserObjectFiles(owner, request.getFile('file'), fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "image"))
                 imageUserObjectInstance.thumbnail = "thumb.${uploadedFile.originalFilename}"
                 imageUserObjectInstance.sizedFile = "sized.${uploadedFile.originalFilename}"
                 imageUserObjectInstance.fullFile = uploadedFile.originalFilename
@@ -188,6 +224,18 @@ class SubmitController {
         } else {
             imageUserObjectInstance.fullFile = null
         }
+
+        def thumbnail = request.getFile('thumbnail')
+        if (!thumbnail.empty) {
+            if (thumbnail.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.image) {
+                files[2].delete()
+                imagingService.createThumbnailFile(new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "image"), uploadedFile.originalFilename))
+                imageUserObjectInstance.thumbnail = thumbnail.originalFilename
+            } else {
+                imageUserObjectInstance.errors.rejectValue("thumbnail", "openfurry.errors.fileTypeMismatch", "The uploaded file does not meet the approved file-type requirements")
+            }
+        }
+
         if (imageUserObjectInstance.save(flush: true)) {
             // Pay the user for their upload
             marketService.transact(owner, "ImageUserObject.create(memberClass:${owner.memberClass})")
@@ -223,6 +271,19 @@ class SubmitController {
         } else {
             textUserObjectInstance.attachment = null
         }
+
+        def thumbnail = request.getFile('thumbnail')
+        if (!thumbnail.empty) {
+            if (thumbnail.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.image) {
+                imagingService.createThumbnailFile(new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "text"), "thumb.${thumbnail.originalFilename}"))
+                textUserObjectInstance.thumbnail = thumbnail.originalFilename
+            } else {
+                textUserObjectInstance.errors.rejectValue("thumbnail", "openfurry.errors.fileTypeMismatch", "The uploaded file does not meet the approved file-type requirements")
+            }
+        } else {
+            textUserObjectInstance.thumbnail = null
+        }
+
         if (textUserObjectInstance.save(flush: true)) {
             marketService.transact(owner, "TextUserObject.create(memberClass:${owner.memberClass})")
 
@@ -269,6 +330,19 @@ class SubmitController {
         } else {
             applicationUserObjectInstance.screenshot = null
         }
+
+        def thumbnail = request.getFile('thumbnail')
+        if (!thumbnail.empty) {
+            if (thumbnail.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.image) {
+                imagingService.createThumbnailFile(new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "application"), "thumb.${thumbnail.originalFilename}"))
+                applicationUserObjectInstance.thumbnail = thumbnail.originalFilename
+            } else {
+                applicationUserObjectInstance.errors.rejectValue("thumbnail", "openfurry.errors.fileTypeMismatch", "The uploaded file does not meet the approved file-type requirements")
+            }
+        } else {
+            applicationUserObjectInstance.thumbnail = null
+        }
+
         if (applicationUserObjectInstance.save(flush: true)) {
             marketService.transact(owner, "ApplicationUserObject.create(memberClass:${owner.memberClass})")
 

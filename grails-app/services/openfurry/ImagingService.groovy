@@ -25,7 +25,20 @@ class ImagingService {
         [ full, sized, thumb ]
     }
 
-    private static def resizeImage(originalImage, maxDimension) {
+    def createThumbnailFile(multiPartFile, File dest) {
+        BufferedImage original = ImageIO.read(multiPartFile.inputStream)
+
+        if (original.width > 100 || original.height > 100) {
+            original = resizeImage(original, 100)
+        }
+
+        String format = ImageIO.getImageReadersByMIMEType(multiPartFile.getContentType()).getAt(0).getFormatName()
+        ImageIO.write(original, format, dest)
+
+        dest
+    }
+
+    private static BufferedImage resizeImage(originalImage, maxDimension) {
         Double widthScale = (double)maxDimension / (double)originalImage.width
         Double heightScale = (double)maxDimension / (double)originalImage.height
 
