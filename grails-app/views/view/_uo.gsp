@@ -58,6 +58,11 @@
 
             <dt class="odd"><g:message code="openfurry.uo.favoriteCount" default="Favorite count" /></dt>
             <dd class="odd">${instance.favoriteCount}</dd>
+
+            <dt class="even"><g:message code="openfurry.uo.tags" default="Tags" /></dt>
+            <dd class="even">
+                <g:each in="${instance.tags}"><a href="">${it.tag.tag}</a> </g:each>
+            </dd>
         </dl>
     </div>
     <div class="uoLicense shadow">Image <a href="${instance.license.url}">${instance.license.display} ${instance.owner.userRealName} <g:formatDate format="yyyy" date="${instance.dateCreated}" /></a> - ${instance.license.description}</div>

@@ -14,6 +14,9 @@ class SubmitController {
     // Needed for reimbursement for posting
     def marketService
 
+    // Needed for tagging
+    def tagService
+
     def index = { }
 
     def chooseType = {
@@ -106,6 +109,9 @@ class SubmitController {
             // Pay the user for their upload
             marketService.transact(owner, "AudioUserObject.create(memberClass:${owner.memberClass})")
 
+            // Tag the object
+            tagService.tagObject(audioUserObjectInstance, params.tagString)
+
             // Inform them of the upload
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'audioUserObject.label', default: 'Audio submission'), params.id])}"
@@ -154,6 +160,9 @@ class SubmitController {
         if (videoUserObjectInstance.save(flush: true)) {
             marketService.transact(owner, "VideoUserObject.create(memberClass:${owner.memberClass})")
 
+            // Tag the object
+            tagService.tagObject(videoUserObjectInstance, params.tagString)
+
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'videoUserObject.label', default: 'Video submission'), params.id])}"
             redirect(controller: "view", action: "video", id: videoUserObjectInstance.id)
@@ -195,6 +204,9 @@ class SubmitController {
 
         if (flashUserObjectInstance.save(flush: true)) {
             marketService.transact(owner, "FlashUserObject.create(memberClass:${owner.memberClass})")
+
+            // Tag the object
+            tagService.tagObject(flashUserObjectInstance, params.tagString)
 
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'flashUserObject.label', default: 'Flash submission'), params.id])}"
@@ -239,6 +251,9 @@ class SubmitController {
         if (imageUserObjectInstance.save(flush: true)) {
             // Pay the user for their upload
             marketService.transact(owner, "ImageUserObject.create(memberClass:${owner.memberClass})")
+
+            // Tag the object
+            tagService.tagObject(imageUserObjectInstance, params.tagString)
 
             // Inform the user
             flash.message = 
@@ -286,6 +301,9 @@ class SubmitController {
 
         if (textUserObjectInstance.save(flush: true)) {
             marketService.transact(owner, "TextUserObject.create(memberClass:${owner.memberClass})")
+
+            // Tag the object
+            tagService.tagObject(textUserObjectInstance, params.tagString)
 
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'textUserObject.label', default: 'Text submission'), params.id])}"
@@ -345,6 +363,9 @@ class SubmitController {
 
         if (applicationUserObjectInstance.save(flush: true)) {
             marketService.transact(owner, "ApplicationUserObject.create(memberClass:${owner.memberClass})")
+
+            // Tag the object
+            tagService.tagObject(applicationUserObjectInstance, params.tagString)
 
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'applicationUserObject.label', default: 'Application submission'), params.id])}"

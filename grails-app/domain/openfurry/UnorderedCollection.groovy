@@ -1,5 +1,5 @@
 package openfurry
 
 class UnorderedCollection {
-    Set userObjects
+    static hasMany = [userObjects: UserObject]
 }

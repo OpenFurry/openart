@@ -68,7 +68,7 @@
         <tr class="prop">
             <th class="name"><g:message code="openfurry.uo.tags" default="Tags" /></th>
             <td class="value ${hasErrors(bean: instance, field: 'tags', 'errors')}">
-                <g:textField name="tags" value="${instance?.tags}" />
+                <g:textField name="tagString" value="${instance?.tags}" />
             </td>
         </tr>
         <tr class="prop">

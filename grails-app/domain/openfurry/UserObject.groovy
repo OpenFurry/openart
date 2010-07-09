@@ -13,7 +13,6 @@ class UserObject implements Comparable {
     Boolean published = true
     Boolean friendsOnly = false
     Integer rating = CH.config.openfurry.ratings.low
-    String tags
     Integer weight = 0
     Long viewCount = 0
     Long favoriteCount = 0
@@ -37,7 +36,7 @@ class UserObject implements Comparable {
         tablePerHierarchy false
     }
 
-    static hasMany = [comments: Comment, species: Species, categories: Category]
+    static hasMany = [comments: Comment, species: Species, categories: Category, tags: TaggedItem]
     
     static belongsTo = Person
 
