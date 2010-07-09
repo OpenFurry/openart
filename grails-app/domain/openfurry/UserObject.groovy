@@ -16,7 +16,6 @@ class UserObject implements Comparable {
     Integer weight = 0
     Long viewCount = 0
     Long favoriteCount = 0
-    Collection collection
     Person owner
     License license
 
@@ -29,7 +28,6 @@ class UserObject implements Comparable {
         lastUpdated(nullable: true)
         rating(range: 0..2)
         tags(blank: true)
-        collection(blank: true, nullable: true)
     }
 
     static mapping = {

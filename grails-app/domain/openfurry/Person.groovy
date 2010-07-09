@@ -74,7 +74,6 @@ class Person {
         votes: IssueVote, 
         userObjects: UserObject, 
         comments: Comment, 
-        messages: UserMessage, 
         statuses: UserStatus
         ]
 	static belongsTo = Role

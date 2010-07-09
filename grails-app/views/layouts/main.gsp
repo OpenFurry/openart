@@ -33,18 +33,16 @@
         <div id="spinner" class="spinner" style="display:none;">
             <img src="${resource(dir:'images',file:'spinner.gif')}" alt="${message(code:'spinner.alt',default:'Loading...')}" />
         </div>
-        <g:if test="${flash.message}">
-            <div id="message">
-                ${flash.message}
-            </div>
-        </g:if>
-        <g:if test="${flash.transact}">
-            <div class="transact">
-                <g:message code="${flash.transact}" args="$flash.transactArgs}" default="${flash.transactDefault}" />
-            </div>
-        </g:if>
         <div id="content">
             <h2><g:layoutTitle default="OpenFurry" /></h2>
+            <div id="messages">
+                <g:if test="${flash.transact}">
+                <div class="transact">
+                    <g:message code="${flash.transact}" args="${flash.transactArgs}" default="${flash.transactDefault}" />
+                </div>
+                </g:if>
+                <g:each in="${flash.messages}"><div type="${it.type}">${it.message}</div></g:each>
+            </div>
             <g:layoutBody />
         </div>
         <div id="footer">
