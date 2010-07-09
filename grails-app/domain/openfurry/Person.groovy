@@ -26,6 +26,9 @@ class Person {
 
     /** user profile */
     String profile
+    
+    /** user properties */
+    String properties
 
     /** User's species */
     Species species
@@ -57,6 +60,7 @@ class Person {
 		passwd(blank: false)
 		enabled()
         profile(blank: true, nullable: true)
+        properties(blank: true, nullable: true)
         memberType(range: 0..9)
         memberClass(range: 0..4)
         maxViewableRating(range: 0..2)
@@ -66,6 +70,7 @@ class Person {
 
     static mapping = {
         profile type: "text"
+        properties type: "text"
 	}
 
 	static transients = ['pass', 'constantsService']

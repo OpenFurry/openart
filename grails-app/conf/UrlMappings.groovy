@@ -22,6 +22,13 @@ class UrlMappings {
             }
         }
 
+        "/tag/$id" {
+            controller = "tag"
+            action = "show"
+            constraints {
+            }
+        }
+
         "/th/$id" {
             controller = "theme"
             action = "show"
@@ -38,5 +45,6 @@ class UrlMappings {
 
 		"/"(view:"/index")
 		"500"(view:'/error')
+        "404"(view:'/notFound')
 	}
 }
