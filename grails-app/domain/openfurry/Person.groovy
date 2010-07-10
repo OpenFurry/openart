@@ -14,6 +14,8 @@ class Person {
 	/** User Display Name*/
 	String userRealName
 
+    String avatar = ",default.png"
+
 	/** MD5 Password */
 	String passwd
 	/** plain password to create a MD5 password */
@@ -49,7 +51,7 @@ class Person {
     Theme preferedTheme
 
     /** Pennies used for transactions on the site */
-    Long pennies = 0
+    Long pennies = 10
 
     /** User's warning level */
     Integer warningLevel = 0

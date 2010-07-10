@@ -22,6 +22,14 @@ class UrlMappings {
             }
         }
 
+        // Needed for when browsers convert ~
+        "/%7E$username" {
+            controller = "person"
+            action = "show"
+            constraints {
+            }
+        }
+
         "/tag/$id" {
             controller = "tag"
             action = "show"

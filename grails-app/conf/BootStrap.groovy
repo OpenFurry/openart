@@ -62,7 +62,7 @@ class BootStrap {
         def userGod = new Person(
             username: "god",
             userRealName: "God Almighty",
-            profile: "a ~god b",
+            profile: "a ~god ~!god b #1 #!1",
             enabled: true,
             emailShow: true,
             email: "god@openfurry.com",

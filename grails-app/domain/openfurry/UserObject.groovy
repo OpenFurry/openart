@@ -5,7 +5,7 @@ import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 class UserObject implements Comparable {
     
     String title
-    String thumbnail = null
+    String thumbnail = "default.png"
     String description
     String externalLink
     Date dateCreated

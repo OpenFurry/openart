@@ -179,3 +179,14 @@ openfurry.fileTypes = [
     text: ["pdf", "doc", "docx", "odt", "rtf", "txt"],
     application: ["jpg", "jpeg", "gif", "png"]
 ]
+
+// Default thumbnail icons
+// Path from web-apps
+openfurry.defaultIcons = [
+    audio: "/submissions/thumbs/,default-audio.png",
+    video: "/submissions/thumbs/,default-video.png",
+    flash: "/submissions/thumbs/,default-flash.png",
+    image: "/submissions/thumbs/,default-image.png",
+    text: "/submissions/thumbs/,default-text.png",
+    audio: "/submissions/thumbs/,default-audio.png",
+]

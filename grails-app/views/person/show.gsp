@@ -4,13 +4,25 @@
 </head>
 
 <body>
-    <div class="block">
-        <div class="shadow blocktitle">
-            <g:message code="openfurry.user.profile" default="Profile" />
-        </div>
-        ${person.profile.encodeAsOpenFurry()}<!-- TODO: markdown -->
+    <div class="block" style="width: 69%; float: left">
+        <table>
+            <thead>
+                <tr>
+                    <th class="shadow">
+                        <g:message code="openfurry.user.profile" default="Profile" />
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <of:linking><markdown:renderHtml>${person.profile}</markdown:renderHtml></of:linking>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <div class="block" style="width: 30%">
+    <div class="block" style="width: 30%; float: right;">
         <table>
             <thead>
                 <tr>
@@ -19,58 +31,45 @@
             </thead>
             <tbody>
                 <tr class="prop">
-                    <th class="name"></th>
-                    <td class="value"></td>
+                    <th class="name"><g:message code="openfurry.user.username" default="Username" /></th>
+                    <td class="value">${person.username}</td>
                 </tr>
+                <tr class="prop">
+                    <th class="name"><g:message code="openfurry.user.userRealName" default="Display name" /></th>
+                    <td class="value">${person.userRealName?.encodeAsHTML()}</td>
+                </tr>
+                <tr class="prop">
+                    <th class="name"><g:message code="openfurry.user.species" default="User's species" /></th>
+                    <td class="value"><of:speciesString species="${person.species}" /></th>
+                </tr>
+                <tr class="prop">
+                    <th class="name"><g:message code="openfurry.user.preferedLicense" default="Prefered license" /></th>
+                    <td class="value"><g:if test="${person.preferedLicense}"><a href="${person.preferedLicense.url}" target="_blank">${person.preferedLicense.title} - ${person.preferedLicense.display}</a></g:if></td>
+                </tr>
+                <tr class="prop">
+                    <th class="name"><g:message code="openfurry.user.type" default="User type" /></th>
+                    <td class="value">${grailsApplication.config.openfurry.user.types.repr[person.memberType]}</td>
+                </tr>
+                <tr class="prop">
+                    <th class="name"><g:message code="openfurry.user.class" default="User class" /></th>
+                    <td class="value">${grailsApplication.config.openfurry.user.classes.repr[person.memberClass]}</td>
+                </tr>
+                <tr class="prop">
+                    <th class="name"><g:message code="openfurry.user.preferedTheme" default="Prefered theme" /></th>
+                    <td class="value">${person.preferedTheme?.id ?: "default"}</td>
+                </tr>
+                <g:if test="${loggedInUserInfo(field:'username')==person.username}">
+                <tr class="prop">
+                    <th class="name"><g:message code="openfurry.user.pennies" default="Pennies" /></th>
+                    <td class="value">${person.pennies}</td>
+                </tr>
+                <tr class="prop">
+                    <th class="name"><g:message code="openfurry.user.warningLevel" default="Warning level" /></th>
+                    <td class="value="><div style="background: url('${createLinkTo(dir: 'images', file: 'warning-gradient.jpg')}'); width: 200px; padding-left: ${person.warningLevel * 2}px"><strong>|</strong> (${person.warningLevel})</div></td>
+                </tr>
+                </g:if>
             </tbody>
         </table>
     </div>
-    <div class="dialog">
-        <table>
-        <tbody>
-
-            <tr class="prop">
-                <td valign="top" class="name">ID:</td>
-                <td valign="top" class="value">${person.id}</td>
-            </tr>
-
-            <tr class="prop">
-                <td valign="top" class="name">Login Name:</td>
-                <td valign="top" class="value">${person.username?.encodeAsHTML()}</td>
-            </tr>
-
-            <tr class="prop">
-                <td valign="top" class="name">Full Name:</td>
-                <td valign="top" class="value">${person.userRealName?.encodeAsHTML()}</td>
-            </tr>
-
-            <tr class="prop">
-                <td valign="top" class="name">Enabled:</td>
-                <td valign="top" class="value">${person.enabled}</td>
-            </tr>
-
-            <tr class="prop">
-                <td valign="top" class="name">Profile:</td>
-                <td valign="top" class="value">${person.profile?.encodeAsHTML()}</td>
-            </tr>
-
-            <tr class="prop">
-                <td class="name">Species:</td>
-                <td class="value"><of:speciesString species="${person.species}" /></td>
-            </tr>
-
-            <tr class="prop">
-                <td valign="top" class="name">Roles:</td>
-                <td valign="top" class="value">
-                    <ul>
-                    <g:each in="${roleNames}" var='name'>
-                        <li>${name}</li>
-                    </g:each>
-                    </ul>
-                </td>
-            </tr>
-
-        </tbody>
-        </table>
-    </div>
+    <div class="shadow" style="clear: both; width: 100%">User submissions</div>
 </body>

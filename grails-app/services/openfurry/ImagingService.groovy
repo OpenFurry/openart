@@ -9,16 +9,16 @@ class ImagingService {
 
     static transactional = false
 
-    def createImageUserObjectFiles(Person user, multiPartFile, File path) {
+    def createImageUserObjectFiles(Person user, multiPartFile, File path, Long time) {
         BufferedImage original = ImageIO.read(multiPartFile.inputStream)
 
-        def full = new File(path, multiPartFile.getOriginalFilename())
-        def sized = new File(path, "sized.${multiPartFile.getOriginalFilename()}")
-        def thumb = new File(path, "thumb.${multiPartFile.getOriginalFilename()}")
+        def full = new File(path, "${time}.${user.username}_${multiPartFile.getOriginalFilename()}")
+        def sized = new File(path, "sized.${time}.${user.username}_${multiPartFile.getOriginalFilename()}")
+        def thumb = new File(path, "thumb.${time}.${user.username}_${multiPartFile.getOriginalFilename()}")
 
         String format = ImageIO.getImageReadersByMIMEType(multiPartFile.getContentType()).getAt(0).getFormatName()
 
-        ImageIO.write(original, format, full)
+        ImageIO.write(resizeImage(original, 1280), format, full)
         ImageIO.write(resizeImage(original, 400), format, sized)
         ImageIO.write(resizeImage(original, 100), format, thumb)
 

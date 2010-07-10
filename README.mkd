@@ -63,6 +63,7 @@ Requirements
 
 * Grails 1.3.2 (untested in other versions)
 * Grails acegi plugin
+* Grails markdown plugin
 * A server capable of deploying WAR files (Tested on Jetty and Tomcat)
 
 Issues, Source, Documentation, Integration
@@ -73,6 +74,25 @@ Issues, Source, Documentation, Integration
 * Repository viewer + code reviews: [FishEye+Crucible](http://atl.mjs-svc.com:8060/project/OF) (repo hosted by GitHub, see below)
 * Continuous integration: [Bamboo](http://atl.mjs-svc.com:8085/browse/OF)
 * Git repository: [GitHub](http://github.com/makyo/openfurry)
+
+Licensing
+---------
+
+	OpenFurry - an open-source social and artistic website for furries
+	Copyright (C) 2010 Matthew Scott
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU Affero General Public License as
+	published by the Free Software Foundation, either version 3 of the
+	License, or (at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU Affero General Public License for more details.
+
+	You should have received a copy of the GNU Affero General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Credits
 -------
