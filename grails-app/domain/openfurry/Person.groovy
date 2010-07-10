@@ -28,7 +28,7 @@ class Person {
     String profile
     
     /** user properties */
-    String properties
+    Map properties
 
     /** User's species */
     Species species
@@ -70,7 +70,6 @@ class Person {
 
     static mapping = {
         profile type: "text"
-        properties type: "text"
 	}
 
 	static transients = ['pass', 'constantsService']

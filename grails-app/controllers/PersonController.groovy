@@ -25,13 +25,12 @@ class PersonController {
 	def show = {
 		def person = params.username ? Person.findByUsername(params.username) : Person.get(params.id)
 		if (!person) {
-			flash.message = "Person not found with id $params.id"
-			redirect action: list
+            response.sendError(404, "Not Found") // i18n
 			return
 		}
 		List roleNames = []
 		for (role in person.authorities) {
-			roleNames << role.authority
+			roleNames << role.authority.split("_")[1].toLowerCase()
 		}
 		roleNames.sort { n1, n2 ->
 			n1 <=> n2

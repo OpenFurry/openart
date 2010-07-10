@@ -22,28 +22,28 @@
 		<tbody>
 
 			<tr class='prop'>
-				<td valign='top' class='name'><label for='username'>Login Name:</label></td>
+				<td valign='top' class='name'><label for='username'><g:message code="openfurry.user.username" default="Username" /></label></td>
 				<td valign='top' class='value ${hasErrors(bean:person,field:'username','errors')}'>
 					<input type="text" name='username' value="${person?.username?.encodeAsHTML()}"/>
 				</td>
 			</tr>
 
 			<tr class='prop'>
-				<td valign='top' class='name'><label for='userRealName'>Full Name:</label></td>
+				<td valign='top' class='name'><label for='userRealName'><g:message code="openfurry.user.userRealName" default="Display name" /></label></td>
 				<td valign='top' class='value ${hasErrors(bean:person,field:'userRealName','errors')}'>
 					<input type="text" name='userRealName' value="${person?.userRealName?.encodeAsHTML()}"/>
 				</td>
 			</tr>
 
 			<tr class='prop'>
-				<td valign='top' class='name'><label for='passwd'>Password:</label></td>
+				<td valign='top' class='name'><label for='passwd'><g:message code="openfurry.user.password" default="Password" /></label></td>
 				<td valign='top' class='value ${hasErrors(bean:person,field:'passwd','errors')}'>
 					<input type="password" name='passwd' value="${person?.passwd?.encodeAsHTML()}"/>
 				</td>
 			</tr>
 
 			<tr class='prop'>
-				<td valign='top' class='name'><label for='enabled'>Confirm Password:</label></td>
+				<td valign='top' class='name'><label for='repasswd'><g:message code="openfurry.user.confirmPassword" default="Confirm password" /></label></td>
 				<td valign='top' class='value ${hasErrors(bean:person,field:'passwd','errors')}'>
 					<input type="password" name='repasswd' value="${person?.passwd?.encodeAsHTML()}"/>
 				</td>
@@ -56,13 +56,12 @@
 				</td>
 			</tr>
 
-			<tr class='prop'>
-				<td valign='bottom' class='name'><label for='code'>Enter Code: </label></td>
-				<td valign='top' class='name'>
-					<input type="text" name="captcha" size="8"/>
-					<img src="${createLink(controller:'captcha', action:'index')}" align="absmiddle"/>
-				</td>
-			</tr>
+            <tr class="prop" style="display: none">
+                <th class="name"><label for="hp"><g:message code="openfurry.user.honeypot" default="Do not enter anything in this field; if you do, your registration will be rejected" />
+                <td class="value"><input type="text" name="hp" /></td>
+            </tr>
+
+            <input type="hidden" name="tstart" value="${tstart}" />
 
 		</tbody>
 		</table>

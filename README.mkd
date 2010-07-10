@@ -1,0 +1,81 @@
+OpenFurry
+=========
+
+    __,,,_^..^_,,,__
+
+Synopsis
+--------
+
+OpenFurry is an open-source online community for furries of all types, giving
+all comers the interaction that is best for them, whether they are the artists
+or the audience, the talkers or the lurkers.  It is designed from the ground
+up to be able to allow for user feedback and design suggestions.  With
+OpenFurry, the user base is the number-one priority.
+
+Features
+--------
+
+* Free and open-source
+* Supports multiple submission types
+  + Audio
+  + Video
+  + Image
+  + Flash
+  + Text
+  + Application/program/website (screenshots and descriptions)
+* Store metadata with your submissions
+  + Tags
+  + Species
+  + Categories
+  + Rating
+  + An external link
+  + Mark a submission as not yet published or as friends-only
+  + Organize submissions into collections - ordered or unordered
+  + Rich descriptions and submissions using Markdown
+  + Reference users and submissions easily
+* Themeable
+  + Re-style the site how you want it
+  + Upload custom icon-packs to further change the look of the site
+  + Share your themes with others
+* Integral market system - get rewarded for interacting with the site and spend
+  your rewards voting on issues or on items in the OF Store
+* Designed to allow user feedback
+  + Users can create 'issues': bug reports, feature requests, and suggestions 
+    for improvement to the site and its policies
+  + Users can vote on the issues most important to them; the more votes
+    an issue has, the more likely it is to be taken into account
+  + Users can join a governing board in order to take issues into consideration
+* I18N ready - view the site in your prefered language!
+  + English
+  + Help us localize the site for you!
+
+Possible features:
+
+* Dashboards - organize the site how you want
+* Explorer view - view collections as an intuitive tree view, edit by dragging
+  and dropping
+* Log into other OpenFurry instances using OAuth in order to view art, comment,
+  and favorite
+* Gravatar support
+
+Requirements
+------------
+
+* Grails 1.3.2 (untested in other versions)
+* Grails acegi plugin
+* A server capable of deploying WAR files (Tested on Jetty and Tomcat)
+
+Issues, Source, Documentation, Integration
+------------------------------------------
+
+* Issue tracking: [JIRA](http://atl.mjs-svc.com:8080/browse/OF)
+* Documentation: [Confluence](http://atl.mjs-svc.com:8090/display/OF)
+* Repository viewer + code reviews: [FishEye+Crucible](http://atl.mjs-svc.com:8060/project/OF) (repo hosted by GitHub, see below)
+* Continuous integration: [Bamboo](http://atl.mjs-svc.com:8085/browse/OF)
+* Git repository: [GitHub](http://github.com/makyo/openfurry)
+
+Credits
+-------
+
+* Matthew Scott (Makyo) - [MJS Services](http://mjs-svc.com)
+* (Add yourself if you contribute!)

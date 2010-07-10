@@ -12,6 +12,7 @@ class RegisterController {
 	def authenticateService
 	def daoAuthenticationProvider
 	def emailerService
+    def messagingService
 
 	static Map allowedMethods = [save: 'POST', update: 'POST']
 
@@ -29,7 +30,7 @@ class RegisterController {
 		if (session.id) {
 			def person = new Person()
 			person.properties = params
-			return [person: person]
+			return [person: person, tstart: new Date().getTime()]
 		}
 
 		redirect uri: '/'
@@ -62,8 +63,7 @@ class RegisterController {
 		}
 
 		if (!person) {
-			flash.message = "[Illegal Access] User not found with id ${params.id}"
-			redirect action: index
+            response.sendError(404) // TODO i18n
 			return
 		}
 
@@ -81,13 +81,12 @@ class RegisterController {
 			person = Person.get(user.id)
 		}
 		else {
-			redirect action: index
+			redirect action: indexdd
 			return
 		}
 
 		if (!person) {
-			flash.message = "[Illegal Access] User not found with id ${params.id}"
-			redirect action: index, id: params.id
+            reponse.sendError(404) // TODO i18n
 			return
 		}
 
@@ -99,7 +98,7 @@ class RegisterController {
 			}
 			else {
 				person.passwd = ''
-				flash.message = 'The passwords you entered do not match.'
+                messagingService.flash('error', 'openfurry.errors.passwordMismatch', 'The passwords you entered did not match')
 				render view: 'edit', model: [person: person]
 				return
 			}
@@ -136,28 +135,36 @@ class RegisterController {
 		def person = new Person()
 		person.properties = params
 
+        // Redo if they triggered bot defenses (taking less than 5 seconds or filling in the honey pot
+        if ((new Date().getTime() - Long.parseLong(params.tstart) > 5000l) || params.hp) {
+            /*
+            Do not change the flash message!
+
+            This is a little bit of social engineering - if we tell them their passwords mismatched, they will hopefully
+            take longer to fill out the form and not trigger the 5 second rule.
+
+            ~MJS
+            */
+            messagingService.flash('error', 'openfurry.errors.passwordMismatch', 'The passwords you entered did not match')
+			render view: 'index', model: [person: person, tstart: new Date().getTime()]
+            return
+        }
+
 		def config = authenticateService.securityConfig
 		def defaultRole = config.security.defaultRole
 
 		def role = Role.findByAuthority(defaultRole)
 		if (!role) {
 			person.passwd = ''
-			flash.message = 'Default Role not found.'
-			render view: 'index', model: [person: person]
-			return
-		}
-
-		if (params.captcha.toUpperCase() != session.captcha) {
-			person.passwd = ''
-			flash.message = 'Access code did not match.'
-			render view: 'index', model: [person: person]
+			flash.message = 'Default Role not found.' // If this happens, the DB is down, and we have bigger things to worry about
+			render view: 'index', model: [person: person, tstart: new Date().getTime()]
 			return
 		}
 
 		if (params.passwd != params.repasswd) {
 			person.passwd = ''
-			flash.message = 'The passwords you entered do not match.'
-			render view: 'index', model: [person: person]
+            messagingService.flash('error', 'openfurry.errors.passwordMismatch', 'The passwords you entered did not match')
+			render view: 'index', model: [person: person, tstart: new Date().getTime()]
 			return
 		}
 
@@ -168,6 +175,7 @@ class RegisterController {
 		person.description = ''
 		if (person.save()) {
 			role.addToPeople(person)
+            /*
 			if (config.security.useMail) {
 				String emailContent = """You have signed up for an account at:
 
@@ -188,6 +196,7 @@ class RegisterController {
 				]
 				emailerService.sendEmails([email])
 			}
+            */
 
 			person.save(flush: true)
 
@@ -195,10 +204,9 @@ class RegisterController {
 			def authtoken = daoAuthenticationProvider.authenticate(auth)
 			SCH.context.authentication = authtoken
 			redirect uri: '/'
-		}
-		else {
+		} else {
 			person.passwd = ''
-			render view: 'index', model: [person: person]
+			render view: 'index', model: [person: person, tstart: new Date().getTime()]
 		}
 	}
 }

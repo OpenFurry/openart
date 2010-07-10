@@ -50,10 +50,10 @@ environments {
         grails.serverURL = "http://www.changeme.com"
     }
     development {
-        grails.serverURL = "http://localhost:8080/${appName}"
+        grails.serverURL = "http://localhost:8082/"
     }
     test {
-        grails.serverURL = "http://localhost:8080/${appName}"
+        grails.serverURL = "http://localhost:8082/"
     }
 
 }
@@ -84,6 +84,11 @@ log4j = {
 
 
 //log4j.logger.org.springframework.security='off,stdout'
+
+/**
+ * Acegi constants
+ */
+security.defaultRole='ROLE_USER'
 
 /**
  * OpenFurry Constants
@@ -131,6 +136,19 @@ openfurry.user.messageTypes.repr = ["success", "warning", "failure" ]
 openfurry.user.messageTypes.success = 0
 openfurry.user.messageTypes.warning = 1
 openfurry.user.messageTypes.failure = 2
+
+// User properties
+openfurry.user.properties = [
+    [key: 'openfurry.user.properties.website', default: 'Website', url: '{value}'],
+    [key: 'openfurry.user.properties.furaffinity', default: 'FurAffinity user', url: 'http://furaffinity.net/user/{value}'],
+    [key: 'openfurry.user.properties.badger', default: 'Badger! user', url: 'http://badgerific.com/badger/{value}', display: '<link rel="stylesheet" type="text/css" href="http://media.mjs-svc.com/badger/badge.css" /><span class="badgerjax-{value}"></span><script type="text/javascript" src="http://mjs-svc.com/js/jquery-1.4.2.min.js"></script><script type="text/javascript" src="http://badgerific.com/b/{value}/"></script>'],
+    [key: 'openfurry.user.properties.aim', default: 'AOL Instant Messenger', display: '<a href="aim:addbuddy?screenname={value}">{value}</a>'],
+    [key: 'openfurry.user.properties.yim', default: 'Yahoo! Messenger', display: '<a href="ymsgr:addfriend?{value}">{value}</a>'],
+    [key: 'openfurry.user.properties.msnim', default: 'Windows Live Messenger', display: '<a href="msnim:add?contact={value}">{value}</a>'],
+    [key: 'openfurry.user.properties.blog', default: 'Blog website', url: '{value}'],
+    [key: 'openfurry.user.properties.os', default: 'Operating system of choice'],
+    [key: 'openfurry.user.properties.shell', default: 'Shell of choice'],
+]
 
 // Rating levels
 // Range used in: (due to static typing)

@@ -1,13 +1,30 @@
 <head>
 	<meta name="layout" content="main" />
-	<title>Show Person</title>
+	<title>${person.userRealName.encodeAsHTML()} (~${person.username.encodeAsHTML()})</title>
 </head>
 
 <body>
-    <h1>Show Person</h1>
-    <g:if test="${flash.message}">
-    <div class="message">${flash.message}</div>
-    </g:if>
+    <div class="block">
+        <div class="shadow blocktitle">
+            <g:message code="openfurry.user.profile" default="Profile" />
+        </div>
+        ${person.profile.encodeAsOpenFurry()}<!-- TODO: markdown -->
+    </div>
+    <div class="block" style="width: 30%">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2" class="shadow"><g:message code="openfurry.user.details" default="User details" /></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="prop">
+                    <th class="name"></th>
+                    <td class="value"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <div class="dialog">
         <table>
         <tbody>
