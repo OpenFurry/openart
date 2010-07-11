@@ -1,20 +1,10 @@
 html * {
     margin: 0;
-    /*padding: 0; SELECT NOT DISPLAYED CORRECTLY IN FIREFOX */
-}
-
-/* GENERAL */
-
-.spinner {
-    padding: 5px;
-    position: absolute;
-    right: 0;
 }
 
 body {
     background: #fff;
     color: #333;
-    font: 11px verdana, arial, helvetica, sans-serif;
 }
 
 #header {
@@ -79,6 +69,48 @@ body {
     padding-top: 1em;
 }
 
+.verticalTabs ul.nav {
+    list-style-type: none;
+    position: relative;
+    width: 15%;
+    margin-top: 1em;
+    margin-left: 1px;
+    padding: 0;
+    float: left;
+    z-index: 10;
+}
+
+.verticalTabs ul.nav li {
+    position: relative;
+    margin: 0;
+    margin-top: -1px !important;
+    padding: 0;
+}
+
+.verticalTabs ul.nav li.selected {
+    border-right: medium none !important;
+    margin-left: -0.5em;
+}
+
+.verticalTabs ul.nav li strong {
+    display: block;
+    padding: 0.3em;
+}
+
+.verticalTabs div.content {
+    padding: 1em;
+    position: relative;
+    margin: 0;
+    margin-left: 15%;
+    width: 80%;
+    float: none;
+}
+
+.block, .verticalTabs ul.nav li.selected {
+    border: 1px solid #777;
+    background-color: #fff;
+}
+
 a:link, a:visited, a:hover {
     color: #666;
     font-weight: bold;
@@ -87,19 +119,11 @@ a:link, a:visited, a:hover {
 
 h1 {
     color: #48802c;
-    font-weight: normal;
-    font-size: 16px;
-    margin: .8em 0 .3em 0;
-}
-
-ul {
-    padding-left: 15px;
 }
 
 input, select, textarea {
     background-color: #fcfcfc;
     border: 1px solid #ccc;
-    font: 11px verdana, arial, helvetica, sans-serif;
     margin: 2px 0;
     padding: 2px 4px;
 }
@@ -114,46 +138,6 @@ input:focus, select:focus, textarea:focus {
     border: 1px solid #b2d1ff;
 }
 
-.body {
-    float: left;
-    margin: 0 15px 10px 15px;
-}
-
-/* NAVIGATION MENU */
-
-.nav {
-    background: #ddd url(../images/skin/shadow-white.png) top repeat-x;
-    border: 1px solid #ccc;
-    border-style: solid none solid none;
-    margin-top: 5px;
-    padding: 7px 12px;
-}
-
-.menuButton {
-    font-size: 10px;
-    padding: 0 5px;
-}
-.menuButton a {
-    color: #333;
-    padding: 4px 6px;
-}
-.menuButton a.home {
-    background: url(../images/skin/house.png) center left no-repeat;
-    color: #333;
-    padding-left: 25px;
-}
-.menuButton a.list {
-    background: url(../images/skin/database_table.png) center left no-repeat;
-    color: #333;
-    padding-left: 25px;
-}
-.menuButton a.create {
-    background: url(../images/skin/database_add.png) center left no-repeat;
-    color: #333;
-    padding-left: 25px;
-}
-
-/* MESSAGES AND ERRORS */
 
 .message {
     background: #f3f8fc url(../images/skin/information.png) 8px 50% no-repeat;
@@ -177,6 +161,7 @@ div.errors li {
 	background: url(../images/skin/exclamation.png) 8px 0% no-repeat;
     line-height: 16px;
     padding-left: 30px;
+    margin-bottom: 5px;
 }
 
 td.errors select {
@@ -205,10 +190,10 @@ td, th {
     text-align: left;
     vertical-align: top;
 }
-thead th {
+thead th, .shadow {
     background: #ddd url(../images/skin/shadow-white.png) top repeat-x;
 }
-th {
+th, .verticalTabs ul.nav li {
     background-color: #f0f0f0;
     color: #666;
     font-size: 11px;
@@ -241,8 +226,6 @@ th.desc a {
     background: #fff;
 }
 
-/* LIST */
-
 .list table {
     border-collapse: collapse;
 }
@@ -253,10 +236,7 @@ th.desc a {
     background: #b2d1ff;
 }
 
-/* PAGINATION */
-
 .paginateButtons {
-    background: #ddd url(../images/skin/shadow-white.png) top repeat-x;
     border: 1px solid #ccc;
     border-top: 0;
     color: #666;
@@ -276,12 +256,6 @@ th.desc a {
     padding: 2px 3px;
 }
 
-/* DIALOG */
-
-.dialog table {
-    padding: 5px 0;
-}
-
 .prop {
     padding: 5px;
 }
@@ -295,10 +269,7 @@ th.desc a {
     width: 85%;
 }
 
-/* ACTION BUTTONS */
-
 .buttons {
-    background: #ddd url(../images/skin/shadow-white.png) top repeat-x;
     border: 1px solid #ccc;
     color: #666;
     font-size: 10px;

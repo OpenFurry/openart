@@ -231,6 +231,7 @@ class SubmitController {
         imageUserObjectInstance.owner = owner
 
         def time = new Date().getTime()
+        def files
 
         // Handle uploaded file
         def uploadedFile = request.getFile('file')
