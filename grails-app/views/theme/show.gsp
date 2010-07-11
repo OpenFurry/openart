@@ -4,33 +4,43 @@
  * Author:
  */
 
+<g:if test="${theme.header.bgcolor || theme.header.borderStyle || theme.header.borderColor">
 #header {
-    background-color: ${theme.header.bgcolor ? theme.header.bgcolor : "inherit"};
-    border-bottom: 1px ${theme.header.borderStyle ? theme.header.borderStyle : "inherit"} ${theme.header.borderColor ? theme.header.borderColor : "inherit"};
+    <g:if test="${theme.header.bgcolor}">background-color: ${theme.header.bgcolor};</g:if>
+    <g:if test="${theme.header.borderStyle || theme.header.borderColor">border-bottom: 1px ${theme.header.borderStyle ? theme.header.borderStyle : "inherit"} ${theme.header.borderColor ? theme.header.borderColor : "inherit"};</g:if>
 }
+</g:if>
 
+<g:if test="${theme.header.fgcolor}">
 #header h1 {
-    color: ${theme.header.fgcolor ? theme.header.fgcolor : "inherit"};
+    color: ${theme.header.fgcolor};
 }
+</g:if>
 
+<g:if test="${theme.navigation.fgcolor}">
 #navigation a {
-    color: ${theme.navigation.fgcolor ? theme.navigation.fgcolor : "inherit"};
+    color: ${theme.navigation.fgcolor};
 }
 
 #usercontrol a {
-    color: ${theme.navigation.fgcolor ? theme.navigation.fgcolor : "inherit"};
+    color: ${theme.navigation.fgcolor};
 }
+</g:if>
 
+<g:if test="${theme.content.bgcolor || theme.content.fgcolor}">
 #content {
-    background-color: ${theme.content.bgcolor ? theme.content.bgcolor : "inherit"};
-    color: ${theme.content.color ? theme.content.color : "inherit"};
+    <g:if test="${theme.content.bgcolor}">background-color: ${theme.content.bgcolor};</g:if>
+    <g:if test="${theme.content.fgcolor}">color: ${theme.content.color};</g:if>
 }
+</g:if>
 
+<g:if test="${theme.block.borderStyle || theme.block.borderColor || theme.block.bgcolor || theme.block.fgcolor}">
 .block {
-    border-style: 1px ${theme.block.borderStyle ? theme.block.borderColor : "inherit"} ${theme.block.borderColor ? theme.block.borderColor : "inherit"};
+    <g:if test="${theme.block.borderStyle || theme.block.borderColor}">border-style: 1px ${theme.block.borderStyle ? theme.block.borderColor : "inherit"} ${theme.block.borderColor ? theme.block.borderColor : "inherit"};</g:if>
     background-color: ${theme.block.bgcolor ? theme.block.bgcolor : "inherit"};
     color: ${theme.block.fgcolor ? theme.block.fgcolor : "inherit"};
 }
+</g:if>
 
 .shadow {
     background: ${theme.shadow.bgcolor ? theme.shadow.bgcolor : "inherit"} url(../images/shadow-${theme.shadow.type ? theme.shadow.type : "white"}.png) top repeat-x;
