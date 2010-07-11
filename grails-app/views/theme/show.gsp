@@ -49,18 +49,22 @@
 }
 </g:if>
 
+<g:if test="${theme.bgody.bgcolor || theme.body.fgcolor || theme.body.font-size}">
 body {
-    background-color: ${theme.body.bgcolor ? theme.body.bgcolor : "inherit"};
-    color: ${theme.body.fgcolor ? theme.body.fgcolor : "inherit"};
-    font: ${theme.body.font ? theme.body.font : "inherit"};
-    font-size: ${theme.body.fontSize ? theme.body.fontSize : "inherit"};
+    <g:if test="${theme.body.bgcolor}">background-color: ${theme.body.bgcolor};</g:if>
+    <g:if test="${theme.body.fgcolor}">color: ${theme.body.fgcolor};</g:if>
+    <g:if test="${theme.body.font}">font: ${theme.body.font};</g:if>
+    <g:if test="${theme.body.fontSize}">font-size: ${theme.body.fontSize};</g:if>
 }
+</g:if>
 
+<g:if test="%{theme.headers.fgcolor || theme.headers.font || theme.headers.fontSize}">
 h2, h3, h4, h5, h6 {
-    color: ${theme.headers.color ? theme.headers.color : "inherit"};
-    font: ${theme.headers.font ? theme.headers.font : "inherit"};
-    font-size: ${theme.headers.fontSize ? theme.headers.fontSize : "inherit"};
+    <g:if test="${theme.headers.fgcolor}">color: ${theme.headers.fgcolor};</g:if>
+    <g:if test="${theme.headers.font}">font: ${theme.headers.font};</g:if>
+    <g:if test="${theme.headers.fontSize">font-size: ${theme.headers.fontSize};</g:if>
 }
+</g:if>
 
 th {
     background-color: ${theme.th.bgcolor ? theme.th.bgcolor : "inherit"};
