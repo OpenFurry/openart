@@ -42,10 +42,12 @@
 }
 </g:if>
 
+<g:if test="${theme.shadow.bgcolor || theme.shadow.type || theme.shadow.fgcolor}">
 .shadow {
-    background: ${theme.shadow.bgcolor ? theme.shadow.bgcolor : "inherit"} url(../images/shadow-${theme.shadow.type ? theme.shadow.type : "white"}.png) top repeat-x;
-    color: ${theme.shadow.fgcolor ? theme.shadow.fgcolor : "inherit"};
+    <g:if test="${theme.shadow.bgcolor || theme.shadow.type}">background: ${theme.shadow.bgcolor ? theme.shadow.bgcolor : "inherit"} url(../images/shadow-${theme.shadow.type ? theme.shadow.type : "white"}.png) top repeat-x;</g:if>
+    <g:if test="${theme,shadow.fgcolor}">color: ${theme.shadow.fgcolor};</g:if>
 }
+</g:if>
 
 body {
     background-color: ${theme.body.bgcolor ? theme.body.bgcolor : "inherit"};
