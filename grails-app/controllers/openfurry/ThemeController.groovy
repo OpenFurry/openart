@@ -37,7 +37,7 @@ class ThemeController {
         themeInstance.description = params.description
 
         if(themeInstance.save(flush: true)) {
-            owner.preferedTheme = themeInstance
+            owner.preferedTheme = themeInstance.id
             owner.save(flush: true)
 
             // Save theme to a file for static hosting

@@ -15,4 +15,8 @@ class Theme {
     static mapping = {
         style type: "text"
     }
+
+    String staticFile() {
+        "theme/${id}/main.css"
+    }
 }

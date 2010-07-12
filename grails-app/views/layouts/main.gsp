@@ -4,8 +4,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
         <title>OpenFurry - <g:layoutTitle default="OpenFurry" /></title>
-        <link rel="stylesheet" type="text/css" href="${g.createLink(controller: 'theme', action: 'show', id: 1)}" />
         <link rel="stylesheet" type="text/css" href="${resource(dir:'css',file:'main.css')}" />
+        <g:isLoggedIn>
+        <g:if test="${loggedInUserInfo(field: 'preferedTheme')}">
+        <link rel="stylesheet" type="text/css" href="${resource(dir: 'themes/' + loggedInUserInfo(field: 'preferedTheme'), file: 'main.css')}" />
+        </g:if>
+        </g:isLoggedIn>
         <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
         <g:layoutHead />
         <g:javascript library="application" />
@@ -48,6 +52,7 @@
         <div id="footer">
             <p>An <a href="http://mjs-svc.com">MJS Services</a> project | Powered by <a href="http://grails.org">Grails</a><br />
                 <a href="/about/ip">Intellectual Property Information</a></p>
+                ${loggedInUserInfo(field: 'preferedTheme')}
         </div>
     </body>
 </html>

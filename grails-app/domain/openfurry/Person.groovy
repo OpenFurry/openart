@@ -48,7 +48,7 @@ class Person {
     Integer maxViewableRating = CH.config.openfurry.ratings.low
 
     /** Prefered theme for viewing website */
-    Theme preferedTheme
+    Integer preferedTheme
 
     /** Pennies used for transactions on the site */
     Long pennies = 10
@@ -66,6 +66,7 @@ class Person {
         memberType(range: 0..9)
         memberClass(range: 0..4)
         maxViewableRating(range: 0..2)
+        preferedTheme(blank: true, nullable: true)
         pennies()
         warningLevel(min: 0, max: 100)
     }
