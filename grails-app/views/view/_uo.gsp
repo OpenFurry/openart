@@ -1,7 +1,7 @@
 <div class="uoDisplay block">
     <div class="uoTitle shadow">${instance.title.encodeAsHTML()} - <g:link controller="person" action="show" params="[username: instance.owner.username]">${instance.owner.userRealName.encodeAsHTML()}</g:link></div>
     <div class="uoDescription">
-        ${instance.description?.encodeAsHTML()} <!-- TODO: markdown -->
+        <of:linking><markdown:renderHtml>${instance.description?.encodeAsHTML()}</markdown:renderHtml></of:linking>
     </div>
     <div class="uoInfo">
         <dl>
@@ -61,7 +61,7 @@
 
             <dt class="even"><g:message code="openfurry.uo.tags" default="Tags" /></dt>
             <dd class="even">
-                <g:each in="${instance.tags}"><a href="">${it.tag.tag}</a> </g:each>
+                <g:each in="${instance.tags}"><a href="${createLink(controller: 'tag', action: 'show', id: it.tag.tag)}">${it.tag.tag}</a> </g:each>
             </dd>
         </dl>
     </div>

@@ -20,7 +20,10 @@ environments {
     test {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:hsqldb:mem:testDB"
+            url = "jdbc:postgresql:oftest"
+            username = "makyo"
+            password = "makyo"
+            driverClassName = "org.postgresql.Driver"
         }
     }
     production {

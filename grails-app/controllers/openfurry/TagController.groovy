@@ -14,24 +14,26 @@ class TagController {
             return
         }
 
-        def userObjects = []
-        def mappings = [
-            audio: AudioUserObject.class,
-            video: VideoUserObject.class,
-            flash: FlashUserObject.class,
-            image: ImageUserObject.class,
-            text: TextUserObject.class,
-            application: ApplicationUserObject.class
-            ]
-        for (taggedItem in tag.taggedItems) {
-            if (params.type) {
-                if (taggedItem.userObject.class == (mappings[params.type])) {
-                    userObjects.add(taggedItem.userObject)
+        def crit = TaggedItem.createCriteria()
+        def taggedItems
+
+        if (params.type) {
+            taggedItems = crit.list {
+                and {
+                    userObject {
+                        eq('type', params.type)
+                    }
+                    eq('tag', tag)
                 }
-            } else {
-                userObjects.add(taggedItem.userObject)
+            }
+        } else {
+            taggedItems = crit.list {
+                eq('tag', tag)
             }
         }
+
+        def userObjects = taggedItems.collect { it.userObject }
+        
         [uoList: userObjects]
     }
 }

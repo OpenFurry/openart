@@ -38,7 +38,7 @@
             <img src="${resource(dir:'images',file:'spinner.gif')}" alt="${message(code:'spinner.alt',default:'Loading...')}" />
         </div>
         <div id="content">
-            <h2><g:layoutTitle default="OpenFurry" /></h2>
+            <h2>${pageProperty(name: 'title').replaceAll('OpenFurry - ', '')}</h2>
             <div id="messages">
                 <g:if test="${flash.transact}">
                 <div class="transact">

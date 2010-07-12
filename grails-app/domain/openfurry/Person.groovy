@@ -75,11 +75,15 @@ class Person {
         profile type: "text"
 	}
 
-	static transients = ['pass', 'constantsService']
+	static transients = ['pass']
 	static hasMany = [
         authorities: Role, 
         votes: IssueVote, 
         userObjects: UserObject, 
+        favorites: UserObject,
+        superFavorites: UserObject,
+        friends: Person,
+        watches: Person,
         comments: Comment, 
         statuses: UserStatus
         ]

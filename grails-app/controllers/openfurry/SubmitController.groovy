@@ -73,12 +73,32 @@ class SubmitController {
     }
 
     /*
+     * Edit view
+     */
+    def edit = {
+        def uo = UserObject.get(params.id)
+        switch (uo) {
+            case "audio":
+            case "video":
+            case "flash":
+            case "image":
+            case "text":
+            case "journal":
+            case "application":
+            case "orderedCollection":
+            case "unorderedCollection":
+                break;
+        }
+    }
+
+    /*
      * Save views
      */
     def saveAudio = {
         def audioUserObjectInstance = new AudioUserObject(params)
         def owner = Person.findByUsername(authenticateService.principal().username)
         audioUserObjectInstance.owner = owner
+        audioUserObjectInstance.type = "audio"
 
         Long time = new Date().getTime()
         
@@ -135,6 +155,7 @@ class SubmitController {
         def videoUserObjectInstance = new VideoUserObject(params)
         def owner = Person.findByUsername(authenticateService.principal().username)
         videoUserObjectInstance.owner = owner
+        videoUserObjectInstance.type = "video"
         
         // Handle uploaded file
         def uploadedFile = request.getFile('file')
@@ -182,6 +203,7 @@ class SubmitController {
         def flashUserObjectInstance = new FlashUserObject(params)
         def owner = Person.findByUsername(authenticateService.principal().username)
         flashUserObjectInstance.owner = owner
+        flashUserObjectInstance.type = "flash"
         
         // Handle uploaded file
         def uploadedFile = request.getFile('file')
@@ -229,6 +251,7 @@ class SubmitController {
         def imageUserObjectInstance = new ImageUserObject(params)
         def owner = Person.findByUsername(authenticateService.principal().username)
         imageUserObjectInstance.owner = owner
+        imageUserObjectInstance.type = "image"
 
         def time = new Date().getTime()
         def files
@@ -238,7 +261,7 @@ class SubmitController {
         if (!uploadedFile.empty) {
             if (uploadedFile.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.image) {
                 def dest = fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "image")
-                files = imagingService.createImageUserObjectFiles(owner, request.getFile('file'), dest, time)
+                files = imagingService.createImageUserObjectFiles(owner, uploadedFile, dest, time)
                 imageUserObjectInstance.thumbnail = files[2].getCanonicalPath().replaceAll(servletContext.getRealPath("/"), '')
                 imageUserObjectInstance.sizedFile = files[1].getCanonicalPath().replaceAll(servletContext.getRealPath("/"), '')
                 imageUserObjectInstance.fullFile = files[0].getCanonicalPath().replaceAll(servletContext.getRealPath("/"), '')
@@ -286,6 +309,7 @@ class SubmitController {
         def textUserObjectInstance = new TextUserObject(params)
         def owner = Person.findByUsername(authenticateService.principal().username)
         textUserObjectInstance.owner = owner
+        textUserObjectInstance.type = "text"
         textUserObjectInstance.journal = false
 
         def uploadedFile = request.getFile('attachment')
@@ -335,6 +359,7 @@ class SubmitController {
         def textUserObjectInstance = new TextUserObject(params)
         def owner = Person.findByUsername(authenticateService.principal().username)
         textUserObjectInstance.owner = owner
+        textUserObjectInstance.type = "text"
         textUserObjectInstance.journal = true
         textUserObjectInstance.attachment = null
         if (textUserObjectInstance.save(flush: true)) {
@@ -350,6 +375,7 @@ class SubmitController {
     def saveApplication = {
         def applicationUserObjectInstance = new ApplicationUserObject(params)
         def owner = Person.findByUsername(authenticateService.principal().username)
+        applicationUserObjectInstance.type = "application"
         applicationUserObjectInstance.owner = owner
 
         def uploadedFile = request.getFile("screenshot")
