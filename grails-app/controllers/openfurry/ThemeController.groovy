@@ -23,7 +23,7 @@ class ThemeController {
         def styleText = params.theme.findAll { w ->
             w.getKey().contains('.') && w.getValue() != ""
         }.collect {
-            "${it.getKey()}=${it.getValue()}"
+            "${it.getKey()}=\"${it.getValue()}\""
         }.join("\n")
             
         def themeInstance = new Theme()
@@ -40,8 +40,15 @@ class ThemeController {
             owner.preferedTheme = themeInstance
             owner.save(flush: true)
 
+            // Save theme to a file for static hosting
+            def themeStyle = new ConfigSlurper().parse(themeInstance.style)
+            String css = g.render(template: "/theme/show", model: [theme: themeStyle]).toString()
+            def themeDir = new File("${servletContext.getRealPath("/")}${File.separatorChar}themes${File.separatorChar}${themeInstance.id}")
+            themeDir.mkdirs()
+            def themeFile = new File(themeDir, "main.css").asWritable()
+            themeFile.setText(css)
 
-
+            // TODO transaction, messaging service
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'theme.label', default: 'Theme'), params.id])}"
             redirect(uri: "/")

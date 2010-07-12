@@ -1,5 +1,6 @@
 web-app/WEB-INF/*
 web-app/submissions/*
+web-app/themes/*
 run-app
 *.class
 target/*
