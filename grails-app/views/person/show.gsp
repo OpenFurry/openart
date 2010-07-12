@@ -58,7 +58,7 @@
                     <th class="name"><g:message code="openfurry.user.preferedTheme" default="Prefered theme" /></th>
                     <td class="value">${person.preferedTheme?.id ?: "default"}</td>
                 </tr>
-                <g:if test="${loggedInUserInfo(field:'username')==person.username}">
+                <g:if test="${loggedInUserInfo(field:'username').toString() == person.username}">
                 <tr class="prop">
                     <th class="name"><g:message code="openfurry.user.pennies" default="Pennies" /></th>
                     <td class="value">${person.pennies}</td>
