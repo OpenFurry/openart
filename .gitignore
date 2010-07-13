@@ -5,3 +5,4 @@ run-app
 *.class
 target/*
 stacktrace.log
+testDB*

@@ -190,3 +190,12 @@ openfurry.defaultIcons = [
     text: "/submissions/thumbs/,default-text.png",
     audio: "/submissions/thumbs/,default-audio.png",
 ]
+
+// OpenFurry commissions
+openfurry.commissions.status.repr = ["Commissioned", "Accepted", "Rejected", "Paid", "In-progress", "Completed"]
+openfurry.commissions.status.commissioned = 0
+openfurry.commissions.status.accepted = 1
+openfurry.commissions.status.rejected = 2
+openfurry.commissions.status.paid = 3
+openfurry.commissions.status.inprogress = 4
+openfurry.commissions.status.completed = 5
