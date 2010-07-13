@@ -27,6 +27,7 @@ class Person {
     Date watchlistCursorUltimate
     Date watchlistCursorPenultimate
     Date watchlistCursorBookmark
+    Date watchlistCursorBookmarkDate
     Boolean commissionStatus = false
     Boolean tradeStatus = false
     Boolean giftStatus = false
@@ -47,6 +48,7 @@ class Person {
         watchlistCursorUltimate(blank: true, nullable: true)
         watchlistCursorPenultimate(blank: true, nullable: true)
         watchlistCursorBookmark(blank: true, nullable: true)
+        watchlistCursorBookmarkDate(blank: true, nullable: true)
     }
 
     static mapping = {
