@@ -9,7 +9,8 @@
             <g:renderErrors bean="${instance}" as="list" />
         </div>
         </g:hasErrors>
-        <g:form action="saveOrderedCollection" method="post">
+        <g:uploadForm action="saveOrderedCollection" method="post">
+            <g:render template="uoform" />
             <div class="block">
                 <table>
                     <thead>
@@ -18,10 +19,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="prop">
-                            <th class="name"><g:message code="openfurry.collection.title" default="Collection title" /></th>
-                            <td class="value"><g:textField name="title" /></td>
-                        </tr>
                         <tr class="prop">
                             <th class="name"><g:message code="openfurry.collection.description" default="Collection description" /></th>
                             <td class="value"><g:textArea name="description" rows="10" cols="75" /></td>
@@ -32,6 +29,6 @@
             <div class="buttons">
                 <span class="button"><input type="submit" value="Create submission" /></span>
             </div>
-        </g:form>
+        </g:uploadForm>
     </body>
 </html>

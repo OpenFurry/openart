@@ -17,6 +17,7 @@ class ImagingService {
         def thumb = new File(path, "thumb.${time}.${user.username}_${multiPartFile.getOriginalFilename()}")
 
         multiPartFile.transferTo(full)
+        resizeImage(full, 1280, full)
         resizeImage(full, 400, sized)
         resizeImage(full, 100, thumb)
 
@@ -24,14 +25,9 @@ class ImagingService {
     }
 
     def createThumbnailFile(multiPartFile, File dest) {
-        BufferedImage original = ImageddIO.read(multiPartFile.inputStream)
+        multPartFile.transferTo(dest)
 
-        if (original.width > 100 || original.height > 100) {
-            original = resizeImage(original, 100)
-        }
-
-        String format = ImageIO.getImageReadersByMIMEType(multiPartFile.getContentType()).getAt(0).getFormatName()
-        ImageIO.write(original, format, dest)
+        resizeImage(dest, 100, dest)
 
         dest
     }

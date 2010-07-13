@@ -5,6 +5,12 @@ class ViewController {
     def show = {
         def userObject = UserObject.get(params.id)
         
+        if (userObject) {
+            render(view: userObject.type, model: [instance: userObject])
+        } else {
+            response.sendError 404
+        }
+        /*
         switch (userObject) {
             case AudioUserObject:
                 render(view: 'audio', model:[instance: userObject])
@@ -28,25 +34,16 @@ class ViewController {
             case ApplicationUserObject:
                 render(view: 'application', model:[instance: userObject])
                 break
+            case OrderedCollection:
+                render(view: 'orderedCollection', model:[instance: userObject])
+                break
+            case UnorderedCollection:
+                render(view: 'unorderedCollection', model:[instance: userObject])
+                break
             default:
                 flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'UserObject.label', default: 'UserObject'), params.id])}"
                 response.sendError(404, "${message(code: 'default.not.found.message', args: [message(code: 'UserObject.label', default: 'UserObject'), params.id])}")
-        }
-    }
-
-    def collection = {
-        def collection = Collection.get(params.id)
-        
-        switch (collection) {
-            case OrderedCollection:
-                render(view: "orderedCollection", model:[instance: collection])
-                break
-            case UnorderedCollection:
-                render(view: "unorderedCollection", model:[instance: collection])
-                break
-            default:
-                response.sendError(404, "${message(code: 'default.not.found.message', args: [message(code: 'Collection.label', default: 'Collection'), params.id])}")
-        }
+        }*/
     }
 
     def audio = {
@@ -110,6 +107,22 @@ class ViewController {
             response.sendError 404
         } else {
             [instance: applicationUserObjectInstance]
+        }
+    }
+    def orderedCollection = {
+        def orderedCollectionInstance = OrderedCollection.get(params.id)
+        if (!orderedCollectionInstance) {
+            response.sendError 404
+        } else {
+            [instance: orderedCollectionInstance]
+        }
+    }
+    def unorderedCollection = {
+        def unorderedCollectionInstance = UnorderedCollection.get(params.id)
+        if (!unorderedCollectionInstance) {
+            response.sendError 404
+        } else {
+            [instance: unorderedCollectionInstance]
         }
     }
 }

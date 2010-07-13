@@ -1,6 +1,6 @@
 package openfurry
 
-class EditController {
+class CategoryController {
 
     def index = { }
 }

@@ -1,5 +1,5 @@
     <head>
-        <title>Audio - ${instance.title.encodeAsHTML()}</title>
+        <title>AUDIO - ${instance.title.encodeAsHTML()}</title>
         <meta name="layout" content="main" />
     </head>
     <body>

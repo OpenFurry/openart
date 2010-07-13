@@ -11,6 +11,9 @@ class SubmitController {
     // Needed for resizing images
     def imagingService
 
+    // Needed for thumbnails
+    def thumbnailService
+
     // Needed for reimbursement for posting
     def marketService
 
@@ -496,6 +499,15 @@ class SubmitController {
 
         def owner = Person.findByUsername(authenticateService.principal().username)
         orderedCollectionInstance.owner = owner
+        orderedCollectionInstance.type = "orderedCollection"
+
+        def time = new Date().getTime()
+        def thumb = thumbnailService.saveThumbnail(request.getFile('thumbnailUpload'), owner, time, "oderedCollection", servletContext.getRealPath("/"))
+        if (thumb) {
+            orderedCollectionInstance.thumbnail = thumb
+        } else {
+            orderedCollectionInstance.errors.rejectValue("thumbnail", "openfurry.errors.fileTypeMismatch", "The uploaded file does not meet the approved file-type requirements")
+        }
 
         if (orderedCollectionInstance.save(flush: true)) {
             marketService.transact(owner, "OrderedCollection.create(memberClass:${owner.memberClass})")
@@ -519,6 +531,16 @@ class SubmitController {
 
         def owner = Person.findByUsername(authenticateService.principal().username)
         unorderedCollectionInstance.owner = owner
+        unorderedCollectioninstance.type = "unorderedCollection"
+
+        def time = new Date().getTime()
+        def thumb = thumbnailService.saveThumbnail(request.getFile('thumbnailUpload'), owner, time, "unoderedCollection", servletContext.getRealPath("/"))
+        if (thumb) {
+            unorderedCollectionInstance.thumbnail = thumb
+        } else {
+            unorderedCollectionInstance.errors.rejectValue("thumbnail", "openfurry.errors.fileTypeMismatch", "The uploaded file does not meet the approved file-type requirements")
+        }
+            
 
         if (unorderedCollectionInstance.save(flush: true)) {
             marketService.transact(owner, "UnorderedCollection.create(memberClass:${owner.memberClass})")

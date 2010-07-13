@@ -9,7 +9,7 @@
             <g:renderErrors bean="${instance}" as="list" />
         </div>
         </g:hasErrors>
-        <g:form action="saveUnorderedCollection" method="post">
+        <g:uploadForm action="saveUnorderedCollection" method="post">
             <div class="block">
                 <table>
                     <thead>
@@ -32,6 +32,6 @@
             <div class="buttons">
                 <span class="button"><input type="submit" value="Create submission" /></span>
             </div>
-        </g:form>
+        </g:uploadForm>
     </body>
 </html>

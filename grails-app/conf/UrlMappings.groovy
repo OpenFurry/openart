@@ -15,6 +15,14 @@ class UrlMappings {
             }
         }
 
+        "/edit/$id" {
+            controller = "submit"
+            action = "edit"
+            constraints {
+                id(matches: /\d+/)
+            }
+        }
+
         "/~$username" {
             controller = "person"
             action = "show"

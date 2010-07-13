@@ -1,7 +1,7 @@
 
 package openfurry
 
-class OrderedCollection extends UOCollection {
+class OrderedCollection extends UserObject {
     SortedSet userObjects
     static hasMany = [userObjects: UserObject]
 }

@@ -51,7 +51,7 @@
         </div>
         <div id="footer">
             <p>An <a href="http://mjs-svc.com">MJS Services</a> project | Powered by <a href="http://grails.org">Grails</a><br />
-                <a href="/about/ip">Intellectual Property Information</a></p>
+                <a href="/info/ip">Intellectual Property Information</a></p>
         </div>
     </body>
 </html>

@@ -6,7 +6,7 @@ class UserObject implements Comparable {
     
     String type
     String title
-    String thumbnail = "default.png"
+    String thumbnail
     String description
     String externalLink
     Date dateCreated
@@ -21,7 +21,7 @@ class UserObject implements Comparable {
     License license
 
     static constraints = {
-        type(inList: ["audio", "video", "flash", "image", "text", "application"])
+        type(inList: ["audio", "video", "flash", "image", "text", "application", "orderedCollection", "unorderedCollection"])
         title(maxSize: 120, blank: false)
         thumbnail(blank: true, nullable: true)
         description(maxSize: 5000, blank: true, nullable: true)
