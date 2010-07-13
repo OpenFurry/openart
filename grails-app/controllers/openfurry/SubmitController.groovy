@@ -67,7 +67,7 @@ class SubmitController {
         return [orderedCollectionInstance: orderedCollectionInstance]
     }
     def unorderedCollection = {
-        def unorderedCollectionInstance = new Collection()
+        def unorderedCollectionInstance = new UnorderedCollection()
         unorderedCollectionInstance.properties = params
         return [unorderedCollectionInstance: unorderedCollectionInstance]
     }
