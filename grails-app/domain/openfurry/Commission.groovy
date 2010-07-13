@@ -7,7 +7,7 @@ class Commission {
     Person commissioner
     CommissionInfo commissionInfo
     String details
-    Integer status = CH.config.openfurry.commission.status.commissioned
+    Integer status = CH.config.openfurry.commissions.status.commissioned
 
     static constraints = {
         status(range:0..5)
