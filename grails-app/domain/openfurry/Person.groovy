@@ -22,6 +22,7 @@ class Person {
     Integer memberClass = CH.config.openfurry.user.classes.bronze
     Integer maxViewableRating = CH.config.openfurry.ratings.low
     Integer preferedTheme
+    Long interactionCount = 1 // for joining
     Long pennies = 10
     Integer warningLevel = 0
     Date watchlistCursorUltimate

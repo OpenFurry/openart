@@ -22,7 +22,8 @@
                     <tr class="prop">
                         <th class="name"><g:message code="openfurry.audioUO.file" defualt="Audio file" /></th>
                         <td class="value">
-                            <input type="file" name="file" /> <br />
+                            <g:if test="${instance?.file}">Current audio file: ${instance.file}<input type="hidden" name="file" value="${instance.file}" /></g:if>
+                            <input type="file" name="audioFile" /> <br />
                             <div class="message"><g:message code="openfurry.technical.allowedTypes" defualt="Allowed file types" /> ${grailsApplication.config.openfurry.fileTypes.audio}<br />
                                 <g:message code="openfurry.technical.maxFileSize" default="Maximum file size" /> ${grailsApplication.config.openfurry.maxUploadSize.audio}MB
                             </div>

@@ -1,5 +1,5 @@
 package openfurry
 
-class UnorderedCollection extends UserObject {
+class UnorderedCollection extends UOCollection {
     static hasMany = [userObjects: UserObject]
 }

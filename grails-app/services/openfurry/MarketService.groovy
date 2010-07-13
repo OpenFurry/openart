@@ -31,6 +31,10 @@ class MarketService {
         if (unitPrice) {
             // Modify the user's balance
             user.pennies -= unitPrice.price
+            user.interactionCount++
+            if (user.interactionCount > grailsApplication.config.openfurry.classes.threshold[user.memberClass] && user.memberClass < 4) {
+                user.memberClass++
+            }
             user.save(flush: true)
 
             // notify the user

@@ -121,13 +121,14 @@ openfurry.user.types.fursuiter = 9
 // User classes
 // Range used in: (due to static typing)
 // - grails-app/domain/Person.groovy
-// TODO move to i18n
+// TODO move repr to i18n, store codes in repr
 openfurry.user.classes.repr = ["Bronze", "Silver", "Gold", "Platinum", "Black"]
 openfurry.user.classes.bronze = 0
 openfurry.user.classes.silver = 1
 openfurry.user.classes.gold = 2
 openfurry.user.classes.platinum = 3
 openfurry.user.classes.black = 4
+openfurry.user.classes.thresholds = [10, 100, 1000, 10000, 100000]
 
 // User message types
 // Range used in: (due to static typing)

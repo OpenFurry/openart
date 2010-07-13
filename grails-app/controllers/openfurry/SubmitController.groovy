@@ -27,49 +27,49 @@ class SubmitController {
      * Create views
      */
     def audio = {
-        def audioUserObjectInstance = new AudioUserObject()
-        audioUserObjectInstance.properties = params
-        return [audioUserObjectInstance: audioUserObjectInstance]
+        if (params.id) {
+            params.id = null
+        }
     }
     def video = {
-        def videoUserObjectInstance = new VideoUserObject()
-        videoUserObjectInstance.properties = params
-        return [videoUserObjectInstance: videoUserObjectInstance]
+        if (params.id) {
+            params.id = null
+        }
     }
     def flash = {
-        def flashUserObjectInstance = new FlashUserObject()
-        flashUserObjectInstance.properties = params
-        return [flashUserObjectInstance: flashUserObjectInstance]
+        if (params.id) {
+            params.id = null
+        }
     }
     def image = {
-        def imageUserObjectInstance = new ImageUserObject()
-        imageUserObjectInstance.properties = params
-        return [imageUserObjectInstance: imageUserObjectInstance]
+        if (params.id) {
+            params.id = null
+        }
     }
     def text = {
-        def textUserObjectInstance = new TextUserObject()
-        textUserObjectInstance.properties = params
-        return [textUserObjectInstance: textUserObjectInstance]
+        if (params.id) {
+            params.id = null
+        }
     }
     def journal = {
-        def textUserObjectInstance = new TextUserObject()
-        textUserObjectInstance.properties = params
-        return [textUserObjectInstance: textUserObjectInstance]
+        if (params.id) {
+            params.id = null
+        }
     }
     def application = {
-        def applicationUserObjectInstance = new ApplicationUserObject()
-        applicationUserObjectInstance.properties = params
-        return [applicationUserObjectInstance: applicationUserObjectInstance]
+        if (params.id) {
+            params.id = null
+        }
     }
     def orderedCollection = {
-        def orderedCollectionInstance = new OrderedCollection()
-        orderedCollectionInstance.properties = params
-        return [orderedCollectionInstance: orderedCollectionInstance]
+        if (params.id) {
+            params.id = null
+        }
     }
     def unorderedCollection = {
-        def unorderedCollectionInstance = new UnorderedCollection()
-        unorderedCollectionInstance.properties = params
-        return [unorderedCollectionInstance: unorderedCollectionInstance]
+        if (params.id) {
+            params.id = null
+        }
     }
 
     /*
@@ -77,16 +77,46 @@ class SubmitController {
      */
     def edit = {
         def uo = UserObject.get(params.id)
+        if (uo.owner.username != authenticateService.principal().username) {
+            response.sendError(403) //TODO i18n, punish?
+            return
+        }
         switch (uo) {
-            case "audio":
-            case "video":
-            case "flash":
-            case "image":
-            case "text":
-            case "journal":
-            case "application":
-            case "orderedCollection":
-            case "unorderedCollection":
+            case AudioUserObject:
+                def auo = (AudioUserObject) uo
+                render(view: "audio", model: [instance: auo])
+                break;
+            case VideoUserObject:
+                def vuo = (VideoUserObject) uo
+                render(view: "video", model: [instance: vuo])
+                break;
+            case FlashUserObject:
+                def fuo = (FlashUserObject) uo
+                render(view: "flash", model: [instance: fuo])
+                break;
+            case ImageUserObject:
+                def iuo = (ImageUserObject) uo
+                render(view: "image", model: [instance: iuo])
+                break;
+            case TextUserObject:
+                def tuo = (TextUserObject) uo
+                if (tuo.journal) {
+                    render(view: "journal", model: [instance: tuo])
+                } else {
+                    render(view: "text", model: [instance: tuo])
+                }
+                break;
+            case ApplicationUserObject:
+                def appuo = (ApplicationUserObject) uo
+                render(view: "application", model: [instance: appuo])
+                break;
+            case OrderedCollection:
+                def oc = (OrderedCollection) uo
+                render(view: "orderedCollection", model: [instance: oc])
+                break;
+            case UnorderedCollection:
+                def uc = (UnorderedCollection) uo
+                render(view: "unorderedCollection", model: [instance: uc])
                 break;
         }
     }
@@ -95,7 +125,13 @@ class SubmitController {
      * Save views
      */
     def saveAudio = {
-        def audioUserObjectInstance = new AudioUserObject(params)
+        def audioUserObjectInstance
+        if (params.id) {
+            audioUserObjectInstance = AudioUserObject.get(params.id)
+        } else {
+            audioUserObjectInstance = new AudioUserObject()
+        }
+        audioUserObjectInstance.properties = params
         def owner = Person.findByUsername(authenticateService.principal().username)
         audioUserObjectInstance.owner = owner
         audioUserObjectInstance.type = "audio"
@@ -103,7 +139,7 @@ class SubmitController {
         Long time = new Date().getTime()
         
         // Handle uploaded file
-        def uploadedFile = request.getFile('file')
+        def uploadedFile = request.getFile('audioFile')
         if (!uploadedFile.empty) {
             if (uploadedFile.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.audio) {
                 def dest = new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "audio"), "${time}.${owner.username}_${uploadedFile.originalFilename}")
@@ -112,11 +148,9 @@ class SubmitController {
             } else {
                 audioUserObjectInstance.errors.rejectValue("file", "openfurry.errors.fileTypeMismatch", "The uploaded file does not meet the approved file-type requirements")
             }
-        } else {
-            audioUserObjectInstance.file = null
         }
 
-        def thumbnail = request.getFile('thumbnail')
+        def thumbnail = request.getFile('thumbnailUpload')
         if (!thumbnail.empty) {
             if (thumbnail.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.image) {
                 def dest = new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "thumbs"), "${time}.${owner.username}_${thumbnail.originalFilename}")
@@ -152,13 +186,20 @@ class SubmitController {
         }
     }
     def saveVideo = {
-        def videoUserObjectInstance = new VideoUserObject(params)
+        def videoUserObjectInstance
+        if (params.id) {
+            videoUserObjectInstance = VideoUserObject.get(params.id)
+        } else {
+            videoUserObjectInstance = new VideoUserObject()
+        }
+        videoUserObjectInstance.properties = params
+
         def owner = Person.findByUsername(authenticateService.principal().username)
         videoUserObjectInstance.owner = owner
         videoUserObjectInstance.type = "video"
         
         // Handle uploaded file
-        def uploadedFile = request.getFile('file')
+        def uploadedFile = request.getFile('videoFile')
         if (!uploadedFile.empty) {
             if (uploadedFile.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.video) {
                 def dest = new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "video"), "${time}.${owner.username}_${uploadedFile.originalFilename}")
@@ -167,11 +208,9 @@ class SubmitController {
             } else {
                 videoUserObjectInstance.errors.rejectValue("file", "openfurry.errors.fileTypeMismatch", "The uploaded file does not meet the approved file-type requirements")
             }
-        } else { 
-            videoUserObjectInstance.file = null
         }
 
-        def thumbnail = request.getFile('thumbnail')
+        def thumbnail = request.getFile('thumbnailUpload')
         if (!thumbnail.empty) {
             if (thumbnail.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.image) {
                 def dest = new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "thumbs"), "${time}.${owner.username}_${thumbnail.originalFilename}")
@@ -200,13 +239,20 @@ class SubmitController {
         }
     }
     def saveFlash = {
-        def flashUserObjectInstance = new FlashUserObject(params)
+        def flashUserObjectInstance
+        if (params.id) {
+            flashUserObjectInstance = FlashUserObject.get(params.id)
+        } else {
+            flashUserObjectInstance = new FlashUserObject()
+        }
+        flashUserObjectInstance.properties = params
+
         def owner = Person.findByUsername(authenticateService.principal().username)
         flashUserObjectInstance.owner = owner
         flashUserObjectInstance.type = "flash"
         
         // Handle uploaded file
-        def uploadedFile = request.getFile('file')
+        def uploadedFile = request.getFile('flashFile')
         if (!uploadedFile.empty) {
             if (uploadedFile.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.flash) {
                 def dest = new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "flash"), "${time}.${owner.username}_${uploadedFile.originalFilename}")
@@ -215,11 +261,9 @@ class SubmitController {
             } else {
                 flashUserObjectInstance.errors.rejectValue("file", "openfurry.errors.fileTypeMismatch", "The uploaded file does not meet the approved file-type requirements")
             }
-        } else {
-            flashUserObjectInstance.file = null
         }
 
-        def thumbnail = request.getFile('thumbnail')
+        def thumbnail = request.getFile('thumbnailUpload')
         if (!thumbnail.empty) {
             if (thumbnail.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.image) {
                 def dest = new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "thumbs"), "${time}.${owner.username}_${thumbnail.originalFilename}")
@@ -248,7 +292,14 @@ class SubmitController {
         }
     }
     def saveImage = {
-        def imageUserObjectInstance = new ImageUserObject(params)
+        def imageUserObjectInstance
+        if (params.id) {
+            imageUserObjectInstance = ImageUserObject.get(params.id)
+        } else {
+            imageUserObjectInstance = new ImageUserObject()
+        }
+        imageUserObjectInstance.properties = params
+
         def owner = Person.findByUsername(authenticateService.principal().username)
         imageUserObjectInstance.owner = owner
         imageUserObjectInstance.type = "image"
@@ -257,7 +308,7 @@ class SubmitController {
         def files
 
         // Handle uploaded file
-        def uploadedFile = request.getFile('file')
+        def uploadedFile = request.getFile('imageFile')
         if (!uploadedFile.empty) {
             if (uploadedFile.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.image) {
                 def dest = fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "image")
@@ -272,7 +323,7 @@ class SubmitController {
             imageUserObjectInstance.fullFile = null
         }
 
-        def thumbnail = request.getFile('thumbnail')
+        def thumbnail = request.getFile('thumbnailUpload')
         if (!thumbnail.empty) {
             if (thumbnail.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.image) {
                 files[2].delete()
@@ -306,7 +357,14 @@ class SubmitController {
         }
     }
     def saveText = {
-        def textUserObjectInstance = new TextUserObject(params)
+        def textUserObjectInstance
+        if (params.id) {
+            textUserObjectInstance = TextUserObject.get(params.id)
+        } else {
+            textUserObjectInstance = new TextUserObject()
+        }
+        textUserObjectInstance.properties = params
+
         def owner = Person.findByUsername(authenticateService.principal().username)
         textUserObjectInstance.owner = owner
         textUserObjectInstance.type = "text"
@@ -317,15 +375,13 @@ class SubmitController {
             if (uploadedFile.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.text) {
                 def dest = new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "text"), "${time}.${owner.username}_${uploadedFile.originalFilename}")
                 uploadedFile.transferTo(dest)
-                textUserObjectInstance.file = dest.getCanonicalPath().replaceAll(servletContext.getRealPath("/"), '')
+                textUserObjectInstance.attachmentFile = dest.getCanonicalPath().replaceAll(servletContext.getRealPath("/"), '')
             } else {
                 textUserObjectInstance.errors.rejectValue("attachment", "openfurry.errors.fileTypeMismatch", "The uploaded file does not meet the approved file-type requirements")
             }
-        } else {
-            textUserObjectInstance.attachment = null
         }
 
-        def thumbnail = request.getFile('thumbnail')
+        def thumbnail = request.getFile('thumbnailUpload')
         if (!thumbnail.empty) {
             if (thumbnail.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.image) {
                 def dest = new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "thumbs"), "${time}.${owner.username}_${thumbnail.originalFilename}")
@@ -356,7 +412,14 @@ class SubmitController {
         }
     }
     def saveJournal = {
-        def textUserObjectInstance = new TextUserObject(params)
+        def textUserObjectInstance
+        if (params.id) {
+            textUserObjectInstance = TextUserObject.get(params.id)
+        } else {
+            textUserObjectInstance = new TextUserObject()
+        }
+        textUserObjectInstance.properties = params
+
         def owner = Person.findByUsername(authenticateService.principal().username)
         textUserObjectInstance.owner = owner
         textUserObjectInstance.type = "text"
@@ -373,25 +436,30 @@ class SubmitController {
         }
     }
     def saveApplication = {
-        def applicationUserObjectInstance = new ApplicationUserObject(params)
+        def applicationUserObjectInstance
+        if (params.id) {
+            applicationUserObjectInstance = ApplicationUserObject.get(params.id)
+        } else {
+            applicationUserObjectInstance = new ApplicationUserObject()
+        }
+        applicationUserObjectInstance.properties = params
+
         def owner = Person.findByUsername(authenticateService.principal().username)
         applicationUserObjectInstance.type = "application"
         applicationUserObjectInstance.owner = owner
 
-        def uploadedFile = request.getFile("screenshot")
+        def uploadedFile = request.getFile("fileUpload")
         if (!uploadedFile.empty) {
             if (uploadedFile.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.pplication) {
                 def dest = new File(fileUploadService.getSubmissionDirectory(servletConapplication.getRealPath("/"), owner, "application"), "${time}.${owner.username}_${uploadedFile.originalFilename}")
                 uploadedFile.transferTo(dest)
-                applicationUserObjectInstance.file = dest.getCanonicalPath().replaceAll(servletConapplication.getRealPath("/"), '')
+                applicationUserObjectInstance.screenshot = dest.getCanonicalPath().replaceAll(servletConapplication.getRealPath("/"), '')
             } else {
                 applicationUserObjectInstance.errors.rejectValue("screenshot", "openfurry.errors.fileTypeMismatch", "The uploaded file does not meet the approved file-type requirements")
             }
-        } else {
-            applicationUserObjectInstance.screenshot = null
         }
 
-        def thumbnail = request.getFile('thumbnail')
+        def thumbnail = request.getFile('thumbnailUpload')
         if (!thumbnail.empty) {
             if (thumbnail.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.image) {
                 def dest = new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "thumbs"), "${time}.${owner.username}_${thumbnail.originalFilename}")
@@ -418,7 +486,14 @@ class SubmitController {
         }
     }
     def saveOrderedCollection = {
-        def orderedCollectionInstance = new OrderedCollection(params)
+        def orderedCollectionInstance
+        if (params.id) {
+            orderedCollectionInstance = OrderedCollection.get(params.id)
+        } else {
+            orderedCollectionInstance = new OrderedCollection()
+        }
+        orderedCollectionInstance.properties = params
+
         def owner = Person.findByUsername(authenticateService.principal().username)
         orderedCollectionInstance.owner = owner
 
@@ -434,7 +509,14 @@ class SubmitController {
         
     }
     def saveUnorderedCollection = {
-        def unorderedCollectionInstance = new UnorderedCollection(params)
+        def unorderedCollectionInstance
+        if (params.id) {
+            unorderedCollectionInstance = UnorderedCollection.get(params.id)
+        } else {
+            unorderedCollectionInstance = new UnorderedCollection()
+        }
+        unorderedCollectionInstance.properties = params
+
         def owner = Person.findByUsername(authenticateService.principal().username)
         unorderedCollectionInstance.owner = owner
 

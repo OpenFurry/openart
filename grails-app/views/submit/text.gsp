@@ -26,9 +26,11 @@
                     <tr class="prop">
                         <th class="name"><g:message code="openfurry.textUO.attachment" default="Text file" /></th>
                         <td class="value">
+                            <g:if test="${instance?.attachmentFile}"><g:message code="openfurry.technical.currentAttachment" default="Current attachment:" /> ${instance.attachmentFile}</g:if>
                             <input type="file" name="attachment" />
                             <div class="message"><g:message code="openfurry.technical.allowedTypes" default="Allowed file types" /> ${grailsApplication.config.openfurry.fileTypes.text}<br />
                                 <g:message code="openfurry.technical.maxFileSize" default="Maximum file size" /> ${grailsApplication.config.openfurry.maxUploadSize.text}MB
+                                <g:if test="${instance?.attachmentFile}"><br /><g:message code="openfurry.technical.uploadWillReplace" default="Uploading a new file will replace the old one" /></g:if>
                             </div>
                         </td>
                     </tr>

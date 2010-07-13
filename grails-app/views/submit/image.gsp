@@ -22,10 +22,12 @@
                     <tr class="prop">
                         <th class="name"><g:message code="openfurry.imageUO.file" default="Image file" /></th>
                         <td class="value">
-                            <input type="file" name="file" />
+                            <g:if test="${instance?.fullFile}"><g:message code="openfurry.technical.currentAttachment" default="Current attachment:" /> ${instance.fullFile}</g:if>
+                            <input type="file" name="imageFile" />
                             <div class="message"><g:message code="openfurry.technical.allowedTypes" default="Allowed file types" /> ${grailsApplication.config.openfurry.fileTypes.image}<br />
                                 <g:message code="openfurry.technical.maxFileSize" default="Maximum file size" /> ${grailsApplication.config.openfurry.maxUploadSize.image}MB
                                 <p><g:message code="openfurry.imageUO.file.resizeNote" default="Three images will be stored: a thumbnail, a sized image, and the full uploaded image" /></p>
+                                <g:if test="${instance?.fullFile}"><br /><g:message code="openfurry.technical.uploadWillReplace" default="Uploading a new file will replace the old one" /></g:if>
                             </div>
                         </td>
                     </tr>
