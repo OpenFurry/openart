@@ -68,7 +68,7 @@ class BootStrap {
             email: "god@openfurry.com",
             passwd: authenticateService.encodePassword('god'),
             memberType: "Lurker",
-            maxViewableRating: "Adult",
+            maxViewableRating: 2,
             preferedLicense: licenseCopyright,
             species: speciesDeity
         )
