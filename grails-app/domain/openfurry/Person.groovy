@@ -61,10 +61,11 @@ class Person {
         authorities: Role, 
         votes: IssueVote, 
         userObjects: UserObject, 
+        likes: UserObject,
         favorites: UserObject,
-        superFavorites: UserObject,
         friends: Person,
         watches: Person,
+        watchedTags: Tag,
         comments: Comment, 
         statuses: UserStatus
         ]

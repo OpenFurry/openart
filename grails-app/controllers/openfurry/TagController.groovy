@@ -1,6 +1,8 @@
 package openfurry
 
 class TagController {
+    def listService
+    def authenticateService
 
     def index = { }
 
@@ -14,26 +16,26 @@ class TagController {
             return
         }
 
-        def crit = TaggedItem.createCriteria()
-        def taggedItems
+        def criteria
 
         if (params.type) {
-            taggedItems = crit.list {
+            criteria = {
                 and {
-                    userObject {
-                        eq('type', params.type)
+                    eq('type', params.type)
+                    tags {
+                        eq('tag', tag)
                     }
-                    eq('tag', tag)
                 }
             }
         } else {
-            taggedItems = crit.list {
-                eq('tag', tag)
+            criteria = {
+                tags {
+                    eq('tag', tag)
+                }
             }
         }
+        def list = listService.listForRating(criteria)
 
-        def userObjects = taggedItems.collect { it.userObject }
-        
-        [uoList: userObjects]
+        [uoList: list]
     }
 }

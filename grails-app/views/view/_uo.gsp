@@ -61,9 +61,11 @@
 
             <dt class="even"><g:message code="openfurry.uo.tags" default="Tags" /></dt>
             <dd class="even">
-                <g:each in="${instance.tags}"><a href="${createLink(controller: 'tag', action: 'show', id: it.tag.tag)}">${it.tag.tag}</a> </g:each>
+                <ul>
+                    <g:each in="${instance.tags}"><li><a href="${createLink(controller: 'tag', action: 'show', id: it.tag.tag)}">${it.tag.tag}</a></li></g:each>
+                </ul>
             </dd>
         </dl>
     </div>
-    <div class="uoLicense shadow">Image <a href="${instance.license.url}">${instance.license.display} ${instance.owner.userRealName} <g:formatDate format="yyyy" date="${instance.dateCreated}" /></a> - ${instance.license.description}</div>
+    <div class="uoLicense shadow">Submission <a href="${instance.license.url}">${instance.license.display} ${instance.owner.userRealName} <g:formatDate format="yyyy" date="${instance.dateCreated}" /></a> - ${instance.license.description}</div>
 </div>
