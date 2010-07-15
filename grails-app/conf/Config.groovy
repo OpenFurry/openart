@@ -105,7 +105,7 @@ openfurry.user.warning.max = 100
 // Range used in: (due to static typing)
 // - grails-app/domain/Person.groovy
 // - grails-app/domain/UserObject.groovy
-// TODO move to i18n
+// TODO move to i18n, put codes in repr
 openfurry.user.types.repr = ["Lurker", "Visual artist", "Sculptor", "Textile artist", "Composer", "Videographer", "Flash artist", "Programmer", "Performer", "Fursuiter"]
 openfurry.user.types.lurker = 0
 openfurry.user.types.visualArtist = 1
@@ -155,7 +155,7 @@ openfurry.user.properties = [
 // Range used in: (due to static typing)
 // - grails-app/domain/Person.groovy
 // - grails-app/domain/UserObject.groovy
-// TODO move to i18n
+// TODO move to i18n, put codes in repr
 openfurry.ratings.repr = ["General", "Mature", "Adult"]
 openfurry.ratings.low = 0
 openfurry.ratings.medium = 1
@@ -193,6 +193,7 @@ openfurry.defaultIcons = [
 ]
 
 // OpenFurry commissions
+// TODO move to i18n, put codes in repr
 openfurry.commissions.status.repr = ["Commissioned", "Accepted", "Rejected", "Paid", "In-progress", "Completed"]
 openfurry.commissions.status.commissioned = 0
 openfurry.commissions.status.accepted = 1
@@ -200,3 +201,19 @@ openfurry.commissions.status.rejected = 2
 openfurry.commissions.status.paid = 3
 openfurry.commissions.status.inprogress = 4
 openfurry.commissions.status.completed = 5
+
+// OpenFurry issue statuses
+// TODO move to i18n, put codes in repr
+openfurry.issues.status.repr = ["Suggestion", "Submitted", "Accepted", "Completed", "Rejected"]
+openfurry.issues.status.suggestion = 0
+openfurry.issues.status.submitted = 1
+openfurry.issues.status.accepted = 2
+openfurry.issues.status.completed = 3
+openfurry.issues.status.rejected = 4
+
+
+// OpenFurry issue types
+openfurry.issue.type.repr = ["Bug", "Improvement", "New feature"]
+openfurry.issue.type.bug = 0
+openfurry.issue.type.improvement = 1
+openfurry.issue.type.newFeature = 2

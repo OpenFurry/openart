@@ -34,7 +34,7 @@ class TagController {
                 }
             }
         }
-        def list = listService.listForRating(criteria)
+        def list = listService.listUOsForRating(criteria)
 
         [uoList: list]
     }

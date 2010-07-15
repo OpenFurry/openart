@@ -8,7 +8,7 @@ class ListService {
 
     static transactional = true
 
-    def listForRating(Closure c) {
+    def listUOsForRating(Closure c) {
         def maxRating = CH.config.openfurry.ratings.low
         if (authenticateService.isLoggedIn()) {
             def p = Person.findByUsername(authenticateService.principal().username)

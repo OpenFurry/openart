@@ -37,6 +37,11 @@
         <div id="spinner" class="spinner" style="display:none;">
             <img src="${resource(dir:'images',file:'spinner.gif')}" alt="${message(code:'spinner.alt',default:'Loading...')}" />
         </div>
+        <div id="motd">
+            <ul>
+                <g:each in="${openfurry.MOTD.findAllByActive(true)}"><li>${it.content}</li></g:each>
+            </ul>
+        </div>
         <div id="content">
             <h2>${pageProperty(name: 'title').replaceAll('OpenFurry - ', '')}</h2>
             <div id="messages">
