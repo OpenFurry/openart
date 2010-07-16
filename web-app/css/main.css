@@ -97,6 +97,11 @@ body {
     padding: 0.3em;
 }
 
+.verticalTabs ul.nav a {
+    display: block;
+    width: 100%;
+}
+
 .verticalTabs div.content {
     padding: 1em;
     position: relative;
@@ -129,16 +134,18 @@ body {
     display: block;
     float: left;
     padding: 0.3em 1em 0.3em 1em;
+    margin-right: -1px;
 }
 
 .horizontalTabs ul.nav li.selected {
     border-bottom: medium none !important;
+    border-right: 1px solid #777 !important;
     margin-top: -0.5em !important;
     padding-top: 0.5em;
     margin-left: 0 !important;
 }
 
-.block, .verticalTabs ul.nav li.selected {
+.block, .verticalTabs ul.nav li.selected, .horizontalTabs ul.nav li.selected {
     border: 1px solid #777;
     background-color: #fff;
 }
