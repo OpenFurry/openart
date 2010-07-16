@@ -1,0 +1,274 @@
+Contribute to OpenFurry
+=======================
+
+Thank you for your interest in contributing to OpenFurry, the open-source social
+and art community for furries of all types.  There are many ways in which you
+can contribute, and only a few guidelines to follow.  Read on for more info!
+
+First, a guideline for everyone
+-------------------------------
+
+Please, make sure you understand the concepts behind open-source and the license
+that OpenFurry uses, the Affero GNU General Public License v.3.  All work on
+OpenFurry is released under this license - if you contribute to this project,
+then all the work you contribute will be licensed under the AGPL.  What this
+means is that you're donating time, energy, and knowledge to the project in
+order to benefit all of the other users and developers.  This does not mean that
+we're taking your work - the work is certainly attributed to you.  This also
+does not mean that we're taking your work for granted - we appreciate everything
+that comes our way!  There is no task too small for someone to do if it helps
+us out!
+
+Read more about the AGPL at [GNU's licensing page](http://gnu.org/licenses) if
+you have any questions specifically about what the AGPL means for you, or check
+out [The Open Source Initiative](http://opensource.org) to learn more about 
+open source and you.
+
+What needs doing
+----------------
+
+### Coding
+
+If you are versed in the ways of Groovy and Grails, you are welcome to help us
+out by contributing your knowledge to the project, so long as you follow the
+coding guidelines set forth later in this document.
+
+### Compliance
+
+If coding isn't your strong point, but you can still understand some of the
+concepts behind programming, you can help out with the code-base by assuring
+that it all follows the coding guidelines set down later on.
+
+### Documentation
+
+Again, if you can understand the code but don't really want to write any
+yourself, helping us out with documentation would be much appreciated.  Although
+it's not yet set up properly, documentation for OpenFurry will be housed at the
+MJS Services [Atlassian Confluence instance](http://atl.mjs-svc.com:8090).
+
+### Writing
+
+OpenFurry includes a method for displaying flatpages - that is, pages that just
+contain information and aren't dynamic, in the sense that the information is
+relatively static, even though they're stored in the database.  These pages are
+stored as [Markdown](http://daringfireball.net/projects/markdown/), so you don't
+need to know anything about programming at all in order to write for us.
+
+There will be a list of pages that need to be written available soon, but in the
+mean time, read up on Markdown to see how to use it.
+
+### Internationalization
+
+One of the goals of OpenFurry is to be as fully internationalized as possible;
+however, we can't afford to hire translators, so if you want to see OpenFurry
+in your own language (the site, that is; not the submissions), this is easily
+done.  All that is required is a knowledge of English and your primary language.
+The text for I18N is stored in a simple-to-understand properties format - for
+example, if you see in the English file:
+
+    openfurry.welcome=Welcome to OpenFurry!
+
+You can add the following to the French file:
+
+    openfurry.welcome=Bienvenue à OpenFurry!
+
+The more languages in which OpenFurry is internationalized, the more accessible
+it is to those in our community!
+
+### Adding content
+
+This may seem like a no-brainer.  However, more than just uploading files is
+necessary with a site like OpenFurry.  If you've got a sense for color, you can
+contribute a theme that will be publicly available to the site's users, and
+could be voted up to be the default theme.  Once the site is up and running, the
+theme builder will be available for you to work your magic!
+
+In addition to themes, OpenFurry includes a system for submitting bugs,
+improvements, and feature requests to be considered by the programmers.  If you
+notice something broken, want to see something improved, or just plain want more
+to do with the site, feel free to submit an issue!  Can't think of anything off
+the top of your head to change?  Take a look in the issues list and see if
+there's anything you agree with there, and vote on the issue.  The more votes an
+issue gets, the more likely it is to be elevated and acted upon.
+
+Coding Guidelines
+-----------------
+
+### Indenting
+
+Indent to four spaces.  IDEs for Groovy and text editors worth their salt should
+have an option for setting the tab size.  In vim (which I use), that is done
+with the following command in ~/.vimrc
+
+    set ts=4 sts=4 sw=4 et
+
+You can have vim do that for the files used in OpenFurry automatically with the
+following:
+
+    if has("autocmd")
+      autocmd FileType gsp,groovy,properties,markdown
+      \ set ts=4 sts=4 sw=4 et
+    endif
+
+That's right, four spaces for everything - GSPs, Groovy, properties, and markdown.  If you contribute Java or JSPs, those too!
+
+Emacs?  You're on your own, sorry! :o)  Unless someone can contribute to this document...
+
+### Parentheses
+
+Although Groovy is lenient on parantheses, try to use them for function calls and the like.  I.e.: instead of
+
+    response.sendError 404
+
+do
+
+    response.sendError(404)
+
+### Brackets and indenting
+
+Keep brackets on the same line as function declarations, with a space separating
+arguments and bracket.  I.e.: instead of
+
+    def doSomething(String arg)
+    {
+
+do
+
+    def doSomething(String arg) {
+
+The same holds true for if-statements.  For else statements, keep brackets on
+the same line.  I.e.: instead of
+
+    }
+    else {
+
+do
+
+    } else {
+
+Indent all blocks.  I.e.: instead of
+
+    def critera = { and {
+        eq('foo', bar)
+	le('baz', dimble)
+    }}
+
+do
+
+    def criteria = {
+        and {
+	    eq('foo', bar)
+	    le('baz', dimble)
+	}
+    }
+
+With the following exceptions:
+
+* Javascript
+  
+  You can have closures (unnamed functions) inside arguments be on the same
+line.  I.e.:
+
+    $('#foo').click(function() {
+        // do something
+    });
+
+* GSP (Groovy Server Pages)
+
+  You should indent block tags, but not their insides.  I.e: instead of
+
+    <ul>
+        <g:each in="${list}">
+            <li>${it}</li>
+        </g:each>
+    </ul>
+
+do
+
+    <ul>
+        <g:each in="${list}">
+	<li>${it}</li>
+	</g:each>
+    </ul>
+
+or
+
+    <ul>
+    <g:each in="${list}">
+	<li>${it}</li>
+    </g:each>
+    </ul>
+
+This is to preserve the indentation of HTML output for the reason of making it
+easier to debug nesting problems.
+
+### Commenting
+
+Comment your code liberally, but don't clutter it.  If, with syntax
+highlighting, you notice more blue, gray, or whatever color comments are, you
+can tone it down a little, but if you have trouble parsing your own code on
+sight, chances are, people are going to have a hard time parsing it after ten
+minutes, and don't be afraid of line breaks.  I.e.: instead of
+
+    ui.draggable.find('input').attr('value' $(this).parent().attr('value'));
+
+do
+
+    ui.draggable.find('input').attr(   // Find the hidden input and
+        'value',                       // set the value attribute
+	$(this).parent().attr('value') // to the value attribute of the parent
+    );
+
+#### Line lengths
+
+If a line gets horrendously long, don't be afraid to break it.  Good places to
+break are argument lists (as above) or chained commands.  I.e.: instead of
+
+    ui.draggable.find('.rank').html("Rank: " + $(this).parent().attr('value')).show();
+
+do
+
+    ui.draggable.find('rank')
+        .html("Rank: " + $(this).parent().attr('value'))
+	.show();
+
+That said, 80 characters is a good max-length for a line - it works the best
+with text editors and source-code displays in browsers - but if you have to go
+over, you have to go over.
+
+### Don't push broken builds
+
+Or try not to, at least.  The git repo is tied in with an instance of Bamboo, a\continuous integration system.  This means that, every time you push a broken 
+build, it shows!  Pushing a broken build will mean an automatic code-review.  If
+you can't finish the task to the point of getting it to compile.. well, okay.  
+You'll have to live with the code review.  Even so, try to keep your commits 
+working!
+
+I've run into this problem with grails before, so please make sure you run
+`grails test-app -clean` rather than just `grails test-app`.  Things get cached
+and the cached versions work with what you wrote, but not necessarily the un-
+cached versions!  (By the way, Bamboo runs `test-app`, so if you want to see
+what will happen when the CI system gets ahold of your code, that's what.)
+
+### Misc.
+
+* Use blank lines when they clarify (between functions, before comments, etc)
+* Comment before the fact (explain what the _following_ line does)
+* Use camel case (listAllByType, not list_all_by_type)
+* Use descriptive identifiers (no `q` or `r`; but you can use `i`/`j` or `x` and
+`y` for iterating over things or working with 2D arrays respectively)
+* DRY - Don't Repeat Yourself!  (If you do something over and over in a 
+controller, maybe it belongs in a service)
+* Use comments well (`// total hack here` means very little; explain what and
+why it's a hack)
+* Attribute your work at the top of the file if you must; don't attribute
+snippets (i.e.: no initials in comments, just put your name at the top)
+* Groovy-style returns are okay (i.e.: last line of the method), and don't worry
+about parentheses when using `return`.
+* Internationalize every string (i.e.: not `<th>Title</th>`, but `<th><g:message
+code="openfurry.blah.title" default="Title" /></th>` - always use defaults)
+* When in doubt, this section has a lot in common with Haiku's programming and
+human interface guildelines.  Check them out to see more info than is presented
+here:
+  + http://www.haiku-os.org/development/coding-guidelines
+  + http://api.haiku-os.org/HIG/
