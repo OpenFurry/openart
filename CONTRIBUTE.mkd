@@ -106,7 +106,9 @@ You can have vim do that for the files used in OpenFurry automatically with the
 following:
 
     if has("autocmd")
-      autocmd FileType gsp,groovy,properties,markdown
+      autocmd FileType gsp,groovy,properties
+      \ set ts=4 sts=4 sw=4 et
+      autocmd BufNewFile,BufRead *.mkd
       \ set ts=4 sts=4 sw=4 et
     endif
 
@@ -150,16 +152,16 @@ Indent all blocks.  I.e.: instead of
 
     def critera = { and {
         eq('foo', bar)
-	le('baz', dimble)
+	    le('baz', dimble)
     }}
 
 do
 
     def criteria = {
         and {
-	    eq('foo', bar)
-	    le('baz', dimble)
-	}
+	        eq('foo', bar)
+	        le('baz', dimble)
+	    }
     }
 
 With the following exceptions:
@@ -187,15 +189,15 @@ do
 
     <ul>
         <g:each in="${list}">
-	<li>${it}</li>
-	</g:each>
+	    <li>${it}</li>
+	    </g:each>
     </ul>
 
 or
 
     <ul>
     <g:each in="${list}">
-	<li>${it}</li>
+	    <li>${it}</li>
     </g:each>
     </ul>
 
@@ -216,7 +218,7 @@ do
 
     ui.draggable.find('input').attr(   // Find the hidden input and
         'value',                       // set the value attribute
-	$(this).parent().attr('value') // to the value attribute of the parent
+	    $(this).parent().attr('value') // to the value attribute of the parent
     );
 
 #### Line lengths
@@ -230,7 +232,7 @@ do
 
     ui.draggable.find('rank')
         .html("Rank: " + $(this).parent().attr('value'))
-	.show();
+	    .show();
 
 That said, 80 characters is a good max-length for a line - it works the best
 with text editors and source-code displays in browsers - but if you have to go
@@ -238,7 +240,8 @@ over, you have to go over.
 
 ### Don't push broken builds
 
-Or try not to, at least.  The git repo is tied in with an instance of Bamboo, a\continuous integration system.  This means that, every time you push a broken 
+Or try not to, at least.  The git repo is tied in with an instance of Bamboo, a
+continuous integration system.  This means that, every time you push a broken 
 build, it shows!  Pushing a broken build will mean an automatic code-review.  If
 you can't finish the task to the point of getting it to compile.. well, okay.  
 You'll have to live with the code review.  Even so, try to keep your commits 
@@ -270,5 +273,5 @@ code="openfurry.blah.title" default="Title" /></th>` - always use defaults)
 * When in doubt, this section has a lot in common with Haiku's programming and
 human interface guildelines.  Check them out to see more info than is presented
 here:
-  + http://www.haiku-os.org/development/coding-guidelines
-  + http://api.haiku-os.org/HIG/
+  + [Coding guidelines](http://www.haiku-os.org/development/coding-guidelines)
+  + [Human Interface Guidelines](http://api.haiku-os.org/HIG/)
