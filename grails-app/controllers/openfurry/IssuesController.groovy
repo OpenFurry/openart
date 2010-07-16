@@ -8,10 +8,10 @@ class IssuesController {
         def list = Issue.withCriteria {
             and {
                 if (params.status) {
-                    eq('status', params.status)
+                    eq('status', Integer.parseInt(params.status))
                 }
                 if (params.type) {
-                    eq('type', params.type)
+                    eq('type', Integer.parseInt(params.type))
                 }
             }
         }
@@ -20,7 +20,7 @@ class IssuesController {
     }
 
     def view = {
-        def issue = Issue.get(params.id)
+        def issue = Issue.get(Integer.parseInt(params.id))
         if (!issue) {
             // TODO i18n
             response.sendError 404

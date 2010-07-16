@@ -61,7 +61,7 @@ Possible features:
 Requirements
 ------------
 
-* Grails 1.3.2 (untested in other versions)
+* Grails 1.3.3 (untested in other versions)
 * Grails acegi plugin
 * Grails markdown plugin
 * [ImageMagick DSL](http://josh-in-antarctica.blogspot.com/2008/11/imagemagick-dsl.html)
