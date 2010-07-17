@@ -4,9 +4,10 @@ class Issue {
     String title
     String description
     Long votes
-    Integer status
+    Integer status = 0
     Integer type
     String JIRAIssue
+    Person submitter
 
     static constraints = {
         title(maxSize: 60, blank: false)

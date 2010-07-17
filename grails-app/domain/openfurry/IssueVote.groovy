@@ -7,5 +7,5 @@ class IssueVote {
     static constraints = {
     }
 
-    static belongsTo = Person
+    static belongsTo = Issue
 }
