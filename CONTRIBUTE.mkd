@@ -31,7 +31,9 @@ What needs doing
 
 If you are versed in the ways of Groovy and Grails, you are welcome to help us
 out by contributing your knowledge to the project, so long as you follow the
-coding guidelines set forth later in this document.
+coding guidelines set forth later in this document.  There are tasks that need
+to be done on the Atlassian Jira instance, but you can always simply look for
+comments that say 'TODO' in them in the source files.
 
 ### Compliance
 
