@@ -168,18 +168,18 @@ do
 
 With the following exceptions:
 
-* Javascript
+* _Javascript_
   
-  You can have closures (unnamed functions) inside arguments be on the same
+You can have closures (unnamed functions) inside arguments be on the same
 line.  I.e.:
 
     $('#foo').click(function() {
         // do something
     });
 
-* GSP (Groovy Server Pages)
+* _GSP (Groovy Server Pages)_
 
-  You should indent block tags, but not their insides.  I.e: instead of
+You should indent block tags, but not their insides.  I.e: instead of
 
     <ul>
         <g:each in="${list}">
@@ -191,15 +191,15 @@ do
 
     <ul>
         <g:each in="${list}">
-	    <li>${it}</li>
-	    </g:each>
+        <li>${it}</li>
+        </g:each>
     </ul>
 
 or
 
     <ul>
     <g:each in="${list}">
-	    <li>${it}</li>
+        <li>${it}</li>
     </g:each>
     </ul>
 
