@@ -9,6 +9,8 @@ class Comment {
     String comment
     Boolean flagged = false
     Boolean visible = true
+    Date dateCreated
+    Date lastUpdated
 
     static constraints = {
         parentType(maxSize: 60, blank: false)
