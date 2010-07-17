@@ -45,6 +45,14 @@ class UrlMappings {
             }
         }
 
+        "/issues/$id" {
+            controller = "issues"
+            action = "show"
+            constraints {
+                id(matches: /\d+/)
+            }
+        }
+
         "/th/$id" {
             controller = "theme"
             action = "show"

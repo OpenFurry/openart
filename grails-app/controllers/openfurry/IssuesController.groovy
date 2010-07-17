@@ -1,10 +1,10 @@
 package openfurry
 
 class IssuesController {
+    def authenticateService
+    def marketService
 
-    def index = { 
-        render(view: "list")
-    }
+    static defaultAction = "list"
 
     def list = {
         def list = Issue.withCriteria {
@@ -21,7 +21,7 @@ class IssuesController {
         [issueList: list]
     }
 
-    def view = {
+    def show = {
         def issue = Issue.get(Integer.parseInt(params.id))
         if (!issue) {
             // TODO i18n
@@ -48,6 +48,7 @@ class IssuesController {
         issueInstance.properties = params
         def owner = Person.findByUsername(authenticateService.principal().username)
         issueInstance.submitter = owner
+        issueInstance.votes = 1
 
         if (issueInstance.save(flush: true)) {
             if (!params.id) {
@@ -56,14 +57,14 @@ class IssuesController {
                 issueVoteInstance.issue = issueInstance
                 issueVoteInstance.save(flush: true)
             }
-            [issue: issueInstance]
+            render(view: "show", model: [issue: issueInstance])
         } else {
-            render(view: "create", model: [issue: issueInstance])
+            render(view: "create", model: [instance: issueInstance])
         }
     }
 
     def edit = {
-        if (!authenticateService.ifAnyGranted("ROLE_ADMIN", "ROLE_STAFF", "ROLE_GOVERNOR")) {
+        if (!authenticateService.ifAnyGranted("ROLE_ADMIN,ROLE_STAFF,ROLE_GOVERNOR")) {
             response.sendError(403) // TODO i18n
         }
         def issueInstance = Issue.get(params.id)

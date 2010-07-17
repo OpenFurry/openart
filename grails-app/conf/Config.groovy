@@ -204,18 +204,18 @@ openfurry.commissions.status.completed = 5
 
 // OpenFurry issue statuses
 // TODO move to i18n, put codes in repr
-openfurry.issues.status.repr = [
+openfurry.issue.status.repr = [
     "Suggestion", 
     "Seconded", 
     "Accepted", 
     "Completed", 
     "Rejected"
 ]
-openfurry.issues.status.suggestion = 0
-openfurry.issues.status.seconded = 1
-openfurry.issues.status.accepted = 2
-openfurry.issues.status.completed = 3
-openfurry.issues.status.rejected = 4
+openfurry.issue.status.suggestion = 0
+openfurry.issue.status.seconded = 1
+openfurry.issue.status.accepted = 2
+openfurry.issue.status.completed = 3
+openfurry.issue.status.rejected = 4
 
 
 // OpenFurry issue types

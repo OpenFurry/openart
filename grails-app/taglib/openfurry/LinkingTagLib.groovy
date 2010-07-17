@@ -63,6 +63,21 @@ class LinkingTagLib {
             }
         })
 
+        // issue:id
+        text = text.replaceAll(/issue:(\d+)/, { full, issueId ->
+            def s = Issue.get(issueId)
+
+            if (s) {
+                return """
+                    <a href=\"${createLink(controller: 'issues', action: 'show', id: issueId)}\">
+                        ${(s.status == 3 || s.status == 4) ? "<s>issue:" + issueId + "</s>" : "issue:" + issueId}
+                    </a>
+                    """
+            } else {
+                return full
+            }
+        })
+
         out << text
     }
 

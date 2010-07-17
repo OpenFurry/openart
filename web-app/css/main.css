@@ -213,6 +213,28 @@ td.errors textarea {
     border: 1px solid red;
 }
 
+.success, .NewFeature {
+    background-color: #E6EFC2;
+    color: #000;
+}
+.success {
+    border: 2px solid #C6D880;
+}
+.warning, .Improvement {
+    background-color: #FFF6BF;
+    color: #000;
+}
+.warning {
+    border: 2px solid #FFd324;
+}
+.failure, .Bug {
+    background-color: #FBE3E4;
+    color: #000;
+}
+.failure {
+    border: 2px solid #FbC2C4;
+}
+
 /* TABLES */
 
 table {

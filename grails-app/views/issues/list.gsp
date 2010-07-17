@@ -22,24 +22,30 @@
                         <li class="block ${params.status == '4' ? 'selected' : ''}"><a href="${createLink(controller: params.controller, action: params.action, id: params.id)}?status=${4}${params.type ? '&type=' + params.type : ''}"><g:message code="openfurry.issue.status.Rejected" default="Rejected" /></a></li>
                     </ul>
                 </div>
+                <div style="float:right">
+                    <strong><a href="${createLink(action: 'create')}">+ <g:message code="openfurry.issue.views.create" default="Create issue" /></a></strong>
+                </div>
                 <table>
                     <thead>
                         <tr class="shadow">
-                            <th><g:message code="openfurry.issue.id" default="ID" /></th>
-                            <th><g:message code="openfurry.issue.title" default="Issue" /></th>
-                            <th><g:message code="openfurry.issue.type" default="Issue type" /></th>
-                            <th><g:message code="openfurry.issue.status" default="Issue status" /></th>
-                            <th><g:message code="openfurry.issue.votes" default="Votes" /></th>
+                            <th style="width: 10%"><g:message code="openfurry.issue.id" default="ID" /></th>
+                            <th style="width: 50%"><g:message code="openfurry.issue.title" default="Issue" /></th>
+                            <th style="width: 15%"><g:message code="openfurry.issue.type" default="Issue type" /></th>
+                            <th style="width: 15%"><g:message code="openfurry.issue.status" default="Issue status" /></th>
+                            <th style="width: 10%"><g:message code="openfurry.issue.votes" default="Votes" /></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <g:each in="${issueList}">
-                        <tr>
-                            <td>${it.id}</td>
-                            <td>${it.title}</td>
-                            <td><g:message code="openfurry.issues.type.${grailsApplication.config.openfurry.issue.type.repr[it.type]}" default="${grailsApplication.config.openfurry.issue.type.repr[it.type]}" /></td>
-                            <td><g:message code="openfurry.issues.status.${grailsApplication.config.openfurry.issue.status.repr[it.status]}" default="${grailsApplication.config.openfurry.issue.status.repr[it.status]}" /></td>
-                            <td>${it.votes}</td>
+                        <g:each in="${issueList}" status="i" var="issue">
+                        <tr class="${i % 2 == 0 ? 'even' : 'odd'}">
+                            <td><a href="${createLink(action: 'show', id: issue.id)}" style="display: block">
+                                <g:if test="${issue.status == 3 || issue.status == 4}"><s>${issue.id}</s></g:if>
+                                <g:else>${issue.id}</g:else>
+                                </a></td>
+                            <td>${issue.title.encodeAsHTML()}</td>
+                            <td class="${grailsApplication.config.openfurry.issue.type.repr[issue.type]}"><g:message code="openfurry.issue.type.${grailsApplication.config.openfurry.issue.type.repr[issue.type]}" default="${grailsApplication.config.openfurry.issue.type.repr[issue.type]}" /></td>
+                            <td><g:message code="openfurry.issue.status.${grailsApplication.config.openfurry.issue.status.repr[issue.status]}" default="${grailsApplication.config.openfurry.issue.status.repr[issue.status]}" /></td>
+                            <td>${issue.votes}</td>
                         </tr>
                         </g:each>
                     </tbody>
