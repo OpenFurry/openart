@@ -13,14 +13,24 @@
     <div class="content block" style="min-height: 20em;">
         <table>
             <tbody>
+                <g:set var="dateString" value="" />
                 <g:each in="${uoList}" var="uo" status="count">
                 <g:if test="${count % 4 == 0}"><tr></g:if>
-                    <td><a href="${createLink(controller: 'view', action: params.action, id: uo.id)}">${uo.title}</a></td>
+                    <td>
+                        <g:if test="${dateString != formatDate(date: uo.dateCreated, format: 'yyyy-MM-dd')}">
+                        <g:set var="dateString" value="${formatDate(date: uo.dateCreated, format: 'yyyy-MM-dd')}" />
+                        <h3><g:formatDate date="${uo.dateCreated}" format="EEEEEEEEEEE MMMMMMMMMMMM d, yyyy" /></h3>
+                        </g:if>
+                        <a href="${createLink(controller: 'view', action: params.action, id: uo.id)}">
+                            <img src="${createLinkTo(file: uo.thumbnail)}" /><br />
+                            ${uo.title}
+                        </a><br />
+                        <g:link controller="person" action="show" params="[username: uo.owner.username]">~${uo.owner.username}</g:link>
+                    </td>
                 <g:if test="${count % 4 == 3}"></tr></g:if>
                 </g:each>
                 </tr>
             </tbody>
         </table>
-        <g:formatDate date="${new Date()}" format="EEEEEEEEEE MMMMMMMMMMMM d, yyyy" />
     </div>
 </div>

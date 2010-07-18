@@ -322,8 +322,6 @@ class SubmitController {
             } else {
                 imageUserObjectInstance.errors.rejectValue("file", "openfurry.errors.fileTypeMismatch", "The uploaded file does not meet the approved file-type requirements")
             }
-        } else {
-            imageUserObjectInstance.fullFile = null
         }
 
         def thumbnail = request.getFile('thumbnailUpload')

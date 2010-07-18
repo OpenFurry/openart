@@ -2,7 +2,7 @@ package openfurry
 
 class GroupPost {
     Person owner
-    Group group
+    UserGroup group
     String title
     String post
     Boolean flagged = false
@@ -17,5 +17,5 @@ class GroupPost {
 
     static hasMany = [children: Comment]
 
-    static belongsTo = Group
+    static belongsTo = UserGroup
 }

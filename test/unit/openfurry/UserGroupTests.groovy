@@ -2,7 +2,7 @@ package openfurry
 
 import grails.test.*
 
-class GroupTests extends GrailsUnitTestCase {
+class UserGroupTests extends GrailsUnitTestCase {
     protected void setUp() {
         super.setUp()
     }

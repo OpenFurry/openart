@@ -7,7 +7,7 @@ class Event {
     Date eventDateEnd
     Date dateCreated
     Date lastModified
-    Group group
+    UserGroup group
     Person owner
 
     static constraints = {

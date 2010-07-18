@@ -1,6 +1,6 @@
 package openfurry
 
-class Group {
+class UserGroup {
     String title
     String description
     Boolean exclusive = false
@@ -12,4 +12,5 @@ class Group {
     }
 
     static hasMany = [members: Person, posts: GroupPost]
+    static belongsTo = Person
 }
