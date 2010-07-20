@@ -119,6 +119,7 @@ class BootStrap {
 
         // Flatpage request
         def secureFlatpageCreate = new Requestmap(url:'/flatpage/**', configAttribute: 'ROLE_STAFF').save()
+
     }
     def destroy = {
     }

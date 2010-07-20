@@ -4,7 +4,7 @@
     </head>
     <body>
         <div class="audioDisplay">
-            <a href="${createLinkTo(file: instance.file)}">AUDIO FILE</a>
+            <a href="${resource(file: instance.file)}">AUDIO FILE</a>
         </div>
         <g:render template="uo" />
     </body>

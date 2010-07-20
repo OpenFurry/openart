@@ -2,7 +2,7 @@ package openfurry
 
 import grails.test.*
 
-class IssuesControllerTests extends ControllerUnitTestCase {
+class IssueControllerTests extends ControllerUnitTestCase {
     protected void setUp() {
         super.setUp()
     }

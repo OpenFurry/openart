@@ -18,11 +18,17 @@
         <div id="header">
             <img src="${resource(dir: 'images', file: 'of-logo.png')}" align="left" alt="Welcome to OpenFurry" />
             <h1>OpenFurry</h1>
-            <div id="navigation">Navigation</div>
+            <div id="navigation">
+                <ul>
+                    <li><a href="${createLink(uri: '/')}">HOME</a></li>
+                </ul>
+            </div>
             <div id="usercontrol">
                 <g:isLoggedIn>
                     <g:message code="openfurry.display.usercontrol.welcomeUser" args="${[loggedInUserInfo(field: 'userRealName')]}" />
                     <ul>
+                        <li><g:link controller="watch"><g:message code="openfurry.display.usercontrol.watchlist" default="Your watch list" /></g:link></li>
+                        <li><g:link controller="submit"><g:message code="openfurry.display.usercontrol.submit" default="Submit" /></g:link></li>
                         <li><g:link controller="logout"><g:message code="openfurry.display.usercontrol.logout" default="Log out" /></g:link></li>
                     </ul>
                 </g:isLoggedIn>
@@ -30,6 +36,7 @@
                     <g:message code="openfurry.display.usercontrol.welcomeUser" args="${['guest']}" />
                     <ul>
                         <li><g:link controller="login"><g:message code="openfurry.display.usercontrol.login" default="Log in" /></g:link></li>
+                        <li><g:link controller="register"><g:message code="openfurry.display.usercontrol.register" default="Register" /></g:link></li>
                     </ul>
                 </g:isNotLoggedIn>
             </div>

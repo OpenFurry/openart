@@ -1,6 +1,6 @@
 package openfurry
 
-class IssuesController {
+class IssueController {
     def authenticateService
     def marketService
 

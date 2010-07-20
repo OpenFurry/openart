@@ -4,7 +4,7 @@
 </head>
 <body>
     <div class="applicationDisplay">
-        <a href="${createLinkTo(dir: 'submissions/application/' + instance.owner.username, file: instance.screenshot)}">APPLICATION SCREEN SHOT</a>
+        <a href="${resource(dir: 'submissions/application/' + instance.owner.username, file: instance.screenshot)}">APPLICATION SCREEN SHOT</a>
     </div>
     <g:render template="uo" />
 </body>

@@ -4,7 +4,7 @@
 </head>
 <body>
     <div class="collectionDisplay block">
-        <img src="${createLinkTo(file: instance.thumbnail)}" />
+        <img src="${resource(file: instance.thumbnail)}" />
     </div>
         <g:render template="uo" />
 </body>

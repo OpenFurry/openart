@@ -4,8 +4,8 @@
     </head>
     <body>
         <div class="imageDisplay">
-            <a href="${createLinkTo(file: instance.fullFile)}">
-                <img src="${createLinkTo(file: instance.sizedFile)}" />
+            <a href="${resource(file: instance.fullFile)}">
+                <img src="${resource(file: instance.sizedFile)}" />
             </a>
         </div>
         <g:render template="uo" />

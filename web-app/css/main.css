@@ -297,6 +297,20 @@ th.desc a {
     background: #b2d1ff;
 }
 
+.uoList h3 {
+    border-top: 1px solid #777;
+    border-left: 1px solid #777;
+}
+.uoList .bookmark {
+    background-color: #eee;
+}
+.uoList .previouslyUnseen {
+    background-color: #ddd;
+}
+.uoList .seen {
+    background-color: #ccc;
+}
+
 .paginateButtons {
     border: 1px solid #ccc;
     border-top: 0;

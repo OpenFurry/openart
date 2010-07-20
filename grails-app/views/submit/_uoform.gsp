@@ -9,7 +9,7 @@
     </thead>
     <tbody>
         <tr class="prop">
-            <g:if test="${instance?.thumbnail}"><g:message code="openfurry.technical.currentAttachment" default="Current attachment:" /> <img src="${createLinkTo(file: instance.thumbnail)}" /></g:if>
+            <g:if test="${instance?.thumbnail}"><g:message code="openfurry.technical.currentAttachment" default="Current attachment:" /> <img src="${resource(file: instance.thumbnail)}" /></g:if>
             <th class="name"><g:message code="openfurry.uo.thumbnail" default="Submission thumbnail" /></th>
             <td class="value ${hasErrors(bean: instance, field: 'thumbnail', 'errors')}">
                 <input type="file" name="thumbnailUpload" />
