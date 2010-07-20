@@ -10,7 +10,7 @@ class TagService {
         .each {                                        // Start tagging for real
             if (it.size() > 0) { 
                 uo.tags.each {
-                    if (it.tag.tag == it) {
+                    if (it.tag == it) {
                         // Skip if we already have it tagged
                         return
                     }
@@ -22,10 +22,7 @@ class TagService {
                     t = new Tag(tag: it)
                     t.save(flush: true)
                 }
-                def ti = new TaggedItem(userObject: uo, tag: t)
-                ti.save(flush: true)
-                uo.save(flush: true)
-                t.save(flush: true)
+                uo.addToTags(t).save(flush: true)
             }
         }
     }

@@ -62,7 +62,7 @@
             <dt class="even"><g:message code="openfurry.uo.tags" default="Tags" /></dt>
             <dd class="even">
                 <ul>
-                    <g:each in="${instance.tags}"><li><a href="${createLink(controller: 'tag', action: 'show', id: it.tag.tag)}">${it.tag.tag}</a></li></g:each>
+                    <g:each in="${instance.tags}"><li><a href="${createLink(controller: 'tag', action: 'show', id: it.tag)}">${it.tag}</a></li></g:each>
                 </ul>
             </dd>
         </dl>

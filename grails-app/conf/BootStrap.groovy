@@ -118,8 +118,12 @@ class BootStrap {
         def secureSubmit = new Requestmap(url: '/submit/**', configAttribute: 'ROLE_USER').save()
 
         // Flatpage request
-        def secureFlatpageCreate = new Requestmap(url:'/flatpage/**', configAttribute: 'ROLE_STAFF').save()
+        def secureFlatpageCreate = new Requestmap(url: '/flatpage/**', configAttribute: 'ROLE_STAFF').save()
 
+        // Status requests
+        def secureStatusMentions = new Requestmap(url: '/status/mentions/**', configAttribute: 'ROLE_USER').save()
+        def secureStatusSave = new Requestmap(url: '/status/save/**', configAttribute: 'ROLE_USER').save()
+        def secureStatusDelete = new Requestmap(url: '/status/delete/**', configAttribute: 'ROLE_USER').save()
     }
     def destroy = {
     }
