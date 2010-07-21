@@ -1,9 +1,10 @@
 <html>
     <head>
         <title>NOT FOUND</title>
-        <meta name="layout" content="main" />
+        <meta name="layout" content="error" />
     </head>
     <body>
-       <div class="error">${request.'javax.servlet.error.message'.encodeAsHTML()}</div>
+        [ERROR IMAGE]
+        <div class="error">${request.'javax.servlet.error.message'.encodeAsHTML()}</div>
     </body>
 </html>

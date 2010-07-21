@@ -39,6 +39,10 @@ body {
     list-style-type: none;
 }
 
+#navigation li {
+    display: inline;
+}
+
 #usercontrol {
     float: right;
     width: 40%;
@@ -48,6 +52,10 @@ body {
 
 #usercontrol ul {
     list-style-type: none;
+}
+
+#usercontrol li {
+    display: inline;
 }
 
 #content {

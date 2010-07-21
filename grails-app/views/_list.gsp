@@ -34,5 +34,6 @@
                 <g:if test="${needLastTR}"></tr></g:if>
             </tbody>
         </table>
+        <g:paginate total="${uoList.size()}" params="${params}" max="16" />
     </div>
 </div>

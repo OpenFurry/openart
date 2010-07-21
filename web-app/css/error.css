@@ -1,0 +1,8 @@
+#errorWrapper {
+    width: 70%;
+    height: 15em;
+    margin: auto;
+    margin-top: 5em;
+    padding: 1em;
+    overflow: auto;
+}
