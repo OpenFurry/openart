@@ -44,6 +44,12 @@ class UrlMappings {
             constraints {
             }
         }
+        "/tags/" {
+            controller = "tag"
+            action = "list"
+            constraints {
+            }
+        }
 
         "/issues/$id" {
             controller = "issues"

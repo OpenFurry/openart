@@ -1,0 +1,9 @@
+Things that need to be done
+===========================
+
+* As always, anything with a //TODO comment
+* I18N on views where text is in all caps
+* Pagination in listing
+* User home page
+* List prices next to links (taglib?)
+* Compliance to coding standards

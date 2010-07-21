@@ -37,7 +37,7 @@ class UserObject implements Comparable {
         tablePerHierarchy false
     }
 
-    static hasMany = [comments: Comment, species: Species, categories: Category, tags: TaggedItem]
+    static hasMany = [comments: Comment, species: Species, categories: Category, tags: Tag]
     
     static belongsTo = Person
 

@@ -8,5 +8,7 @@ class Tag {
 
     }
 
-    static hasMany = [taggedItems: TaggedItem]
+    static hasMany = [taggedItems: UserObject]
+
+    static belongsTo = UserObject
 }

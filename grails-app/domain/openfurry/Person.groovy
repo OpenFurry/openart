@@ -68,7 +68,8 @@ class Person {
         watchedTags: Tag,
         comments: Comment, 
         statuses: UserStatus,
-        groups: UserGroup
+        groups: UserGroup,
+        messages: UserMessage
         ]
 	static belongsTo = Role
 }

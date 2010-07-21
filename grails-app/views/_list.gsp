@@ -22,7 +22,7 @@
                         <g:set var="dateString" value="${formatDate(date: uo.dateCreated, format: 'yyyy-MM-dd')}" />
                         <h3><g:formatDate date="${uo.dateCreated}" format="EEEEEEEEEEE MMMMMMMMMMMM d, yyyy" /></h3>
                         </g:if>
-                        <a href="${createLink(controller: 'view', action: params.action, id: uo.id)}">
+                        <a href="${createLink(controller: 'view', action: 'show', id: uo.id)}">
                             <img src="${resource(file: uo.thumbnail)}" /><br />
                             ${uo.title}
                         </a><br />
