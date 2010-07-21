@@ -36,6 +36,7 @@ class ListService {
                     eq('published', true)
                 }
             }
+            order('lastUpdated', 'desc')
         }
 
     }

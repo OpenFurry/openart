@@ -13,15 +13,16 @@ class WatchController {
         def criteria = {
             or {
                 'in'('owner', person.watches)
-                tags {
-                    or {
-                        for (t in person.watchedTags) {
-                            eq('tag', t.tag)
+                if (person.watchedTags.size() > 0) {
+                    tags {
+                        or {
+                            for (t in person.watchedTags) {
+                                eq('tag', t.tag)
+                            }
                         }
                     }
                 }
             }
-            order('lastUpdated', 'desc')
         }
 
         def list = listService.listUOsForRating(criteria, params.type)
@@ -71,7 +72,7 @@ class WatchController {
             }
         }
 
-        person.addToWatchedTags(tag).save()
+        person.addToWatchedTags(tag).save(flush: true)
 
         // TODO flash person
     }
@@ -85,7 +86,7 @@ class WatchController {
             return
         }
 
-        person.removeFromWatches(toRemove).save()
+        person.removeFromWatches(toRemove).save(flush: true)
 
         // TODO flash person
     }
@@ -99,7 +100,7 @@ class WatchController {
             return
         }
 
-        person.removeFromWatchedTags(tag).save()
+        person.removeFromWatchedTags(tag).save(flush: true)
 
         // TODO flash person
     }
