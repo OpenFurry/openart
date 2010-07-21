@@ -73,6 +73,7 @@ class BootStrap {
             species: speciesDeity
         )
         userGod.save()
+        userGod.addToWatches(userGod).save()
 
         roleAdmin.addToPeople(userGod)
         roleStaff.addToPeople(userGod)
@@ -91,6 +92,7 @@ class BootStrap {
             species: speciesTestSubject
         )
         userSlave.save()
+        userSlave.addToWatches(userSlave).save()
         
         roleUser.addToPeople(userSlave)
         

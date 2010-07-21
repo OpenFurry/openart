@@ -10,30 +10,23 @@
         <li class="block ${params.type == 'orderedCollection' ? 'selected' : ''}"><strong><a href="${createLink(controller: params.controller, action: params.action, id: params.id)}?type=orderedCollection"><g:message code="openfurry.collection.ordered.plural" default="Ordered collections" /></a></strong></li>
         <li class="block ${params.type == 'unorderedCollection' ? 'selected' : ''}"><strong><a href="${createLink(controller: params.controller, action: params.action, id: params.id)}?type=unorderedCollection"><g:message code="openfurry.collection.unordered.plural" default="Unordered collections" /></a></strong></li>
     </ul>
-    <div class="content block" style="min-height: 20em;">
-        <table class="uoList">
-            <tbody>
-                <g:set var="dateString" value="" />
-                <g:set var="needLastTR" value="${true}" />
-                <g:each in="${uoList}" var="uo" status="count">
-                <g:if test="${count % 4 == 0}"><tr></g:if>
-                    <td>
-                        <g:if test="${dateString != formatDate(date: uo.dateCreated, format: 'yyyy-MM-dd')}">
-                        <g:set var="dateString" value="${formatDate(date: uo.dateCreated, format: 'yyyy-MM-dd')}" />
-                        <h3><g:formatDate date="${uo.dateCreated}" format="EEEEEEEEEEE MMMMMMMMMMMM d, yyyy" /></h3>
-                        </g:if>
-                        <a href="${createLink(controller: 'view', action: 'show', id: uo.id)}">
-                            <img src="${resource(file: uo.thumbnail)}" /><br />
-                            ${uo.title}
-                        </a><br />
-                        <g:link controller="person" action="show" params="[username: uo.owner.username]">~${uo.owner.username}</g:link>
-                    </td>
-                <g:if test="${count % 4 == 3}"></tr><g:set var="needLastTR" value="${false}" /></g:if>
-                <g:else><g:set var="needLastTR" value="${true}" /></g:else>
-                </g:each>
-                <g:if test="${needLastTR}"></tr></g:if>
-            </tbody>
-        </table>
+    <div class="content block">
+        <g:set var="dateString" value="" />
+        <g:each in="${uoList}" var="uo" status="count">
+            <g:if test="${dateString != formatDate(date: uo.dateCreated, format: 'yyyy-MM-dd')}">
+            <h3 style="margin-bottom: 0.5em"><g:formatDate date="${uo.dateCreated}" format="EEEEEEEEEEE MMMMMMMMMMMM d, yyyy" /></h3>
+            <g:set var="dateString" value="${formatDate(date: uo.dateCreated, format: 'yyyy-MM-dd')}" />
+            </g:if>
+            <div class="submission" style="width: 25%; display: block; float: left; text-align: center; margin-bottom: 1em">
+                <a href="${createLink(controller: 'view', action: 'show', id: uo.id)}">
+                    <img src="${resource(file: uo.thumbnail)}" /><br />
+                    ${uo.title}
+                </a><br />
+                <g:link controller="person" action="show" params="[username: uo.owner.username]">~${uo.owner.username}</g:link>
+            </div>
+        </g:each>
+        <g:if test="${uoList.size() < 1}"><g:message code="openfurry.technical.noSubmissions" default="No submissions to list" /></g:if>
+        <hr style="width: 50%; clear: both; margin: auto">
         <g:paginate total="${uoList.size()}" params="${params}" max="16" />
     </div>
 </div>

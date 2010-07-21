@@ -71,5 +71,6 @@
             </tbody>
         </table>
     </div>
-    <div class="shadow" style="clear: both; width: 100%">User submissions</div>
+    <div class="shadow" style="clear: both; width: 100%">USER SUBMISSIONS</div>
+    <g:render template="/list" model="[uoList: person.userObjects]" />
 </body>

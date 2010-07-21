@@ -10,8 +10,9 @@ class ListService {
 
     def listUOsForRating(Closure c, String type) {
         def maxRating = CH.config.openfurry.ratings.low
+        def p = null
         if (authenticateService.isLoggedIn()) {
-            def p = Person.findByUsername(authenticateService.principal().username)
+            p = Person.findByUsername(authenticateService.principal().username)
             maxRating = p.maxViewableRating
         }
         
@@ -22,6 +23,17 @@ class ListService {
                 le('rating', maxRating)
                 if (type) {
                     eq('type', type)
+                }
+                if (p) {
+                    or {
+                        eq('published', true)
+                        and {
+                            eq('published', false)
+                            eq('owner', p)
+                        }
+                    }
+                } else {
+                    eq('published', true)
                 }
             }
         }

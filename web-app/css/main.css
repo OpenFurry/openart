@@ -7,6 +7,10 @@ body {
     color: #333;
 }
 
+img {
+    border: none;
+}
+
 #header {
     position: absolute;
     top: 0;
@@ -26,13 +30,12 @@ body {
 }
 
 #header h1 {
-    margin-left: 105px;
+    display: none
 }
 
 #navigation {
-    margin-left: 105px;
     float: left;
-    width: 40%;
+    width: 100%
 }
 
 #navigation ul {
@@ -41,13 +44,14 @@ body {
 
 #navigation li {
     display: inline;
+    margin-left: 1em;
 }
 
 #usercontrol {
     float: right;
     width: 40%;
     text-align: right;
-    margin-right: 1em;
+    margin: 1em;
 }
 
 #usercontrol ul {
@@ -56,6 +60,7 @@ body {
 
 #usercontrol li {
     display: inline;
+    margin-left: 1em;
 }
 
 #content {

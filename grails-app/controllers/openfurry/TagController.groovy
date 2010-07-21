@@ -4,7 +4,7 @@ class TagController {
     def listService
     def authenticateService
 
-    def index = { }
+    static defaultAction = 'list'
 
     def list = {
         /*
@@ -65,6 +65,14 @@ class TagController {
         }
         def list = listService.listUOsForRating(criteria, params.type)
 
-        [uoList: list]
+        def watched = false
+        if (authenticateService.isLoggedIn()) {
+            def person = Person.findByUsername(authenticateService.principal().username)
+            if (tag in person.watchedTags) {
+                watched = true
+            }
+        }
+
+        [uoList: list, watched: watched]
     }
 }

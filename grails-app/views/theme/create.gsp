@@ -10,7 +10,7 @@
         </div>
         </g:hasErrors>
         <g:form action="save" method="post">
-            <table class="block">
+            <table>
                 <thead>
                     <tr>
                         <th class="shadow" colspan="2"><g:message code="openfurry.theme.section.body" default="Body" /></th>

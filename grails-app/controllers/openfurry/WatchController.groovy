@@ -13,8 +13,12 @@ class WatchController {
         def criteria = {
             or {
                 'in'('owner', person.watches)
-                for (t in person.watchedTags) {
-                    'in'('tags', t)
+                tags {
+                    or {
+                        for (t in person.watchedTags) {
+                            eq('tag', t.tag)
+                        }
+                    }
                 }
             }
             order('lastUpdated', 'desc')
