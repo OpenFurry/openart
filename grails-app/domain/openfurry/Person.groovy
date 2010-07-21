@@ -15,7 +15,6 @@ class Person {
 	boolean enabled
 	String email
     String profile
-    Map properties
     Species species
     License preferedLicense
     Integer memberType = CH.config.openfurry.user.types.lurker
@@ -69,7 +68,8 @@ class Person {
         comments: Comment, 
         statuses: UserStatus,
         groups: UserGroup,
-        messages: UserMessage
+        messages: UserMessage,
+        properties: UserProperty,
         ]
 	static belongsTo = Role
 

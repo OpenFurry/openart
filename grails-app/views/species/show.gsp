@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>SPECIES - ${species.speciesName}</title>
+        <title><g:message code="openfurry.species" default="Species" />- ${species.speciesName}</title>
         <meta name="layout" content="main" />
     </head>
     <body>

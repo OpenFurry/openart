@@ -5,7 +5,9 @@ class TreeifyTagLib {
     static namespace = "of"
 
     def speciesOptions = { attrs ->
-        out << _speciesOptions(openfurry.Species.createCriteria().list() { isNull("parent") }, 0)
+        out << openfurry.Species.createCriteria().list() { isNull("parent") }.collect {
+            "<optgroup label=\"${it.speciesName}\">\n${_speciesOptions(it.subSpecies, 1)}\n</optgroup>\n"
+        }
     }
 
     private String _speciesOptions(species, depth) {
@@ -33,8 +35,41 @@ class TreeifyTagLib {
         str.toString()
     }
 
+    def speciesList = { attrs ->
+        def list = Species.withCriteria {
+            if (attrs['parent']) {
+                eq('parent', attrs['parent'])
+            } else {
+                isNull('parent')
+            }
+        }
+        out << """
+        <ul>
+            ${_speciesList(list)}
+        </ul>"""
+    }
+
+    private String _speciesList(s) {
+        StringBuffer str = new StringBuffer()
+        s.each {
+            str.append("<li><a href=\"${createLink(controller: 'species', action: 'show', id: it.id)}\">${it.speciesName}</a>")
+            def children = it.subSpecies
+            if (children.size() > 0) {
+                str.append("\n<ul>\n")
+                children.each { ch ->
+                    str.append(_speciesList(ch))
+                }
+                str.append("\n</ul>\n")
+            }
+            str.append("</li>\n")
+        }
+        str.toString()
+    }
+
     def categoryOptions = { attrs ->
-        out << _categoryOptions(openfurry.Category.createCriteria().list() { isNull("parent") }, 0)
+        out << openfurry.Category.createCriteria().list() { isNull("parent") }.collect {
+            "<optgroup label=\"${it.categoryName}\">\n${_categoryOptions(it.subcategories, 1)}\n</optgroup>\n"
+        }
     }
 
     private String _categoryOptions(category, depth) {
@@ -62,4 +97,34 @@ class TreeifyTagLib {
         str.toString()
     }
 
+    def categoryList = { attrs ->
+        def list = Category.withCriteria {
+            if (attrs['parent']) {
+                eq('parent', attrs['parent'])
+            } else {
+                isNull('parent')
+            }
+        }
+        out << """
+        <ul>
+            ${_categoryList(list)}
+        </ul>"""
+    }
+
+    private String _categoryList(s) {
+        StringBuffer str = new StringBuffer()
+        s.each {
+            str.append("<li><a href=\"${createLink(controller: 'category', action: 'show', id: it.id)}\">${it.categoryName}</a>")
+            def children = it.subcategories
+            if (children.size() > 0) {
+                str.append("\n<ul>\n")
+                children.each { ch ->
+                    str.append(_categoryList(ch))
+                }
+                str.append("\n</ul>\n")
+            }
+            str.append("</li>\n")
+        }
+        str.toString()
+    }
 }

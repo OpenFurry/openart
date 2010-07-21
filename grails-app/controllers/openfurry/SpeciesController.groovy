@@ -7,6 +7,7 @@ class SpeciesController {
     static defaultAction = 'list'
 
     def list = {
+        return
     }
 
     def show = {

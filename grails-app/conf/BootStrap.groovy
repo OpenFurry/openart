@@ -24,10 +24,13 @@ class BootStrap {
         /**
          * Species definitions
          */
-        def speciesDeity = new Species(speciesName: "Anthropomorphic Deity")
+        def speciesTest = new Species(speciesName: "Test species")
+        speciesTest.save()
+
+        def speciesDeity = new Species(speciesName: "Anthropomorphic Deity", parent: speciesTest)
         speciesDeity.save()
         
-        def speciesTestSubject = new Species(speciesName: "Crash test dummy")
+        def speciesTestSubject = new Species(speciesName: "Crash test dummy", parent: speciesTest)
         speciesTestSubject.save()
 
         /**

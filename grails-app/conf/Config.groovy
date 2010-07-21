@@ -106,7 +106,7 @@ openfurry.user.warning.max = 100
 // - grails-app/domain/Person.groovy
 // - grails-app/domain/UserObject.groovy
 // TODO move to i18n, put codes in repr
-openfurry.user.types.repr = ["Lurker", "Visual artist", "Sculptor", "Textile artist", "Composer", "Videographer", "Flash artist", "Programmer", "Performer", "Fursuiter"]
+openfurry.user.types.repr = ["lurker", "visualArtist", "sculptor", "textileArtist", "composer", "videographer", "flashArtist", "programmer", "performer", "fursuiter"]
 openfurry.user.types.lurker = 0
 openfurry.user.types.visualArtist = 1
 openfurry.user.types.sculptor = 2
