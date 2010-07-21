@@ -20,7 +20,7 @@ class TreeifyTagLib {
     }
 
     def speciesString = { attrs ->
-        out << _speciesString(attrs['species'])
+        out << "<a href=\"${createLink(controller: 'species', action: 'show', id: attrs['species'].id)}\">${_speciesString(attrs['species'])}</a>"
     }
 
     private String _speciesString(s) {
@@ -49,14 +49,14 @@ class TreeifyTagLib {
     }
 
     def categoryString = { attrs ->
-        out << _categoryString(attrs['category'])
+        out << "<a href=\"${createLink(controller: 'category', action: 'show', id: attrs['category'].id)}\">${_categoryString(attrs['category'])}</a>"
     }
 
     private String _categoryString(s) {
         StringBuffer str = new StringBuffer()
         if (s.parent) {
             str.append(_categoryString(s.parent))
-            str.append(" &gt; ")
+            str.append(" -&gt; ")
         }
         str.append(s.categoryName)
         str.toString()

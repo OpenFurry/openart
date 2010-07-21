@@ -72,4 +72,8 @@ class Person {
         messages: UserMessage
         ]
 	static belongsTo = Role
+
+    String toString() {
+        "${this.userRealName} (~${this.username})"
+    }
 }

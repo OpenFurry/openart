@@ -15,6 +15,10 @@ class TagController {
         // Get all tags
         def tags = Tag.list()
 
+        if (tags.size() == 0) {
+            return
+        }
+
         // Get the count for each tag
         def counts = tags.collect {
             it.taggedItems.size()

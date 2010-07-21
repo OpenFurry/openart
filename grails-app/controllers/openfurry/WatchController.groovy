@@ -58,7 +58,7 @@ class WatchController {
     
     def addTag = {
         def person = Person.findByUsername(authenticateService.principal().username)
-        def tag = Tag.findByTag(params.tag)
+        def tag = Tag.findByTag(params.id)
 
         if (!tag) {
             response.sendError(404) // TODO i18n
@@ -79,7 +79,7 @@ class WatchController {
 
     def removeUser = {
         def person = Person.findByUsername(authenticateService.principal().username)
-        def toRemove = Person.findByUsername(params.toRemove)
+        def toRemove = Person.findByUsername(params.id)
 
         if (!toRemove) {
             response.sendError(404) // TODO i18n
@@ -93,7 +93,7 @@ class WatchController {
     
     def removeTag = {
         def person = Person.findByUsername(authenticateService.principal().username)
-        def tag = Tag.findByTag(params.tag)
+        def tag = Tag.findByTag(params.id)
 
         if (!tag) {
             response.sendError(404) // TODO i18n

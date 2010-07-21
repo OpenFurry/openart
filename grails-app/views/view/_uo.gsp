@@ -1,5 +1,5 @@
 <div class="uoDisplay block">
-    <div class="uoTitle shadow">${instance.title.encodeAsHTML()} - <g:link controller="person" action="show" params="[username: instance.owner.username]">${instance.owner.userRealName.encodeAsHTML()}</g:link></div>
+    <div class="uoTitle shadow">${instance.title.encodeAsHTML()} - <of:linking noImages="true">${instance.owner.encodeAsHTML()}</of:linking></div>
     <div class="uoDescription">
         <of:linking><markdown:renderHtml>${instance.description?.encodeAsHTML()}</markdown:renderHtml></of:linking>
     </div>

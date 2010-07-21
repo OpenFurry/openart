@@ -17,19 +17,23 @@ class LinkingTagLib {
         def text = attrs.text ?: body()
 
         // ~user
-        text = text.replaceAll(/(?!(<=\\))~([a-zA-Z0-9_-]+)/, {full, lookAhead, username -> 
+        text = text.replaceAll(/(?!(<=\\))~([a-zA-Z0-9_.-]+)/, {full, lookAhead, username -> 
             def p = Person.findByUsername(username)
             if (p) {
-                """
-                <a href=\"${createLink(controller: 'person', action: 'show', params: [username: username])}\">
-                    <img src=\"${createLinkTo(dir: 'avatars', file: p.avatar)}\" class=\"avatar\" align=\"middle\"/> ${full}
-                </a>
-                """
+                if (attrs['noImages']) {
+                    "<a href=\"${createLink(controller: 'person', action: 'show', params: [username: username])}\">${full}</a>"
+                } else {
+                    """
+                    <a href=\"${createLink(controller: 'person', action: 'show', params: [username: username])}\">
+                        <img src=\"${createLinkTo(dir: 'avatars', file: p.avatar)}\" class=\"avatar\" align=\"middle\"/> ${full}
+                    </a>
+                    """
+                }
             }
         })
 
         // ~!user
-        text = text.replaceAll(/(?!(<=\\))~!([a-zA-Z0-9_-]+)/, {full, lookAhead, username -> 
+        text = text.replaceAll(/(?!(<=\\))~!([a-zA-Z0-9_.-]+)/, {full, lookAhead, username -> 
             def p = Person.findByUsername(username)
             if (p) {
                 """

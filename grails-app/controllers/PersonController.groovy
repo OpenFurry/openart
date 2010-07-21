@@ -36,7 +36,15 @@ class PersonController {
 			n1 <=> n2
 		}
 
-		[person: person, roleNames: roleNames]
+        def watched = false
+        if (authenticateService.isLoggedIn()) {
+            def p = Person.findByUsername(authenticateService.principal().username)
+            if (person in p.watches) {
+                watched = true
+            }
+        }
+
+		[person: person, watched: watched, roleNames: roleNames]
 	}
 
 	/**

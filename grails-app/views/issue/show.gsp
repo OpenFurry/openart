@@ -23,7 +23,7 @@
                         <g:else>${issue.id}</g:else>
                     </td>
                     <td>${issue.title.encodeAsHTML()}</td>
-                    <td>${issue.submitter.userRealName} (<a href="${createLink(controller: 'person', action: 'show', id: issue.submitter.username)}">~${issue.submitter.username}</a>)</td>
+                    <td><of:linking noImages="true">${issue.submitter.encodeAsHTML()}</of:linking></td>
                     <td class="${grailsApplication.config.openfurry.issue.type.repr[issue.type]}"><g:message code="openfurry.issue.type.${grailsApplication.config.openfurry.issue.type.repr[issue.type]}" default="${grailsApplication.config.openfurry.issue.type.repr[issue.type]}" /></td>
                     <td><g:message code="openfurry.issue.status.${grailsApplication.config.openfurry.issue.status.repr[issue.status]}" default="${grailsApplication.config.openfurry.issue.status.repr[issue.status]}" /></td>
                     <td><g:if test="${issue.JIRAIssue}">${issue.JIRAIssue}<!-- TODO link --></g:if></td>

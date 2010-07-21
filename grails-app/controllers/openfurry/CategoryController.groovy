@@ -1,6 +1,28 @@
 package openfurry
 
 class CategoryController {
+    def authenticateService
+    def listService
+    
+    static defaultAction = 'list'
 
-    def index = { }
+    def list = {}
+
+    def show = {
+        def c = Category.get(params.id)
+        if (!c) {
+            response.sendError(404) // TODO i18n
+            return
+        }
+
+        def criteria = {
+            categories {
+                eq('id', c.id)
+            }
+        }
+
+        def list = listService.listUOsForRating(criteria, params.type)
+
+        [uoList: list, category: c]
+    }
 }

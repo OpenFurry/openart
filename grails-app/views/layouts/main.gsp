@@ -79,7 +79,7 @@
         </div>
         <div id="footer">
             <p>An <a href="http://mjs-svc.com">MJS Services</a> project | Powered by <a href="http://grails.org">Grails</a><br />
-                <a href="/info/ip">Intellectual Property Information</a></p>
+                <g:link controller="flatpage" action="show" params="[slug: 'ip']">Intellectual Property Information</g:link></p>
         </div>
     </body>
 </html>

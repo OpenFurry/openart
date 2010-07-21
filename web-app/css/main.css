@@ -1,3 +1,6 @@
+/*
+Blanket declarations
+*/
 html * {
     margin: 0;
 }
@@ -11,6 +14,15 @@ img {
     border: none;
 }
 
+a:link, a:visited, a:hover {
+    color: #666;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/*
+Header
+*/
 #header {
     position: absolute;
     top: 0;
@@ -33,6 +45,9 @@ img {
     display: none
 }
 
+/*
+Navigation/user control
+*/
 #navigation {
     float: left;
     width: 100%
@@ -63,6 +78,9 @@ img {
     margin-left: 1em;
 }
 
+/*
+Content
+*/
 #content {
     display: block;
     position: relative;
@@ -72,6 +90,9 @@ img {
     margin: auto;
 }
 
+/*
+Footer
+*/
 #footer {
     display: block;
     clear: both;
@@ -82,6 +103,18 @@ img {
     padding-top: 1em;
 }
 
+/*
+Links for watching users/tags
+*/
+#watchlink {
+    width: 100%;
+    text-align: right;
+}
+
+
+/*
+Vertical tabs
+*/
 .verticalTabs ul.nav {
     list-style-type: none;
     position: relative;
@@ -124,6 +157,9 @@ img {
     float: none;
 }
 
+/*
+Horizontal tabs
+*/
 .horizontalTabs {
     display: block;
     width: 100%;
@@ -158,30 +194,28 @@ img {
     margin-left: 0 !important;
 }
 
+/* 
+Block 
+*/
 .block, .verticalTabs ul.nav li.selected, .horizontalTabs ul.nav li.selected {
     border: 1px solid #777;
     background-color: #fff;
 }
 
-a:link, a:visited, a:hover {
-    color: #666;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-h1 {
-    color: #48802c;
-}
-
+/*
+Forms
+*/
 input, select, textarea {
     background-color: #fcfcfc;
     border: 1px solid #ccc;
     margin: 2px 0;
     padding: 2px 4px;
 }
+
 select {
    padding: 2px 2px 2px 0;
 }
+
 textarea {
 	vertical-align: top;
 }
@@ -190,7 +224,9 @@ input:focus, select:focus, textarea:focus {
     border: 1px solid #b2d1ff;
 }
 
-
+/*
+Form messages and errors
+*/
 .message {
     background: #f3f8fc url(../images/skin/information.png) 8px 50% no-repeat;
     border: 1px solid #b2d1ff;
@@ -226,6 +262,9 @@ td.errors textarea {
     border: 1px solid red;
 }
 
+/*
+Success/Warning/Failure divs, issue types
+*/
 .success, .NewFeature {
     background-color: #E6EFC2;
     color: #000;
@@ -248,15 +287,18 @@ td.errors textarea {
     border: 2px solid #FbC2C4;
 }
 
-/* TABLES */
-
+/* 
+Tables 
+*/
 table {
     border: 1px solid #ccc;
     width: 100%
 }
+
 tr {
     border: 0;
 }
+
 td, th {
     font: 11px verdana, arial, helvetica, sans-serif;
     line-height: 12px;
@@ -264,9 +306,11 @@ td, th {
     text-align: left;
     vertical-align: top;
 }
+
 thead th, .shadow {
     background: #ddd url(../images/skin/shadow-white.png) top repeat-x;
 }
+
 th, .verticalTabs ul.nav li {
     background-color: #f0f0f0;
     color: #666;
@@ -275,6 +319,7 @@ th, .verticalTabs ul.nav li {
     line-height: 17px;
     padding: 2px 6px;
 }
+
 th a:link, th a:visited, th a:hover {
     color: #333;
     display: block;
@@ -282,13 +327,16 @@ th a:link, th a:visited, th a:hover {
     text-decoration: none;
     width: 100%;
 }
+
 th.asc a, th.desc a {
     background-position: right;
     background-repeat: no-repeat;
 }
+
 th.asc a {
     background-image: url(../images/skin/sorted_asc.gif);
 }
+
 th.desc a {
     background-image: url(../images/skin/sorted_desc.gif);
 }
@@ -296,6 +344,7 @@ th.desc a {
 .odd {
     background: #f7f7f7;
 }
+
 .even {
     background: #fff;
 }
@@ -310,20 +359,34 @@ th.desc a {
     background: #b2d1ff;
 }
 
+/*
+UserObjects
+*/
 .uoList h3 {
     border-top: 1px solid #777;
     border-left: 1px solid #777;
 }
+
 .uoList .bookmark {
     background-color: #eee;
 }
+
 .uoList .previouslyUnseen {
     background-color: #ddd;
 }
+
 .uoList .seen {
     background-color: #ccc;
 }
 
+.imageDisplay, .audioDisplay, .flashDisplay, .videoDisplay, .applicationDisplay {
+    width: 100%;
+    text-align: center;
+}
+
+/*
+Pagination
+*/
 .paginateButtons {
     border: 1px solid #ccc;
     border-top: 0;
@@ -332,6 +395,7 @@ th.desc a {
     overflow: hidden;
     padding: 10px 3px;
 }
+
 .paginateButtons a {
     background: #fff;
     border: 1px solid #ccc;
@@ -340,23 +404,32 @@ th.desc a {
     margin: 0 3px;
     padding: 2px 6px;
 }
+
 .paginateButtons span {
     padding: 2px 3px;
 }
 
+/*
+Properties/names/values
+*/
 .prop {
     padding: 5px;
 }
+
 .prop .name {
     text-align: left;
     width: 15%;
     white-space: nowrap;
 }
+
 .prop .value {
     text-align: left;
     width: 85%;
 }
 
+/*
+Buttons
+*/
 .buttons {
     border: 1px solid #ccc;
     color: #666;
@@ -377,14 +450,17 @@ th.desc a {
     overflow: visible;
     padding: 2px 6px;
 }
+
 .buttons input.delete {
     background: transparent url(../images/skin/database_delete.png) 5px 50% no-repeat;
     padding-left: 28px;
 }
+
 .buttons input.edit {
     background: transparent url(../images/skin/database_edit.png) 5px 50% no-repeat;
     padding-left: 28px;
 }
+
 .buttons input.save {
     background: transparent url(../images/skin/database_save.png) 5px 50% no-repeat;
     padding-left: 28px;

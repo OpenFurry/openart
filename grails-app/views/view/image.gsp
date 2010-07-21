@@ -1,3 +1,4 @@
+<html>
     <head>
         <title>IMAGE - ${instance.title.encodeAsHTML()}</title>
         <meta name="layout" content="main" />
@@ -10,3 +11,4 @@
         </div>
         <g:render template="uo" />
     </body>
+</html>

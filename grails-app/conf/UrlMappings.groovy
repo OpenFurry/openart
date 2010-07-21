@@ -51,6 +51,21 @@ class UrlMappings {
             }
         }
 
+        "/species/$id" {
+            controller = "species"
+            action = "show"
+            constraints {
+                id(matches: /\d+/)
+            }
+        }
+        "/category/$id" {
+            controller = "category"
+            action = "show"
+            constraints {
+                id(matches: /\d+/)
+            }
+        }
+
         "/issues/$id" {
             controller = "issues"
             action = "show"
