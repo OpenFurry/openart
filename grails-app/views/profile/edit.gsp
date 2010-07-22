@@ -65,7 +65,47 @@
                             </select>
                         </td><!-- TODO: pass species to tag, make it selected -->
                     </tr>
+                    <tr class="prop">
+                        <th class="name">PROFILE</th>
+                        <td class="value"><g:textArea name="profile" rows="10" cols="75" value="${person.profile}" /></td>
+                    </tr>
+                    <tr class="prop">
+                        <th class="name">AVATAR</th>
+                        <td class="value"><!-- TODO --></td>
+                    </tr>
+                    <tr class="prop">
+                        <th class="name">ACCPETING COMMISSIONS</th>
+                        <td class="value"><g:checkBox name="commissionStatus" value="${person.commissionStatus}" /></td>
+                    </tr>
+                    <tr class="prop">
+                        <th class="name">ACCEPTING TRADES</th>
+                        <td class="value"><g:checkBox name="tradeStatus" value="${person.tradeStatus}" /></td>
+                    </tr>
+                    <tr class="prop">
+                        <th class="name">ACCEPTING GIFT REQUESTS</th>
+                        <td class="value"><g:checkBox name="giftStatus" value="${person.giftStatus}" /></td>
+                    </tr>
                 </tbody>
+                <thead>
+                    <tr>
+                        <th colspan="2">PREFERENCES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="prop">
+                        <th class="name">PREFERED LICENSE</th>
+                        <td class="value"><!-- TODO --></td>
+                    </tr>
+                    <tr class="prop">
+                        <th class="name">PREFERED THEME</th>
+                        <td cass="value"><!-- TODO --></td>
+                    </tr>
+                </tbody>
+                <thead>
+                    <tr>
+                        <th colspan="2">PROPERTIES</th>
+                    </tr>
+                </thead>
             </table>
         </g:form>
     </body>

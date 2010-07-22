@@ -70,7 +70,7 @@ class Person {
         groups: UserGroup,
         messages: UserMessage,
         properties: UserProperty,
-        ]
+    ]
 	static belongsTo = Role
 
     String toString() {
