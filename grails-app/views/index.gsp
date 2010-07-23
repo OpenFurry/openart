@@ -17,5 +17,6 @@
             <div class="content block" style="min-height: 20em; z-index: 1">
                 lorem ipsum
             </div>
+        </div>
     </body>
 </html>
