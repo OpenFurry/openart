@@ -53,7 +53,7 @@ class CommentTagLib {
         def toReturn = new StringBuffer()
         comments.each {
             toReturn.append("""
-                <div class="comment">
+                <div class="comment block">
                     <div class="commentTitle">
                         ${it.title ? it.title.encodeAsHTML() : '<em>' + message(code: 'openfurry.comment.notitle', default: 'No title') + '</em>'}
                     </div>
@@ -69,7 +69,6 @@ class CommentTagLib {
                     <div class="replyForm hide" id="creply${it.id}">
                         ${commentForm(object: obj, parentId: it.id, defaultTitle: 'RE: ' + it.title)}
                     </div>
-                    <hr />
                     <div class="subComments">
                         ${_treeify(obj, commentService.getCommentsForObjectAndParent(obj, it))}
                     </div>
