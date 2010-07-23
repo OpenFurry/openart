@@ -41,6 +41,10 @@ class CommentTagLib {
         """
     }
 
+    def commentCountForObject = { attrs ->
+        out << commentService.getCommentCountForObject(attrs['object'])
+    }
+
     def commentsForObject = { attrs ->
         out << _treeify(attrs['object'], commentService.getCommentsForObjectWithNoParent(attrs['object']))
     }
@@ -50,14 +54,14 @@ class CommentTagLib {
         comments.each {
             toReturn.append("""
                 <div class="comment">
+                    <div class="commentTitle">
+                        ${it.title ? it.title.encodeAsHTML() : '<em>' + message(code: 'openfurry.comment.notitle', default: 'No title') + '</em>'}
+                    </div>
                     <div class="commentAuthor">
                         <a name="c${it.id}"></a>${linkingService.linkify(false, '~' + it.owner.username)}
                     </div>
-                    <div class="commentTitle">
-                        ${it.title ?: '<em>' + message(code: 'openfurry.comment.notitle', default: 'No title') + '</em>'}
-                    </div>
                     <div class="commentBody">
-                        ${markdownService.markdown(it.comment)}
+                        ${linkingService.linkify(false, markdownService.markdown(it.comment.encodeAsHTML()))}
                     </div>
                     <div class="commentLinks">
                         <a href="javascript:\$('#creply${it.id}').toggle()">${message(code: 'openfurry.comment.reply.comment', default: 'Reply to comment')}</a>

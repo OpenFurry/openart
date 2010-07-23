@@ -14,6 +14,15 @@ class CommentService {
         }
     }
 
+    def getCommentCountForObject(obj) {
+        Comment.withCriteria {
+            and {
+                eq("parentType", obj.class.toString().split('\\.')[-1])
+                eq("parentId", obj.id.toString())
+            }
+        }.size()
+    }
+
     def getCommentsForObjectAndParent(obj, parent) {
         Comment.withCriteria {
             and {

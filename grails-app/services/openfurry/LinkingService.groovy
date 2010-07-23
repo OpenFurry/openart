@@ -72,13 +72,18 @@ class LinkingService {
 
             if (s) {
                 return """
-                    <a href=\"${g.createLink(controller: 'issues', action: 'show', id: issueId)}\">
+                    <a href=\"${g.createLink(controller: 'issue', action: 'show', id: issueId)}\">
                         ${(s.status == 3 || s.status == 4) ? "<s>issue:" + issueId + "</s>" : "issue:" + issueId}
                     </a>
                     """
             } else {
                 return full
             }
+        })
+
+        // http://*
+        text = text.replaceAll(/&lt;((?i)https?:\/\/[\p{Alnum}_=.:?&;%-]+)&gt;/, {full, url ->
+            "<a target=\"_blank\" href=\"${url.replaceAll(/&amp;/, '&')}\">${url}</a>"
         })
 
         text

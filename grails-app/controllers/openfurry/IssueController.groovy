@@ -57,7 +57,7 @@ class IssueController {
                 issueVoteInstance.issue = issueInstance
                 issueVoteInstance.save(flush: true)
             }
-            render(view: "show", model: [issue: issueInstance])
+            redirect(action: "show", params: [id: issueInstance.id])
         } else {
             render(view: "create", model: [instance: issueInstance])
         }

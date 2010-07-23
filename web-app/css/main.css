@@ -20,6 +20,10 @@ a:link, a:visited, a:hover {
     text-decoration: none;
 }
 
+a[href^="http://"] {
+    background-color: #dde;
+}
+
 hr {
     margin: 0.5em;
     height: 1px;
@@ -390,13 +394,16 @@ Comments
     width: 25%;
     float: left;
     margin-bottom: 0.5em;
+    text-align: right;
+}
+.commentAuthor a {
+    margin-right: 0.5em;
 }
 
 .commentTitle {
     width: 75%;
     margin-top: 1em;
     float: left;
-    text-align: right;
 }
 
 .commentBody {
@@ -407,6 +414,7 @@ Comments
 
 .commentLinks {
     text-align: right;
+    margin-right: 0.5em;
 }
 
 /*
