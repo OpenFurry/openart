@@ -20,6 +20,14 @@ a:link, a:visited, a:hover {
     text-decoration: none;
 }
 
+hr {
+    margin: 0.5em;
+    height: 1px;
+    border: none;
+    color: #aaa;
+    background-color: #aaa;
+}
+
 /*
 Header
 */
@@ -197,8 +205,8 @@ Horizontal tabs
 /* 
 Block 
 */
-.block, .verticalTabs ul.nav li.selected, .horizontalTabs ul.nav li.selected {
-    border: 1px solid #777;
+.block, .verticalTabs ul.nav li.selected, .horizontalTabs ul.nav li.selected, .commentBody {
+    border: 1px solid #ccc;
     background-color: #fff;
 }
 
@@ -309,6 +317,7 @@ td, th {
 
 thead th, .shadow {
     background: #ddd url(../images/skin/shadow-white.png) top repeat-x;
+    padding-left: 0.25em;
 }
 
 th, .verticalTabs ul.nav li {
@@ -357,6 +366,47 @@ th.desc a {
 }
 .list th:hover, .list tr:hover {
     background: #b2d1ff;
+}
+
+/*
+Comments
+*/
+.comments {
+    margin-top: 1em;
+    padding: 1em;
+}
+
+.comments table {
+    width: auto;
+    margin: auto;
+}
+
+.comment .comment {
+    margin-left: 2em;
+    padding-top: 1em;
+}
+
+.commentAuthor {
+    width: 25%;
+    float: left;
+    margin-bottom: 0.5em;
+}
+
+.commentTitle {
+    width: 75%;
+    margin-top: 1em;
+    float: left;
+    text-align: right;
+}
+
+.commentBody {
+    clear: both;
+    padding: 0.5em;
+    margin-right: 0.5em;
+}
+
+.commentLinks {
+    text-align: right;
 }
 
 /*

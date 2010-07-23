@@ -12,7 +12,16 @@
         </g:isLoggedIn>
         <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
         <g:layoutHead />
-        <g:javascript library="application" />
+        <script src="http://www.google.com/jsapi"></script>
+        <script type="text/javascript">
+            google.load("jquery", "1.4.2");
+            google.load("jqueryui", "1.8.2");
+        </script>
+        <script type="text/javascript">
+            $(function() {
+                $('.hide').hide();
+            });
+        </script>
     </head>
     <body>
         <div id="header">

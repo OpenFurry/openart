@@ -30,7 +30,7 @@
                     <td>${issue.votes}</td>
                 </tr>
                 <tr>
-                    <td colspan="7" class="block">
+                    <td colspan="7" class="block" style="padding: 1em;">
                         <h3><g:message code="openfurry.issue.description" default="Description" /></h3>
                         <hr />
                         <of:linking><markdown:renderHtml>${issue.description.encodeAsHTML()}</markdown:renderHtml></of:linking>
@@ -38,5 +38,6 @@
                 </tr>
             </tbody>
         </table>
+        <g:render template="/comments" model="[object: issue]" />
     </body>
 </html>

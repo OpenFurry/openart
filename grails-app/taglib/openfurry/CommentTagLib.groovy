@@ -8,10 +8,12 @@ class CommentTagLib {
 
     def linkingService
 
+    def markdownService
+
     def commentForm = { attrs ->
         out << """
             <form method="post" action="${createLink(controller: 'comment', action: 'post')}">
-                <table style="width: auto">
+                <table>
                     <thead>
                         <tr>
                             <th colspan="2">${message(code: 'openfurry.comment.views.post', default: 'Post comment')}</th>
@@ -52,14 +54,18 @@ class CommentTagLib {
                         <a name="c${it.id}"></a>${linkingService.linkify(false, '~' + it.owner.username)}
                     </div>
                     <div class="commentTitle">
-                        <strong>${message(code: 'openfurry.comment.title', default: 'Title')}:</strong> ${it.title}
+                        ${it.title ?: '<em>' + message(code: 'openfurry.comment.notitle', default: 'No title') + '</em>'}
                     </div>
                     <div class="commentBody">
-                        ${it.comment}
+                        ${markdownService.markdown(it.comment)}
                     </div>
-                    <div class="replyForm hide">
+                    <div class="commentLinks">
+                        <a href="javascript:\$('#creply${it.id}').toggle()">${message(code: 'openfurry.comment.reply.comment', default: 'Reply to comment')}</a>
+                    </div>
+                    <div class="replyForm hide" id="creply${it.id}">
                         ${commentForm(object: obj, parentId: it.id, defaultTitle: 'RE: ' + it.title)}
                     </div>
+                    <hr />
                     <div class="subComments">
                         ${_treeify(obj, commentService.getCommentsForObjectAndParent(obj, it))}
                     </div>
