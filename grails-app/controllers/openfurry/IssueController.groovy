@@ -46,7 +46,7 @@ class IssueController {
             issueInstance = new Issue()
         }
         issueInstance.properties = params
-        def owner = Person.findByUsername(authenticateService.principal().username)
+        def owner = authenticateService.principal().domainClass
         issueInstance.submitter = owner
         issueInstance.votes = 1
 
@@ -81,7 +81,7 @@ class IssueController {
             response.sendError(404) // TODO i18n
             return
         }
-        def person = Person.findByUsername(authenticateService.principal().username)
+        def person = authenticateService.principal().domainClass
 
         // Make sure user hasn't already voted on the issue
         def issueVote = IssueVote.withCriteria {

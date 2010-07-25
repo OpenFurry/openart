@@ -15,6 +15,10 @@ class GroupPost {
         post(maxSize: 500)
     }
 
+    static mapping = {
+        sort dateCreated: "desc"
+    }
+
     static hasMany = [children: Comment]
 
     static belongsTo = UserGroup

@@ -71,7 +71,7 @@ class TagController {
 
         def watched = false
         if (authenticateService.isLoggedIn()) {
-            def person = Person.findByUsername(authenticateService.principal().username)
+            def person = Person.get(authenticateService.principal().domainClass.id)
             if (tag in person.watchedTags) {
                 watched = true
             }

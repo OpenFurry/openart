@@ -9,7 +9,7 @@ class WatchController {
     def listService
 
     def list = {
-        def person = Person.findByUsername(authenticateService.principal().username)
+        def person = Person.get(authenticateService.principal().domainClass.id)
         def criteria = {
             or {
                 'in'('owner', person.watches)
@@ -31,7 +31,7 @@ class WatchController {
     }
     
     def addUser = {
-        def person = Person.findByUsername(authenticateService.principal().username)
+        def person = Person.get(authenticateService.principal().domainClass.id)
         def toAdd = Person.findByUsername(params.id)
 
         if (!toAdd) {
@@ -57,7 +57,7 @@ class WatchController {
     }
     
     def addTag = {
-        def person = Person.findByUsername(authenticateService.principal().username)
+        def person = Person.get(authenticateService.principal().domainClass.id)
         def tag = Tag.findByTag(params.id)
 
         if (!tag) {
@@ -78,7 +78,7 @@ class WatchController {
     }
 
     def removeUser = {
-        def person = Person.findByUsername(authenticateService.principal().username)
+        def person = Person.get(authenticateService.principal().domainClass.id)
         def toRemove = Person.findByUsername(params.id)
 
         if (!toRemove) {
@@ -92,7 +92,7 @@ class WatchController {
     }
     
     def removeTag = {
-        def person = Person.findByUsername(authenticateService.principal().username)
+        def person = Person.get(authenticateService.principal().domainClass.id)
         def tag = Tag.findByTag(params.id)
 
         if (!tag) {

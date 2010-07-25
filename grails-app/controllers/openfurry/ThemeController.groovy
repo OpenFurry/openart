@@ -5,6 +5,10 @@ class ThemeController {
 
     def authenticateService
 
+    def marketService
+
+    def messagingService
+
     def show = {
         def theme = Theme.get(params.id)
         if (!theme) {
@@ -49,6 +53,8 @@ class ThemeController {
             themeFile.setText(css)
 
             // TODO transaction, messaging service
+            marketService.transact(owner, "Theme.create(memberClass:${owner.memberClass})")
+
             flash.message = 
                 "${message(code: 'default.created.message', args: [message(code: 'theme.label', default: 'Theme'), params.id])}"
             redirect(uri: "/")

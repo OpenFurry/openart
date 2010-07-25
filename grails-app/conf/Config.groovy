@@ -133,10 +133,11 @@ openfurry.user.classes.thresholds = [10, 100, 1000, 10000, 100000]
 // User message types
 // Range used in: (due to static typing)
 // - grails-app/domain/UserMessage
-openfurry.user.messageTypes.repr = ["success", "warning", "failure" ]
+openfurry.user.messageTypes.repr = ["success", "warning", "failure", "transaction"]
 openfurry.user.messageTypes.success = 0
 openfurry.user.messageTypes.warning = 1
 openfurry.user.messageTypes.failure = 2
+openfurry.user.messageTypes.transaction = 3
 
 // User properties
 openfurry.user.properties = [

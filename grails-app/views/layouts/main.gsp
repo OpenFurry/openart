@@ -80,7 +80,7 @@
                     <g:message code="${flash.transact}" args="${flash.transactArgs}" default="${flash.transactDefault}" />
                 </div>
                 </g:if>
-                <g:each in="${flash.messages}"><div type="${it.type}">${it.message}</div></g:each>
+                <of:messagesForUser />
             </div>
 
             <!-- Content -->

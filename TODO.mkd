@@ -7,3 +7,5 @@ Things that need to be done
 * User home page
 * List prices next to links (taglib?)
 * Compliance to coding standards
+* Utilize PermissionsService wherever possible
+* Pages with forms: surround text in th tags with label tags

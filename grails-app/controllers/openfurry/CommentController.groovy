@@ -21,7 +21,7 @@ class CommentController {
             return
         }
 
-        def person = Person.findByUsername(authenticateService.principal().username)
+        def person = authenticateService.principal().domainClass
         def parentComment = null
         if (params.parentId) {
             parentComment = Comment.get(params.parentId)
@@ -38,6 +38,7 @@ class CommentController {
         )
         if (comment.save(flush: true)) {
             // TODO Notify poster and object owner
+
             if (params.targetURI) {
                 redirect(uri: "${params.targetURI}#c${comment.id}")
             } else {
@@ -48,8 +49,6 @@ class CommentController {
         }
     }
 
-    def edit = {}
-    def save = {}
     def flag = {}
     def delete = {}
 }

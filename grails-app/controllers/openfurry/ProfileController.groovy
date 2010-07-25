@@ -4,7 +4,7 @@ class ProfileController {
     def authenticateService
 
     def edit = {
-        def person = Person.findByUsername(authenticateService.principal().username)
+        def person = Person.get(authenticateService.principal().domainClass.id)
         [person: person]
     }
 }
