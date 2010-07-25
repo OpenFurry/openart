@@ -31,7 +31,7 @@ class GroupController {
         }
 
         if (!permissionsService.groups.userCanRead(thread.group)) {
-            reponse.sendError(403) // TODO i18n
+            response.sendError(403) // TODO i18n
             return
         }
 

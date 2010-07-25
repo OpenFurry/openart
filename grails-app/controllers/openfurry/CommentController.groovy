@@ -10,6 +10,10 @@ class CommentController {
     // Needed for transaction for comments
     def marketService
 
+    // Needed to prettify comment body
+    def markdownService
+    def linkingService
+
     def post = {
         if (!params.objectType) {
             response.sendError(500) // TODO i18n

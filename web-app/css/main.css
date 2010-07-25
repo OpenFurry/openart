@@ -356,7 +356,7 @@ th.desc a {
 }
 
 .odd {
-    background: #f7f7f7;
+    background: #f0f0f0;
 }
 
 .even {
@@ -366,11 +366,21 @@ th.desc a {
 .list table {
     border-collapse: collapse;
 }
+
 .list th, .list td {
     border-left: 1px solid #ddd;
 }
-.list th:hover, .list tr:hover {
-    background: #b2d1ff;
+
+.list th:hover {
+    background-color: #aab;
+}
+
+.list tr:hover {
+    background-color: #dde;
+}
+
+.list td a {
+    display: block;
 }
 
 /*
@@ -388,12 +398,17 @@ Comments
 
 .comment {
     margin-top: 1em;
+    padding-top: 0.5em;
     margin-right: -1px;
 }
 
 .comment .comment {
     margin-bottom: -1px;
-    margin-left: 2em;
+    margin-left: 3%;
+}
+
+.comment .comment.depthExceeded {
+    margin-left: 1px !important;
 }
 
 .commentAuthor {
@@ -445,6 +460,10 @@ Groups
 .groupPosts {
     width: 70%;
     float: left;
+}
+
+.groupPrivate > td:first-child {
+    border: 1px solid #00f;
 }
 
 /*

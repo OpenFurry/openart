@@ -31,9 +31,10 @@
                 <g:isLoggedIn>
                     <g:message code="openfurry.display.usercontrol.welcomeUser" args="${[loggedInUserInfo(field: 'userRealName')]}" />
                     <ul>
-                        <li><g:link controller="profile"><g:message code="openfurry.display.usercontrol.profile" default="Profile" /></g:link></li>
+                        <li><g:link controller="inbox"><g:message code="openfurry.display.usercontrol.inbox" default="Inbox" /></g:link></li>
                         <li><g:link controller="watch"><g:message code="openfurry.display.usercontrol.watchlist" default="Watch list" /></g:link></li>
                         <li><g:link controller="submit"><g:message code="openfurry.display.usercontrol.submit" default="Submit" /></g:link></li>
+                        <li><g:link controller="profile"><g:message code="openfurry.display.usercontrol.profile" default="Profile" /></g:link></li>
                         <li><g:link controller="logout"><g:message code="openfurry.display.usercontrol.logout" default="Log out" /></g:link></li>
                     </ul>
                 </g:isLoggedIn>
@@ -58,6 +59,7 @@
                     <li><g:link controller="category"><g:message code="openfurry.display.navigation.categories" default="Categories" /></g:link></li>
                     <li><g:link controller="species"><g:message code="openfurry.display.navigation.species" default="Species" /></g:link></li>
                     <li><g:link controller="search"><g:message code="openfurry.display.navigation.search" default="Search" /></g:link></li>
+                    <li><g:link controller="group"><g:message code="openfurry.display.navigation.groups" default="Groups and events" /></g:link></li>
                     <li><g:link controller="market"><g:message code="openfurry.display.navigation.market" default="Market" /></g:link></li>
                     <li><g:link controller="issue"><g:message code="openfurry.display.navigation.issues" default="Issues" /></g:link></li>
                 </ul>

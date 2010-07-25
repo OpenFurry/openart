@@ -46,36 +46,34 @@ class CommentTagLib {
     }
 
     def commentsForObject = { attrs ->
-        out << _treeify(attrs['object'], commentService.getCommentsForObjectWithNoParent(attrs['object']))
+        out << _treeify(attrs['object'], commentService.getCommentTree(attrs['object']), 0)
     }
 
-    private String _treeify(obj, comments) {
-        def toReturn = new StringBuffer()
-        comments.each {
-            toReturn.append("""
-                <div class="comment block">
+    private String _treeify(obj, comments, depth) {
+        comments.collect {
+            """
+                <div class="comment block${depth > 10 ? ' depthExceeded' : ''}">
                     <div class="commentTitle">
-                        ${it.title ? it.title.encodeAsHTML() : '<em>' + message(code: 'openfurry.comment.notitle', default: 'No title') + '</em>'}
+                        ${it.comment.title ? it.comment.title.encodeAsHTML() : '<em>' + message(code: 'openfurry.comment.notitle', default: 'No title') + '</em>'}
                     </div>
                     <div class="commentAuthor">
-                        <a name="c${it.id}"></a>${linkingService.linkify(false, '~' + it.owner.username)}
+                        <a name="c${it.comment.id}"></a>${linkingService.linkify(false, '~' + it.comment.owner.username)}
                     </div>
                     <div class="commentBody">
-                        ${linkingService.linkify(false, markdownService.markdown(it.comment.encodeAsHTML()))}
+                        ${linkingService.linkify(false, markdownService.markdown(it.comment.comment.encodeAsHTML()))}
                     </div>
                     <div class="commentLinks">
-                        <a href="javascript:\$('#creply${it.id}').toggle()">${message(code: 'openfurry.comment.reply.comment', default: 'Reply to comment')}</a>
+                        <a href="javascript:\$('#creply${it.comment.id}').toggle()">${message(code: 'openfurry.comment.reply.comment', default: 'Reply to comment')}</a>
                     </div>
-                    <div class="replyForm hide" id="creply${it.id}">
-                        ${commentForm(object: obj, parentId: it.id, defaultTitle: 'RE: ' + it.title)}
+                    <div class="replyForm hide" id="creply${it.comment.id}">
+                        ${commentForm(object: obj, parentId: it.comment.id, defaultTitle: 'RE: ' + it.comment.title)}
                     </div>
                     <div class="subComments">
-                        ${_treeify(obj, commentService.getCommentsForObjectAndParent(obj, it))}
+                        ${_treeify(obj, it.subComments, depth + 1)}
                     </div>
                 </div>
-            """)
-        }
-        toReturn.toString()
+            """
+        }.join("")
     }
         
 }

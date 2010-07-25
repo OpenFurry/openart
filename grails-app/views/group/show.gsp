@@ -12,7 +12,7 @@
             </g:each>
         </div>
         <div class="groupPosts">
-            <table>
+            <table class="list">
                 <thead>
                     <tr>
                         <th style="width: 60%"><g:message code="openfurry.group.thread"  default="Thread" /></th>

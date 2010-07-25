@@ -15,6 +15,7 @@ class LinkingService {
          * #!id -> a link to the submission with that id: '[submission thumbnail]'
          * issue:id -> a link to the issue with that id: 'issue:id'
          * comment:id -> a link to the comment with that id: 'comment:id'
+         * group:slug -> a link to the group with that slug: 'group:slug'
          * thread:id -> a link to the thread with that id: 'thread:id'
          * &lt;http://example.com&gt; -> a link to example.com (since markdown is called after encodeAsHTML
          * 
@@ -29,11 +30,11 @@ class LinkingService {
             def p = Person.findByUsername(username)
             if (p) {
                 if (noImages) {
-                    "<a href=\"${g.createLink(controller: 'person', action: 'show', params: [username: username])}\">${full}</a>"
+                    "<a style=\"display: inline\" href=\"${g.createLink(controller: 'person', action: 'show', params: [username: username])}\">${full}</a>"
                 } else {
                     """
                     <a href=\"${g.createLink(controller: 'person', action: 'show', params: [username: username])}\">
-                        <img src=\"${g.createLinkTo(dir: 'avatars', file: p.avatar)}\" class=\"avatar\" align=\"middle\"/> ${full}
+                        <img src=\"${g.resource(dir: 'avatars', file: p.avatar)}\" class=\"avatar\" align=\"middle\"/> ${full}
                     </a>
                     """
                 }
@@ -46,7 +47,7 @@ class LinkingService {
             if (p) {
                 """
                 <a href=\"${g.createLink(controller: 'person', action: 'show', params: [username: username])}\">
-                    <img src=\"${g.createLinkTo(dir: 'avatars', file: p.avatar)}\" class=\"avatar\" align=\"middle\"/>
+                    <img src=\"${g.resource(dir: 'avatars', file: p.avatar)}\" class=\"avatar\" align=\"middle\"/>
                 </a>
                 """
             } else {
@@ -67,7 +68,7 @@ class LinkingService {
             if (s) {
                 return """
                 <a href=\"${g.createLink(controller: 'view', action: 'show', id: submissionId)}\">
-                    <img src="${g.createLinkTo(file: s.thumbnail)}" class="uoLink" />
+                    <img src="${g.resource(file: s.thumbnail)}" class="uoLink" />
                 </a>
                 """
             } else {
@@ -88,6 +89,10 @@ class LinkingService {
             } else {
                 return full
             }
+        })
+
+        text = text.replaceAll(/group:(\S+)/, {full, groupSlug ->
+            "<a href=\"${g.createLink(controller: 'group', action: 'show', id: groupSlug)}\">${full}</a>"
         })
 
         // thread:id

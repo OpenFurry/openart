@@ -51,6 +51,13 @@ class UrlMappings {
             }
         }
 
+        "/groups/" {
+            controller = "group"
+            action = "list"
+            constraints {
+            }
+        }
+
         "/species/$id" {
             controller = "species"
             action = "show"

@@ -63,9 +63,12 @@ log4j = {
     // Example of changing the log pattern for the default console
     // appender:
     //
-    //appenders {
-    //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
-    //}
+    root {
+        warn 'stdout'
+    }
+    appenders {
+        console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
+    }
 
     error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
            'org.codehaus.groovy.grails.web.pages', //  GSP
@@ -224,3 +227,13 @@ openfurry.issue.type.repr = ["Bug", "Improvement", "NewFeature"]
 openfurry.issue.type.bug = 0
 openfurry.issue.type.improvement = 1
 openfurry.issue.type.newFeature = 2
+
+// Group categories
+// Count used in UserGroup domain
+openfurry.group.category.repr = ["Location", "GeneralInterest", "AdultInterest", "Species", "ArtMedium", "Other"]
+openfurry.group.category.location = 0
+openfurry.group.category.generalInterest = 1
+openfurry.group.category.adultInterest = 2
+openfurry.group.category.species = 3
+openfurry.group.category.artMedium = 4
+openfurry.group.category.other = 5

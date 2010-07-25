@@ -4,6 +4,7 @@ class UserGroup {
     String slug
     String title
     String description
+    Integer category
     Boolean exclusive = false
     Person admin
 
