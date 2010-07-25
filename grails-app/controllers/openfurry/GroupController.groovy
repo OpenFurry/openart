@@ -23,7 +23,7 @@ class GroupController {
     }
 
     def thread = {
-        def thread = GroupPost.findBySlug(params.id)
+        def thread = GroupPost.get(params.id)
         
         if (!thread) {
             response.sendError(404) // TODO i18n
@@ -41,19 +41,19 @@ class GroupController {
     def post = {
         def group = UserGroup.findBySlug(params.id)
 
-        if (!permissionService.group.userCanPost(group)) {
+        if (!permissionsService.groups.userCanPost(group)) {
             response.sendError(403) // TODO i18n
             return
         }
 
-        return
+        [groupId: group.id]
     }
 
     def savePost = {
-        def group = UserGroup.get(params.id)
+        def group = UserGroup.get(params.groupId)
         def owner = authenticateService.principal().domainClass
 
-        if (!permissionService.group.userCanPost(group)) {
+        if (!permissionsService.groups.userCanPost(group)) {
             response.sendError(403)
             return
         }
@@ -68,7 +68,7 @@ class GroupController {
 
             redirect(action: 'thread', id: post.id)
         } else {
-            render(view: 'post', model: [post: post])
+            redirect(action: 'post', model: [instance: post])
         }
     }
 
@@ -80,7 +80,7 @@ class GroupController {
             return
         }
 
-        if (!permissionsService.group.userCanDeletePost(post)) {
+        if (!permissionsService.groups.userCanDeletePost(post)) {
             response.sendError(403) // TODO i18n
             return
         }

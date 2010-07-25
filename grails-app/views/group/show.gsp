@@ -11,8 +11,8 @@
             </g:each>
         </div>
         <div class="groupPosts">
-            <g:each in="${group.posts}">
-                ${it.title} - ${it.owner}
+            <g:each in="${group.posts}" var="post">
+                <of:linking noImages="true">${post.title} - ${post.owner}</of:linking>
             </g:each>
         </div>
     </body>

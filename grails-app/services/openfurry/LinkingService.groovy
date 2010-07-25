@@ -8,13 +8,22 @@ class LinkingService {
         def g = new org.codehaus.groovy.grails.plugins.web.taglib.ApplicationTagLib()
         /*
          * Replace the following:
+         * <img*> -> cleaned html (disallow markdown images)
          * ~user -> a link to the user's page: '[user avatar]~user'
          * ~!user -> a link to the user's page: '[user avatar]'
          * #id -> a link to the submission with that id: '#id'
          * #!id -> a link to the submission with that id: '[submission thumbnail]'
+         * issue:id -> a link to the issue with that id: 'issue:id'
+         * comment:id -> a link to the comment with that id: 'comment:id'
+         * thread:id -> a link to the thread with that id: 'thread:id'
+         * &lt;http://example.com&gt; -> a link to example.com (since markdown is called after encodeAsHTML
          * 
          * Don't replace if it's escaped (i.e.: "We're \#1!" ":O\~\~")
          */
+        text = text.replaceAll(/(<)(img[^>]+)(>)/, { full, lbracket, innards, rbracket ->
+            return "&lt;${innards}&gt;"
+        })
+
         // ~user
         text = text.replaceAll(/(?!(<=\\))~([a-zA-Z0-9_.-]+)/, {full, lookAhead, username -> 
             def p = Person.findByUsername(username)
@@ -81,7 +90,49 @@ class LinkingService {
             }
         })
 
-        // http://*
+        // thread:id
+        text = text.replaceAll(/thread:(\d+)/, { full, threadId ->
+            "<a href=\"${g.createLink(controller: 'group', action: 'thread', id: threadId)}\">${full}</a>"
+        })
+
+        // comment:id
+        text = text.replaceAll(/comment:(\d+)/, { full, commentId ->
+            def c = Comment.get(commentId)
+
+            if (c) {
+                def controller
+                def action
+                switch (c.parentType) {
+                    case "AudioUserObject":
+                    case "VideoUserObject":
+                    case "FlashUserObject":
+                    case "ImageUserObject":
+                    case "TextUserObject":
+                    case "ApplicationUserObject":
+                    case "OrderedCollection":
+                    case "UnorderedCollection":
+                        controller = "view"
+                        action = "show"
+                        break
+                    case "Issue":
+                        controller = "issue"
+                        action = "show"
+                        break
+                    case "GroupPost":
+                        controller = "group"
+                        action = "thread"
+                        break
+                    default:
+                        controller = "view"
+                        action = "show"
+                }
+                return "<a href=\"${g.createLink(controller: controller, action: action, id: c.parentId)}#c${commentId}\">${full}</a>"
+            } else {
+                return full
+            }
+        })
+
+        // &lt;http://*%gt;
         text = text.replaceAll(/&lt;((?i)https?:\/\/[\p{Alnum}_=.:?&;%-]+)&gt;/, {full, url ->
             "<a target=\"_blank\" href=\"${url.replaceAll(/&amp;/, '&')}\">${url}</a>"
         })

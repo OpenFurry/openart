@@ -16,7 +16,8 @@ class PermissionsService {
             return true
         },
         userCanPost: { group ->
-            if (authenticateService.principal().domainClass in groupMembers) {
+            if (authenticateService.principal().domainClass in group.members
+                || authenticateService.principal().domainClass.id == group.admin.id) {
                 return true
             }
             return false
