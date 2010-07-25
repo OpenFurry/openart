@@ -427,6 +427,27 @@ Comments
 }
 
 /*
+Groups
+*/
+.groupDescription {
+    clear: both;
+    width: 100%;
+    padding: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.groupEvents {
+    width: 29%;
+    float: left;
+    margin-right: 1%;
+}
+
+.groupPosts {
+    width: 70%;
+    float: left;
+}
+
+/*
 UserObjects
 */
 .uoList h3 {

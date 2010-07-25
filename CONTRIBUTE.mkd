@@ -179,11 +179,19 @@ line.  I.e.:
 
 * _GSP (Groovy Server Pages)_
 
-You should indent block tags, but not their insides.  I.e: instead of
+You should indent block tags, as well as their insides.  I.e: instead of
+
+    <ul>
+    <g:each in="${list}">
+        <li>${it}</li>
+    </g:each>
+    </ul>
+
+or
 
     <ul>
         <g:each in="${list}">
-            <li>${it}</li>
+        <li>${it}</li>
         </g:each>
     </ul>
 
@@ -191,16 +199,8 @@ do
 
     <ul>
         <g:each in="${list}">
-        <li>${it}</li>
+            <li>${it}</li>
         </g:each>
-    </ul>
-
-or
-
-    <ul>
-    <g:each in="${list}">
-        <li>${it}</li>
-    </g:each>
     </ul>
 
 This is to preserve the indentation of HTML output for the reason of making it
