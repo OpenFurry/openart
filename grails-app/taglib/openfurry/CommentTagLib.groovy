@@ -26,7 +26,7 @@ class CommentTagLib {
                         </tr>
                         <tr class="prop">
                             <th class="name">${message(code: 'openfurry.comment.body', default: 'Comment')}</th>
-                            <td class="value"><textarea name="comment" rows="10" cols="50"></textarea></td>
+                            <td class="value"><textarea name="comment" rows="10" cols="50">${attrs['defaultBody'] ?: ''}</textarea></td>
                         </tr>
                         <tr>
                             <td colspan="2"><input type="submit" /></td>
@@ -52,9 +52,8 @@ class CommentTagLib {
     private String _treeify(obj, comments, depth) {
         comments.collect {
             """
-                <div class="comment block${depth > 10 ? ' depthExceeded' : ''}">
-                    <div class="commentTitle">
-                        ${it.comment.title ? it.comment.title.encodeAsHTML() : '<em>' + message(code: 'openfurry.comment.notitle', default: 'No title') + '</em>'}
+                <div class="comment block${depth > 20 ? ' noDepth' : (depth > 15 ? ' lastDepthExceeded' : (depth > 10 ? ' secondDepthExceeded' : (depth > 5 ? ' firstDepthExceeded' : '')))}">                    <div class="commentTitle">
+                        ${it.comment.title ? linkingService.linkify(true, it.comment.title.encodeAsHTML()) : '<em>' + message(code: 'openfurry.comment.notitle', default: 'No title') + '</em>'}
                     </div>
                     <div class="commentAuthor">
                         <a name="c${it.comment.id}"></a>${linkingService.linkify(false, '~' + it.comment.owner.username)}
@@ -63,10 +62,11 @@ class CommentTagLib {
                         ${linkingService.linkify(false, markdownService.markdown(it.comment.comment.encodeAsHTML()))}
                     </div>
                     <div class="commentLinks">
+                        ${depth == 20 ? "<em>" + message(code: "openfurry.technical.noDepth", default: "Comments below this depth will not show as nested") + "</em>" : ""}
                         <a href="javascript:\$('#creply${it.comment.id}').toggle()">${message(code: 'openfurry.comment.reply.comment', default: 'Reply to comment')}</a>
                     </div>
                     <div class="replyForm hide" id="creply${it.comment.id}">
-                        ${commentForm(object: obj, parentId: it.comment.id, defaultTitle: 'RE: ' + it.comment.title)}
+                        ${commentForm(object: obj, parentId: it.comment.id, defaultTitle: "Re: comment:" + it.comment.id + "\n\n")}
                     </div>
                     <div class="subComments">
                         ${_treeify(obj, it.subComments, depth + 1)}

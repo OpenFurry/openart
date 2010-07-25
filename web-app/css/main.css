@@ -407,8 +407,20 @@ Comments
     margin-left: 3%;
 }
 
-.comment .comment.depthExceeded {
-    margin-left: 1px !important;
+.comment.firstDepthExceeded {
+    margin-left: 2% !important;
+}
+
+.comment.secondDepthExceeded {
+    margin-left: 1% !important;
+}
+
+.comment.lastDepthExceeded {
+    margin-left: 0.5% !important;
+}
+
+.comment.noDepth {
+    margin-left: -1px !important;
 }
 
 .commentAuthor {
@@ -460,6 +472,10 @@ Groups
 .groupPosts {
     width: 70%;
     float: left;
+}
+
+.groupPost {
+    padding: 0.5%;
 }
 
 .groupPrivate > td:first-child {
