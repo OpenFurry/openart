@@ -41,19 +41,33 @@ class WatchController {
 
         for (w in person.watches) {
             if (toAdd == w) {
-                // TODO flash user to let them know they're already watching that person
+                messagingService.transientMessage(
+                    person,
+                    grailsApplication.config.openfurry.user.messageTypes.warning,
+                    "openfurry.messages.alreadyWatching",
+                    "You're already watching {0}!",
+                    Person.class.toString().split("\\.")[-1],
+                    toAdd.id)
                 return
             }
         }
 
         person.addToWatches(toAdd).save()
 
-        // TODO flash person
-        messagingService.message(
+        messagingService.transientMessage(
+            person,
+            grailsApplication.config.openfurry.user.messageTypes.success,
+            "openfurry.messages.watching",
+            "You've watched {0}",
+            Person.class.toString().split("\\.")[-1],
+            toAdd.id)
+        messagingService.persistentMessage(
             toAdd,
             grailsApplication.config.openfurry.user.messageTypes.success,
-            message(code: 'openfurry.messages.watched', args: [person.username, person.userRealName], "You've been watched by {1} ({0})"))
-        
+            "openfurry.messages.watched",
+            "You've been watched by {0}",
+            Person.class.toString().split("\\.")[-1],
+            person.id)
     }
     
     def addTag = {

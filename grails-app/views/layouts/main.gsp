@@ -82,7 +82,9 @@
                     <g:message code="${flash.transact}" args="${flash.transactArgs}" default="${flash.transactDefault}" />
                 </div>
                 </g:if>
-                <of:messagesForUser />
+                <g:isLoggedIn>
+                    <of:linking noImages="true"><of:messagesForUser /></of:linking>
+                </g:isLoggedIn>
             </div>
 
             <!-- Content -->
