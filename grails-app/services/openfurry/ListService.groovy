@@ -12,7 +12,7 @@ class ListService {
         def maxRating = CH.config.openfurry.ratings.low
         def p = null
         if (authenticateService.isLoggedIn()) {
-            p = Person.findByUsername(authenticateService.principal().username)
+            p = authenticateService.principal().domainClass
             maxRating = p.maxViewableRating
         }
         

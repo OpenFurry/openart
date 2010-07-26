@@ -6,33 +6,34 @@
     <body>
         <div class="verticalTabs">
             <ul class="nav">
-                <li class="block ${params.type ? '' : 'selected'}"><a href="${createLink(controller: params.controller, action: params.action, id: params.id)}${params.status ? '?status=' + params.status : ''}"><g:message code="openfurry.issue.types.all" default="All" /></a></li>
-                <li class="block ${params.type == '0' ? 'selected' : ''}"><a href="${createLink(controller: params.controller, action: params.action, id: params.id)}?type=0${params.status ? '&status=' + params.status : ''}"><g:message code="openfurry.issue.types.Bug" default="Bug" /></a></li>
-                <li class="block ${params.type == '1' ? 'selected' : ''}"><a href="${createLink(controller: params.controller, action: params.action, id: params.id)}?type=1${params.status ? '&status=' + params.status : ''}"><g:message code="openfurry.issue.types.Improvement" default="Improvement" /></a></li>
-                <li class="block ${params.type == '2' ? 'selected' : ''}"><a href="${createLink(controller: params.controller, action: params.action, id: params.id)}?type=2${params.status ? '&status=' + params.status : ''}"><g:message code="openfurry.issue.types.NewFeature" default="New Feature Request" /></a></li>
+                <li class="block ${params.type ? '' : 'selected'}"><a href="${params.status ? '?status=' + params.status : ''}"><g:message code="openfurry.issue.types.all" default="All" /></a></li>
+                <li class="block ${params.type == '0' ? 'selected' : ''}"><a href="?type=0${params.status ? '&status=' + params.status : ''}"><g:message code="openfurry.issue.types.Bug" default="Bug" /></a></li>
+                <li class="block ${params.type == '1' ? 'selected' : ''}"><a href="?type=1${params.status ? '&status=' + params.status : ''}"><g:message code="openfurry.issue.types.Improvement" default="Improvement" /></a></li>
+                <li class="block ${params.type == '2' ? 'selected' : ''}"><a href="?type=2${params.status ? '&status=' + params.status : ''}"><g:message code="openfurry.issue.types.NewFeature" default="New Feature Request" /></a></li>
             </ul>
             <div class="content block" style="min-height: 20em;">
                 <div class="horizontalTabs">
                     <ul class="nav">
-                        <li class="block ${params.status ? '' : 'selected'}"><a href="${createLink(controller: params.controller, action: params.action, id: params.id)}${params.type ? '?type=' + params.type : ''}"><g:message code="openfurry.issue.status.all" default="All" /></a></li>
-                        <li class="block ${params.status == '0' ? 'selected' : ''}"><a href="${createLink(controller: params.controller, action: params.action, id: params.id)}?status=${0}${params.type ? '&type=' + params.type : ''}"><g:message code="openfurry.issue.status.Suggestion" default="Suggestion" /></a></li>
-                        <li class="block ${params.status == '1' ? 'selected' : ''}"><a href="${createLink(controller: params.controller, action: params.action, id: params.id)}?status=${1}${params.type ? '&type=' + params.type : ''}"><g:message code="openfurry.issue.statusSeconded" default="Seconded" /></a></li>
-                        <li class="block ${params.status == '2' ? 'selected' : ''}"><a href="${createLink(controller: params.controller, action: params.action, id: params.id)}?status=${2}${params.type ? '&type=' + params.type : ''}"><g:message code="openfurry.issue.status.Accepted" default="Accepted" /></a></li>
-                        <li class="block ${params.status == '3' ? 'selected' : ''}"><a href="${createLink(controller: params.controller, action: params.action, id: params.id)}?status=${3}${params.type ? '&type=' + params.type : ''}"><g:message code="openfurry.issue.status.Completed" default="Completed" /></a></li>
-                        <li class="block ${params.status == '4' ? 'selected' : ''}"><a href="${createLink(controller: params.controller, action: params.action, id: params.id)}?status=${4}${params.type ? '&type=' + params.type : ''}"><g:message code="openfurry.issue.status.Rejected" default="Rejected" /></a></li>
+                        <li class="block ${params.status ? '' : 'selected'}"><a href="${params.type ? '?type=' + params.type : ''}"><g:message code="openfurry.issue.status.all" default="All" /></a></li>
+                        <li class="block ${params.status == '0' ? 'selected' : ''}"><a href="?status=${0}${params.type ? '&type=' + params.type : ''}"><g:message code="openfurry.issue.status.Suggestion" default="Suggestion" /></a></li>
+                        <li class="block ${params.status == '1' ? 'selected' : ''}"><a href="?status=${1}${params.type ? '&type=' + params.type : ''}"><g:message code="openfurry.issue.statusSeconded" default="Seconded" /></a></li>
+                        <li class="block ${params.status == '2' ? 'selected' : ''}"><a href="?status=${2}${params.type ? '&type=' + params.type : ''}"><g:message code="openfurry.issue.status.Accepted" default="Accepted" /></a></li>
+                        <li class="block ${params.status == '3' ? 'selected' : ''}"><a href="?status=${3}${params.type ? '&type=' + params.type : ''}"><g:message code="openfurry.issue.status.Completed" default="Completed" /></a></li>
+                        <li class="block ${params.status == '4' ? 'selected' : ''}"><a href="?status=${4}${params.type ? '&type=' + params.type : ''}"><g:message code="openfurry.issue.status.Rejected" default="Rejected" /></a></li>
                     </ul>
                 </div>
                 <div style="float:right">
                     <strong><a href="${createLink(action: 'create')}">+ <g:message code="openfurry.issue.views.create" default="Create issue" /></a></strong>
                 </div>
-                <table>
+                <table class="list">
                     <thead>
                         <tr class="shadow">
-                            <th style="width: 10%"><g:message code="openfurry.issue.id" default="ID" /></th>
-                            <th style="width: 50%"><g:message code="openfurry.issue.title" default="Issue" /></th>
-                            <th style="width: 15%"><g:message code="openfurry.issue.type" default="Issue type" /></th>
-                            <th style="width: 15%"><g:message code="openfurry.issue.status" default="Issue status" /></th>
-                            <th style="width: 10%"><g:message code="openfurry.issue.votes" default="Votes" />/<g:message code="openfurry.comment.plural" default="Comments" /></th>
+                            <%-- We have to do these by hand, because g:sortableColumn doesn't pay attention to the query string's current data --%>
+                            <th style="width: 10%" class="sortable${params.sort == 'id' ? ' sorted' + (params.order == 'asc' ? ' asc' : ' desc') : ''}"><a href="?sort=id&order=${params.order == 'asc' ? 'desc' : 'asc'}${params.type ? '&type=' + params.type : ''}${params.status ? '&status=' + params.status : ''}"><g:message code="openfurry.issue.id" default="ID" /></a></th>
+                            <th style="width: 50%" class="sortable${params.sort == 'title' ? ' sorted' + (params.order == 'asc' ? ' asc' : ' desc') : ''}"><a href="?sort=title&order=${params.order == 'asc' ? 'desc' : 'asc'}${params.type ? '&type=' + params.type : ''}${params.status ? '&status=' + params.status : ''}"><g:message code="openfurry.issue.title" default="Issue" /></a></th>
+                            <th style="width: 15%" class="sortable${params.sort == 'type' ? ' sorted' + (params.order == 'asc' ? ' asc' : ' desc') : ''}"><a href="?sort=type&order=${params.order == 'asc' ? 'desc' : 'asc'}${params.type ? '&type=' + params.type : ''}${params.status ? '&status=' + params.status : ''}"><g:message code="openfurry.issue.type" default="Issue type" /></a></th>
+                            <th style="width: 15%" class="sortable${params.sort == 'status' ? ' sorted' + (params.order == 'asc' ? ' asc' : ' desc') : ''}"><a href="?sort=status&order=${params.order == 'asc' ? 'desc' : 'asc'}${params.type ? '&type=' + params.type : ''}${params.status ? '&status=' + params.status : ''}"><g:message code="openfurry.issue.status" default="Issue status" /></a></th>
+                            <th style="width: 10%" class="sortable${params.sort == 'votes' ? ' sorted' + (params.order == 'asc' ? ' asc' : ' desc') : ''}"><a href="?sort=votes&order=${params.order == 'asc' ? 'desc' : 'asc'}${params.type ? '&type=' + params.type : ''}${params.votes ? '&votes=' + params.votes : ''}"><g:message code="openfurry.issue.votes" default="Votes" />/<g:message code="openfurry.comment.plural" default="Comments" /></a></th>
                         </tr>
                     </thead>
                     <tbody>

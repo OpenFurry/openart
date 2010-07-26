@@ -16,6 +16,9 @@ class IssueController {
                     eq("type", Integer.parseInt(params.type))
                 }
             }
+            if (params['sort']) {
+                order(params['sort'], params.order ?: 'asc')
+            }
         }
 
         [issueList: list]

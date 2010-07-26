@@ -23,7 +23,6 @@
 					<g:sortableColumn property="username" title="Login Name" />
 					<g:sortableColumn property="userRealName" title="Full Name" />
 					<g:sortableColumn property="enabled" title="Enabled" />
-					<g:sortableColumn property="description" title="Description" />
 					<th>&nbsp;</th>
 				</tr>
 			</thead>
@@ -34,7 +33,6 @@
 					<td>${person.username?.encodeAsHTML()}</td>
 					<td>${person.userRealName?.encodeAsHTML()}</td>
 					<td>${person.enabled?.encodeAsHTML()}</td>
-					<td>${person.description?.encodeAsHTML()}</td>
 					<td class="actionButtons">
 						<span class="actionButton">
 							<g:link action="show" id="${person.id}">Show</g:link>

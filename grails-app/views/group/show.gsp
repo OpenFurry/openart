@@ -12,6 +12,9 @@
             </g:each>
         </div>
         <div class="groupPosts">
+            <of:withPermission class="groups" permission="userCanPost" arg="${group}">
+                <div style="float: right"><g:link controller="group" action="post" id="${group.id}">+ POST</g:link></div>
+            </of:withPermission>
             <table class="list">
                 <thead>
                     <tr>

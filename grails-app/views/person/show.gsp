@@ -83,6 +83,6 @@
             </table>
         </div>
         <div class="shadow" style="clear: both; width: 100%">USER SUBMISSIONS</div>
-        <g:render template="/list" model="[uoList: person.userObjects]" />
+        <g:render template="/list" model="[uoList: submissions]" />
     </body>
 </html>

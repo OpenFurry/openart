@@ -1,0 +1,16 @@
+package openfurry
+
+class PermissionsTagLib {
+    static namespace = "of"
+
+    def permissionsService
+
+    def withPermission = { attrs, body ->
+        if (permissionsService."${attrs['class']}"."${attrs['permission']}"(attrs['arg'])) {
+            out << body()
+        } else {
+            out << ''
+        }
+    }
+
+}

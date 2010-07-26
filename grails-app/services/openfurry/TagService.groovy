@@ -9,8 +9,8 @@ class TagService {
         .collect { it.trim().replaceAll(/\\,/, ",") }  // Trim leading/trailing space, replace '\,' with ','
         .each {                                        // Start tagging for real
             if (it.size() > 0) { 
-                uo.tags.each {
-                    if (it.tag == it) {
+                uo.tags.each { uotag ->
+                    if (uotag.tag == it) {
                         // Skip if we already have it tagged
                         return
                     }

@@ -8,6 +8,8 @@ class PersonController {
 
 	def authenticateService
 
+    def listService
+
 	// the delete, save and update actions only accept POST requests
 	static Map allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
@@ -44,7 +46,12 @@ class PersonController {
             }
         }
 
-		[person: person, watched: watched, roleNames: roleNames]
+        def criteria = {
+            eq("owner", person)
+        }
+        def submissions = listService.listUOsForRating(criteria, params.type)
+
+		[person: person, watched: watched, roleNames: roleNames, submissions: submissions]
 	}
 
 	/**
