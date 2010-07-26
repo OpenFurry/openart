@@ -6,7 +6,7 @@ class Event {
     Date eventDateStart
     Date eventDateEnd
     Date dateCreated
-    Date lastModified
+    Date lastUpdated
     UserGroup group
     Person owner
 

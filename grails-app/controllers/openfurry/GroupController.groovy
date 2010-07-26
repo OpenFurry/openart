@@ -18,6 +18,11 @@ class GroupController {
             response.sendError(404) //TODO i18n
             return
         }
+
+        if (!permissionsService.groups.userCanRead(group)) {
+            response.sendError(403)
+            return
+        }
         
         [group: group]
     }
@@ -62,6 +67,7 @@ class GroupController {
         post.properties = params
         post.group = group
         post.owner = owner
+        post.addToMembers(owner)
 
         if (post.save(flush: true)) {
             // TODO notify all members, transact

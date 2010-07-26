@@ -320,7 +320,7 @@ td, th {
     vertical-align: top;
 }
 
-thead th, .shadow {
+thead th, tfoot th, .shadow {
     background: #ddd url(../images/skin/shadow-white.png) top repeat-x;
     padding-left: 0.25em;
 }
@@ -480,6 +480,58 @@ Groups
 
 .groupPrivate > td:first-child {
     border: 1px solid #00f;
+}
+
+/*
+Events
+*/
+.calendar {
+    border-spacing: 0;
+}
+
+.calendar th {
+    width: 14%;
+    border-right: 1px solid #fff;
+    border-left: 1px solid #fff;
+}
+
+.calendar td {
+    height: 10em;
+    padding: 0;
+    margin: 0;
+    border-top: 2px solid #fff;
+}
+
+.calendar td.empty {
+    background-color: #ddd;
+    border-right: 1px solid #fff;
+    border-left: 1px solid #fff;
+}
+
+.calendar td strong,
+.calendar td a {
+    display: block;
+    padding: 2px;
+}
+
+.calendar a.event {
+    background-color: #eee;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    margin-bottom: 2px;
+}
+
+.calendar a.eventStart {
+    border-left: 1px solid #000;
+}
+
+.calendar a.eventEnd {
+    border-right: 1px solid #000;
+    text-align: right;
+}
+
+.calendar a.eventStart.eventEnd {
+    text-align: left;
 }
 
 /*
