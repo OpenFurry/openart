@@ -38,7 +38,7 @@ class EventController {
                     between("eventDateEnd", monthStart.time, monthEnd.time)
                 }
             }
-            order("eventDateStart", "desc")
+            // order("eventDateStart", "desc")
         }
 
         [monthStart: monthStart, monthEnd: monthEnd, events: events]

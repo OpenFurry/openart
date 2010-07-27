@@ -486,48 +486,60 @@ Groups
 Events
 */
 .calendar {
-    border-spacing: 0;
+    border-spacing: 5px;
 }
-
 .calendar th {
     width: 14%;
-    border-right: 1px solid #fff;
-    border-left: 1px solid #fff;
 }
 
 .calendar td {
     height: 10em;
     padding: 0;
     margin: 0;
-    border-top: 2px solid #fff;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    overflow: auto;
 }
 
 .calendar td.empty {
-    background-color: #ddd;
-    border-right: 1px solid #fff;
-    border-left: 1px solid #fff;
+    background-color: #eee;
+    border: none !important
 }
 
 .calendar td strong,
 .calendar td a {
     display: block;
-    padding: 2px;
+    padding: 3px;
+    margin: 3px;
 }
 
 .calendar a.event {
     background-color: #eee;
     border-top: 1px solid #000;
     border-bottom: 1px solid #000;
-    margin-bottom: 2px;
+    text-align: center;
 }
 
 .calendar a.eventStart {
     border-left: 1px solid #000;
+    text-align: left;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
 }
 
 .calendar a.eventEnd {
     border-right: 1px solid #000;
     text-align: right;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    -moz-border-radius-topright: 3px;
+    -moz-border-radius-bottomright: 3px;
+    -webkit-border-top-right-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
 }
 
 .calendar a.eventStart.eventEnd {
