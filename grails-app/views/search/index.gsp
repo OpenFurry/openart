@@ -35,6 +35,21 @@
                 </g:form>
             </div>
 
+            <h3><a href="#">USERS</a></h3>
+            <div>
+                <g:form action="users" method="get">
+                    <table>
+                        <tbody>
+                            <tr class="prop">
+                                <th class="name">SEARCH</th>
+                                <td class="value"><g:textField name="q" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="buttons"><input type="submit" /></div>
+                </g:form>
+            </div>
+
             <h3><a href="#">ISSUES</a></h3>
             <div>
                 <g:form action="issues" method="get">

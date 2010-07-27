@@ -41,6 +41,12 @@ class SearchController {
 
         [uoList: list, searchTerm: params.q]
     }
+
+    def users = {
+        def list = Person.withCriteria {}
+
+        [people: list]
+    }
     
     def issues = {
         def searchTerm
