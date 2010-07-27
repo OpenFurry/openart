@@ -6,7 +6,8 @@ class UserGroup {
     String description
     Integer category
     Boolean exclusive = false
-    Person admin
+    Long adminId // The id of the Person object who created the group
+    // See http://jira.codehaus.org/browse/GRAILS-3154 for why this has to be this way
 
     static constraints = {
         slug(maxSize: 60)

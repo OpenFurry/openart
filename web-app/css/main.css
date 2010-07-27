@@ -464,13 +464,13 @@ Groups
 }
 
 .groupEvents {
-    width: 29%;
+    width: 39%;
     float: left;
     margin-right: 1%;
 }
 
 .groupPosts {
-    width: 70%;
+    width: 60%;
     float: left;
 }
 
@@ -480,6 +480,16 @@ Groups
 
 .groupPrivate > td:first-child {
     border: 1px solid #00f;
+}
+
+.groupMembers {
+    clear: both;
+    padding-top: 1em;
+}
+
+.groupMembers .member {
+    float: left;
+    width: 25%;
 }
 
 /*

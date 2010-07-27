@@ -13,4 +13,7 @@ class PermissionsTagLib {
         }
     }
 
+    def hasPermission = { attrs ->
+        out << permissionsService."${attrs['class']}"."${attrs['permission']}"(attrs['arg'])
+    }
 }

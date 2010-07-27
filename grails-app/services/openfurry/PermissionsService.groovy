@@ -7,10 +7,16 @@ class PermissionsService {
     def authenticateService
 
     def groups = [
+        userIsMember: { group ->
+            return (authenticateService.principal().domainClass in group.members)
+        },
+        userIsAdmin: { group ->
+            return authenticateService.principal().domainClass.id == group.adminId
+        },
         userCanRead: { group ->
             if (group.exclusive) {
                 if (authenticateService.principal().domainClass in group.members
-                    || authenticateService.principal().domainClass.id == group.admin.id
+                    || authenticateService.principal().domainClass.id == group.adminId
                     || authenticateService.ifAnyGranted("ROLE_ADMIN")) {
                     return true
                 }
@@ -21,21 +27,21 @@ class PermissionsService {
         },
         userCanPost: { group ->
             if (authenticateService.principal().domainClass in group.members
-                || authenticateService.principal().domainClass.id == group.admin.id) {
+                || authenticateService.principal().domainClass.id == group.adminId) {
                 return true
             }
             return false
         },
         userCanDeletePost: { post ->
             if (authenticateService.principal().domainClass == post.owner 
-                || authenticateService.principal().domainClass == post.group.admin 
+                || authenticateService.principal().domainClass.id == post.group.adminId 
                 || authenticateService.ifAnyGranted("ROLE_ADMIN,ROLE_STAFF")) {
                 return true
             }
             return false
         },
         userCanEditGroup: { group ->
-            if (authenticateService.principal().domainClass == group.admin 
+            if (authenticateService.principal().domainClass.id == group.adminId
                 || authenticateService.ifAnyGranted("ROLE_ADMIN,ROLE_STAFF")) {
                 return true
             }
