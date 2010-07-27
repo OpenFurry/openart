@@ -210,7 +210,7 @@ Horizontal tabs
 /* 
 Block 
 */
-.block, .verticalTabs ul.nav li.selected, .horizontalTabs ul.nav li.selected {
+.block, .verticalTabs ul.nav li.selected, .horizontalTabs ul.nav li.selected, .ui-accordion {
     border: 1px solid #ccc;
     background-color: #fff;
 }
@@ -320,8 +320,8 @@ td, th {
     vertical-align: top;
 }
 
-thead th, tfoot th, .shadow {
-    background: #ddd url(../images/skin/shadow-white.png) top repeat-x;
+thead th, tfoot th, .shadow, .ui-accordion-header {
+    background: #ddd url(../images/skin/shadow-white.png) top repeat-x !important;
     padding-left: 0.25em;
 }
 
@@ -612,6 +612,26 @@ Properties/names/values
 .prop .value {
     text-align: left;
     width: 85%;
+}
+
+/*
+ui
+*/
+.ui-accordion-header {
+    vertical-align: center;
+    padding: 0.5em;
+    background-color: #ddd !important;
+    border: 1px solid #000;
+    margin: 0.5em;
+}
+
+.ui-accordion-header.ui-state-active {
+    background-color: #eee !important;
+    border: 1px solid #333;
+}
+
+.ui-accordion div {
+    margin: 0.5em;
 }
 
 /*

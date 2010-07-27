@@ -11,7 +11,6 @@
         </g:if>
         </g:isLoggedIn>
         <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
-        <g:layoutHead />
         <script src="http://www.google.com/jsapi"></script>
         <script type="text/javascript">
             google.load("jquery", "1.4.2");
@@ -22,6 +21,7 @@
                 $('.hide').hide();
             });
         </script>
+        <g:layoutHead />
     </head>
     <body>
         <div id="header">
