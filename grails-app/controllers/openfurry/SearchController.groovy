@@ -83,4 +83,7 @@ class SearchController {
 
         [events: list]
     }
+
+    def pages = {
+    }
 }

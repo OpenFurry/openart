@@ -4,6 +4,12 @@ class CommentService {
 
     static transactional = true
 
+    def deleteCommentsForObject(obj) {
+        getAllCommentsForObject(obj).each {
+            it.delete()
+        }
+    }
+
     def getAllCommentsForObject(obj) {
         Comment.withCriteria {
             and {

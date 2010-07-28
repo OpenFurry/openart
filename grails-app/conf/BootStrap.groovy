@@ -109,29 +109,49 @@ class BootStrap {
          * Request mapping definitions
          */
         // Acegi requests
-        def secureUser = new Requestmap(url: '/person/**', configAttribute: 'ROLE_STAFF').save()
-        def secureRole = new Requestmap(url: '/authority/**', configAttribute: 'ROLE_ADMIN').save()
-        def secureRequestmap = new Requestmap(url: '/requestmap/**', configAttribute: 'ROLE_ADMIN').save()
+        secure("/person/**", "ROLE_STAFF")
+        secure("/authority/**", "ROLE_ADMIN")
+        secure("/requestmap/**", "ROLE_ADMIN")
 
         // Issue requests
-        def secureIssueEdit = new Requestmap(url: '/issue/edit/**', configAttribute: 'ROLE_GOVERNOR,ROLE_STAFF').save()
-        def secureIssueCreate = new Requestmap(url: '/issue/create/**', configAttribute: 'ROLE_USER').save()
-        def secureIssueVote = new Requestmap(url: '/issue/vote/**', configAttribute: 'ROLE_USER').save()
-        def secureIssueDelete = new Requestmap(url: '/issue/delete/**', configAttribute: 'ROLE_STAFF').save()
+        secure("/issue/edit/**", "ROLE_GOVERNOR,ROLE_STAFF")
+        secure("/issue/create/**", "ROLE_USER")
+        secure("/issue/vote/**", "ROLE_USER")
+        secure("/issue/delete/**", "ROLE_STAFF")
         
         // Submission request
-        def secureSubmit = new Requestmap(url: '/submit/**', configAttribute: 'ROLE_USER').save()
+        secure("/submit/**", "ROLE_USER")
 
         // Flatpage request
-        def secureFlatpageCreate = new Requestmap(url: '/flatpage/create/**', configAttribute: 'ROLE_STAFF').save()
-        def secureFlatpageSave = new Requestmap(url: '/flatpage/save/**', configAttribute: 'ROLE_STAFF').save()
-        def secureFlatpageEdit = new Requestmap(url: '/flatpage/edit/**', configAttribute: 'ROLE_STAFF').save()
+        secure("/flatpage/create/**", "ROLE_STAFF")
+        secure("/flatpage/save/**", "ROLE_STAFF")
+        secure("/flatpage/edit/**", "ROLE_STAFF")
 
         // Status requests
-        def secureStatusMentions = new Requestmap(url: '/status/mentions/**', configAttribute: 'ROLE_USER').save()
-        def secureStatusSave = new Requestmap(url: '/status/save/**', configAttribute: 'ROLE_USER').save()
-        def secureStatusDelete = new Requestmap(url: '/status/delete/**', configAttribute: 'ROLE_USER').save()
+        secure("/status/mentions/**", "ROLE_USER")
+        secure("/status/save/**", "ROLE_USER")
+        secure("/status/delete/**", "ROLE_USER")
+
+        // Group requests
+        secure("/group/create/**", "ROLE_USER")
+        secure("/group/save/**", "ROLE_USER")
+        secure("/group/edit/**", "ROLE_USER")
+        secure("/group/join/**", "ROLE_USER")
+        secure("/group/leave/**", "ROLE_USER")
+        secure("/group/requestToJoin/**", "ROLE_USER")
+        secure("/group/listRequests/**", "ROLE_USER")
+        secure("/group/showRequest/**", "ROLE_USER")
+        secure("/group/approveRequest/**", "ROLE_USER")
+        secure("/group/denyRequest/**", "ROLE_USER")
+        secure("/group/transferAdmin/**", "ROLE_USER")
+        secure("/group/post/**", "ROLE_USER")
+        secure("/group/savePost/**", "ROLE_USER")
+        secure("/group/deletePost/**", "ROLE_USER")
     }
     def destroy = {
+    }
+
+    private secure(url, roles) {
+        new Requestmap(url: url, configAttribute: roles).save()
     }
 }
