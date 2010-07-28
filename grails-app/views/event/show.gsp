@@ -18,26 +18,28 @@
                 <table>
                     <thead>
                         <tr>
-                            <th colspan="2">TIMES</th>
+                            <th colspan="2"><g:message code="openfurry.event.date.plural" default="Dates/Times" /></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="prop">
-                            <th class="name">START</th>
+                            <th class="name"><g:message code="openfurry.event.date.startDate" default="Start date/time" /></th>
                             <td class="value"><g:formatDate date="${event.eventDateStart}" /></td>
                         </tr>
                         <tr class="prop">
-                            <th class="name">END</th>
+                            <th class="name"><g:message code="openfurry.event.date.endDate" default="End date/time" /></th>
                             <td class="value"><g:formatDate date="${event.eventDateEnd}" /></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="eventLocation block">
-                <div class="shadow">LOCATION</div>
-                <a href="http://maps.google.com/maps?q=${event.location.encodeAsURL()}" target="_blank"><img src="http://maps.google.com/maps/api/staticmap?markers=color:blue|${event.location.encodeAsURL()}&size=400x400&sensor=false" /></a>
-                <p>${event.location.encodeAsHTML()}</p>
-            </div>
+            <g:if test="${event.location}">
+                <div class="eventLocation block">
+                    <div class="shadow"><g:message code="openfurry.event.location" default="Location" /></div>
+                    <a href="http://maps.google.com/maps?q=${event.location.encodeAsURL()}" target="_blank"><img src="http://maps.google.com/maps/api/staticmap?markers=color:blue|${event.location.encodeAsURL()}&size=400x400&sensor=false" /></a>
+                    <p>${event.location.encodeAsHTML()}</p>
+                </div>
+            </g:if>
             <br clear="all" />
         </div>
     </body>

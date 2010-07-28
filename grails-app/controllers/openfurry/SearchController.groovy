@@ -37,7 +37,7 @@ class SearchController {
             }
         }
 
-        def list = listService.listUOsForRating(criteria, null)
+        def list = listService.listUOsForRating(criteria, params)
 
         [uoList: list, searchTerm: params.q]
     }

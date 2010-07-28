@@ -31,8 +31,27 @@ Features
   + An external link
   + Mark a submission as not yet published or as friends-only
   + Organize submissions into collections - ordered or unordered
-  + Rich descriptions and submissions using Markdown
   + Reference users and submissions easily
+* Make your contributions to the site look you how you want them to
+  + Use Markdown to author content, descriptions, comments, and so on to
+    style your text
+  + Use link shortcuts to link to other users, submissions, issues, comments
+    groups, and events
+* Manage groups and events
+  + Full group system allows both public and private groups with threaded
+    messages.
+  + Create events specific to your group
+  + View events in an easy-to-read calendar
+  + Specify a location for your event and have a map (courtesy of Google Maps)
+    attached to the event, linking to directions to get to that location.
+* Search across all site content
+  + Submissions
+  + Users
+  + Issues
+  + Groups
+  + Posts
+  + Events
+  + Site pages
 * Themeable
   + Re-style the site how you want it
   + Upload custom icon-packs to further change the look of the site
@@ -41,7 +60,8 @@ Features
   your rewards voting on issues or on items in the OF Store
 * Designed to allow user feedback
   + Users can create 'issues': bug reports, feature requests, and suggestions 
-    for improvement to the site and its policies
+    for improvement to the site and its policies, or notify admins and staff
+    of ToS/AUP policy violations
   + Users can vote on the issues most important to them; the more votes
     an issue has, the more likely it is to be taken into account
   + Users can join a governing board in order to take issues into consideration

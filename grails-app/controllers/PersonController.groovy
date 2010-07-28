@@ -49,7 +49,7 @@ class PersonController {
         def criteria = {
             eq("owner", person)
         }
-        def submissions = listService.listUOsForRating(criteria, params.type)
+        def submissions = listService.listUOsForRating(criteria, params)
 
 		[person: person, watched: watched, roleNames: roleNames, submissions: submissions]
 	}

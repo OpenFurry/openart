@@ -1,19 +1,19 @@
-<html><!-- TODO i18n -->
+<html>
     <head>
-        <title>CALENDAR</title>
+        <title><g:message code="openfurry.event.views.calendar" default="Calendar" /></title>
         <meta name="layout" content="main" />
     </head>
     <body>
         <table class="calendar">
             <thead>
                 <tr>
-                    <th>SUNDAY</th>
-                    <th>MONDAY</th>
-                    <th>TUESDAY</th>
-                    <th>WEDNESDAY</th>
-                    <th>THURSDAY</th>
-                    <th>FRIDAY</th>
-                    <th>SATURDAY</th>
+                    <th><g:message code="openfurry.event.days.sunday" default="Sunday" /></th>
+                    <th><g:message code="openfurry.event.days.monday" default="Monday" /></th>
+                    <th><g:message code="openfurry.event.days.tuesday" default="Tuesday" /></th>
+                    <th><g:message code="openfurry.event.days.wednesday" default="Wednesday" /></th>
+                    <th><g:message code="openfurry.event.days.thursday" default="Thursday" /></th>
+                    <th><g:message code="openfurry.event.days.friday" default="Friday" /></th>
+                    <th><g:message code="openfurry.event.days.saturday" default="Saturday" /></th>
                 </tr>
             </thead>
             <tbody>
@@ -21,13 +21,13 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <th>SUNDAY</th>
-                    <th>MONDAY</th>
-                    <th>TUESDAY</th>
-                    <th>WEDNESDAY</th>
-                    <th>THURSDAY</th>
-                    <th>FRIDAY</th>
-                    <th>SATURDAY</th>
+                    <th><g:message code="openfurry.event.days.sunday" default="Sunday" /></th>
+                    <th><g:message code="openfurry.event.days.monday" default="Monday" /></th>
+                    <th><g:message code="openfurry.event.days.tuesday" default="Tuesday" /></th>
+                    <th><g:message code="openfurry.event.days.wednesday" default="Wednesday" /></th>
+                    <th><g:message code="openfurry.event.days.thursday" default="Thursday" /></th>
+                    <th><g:message code="openfurry.event.days.friday" default="Friday" /></th>
+                    <th><g:message code="openfurry.event.days.saturday" default="Saturday" /></th>
                 </tr>
             </tfoot>
         </table>

@@ -67,7 +67,7 @@ class TagController {
                 eq('tag', tag.tag)
             }
         }
-        def list = listService.listUOsForRating(criteria, params.type)
+        def list = listService.listUOsForRating(criteria, params)
 
         def watched = false
         if (authenticateService.isLoggedIn()) {

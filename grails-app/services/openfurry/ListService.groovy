@@ -8,7 +8,7 @@ class ListService {
 
     static transactional = true
 
-    def listUOsForRating(Closure c, String type) {
+    def listUOsForRating(Closure c, params) {
         def maxRating = CH.config.openfurry.ratings.low
         def p = null
         if (authenticateService.isLoggedIn()) {
@@ -21,8 +21,8 @@ class ListService {
                 c.delegate = delegate
                 c() 
                 le('rating', maxRating)
-                if (type) {
-                    eq('type', type)
+                if (params?.type) {
+                    eq('type', params.type)
                 }
                 if (p) {
                     or {

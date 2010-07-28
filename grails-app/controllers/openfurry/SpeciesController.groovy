@@ -23,7 +23,7 @@ class SpeciesController {
             }
         }
 
-        def list = listService.listUOsForRating(criteria, params.type)
+        def list = listService.listUOsForRating(criteria, params)
 
         [uoList: list, species: s]
     }

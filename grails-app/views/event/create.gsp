@@ -1,6 +1,6 @@
-<html><!-- TODO i18n -->
+<html>
     <head>
-        <title>CREATE EVENT</title>
+        <title><g:message code="openfurry.event.views.create" default="Create event" /></title>
         <meta name="layout" content="main" />
     </head>
     <body>
@@ -15,28 +15,28 @@
             <table>
                 <thead>
                     <tr>
-                        <th colspan="2">EVENT DETAILS</th>
+                        <th colspan="2"><g:message code="openfurry.event.details" default="Event details" /></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="prop">
-                        <th class="name">TITLE</th>
+                        <th class="name"><g:message code="openfurry.event.title" default="Title" /></th>
                         <td class="value"><g:textField name="title" value="${instance?.title}" /></td>
                     </tr>
                     <tr class="prop">
-                        <th class="name">DESCRIPTION</th>
+                        <th class="name"><g:message code="openfurry.event.description" default="Description" /></th>
                         <td class="value"><g:textArea name="description" rows="10" cols="50" value="${instance?.description}" /></td>
                     </tr>
                     <tr class="prop">
-                        <th class="name">START DATE/TIME</th>
+                        <th class="name"><g:message code="openfurry.event.date.startDate" default="Start date/time" /></th>
                         <td class="value"><g:datePicker name="eventDateStart" value="${instance?.eventDateStart}" /></td>
                     </tr>
                     <tr class="prop">
-                        <th class="name">END DATE/TIME</th>
+                        <th class="name"><g:message code="openfurry.event.date.endDate" default="End date/time" /></th>
                         <td class="value"><g:datePicker name="eventDateEnd" value="${instance?.eventDateEnd}" /></td>
                     </tr>
                     <tr class="prop">
-                        <th class="name">LOCATION</th>
+                        <th class="name"><g:message code="openfurry.event.location" default="Location" /></th>
                         <td class="value"><g:textField name="location" value="${instance?.location}" /></td>
                     </tr>
                 </tbody>
