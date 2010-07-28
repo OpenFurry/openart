@@ -200,7 +200,7 @@ class GroupController {
         redirect(action: "show", id: group.slug)
     }
 
-    def posts = {
+    def threads = {
         def group = UserGroup.findBySlug(params.id)
         if (!group) {
             response.sendError(404)
@@ -215,7 +215,7 @@ class GroupController {
         def list = listService.listGroupPosts(group, params)
         params.totalPosts = list.totalCount
 
-        [postList: list]
+        [group: group, postList: list]
     }
 
     def thread = {
@@ -258,7 +258,6 @@ class GroupController {
         post.properties = params
         post.group = group
         post.owner = owner
-        post.addToMembers(owner)
 
         if (post.save(flush: true)) {
             // TODO notify all members, transact

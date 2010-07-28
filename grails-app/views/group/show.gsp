@@ -4,31 +4,35 @@
         <meta name="layout" content="main" />
     </head>
     <body>
+        <div class="breadcrumbs">
+            <g:link controller="group"><g:message code="openfurry.display.navigation.groups" default="Groups and events" /></g:link> &raquo;
+            ${group.title}
+        </div>
         <div class="groupDescription block">
             <of:linking><markdown:renderHtml>${group.description}</markdown:renderHtml></of:linking>
             <hr />
             <g:if test="${of.hasPermission(class: 'groups', permission: 'userIsMember', arg: group)}">
-                <g:link controller="group" action="leave" id="${group.slug}">LEAVE</g:link>
+                <g:link controller="group" action="leave" id="${group.slug}"><g:message code="openfurry.group.views.leave" default="Leave this group" /></g:link>
             </g:if>
             <g:else>
                 <g:if test="${group.exclusive}">
-                    <g:link controller="group" action="requestToJoin" id="${group.slug}">REQUEST</g:link>
+                    <g:link controller="group" action="requestToJoin" id="${group.slug}"><g:message code="openfurry.group.views.requestToJoin" default="Request to join this group" /></g:link><!-- TODO this should be a form -->
                 </g:if>
                 <g:else>
-                    <g:link controller="group" action="join" id="${group.slug}">JOIN</g:link>
+                    <g:link controller="group" action="join" id="${group.slug}"><g:message code="openfurry.group.views.join" default="Join this group" /></g:link>
                 </g:else>
             </g:else>
         </div>
         <div class="groupEvents">
-            <g:link controller="event" action="calendar" id="${group.slug}">CALENDAR</g:link>
+            <g:link controller="event" action="calendar" id="${group.slug}"><g:message code="openfurry.event.views.calendar" default="Calendar" /></g:link>
             <of:withPermission class="groups" permission="userCanPost" arg="${group}">
-                <div style="float:right"><g:link controller="event" action="create" id="${group.slug}">+ EVENT</g:link></div>
+                <div style="float:right"><g:link controller="event" action="create" id="${group.slug}">+ <g:message code="openfurry.event" default="Event" /></g:link></div>
             </of:withPermission>
             <table class="list">
                 <thead>
                     <tr>
-                        <th style="width: 75%">EVENT</th>
-                        <th style="width: 25%">DATE</th>
+                        <th style="width: 75%"><g:message code="openfurry.event" default="Event" /></th>
+                        <th style="width: 25%"><g:message code="openfurry.event.date" default="Date" /></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,16 +52,16 @@
                     </g:each>
                     <g:if test="${events.size() < 1}">
                         <tr>
-                            <td colspan="2"><em>NO EVENTS</em></td>
+                            <td colspan="2"><em><g:message code="openfurry.event.noEvents" default="No events" /></em></td>
                         </tr>
                     </g:if>
                 </tbody>
             </table>
         </div>
         <div class="groupPosts">
-            <g:link controller="group" action="posts" id="${group.slug}">POSTS</g:link>
+            <g:link controller="group" action="threads" id="${group.slug}"><g:message code="openfurry.group.thread.plural" default="Threads" /></g:link>
             <of:withPermission class="groups" permission="userCanPost" arg="${group}">
-                <div style="float: right"><g:link controller="group" action="post" id="${group.slug}">+ POST</g:link></div>
+                <div style="float: right"><g:link controller="group" action="post" id="${group.slug}">+ <g:message code="openfurry.group.thread" default="Thread" /></g:link></div>
             </of:withPermission>
             <table class="list">
                 <thead>
@@ -85,19 +89,22 @@
                     </g:each>
                     <g:if test="${posts.size() < 1}">
                         <tr>
-                            <td colspan="3"><em>NO POSTS</em></td>
+                            <td colspan="3"><em><g:message code="openfurry.group.thread.noThreads" default="No threads" /></em></td>
                         </tr>
                     </g:if>
                 </tbody>
             </table>
         </div>
         <div class="groupMembers">
-            <div class="shadow">MEMBERS</div>
+            <div class="shadow"><strong><g:message code="openfurry.group.member.plural" default="Members" /></strong></div>
             <g:each in="${group.members}" var="member">
                 <div class="member${member.id == group.adminId ? ' admin' : ''}">
                     <of:linking>~${member.username}</of:linking>
                     <of:withPermission class="groups" permission="userIsAdmin" arg="${group}">
-                        <g:link controller="group" action="transferAdmin" id="${group.slug}" params="[to: member.username]">MAKE SOLE ADMIN - CANNOT BE UNDONE</g:link>
+                        <g:if test="${member.id != group.adminId}">
+                            <br />
+                            <g:link controller="group" action="transferAdmin" id="${group.slug}" params="[to: member.username]">MAKE SOLE ADMIN - CANNOT BE UNDONE</g:link>
+                        </g:if>
                     </of:withPermission>
                 </div>
             </g:each>

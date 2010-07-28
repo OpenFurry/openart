@@ -556,6 +556,22 @@ Events
     text-align: left;
 }
 
+.eventDescription {
+    padding: 0.5em;
+}
+
+.eventTimes {
+    clear: left;
+    width: 50%;
+    float: left;
+}
+
+.eventLocation {
+    width: 45%;
+    float: right;
+    text-align: center;
+}
+
 /*
 UserObjects
 */

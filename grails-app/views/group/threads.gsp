@@ -1,9 +1,14 @@
-<html>
+<html><!-- TODO i18n -->
     <head>
-        <title>POSTS IN ${group.title}</title>
+        <title><g:message code="openfurry.group.thread.plural" default="Threads" /> - ${group.title}</title>
         <meta name="layout" content="main" />
     </head>
     <body>
+        <div class="breadcrumbs">
+            <g:link controller="group"><g:message code="openfurry.display.navigation.groups" default="Groups and events" /></g:link> &raquo;
+            <g:link controller="group" action="show" id="${group.slug}">${group.title}</g:link> &raquo;
+            <g:message code="openfurry.group.thread.plural" default="threads" />
+        </div>
         <table class="list">
             <thead>
                 <tr>
@@ -13,7 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                <g:each in="${posts}" var="post" status="i">
+                <g:each in="${postList}" var="post" status="i">
                     <tr class="${i % 2 == 0 ? 'even' : 'odd'}">
                         <td>
                             <of:withPermission class="groups" permission="userCanRead" arg="${group}">
@@ -28,9 +33,9 @@
                         <td><of:linking noImages="true">${post.owner}</of:linking>
                     </tr>
                 </g:each>
-                <g:if test="${posts.size() < 1}">
+                <g:if test="${postList.size() < 1}">
                     <tr>
-                        <td colspan="3"><em>NO POSTS</em></td>
+                        <td colspan="3"><em>NO POSTS</td>
                     </tr>
                 </g:if>
             </tbody>

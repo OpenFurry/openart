@@ -45,7 +45,11 @@ class ListService {
         params.max = Math.min(params?.max?.toInteger() ?: 10, 100)
         params.offset = params?.offset?.toInteger() ?: 0
 
-        GroupPost.createCriteria().list(max: params.max, offset: params.offset) {
+        GroupPost.createCriteria().list(
+            max: params.max, 
+            offset: params.offset,
+            sort: "lastUpdated",
+            order: "desc") {
             eq("group", group)
         }
     }

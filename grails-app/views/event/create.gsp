@@ -35,6 +35,10 @@
                         <th class="name">END DATE/TIME</th>
                         <td class="value"><g:datePicker name="eventDateEnd" value="${instance?.eventDateEnd}" /></td>
                     </tr>
+                    <tr class="prop">
+                        <th class="name">LOCATION</th>
+                        <td class="value"><g:textField name="location" value="${instance?.location}" /></td>
+                    </tr>
                 </tbody>
             </table>
             <div class="buttons"><input type="submit" /></div>
