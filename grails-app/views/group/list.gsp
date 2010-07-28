@@ -17,7 +17,7 @@
                     <tr class="${count % 2 == 0 ? 'even' : 'odd' } ${group.exclusive ? 'groupPrivate' : 'groupPublic'}">
                         <td><a href="${createLink(controller: 'group', action: 'show', id: group.slug)}">${group.title.encodeAsHTML()} <g:if test="${group.exclusive}">[<g:message code="openfurry.group.private" default="Private group" />]</g:if></a></td>
                         <td><g:message code="openfurry.group.category.${grailsApplication.config.openfurry.group.category.repr[group.category]}" default="${grailsApplication.config.openfurry.group.category.repr[group.category]}" /></td>
-                        <td><of:linking noImages="true">${group.admin.encodeAsHTML()}</of:linking></td>
+                        <td><of:linking noImages="true">${openfurry.Person.get(group.adminId)}</of:linking></td>
                     </tr>
                 </g:each>
             </tbody>

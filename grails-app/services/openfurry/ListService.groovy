@@ -40,4 +40,13 @@ class ListService {
         }
 
     }
+
+    def listGroupPosts(group, params) {
+        params.max = Math.min(params?.max?.toInteger() ?: 10, 100)
+        params.offset = params?.offset?.toInteger() ?: 0
+
+        GroupPost.createCriteria().list(max: params.max, offset: params.offset) {
+            eq("group", group)
+        }
+    }
 }

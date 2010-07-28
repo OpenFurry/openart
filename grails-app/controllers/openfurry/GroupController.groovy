@@ -7,6 +7,8 @@ class GroupController {
 
     def permissionsService
 
+    def listService
+
     def list = {
         [groups: UserGroup.list()]
     }
@@ -19,12 +21,17 @@ class GroupController {
             return
         }
 
-        if (!permissionsService.groups.userCanRead(group)) {
-            response.sendError(403)
-            return
+        def now = new Date()
+        def events = Event.withCriteria {
+            between("eventDateEnd", now, now + 30)
         }
-        
-        [group: group]
+
+        def posts = GroupPost.withCriteria {
+            maxResults(10)
+            order("lastUpdated", "desc")
+        }
+
+        [group: group, events: events, posts: posts]
     }
 
     def join = {
@@ -205,7 +212,10 @@ class GroupController {
             return
         }
 
-        [postList: GroupPost.findByGroup(group)]
+        def list = listService.listGroupPosts(group, params)
+        params.totalPosts = list.totalCount
+
+        [postList: list]
     }
 
     def thread = {
@@ -307,7 +317,7 @@ class GroupController {
         if (params.id) {
             groupInstance = UserGroup.get(params.id)
         } else {
-            if (UserGroup.findBySlug(params.slug).size() > 0) {
+            if (UserGroup.findBySlug(params.slug) > 0) {
                 // set error on field
             }
             groupInstance = new UserGroup()

@@ -43,6 +43,7 @@ class CommentController {
         if (comment.save(flush: true)) {
             // TODO Notify poster and object owner
 
+            object.save(flush: true) // update object
             if (params.targetURI) {
                 redirect(uri: "${params.targetURI}#c${comment.id}")
             } else {

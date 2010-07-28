@@ -8,14 +8,14 @@
             <of:linking><markdown:renderHtml>${group.description}</markdown:renderHtml></of:linking>
             <hr />
             <g:if test="${of.hasPermission(class: 'groups', permission: 'userIsMember', arg: group)}">
-                LEAVE
+                <g:link controller="group" action="leave" id="${group.slug}">LEAVE</g:link>
             </g:if>
             <g:else>
                 <g:if test="${group.exclusive}">
-                    REQUEST
+                    <g:link controller="group" action="requestToJoin" id="${group.slug}">REQUEST</g:link>
                 </g:if>
                 <g:else>
-                    JOIN
+                    <g:link controller="group" action="join" id="${group.slug}">JOIN</g:link>
                 </g:else>
             </g:else>
         </div>
@@ -32,7 +32,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <g:each in="${group.events}" var="event" status="i">
+                    <g:each in="${events}" var="event" status="i">
                         <tr class="${i % 2 == 0 ? 'even' : 'odd'}">
                             <td>
                                 <of:withPermission class="groups" permission="userCanRead" arg="${group}">
@@ -46,17 +46,18 @@
                             <td><g:formatDate date="${event.eventDateStart}" format="dd, MMM yyyy h:mm a" /></td>
                         </tr>
                     </g:each>
-                    <g:if test="${group.events.size() < 1}">
+                    <g:if test="${events.size() < 1}">
                         <tr>
-                            <td colspan="3">NO EVENTS</td>
+                            <td colspan="2"><em>NO EVENTS</em></td>
                         </tr>
                     </g:if>
                 </tbody>
             </table>
         </div>
         <div class="groupPosts">
+            <g:link controller="group" action="posts" id="${group.slug}">POSTS</g:link>
             <of:withPermission class="groups" permission="userCanPost" arg="${group}">
-                <div style="float: right"><g:link controller="group" action="post" id="${group.id}">+ POST</g:link></div>
+                <div style="float: right"><g:link controller="group" action="post" id="${group.slug}">+ POST</g:link></div>
             </of:withPermission>
             <table class="list">
                 <thead>
@@ -67,7 +68,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <g:each in="${group.posts}" var="post" status="i">
+                    <g:each in="${posts}" var="post" status="i">
                         <tr class="${i % 2 == 0 ? 'even' : 'odd'}">
                             <td>
                                 <of:withPermission class="groups" permission="userCanRead" arg="${group}">
@@ -82,9 +83,9 @@
                             <td><of:linking noImages="true">${post.owner}</of:linking>
                         </tr>
                     </g:each>
-                    <g:if test="${group.posts.size() < 1}">
+                    <g:if test="${posts.size() < 1}">
                         <tr>
-                            <td colspan="3">NO POSTS</td>
+                            <td colspan="3"><em>NO POSTS</em></td>
                         </tr>
                     </g:if>
                 </tbody>
