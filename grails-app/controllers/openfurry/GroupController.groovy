@@ -9,6 +9,8 @@ class GroupController {
 
     def listService
 
+    def commentService
+
     def list = {
         [groups: UserGroup.list()]
     }
@@ -335,6 +337,27 @@ class GroupController {
         }
     }
 
-    def delete = {}
+    def delete = {
+        def group = UserGroup.get(params.id)
+
+        if (!group) {
+            response.sendError(404)
+            return
+        }
+
+        if (!permissionsService.groups.userIsAdmin(group)) {
+            response.sendError(403)
+            return
+        }
+        
+        group.posts.each {
+            commentService.deleteCommentsForObject(it)
+            it.delete()
+        }
+        group.delete()
+
+        // TODO charge user, notify user, members
+        redirect(action: "list")
+    }
 
 }

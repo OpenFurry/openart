@@ -8,12 +8,13 @@ class Issue {
     Integer type
     String JIRAIssue
     Person submitter
+    Date dateCreated
 
     static constraints = {
         title(maxSize: 60, blank: false)
         description(maxSize: 5000, blank: false)
         status(range: 0..4)
-        type(range:0..2)
+        type(range:0..6)
         JIRAIssue(maxSize: 15, blank: true, nullable: true)
     }
 }

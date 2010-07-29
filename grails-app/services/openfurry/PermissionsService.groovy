@@ -11,7 +11,8 @@ class PermissionsService {
             return (authenticateService.principal().domainClass in group.members)
         },
         userIsAdmin: { group ->
-            return authenticateService.principal().domainClass.id == group.adminId
+            return (authenticateService.principal().domainClass.id == group.adminId
+                || authenticateService.ifAnyGranted("ROLE_ADMIN,ROLE_STAFF"))
         },
         userCanRead: { group ->
             if (group.exclusive) {
@@ -47,6 +48,5 @@ class PermissionsService {
             }
             return false
         }
-            
     ]
 }

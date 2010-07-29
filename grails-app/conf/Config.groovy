@@ -223,10 +223,14 @@ openfurry.issue.status.rejected = 4
 
 
 // OpenFurry issue types
-openfurry.issue.type.repr = ["Bug", "Improvement", "NewFeature"]
+openfurry.issue.type.repr = ["Bug", "Improvement", "NewFeature", "ToSViolation", "AUPViolation", "AccountIssue", "Harrassment"]
 openfurry.issue.type.bug = 0
 openfurry.issue.type.improvement = 1
 openfurry.issue.type.newFeature = 2
+openfurry.issue.type.violation = 3
+openfurry.issue.type.AUPViolation = 4
+openfurry.issue.type.accountIssue = 5
+openfurry.issue.type.harrassment = 6
 
 // Group categories
 // Count used in UserGroup domain

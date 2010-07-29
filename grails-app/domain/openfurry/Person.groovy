@@ -9,6 +9,7 @@ import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 class Person {
 	String username
 	String userRealName
+    String title
     String avatar = ",default.png"
 	String passwd
 	String pass = '[secret]'
@@ -35,6 +36,7 @@ class Person {
 	static constraints = {
 		username(blank: false, unique: true)
 		userRealName(blank: true)
+        title(blank: true, nullable: true)
 		passwd(blank: false)
 		enabled()
         profile(blank: true, nullable: true)

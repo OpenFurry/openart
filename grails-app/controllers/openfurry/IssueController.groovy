@@ -13,7 +13,11 @@ class IssueController {
                     eq("status", Integer.parseInt(params.status))
                 }
                 if (params.type) {
-                    eq("type", Integer.parseInt(params.type))
+                    if (params.type in 0..2) {
+                        eq("type", Integer.parseInt(params.type))
+                    }
+                } else {
+                    between("type", 0, 2)
                 }
             }
             if (params['sort']) {
