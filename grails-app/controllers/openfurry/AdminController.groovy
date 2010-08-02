@@ -7,11 +7,15 @@ class AdminController {
 
     def warningService
 
+    def permissionsService
+
     def index = {
         if (!authenticateService.ifAnyGranted("ROLE_STAFF.ROLE_ADMIN")) {
             redirect(action: "list")
             return
         }
+
+        // otherwise, admin dashboard
     }
 
     def list = {
@@ -20,6 +24,26 @@ class AdminController {
         def governorRole = Role.findByAuthority("ROLE_GOVERNOR")
 
         [admins: adminRole, staff: staffRole, governors: governorRole]
+    }
+
+    def troubleTicket = {
+        if (request.getMethod() == "GET") {
+            return
+        }
+
+        def ticket = new Issue()
+        ticket.properties = params
+        ticket.submitter = authenticateService.principal().domainClass
+        ticket.votes = 0
+
+        if (ticket.save(flush: true)) {
+            // TODO message user, staff
+            // TODO transaction
+
+            redirect(action: "ticket", id: ticket.id)
+        } else {
+            [instance: ticket]
+        }
     }
 
     def tickets = {
@@ -36,7 +60,7 @@ class AdminController {
             }
         }
 
-        [tickets: list]
+        [issueList: list]
     }
 
     def ticket = {
@@ -47,7 +71,12 @@ class AdminController {
             return
         }
 
-        [ticket: ticket]
+        if (!permissionsService.troubleTickets.userCanView(ticket)) {
+            response.sendError(403)
+            return
+        }
+
+        [issue: ticket]
     }
 
     def updateTicket = {
@@ -59,13 +88,13 @@ class AdminController {
         }
 
         if (request.getMethod() == "GET") {
-            [ticket: ticket]
+            render(view: "troubleTicket", model: [instance: ticket])
         } else {
             ticket.properties = params
             if (ticket.save(flush: true)) {
                 redirect(action: "ticket", id: ticket.id)
             } else {
-                [ticket: ticket]
+                render(view: "troubleTicket", model: [instance: ticket])
             }
         }
     }

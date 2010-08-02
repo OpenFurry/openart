@@ -49,4 +49,14 @@ class PermissionsService {
             return false
         }
     ]
+
+    def troubleTickets = [
+        userCanView: { ticket ->
+            if (authenticateService.principal().domainClass == ticket.submitter
+                || authenticateService.ifAnyGranted("ROLE_ADMIN,ROLE_STAFF")) {
+                return true
+            }
+            return false
+        }
+    ]
 }

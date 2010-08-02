@@ -1,20 +1,20 @@
-<html>
+<html><!-- TODO i18n -->
     <head>
-        <title><g:message code="openfurry.issue.views.creat" default="Create issue" /></title>
+        <title>TROUBLE TICKET</title>
         <meta name="layout" content="main" />
     </head>
     <body>
         <g:hasErrors bean="${instance}">
-        <div class="errors">
-            <g:renderErrors bean="${instance}" as="list" />
-        </div>
+            <div class="errors">
+                <g:renderErrors bean="${instance}" as="list" />
+            </div>
         </g:hasErrors>
-        <g:form action="save" method="post">
+        <g:form method="post" action="troubleTicket">
             <g:if test="${params.id}"><input type="hidden" name="id" value="${params.id}" /></g:if>
             <table>
                 <thead>
                     <tr>
-                        <th colspan="2">ISSUE DETAILS<!-- TODO i18n --></th>
+                        <th colspan="2">TICKET DETAILS</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,9 +26,10 @@
                         <td class="name"><g:message code="openfurry.issue.type" default="Issue type" /></td>
                         <td class="value ${hasErrors(bean: instance, field: 'type', 'errors')}">
                             <select name="type">
-                                <option value="0"${instance?.type == 0 ? ' selected="selected"':''}>${message(code: "openfurry.issue.type." + grailsApplication.config.openfurry.issue.repr[0], default: "Bug")}</option>
-                                <option value="1"${instance?.type == 1 ? ' selected="selected"':''}>${message(code: "openfurry.issue.type." + grailsApplication.config.openfurry.issue.repr[1], default: "Improvement")}</option>
-                                <option value="2"${instance?.type == 2 ? ' selected="selected"':''}>${message(code: "openfurry.issue.type." + grailsApplication.config.openfurry.issue.repr[2], default: "New Feature")}</option>
+                                <option value="3"${instance?.type == 3 ? ' selected="selected"':''}>${message(code: "openfurry.issue.type." + grailsApplication.config.openfurry.issue.repr[3], default: "ToS Violation")}</option>
+                                <option value="4"${instance?.type == 4 ? ' selected="selected"':''}>${message(code: "openfurry.issue.type." + grailsApplication.config.openfurry.issue.repr[4], default: "AUP Violation")}</option>
+                                <option value="5"${instance?.type == 5 ? ' selected="selected"':''}>${message(code: "openfurry.issue.type." + grailsApplication.config.openfurry.issue.repr[5], default: "Account Issue")}</option>
+                                <option value="6"${instance?.type == 6 ? ' selected="selected"':''}>${message(code: "openfurry.issue.type." + grailsApplication.config.openfurry.issue.repr[6], default: "Harrassment")}</option>
                             </select>
                         </td>
                     </tr>
