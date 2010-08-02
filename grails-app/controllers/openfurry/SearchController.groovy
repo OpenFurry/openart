@@ -57,9 +57,12 @@ class SearchController {
         }
 
         def list = Issue.withCriteria {
-            or {
-                ilike("title", searchTerm)
-                ilike("description", searchTerm)
+            and {
+                between("type", 0, 2)
+                or {
+                    ilike("title", searchTerm)
+                    ilike("description", searchTerm)
+                }
             }
         }
 
