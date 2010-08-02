@@ -5,6 +5,11 @@
         <meta name="layout" content="main" />
     </head>
     <body>
+        <g:hasErrors bean="${person}">
+            <div class="errors">
+                <g:renderErrors bean="${person}" as="list" />
+            </div>
+        </g:hasErrors>
         <g:form action="save" method="post">
             <table>
                 <thead>
@@ -27,7 +32,7 @@
                     </tr>
                     <tr class="prop">
                         <th class="name">PASSWORD</th>
-                        <td class="value"><g:textField name="passwd" /></td>
+                        <td class="value"><g:textField name="password" /></td>
                     </tr>
                     <tr class="prop">
                         <th class="name">CONFIRM PASSWORD</th>
@@ -44,24 +49,17 @@
                         <th class="name">MEMBER TYPE</th>
                         <td class=value">
                             <select name="memberType">
-                                <option value="0"><g:message code="openfurry.user.types.${grailsApplication.config.openfurry.user.types.repr[0]}" default="${grailsApplication.config.openfurry.user.types.repr[0]}" /></option>
-                                <option value="1"><g:message code="openfurry.user.types.${grailsApplication.config.openfurry.user.types.repr[1]}" default="${grailsApplication.config.openfurry.user.types.repr[1]}" /></option>
-                                <option value="2"><g:message code="openfurry.user.types.${grailsApplication.config.openfurry.user.types.repr[2]}" default="${grailsApplication.config.openfurry.user.types.repr[2]}" /></option>
-                                <option value="3"><g:message code="openfurry.user.types.${grailsApplication.config.openfurry.user.types.repr[3]}" default="${grailsApplication.config.openfurry.user.types.repr[3]}" /></option>
-                                <option value="4"><g:message code="openfurry.user.types.${grailsApplication.config.openfurry.user.types.repr[4]}" default="${grailsApplication.config.openfurry.user.types.repr[4]}" /></option>
-                                <option value="5"><g:message code="openfurry.user.types.${grailsApplication.config.openfurry.user.types.repr[5]}" default="${grailsApplication.config.openfurry.user.types.repr[5]}" /></option>
-                                <option value="6"><g:message code="openfurry.user.types.${grailsApplication.config.openfurry.user.types.repr[6]}" default="${grailsApplication.config.openfurry.user.types.repr[6]}" /></option>
-                                <option value="7"><g:message code="openfurry.user.types.${grailsApplication.config.openfurry.user.types.repr[7]}" default="${grailsApplication.config.openfurry.user.types.repr[7]}" /></option>
-                                <option value="8"><g:message code="openfurry.user.types.${grailsApplication.config.openfurry.user.types.repr[8]}" default="${grailsApplication.config.openfurry.user.types.repr[8]}" /></option>
-                                <option value="9"><g:message code="openfurry.user.types.${grailsApplication.config.openfurry.user.types.repr[9]}" default="${grailsApplication.config.openfurry.user.types.repr[9]}" /></option>
+                                <g:each in="${0..9}" var="i">
+                                <option value="${i}"${person.memberType == i ? ' selected="selected"' : ''}><g:message code="openfurry.user.types.${grailsApplication.config.openfurry.user.types.repr[i]}" default="${grailsApplication.config.openfurry.user.types.repr[i]}" /></option>
+                                </g:each>
                             </select>
                         </td>
                     </tr>
                     <tr class="prop">   
                         <th class="name">SPECIES</th>
                         <td class="value">
-                            <select name="species">
-                                <of:speciesOptions />
+                            <select name="newspecies">
+                                <of:speciesOptions fromPerson="${person}" />
                             </select>
                         </td><!-- TODO: pass species to tag, make it selected -->
                     </tr>
@@ -96,17 +94,13 @@
                         <th class="name">PREFERED LICENSE</th>
                         <td class="value"><!-- TODO --></td>
                     </tr>
-                    <tr class="prop">
+                    <%--<tr class="prop">
                         <th class="name">PREFERED THEME</th>
                         <td cass="value"><!-- TODO --></td>
-                    </tr>
+                    </tr>--%>
                 </tbody>
-                <thead>
-                    <tr>
-                        <th colspan="2">PROPERTIES</th>
-                    </tr>
-                </thead>
             </table>
+            <div class="buttons"><input type="submit" /></div>
         </g:form>
     </body>
 </html>

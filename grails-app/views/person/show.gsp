@@ -76,7 +76,7 @@
                     </tr>
                     <tr class="prop">
                         <th class="name"><g:message code="openfurry.user.warningLevel" default="Warning level" /></th>
-                        <td class="value="><div style="background: url('${resource(dir: 'images', file: 'warning-gradient.jpg')}'); width: 200px; padding-left: ${person.warningLevel * 2}px"><strong>|</strong> (${person.warningLevel})</div></td>
+                        <td class="value="><div style="background: url('${resource(dir: 'images', file: 'warning-gradient.jpg')}') top left no-repeat; width: 200px;"><div style="margin-left: ${person.warningLevel * 2}px"><strong>|</strong> (${person.warningLevel}%)</div></div></td>
                     </tr>
                     </g:if>
                 </tbody>

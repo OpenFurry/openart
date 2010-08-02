@@ -60,8 +60,8 @@
                     <li><g:link controller="species"><g:message code="openfurry.display.navigation.species" default="Species" /></g:link></li>
                     <li><g:link controller="search"><g:message code="openfurry.display.navigation.search" default="Search" /></g:link></li>
                     <li><g:link controller="group"><g:message code="openfurry.display.navigation.groups" default="Groups and events" /></g:link></li>
-                    <li><g:link controller="market"><img src="${resource(dir: 'images/skin', file: 'database_table.png')}" alt="Market" /><g:message code="openfurry.display.navigation.market" default="Market" /></g:link></li>
-                    <li><g:link controller="issue"><img src="${resource(dir: 'images/skin', file: 'exclamation.png')}" alt="issues" /><g:message code="openfurry.display.navigation.issues" default="Issues" /></g:link></li>
+                    <li><g:link controller="market"><img src="${resource(dir: 'images/skin', file: 'database_table.png')}" alt="Market" /> <g:message code="openfurry.display.navigation.market" default="Market" /></g:link></li>
+                    <li><g:link controller="issue"><img src="${resource(dir: 'images/skin', file: 'exclamation.png')}" alt="issues" /> <g:message code="openfurry.display.navigation.issues" default="Issues" /></g:link></li>
                 </ul>
             </div>
 

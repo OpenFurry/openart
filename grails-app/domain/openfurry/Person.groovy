@@ -40,7 +40,6 @@ class Person {
 		passwd(blank: false)
 		enabled()
         profile(blank: true, nullable: true)
-        properties(blank: true, nullable: true)
         memberType(range: 0..9)
         memberClass(range: 0..4)
         maxViewableRating(range: 0..2)
@@ -71,7 +70,7 @@ class Person {
         statuses: UserStatus,
         groups: UserGroup,
         messages: UserMessage,
-        properties: UserProperty,
+        props: UserProperty,
     ]
 	static belongsTo = Role
 

@@ -5,18 +5,26 @@ class TreeifyTagLib {
     static namespace = "of"
 
     def speciesOptions = { attrs ->
-        out << openfurry.Species.createCriteria().list() { isNull("parent") }.collect {
-            "<optgroup label=\"${it.speciesName}\">\n${_speciesOptions(it.subSpecies, 1)}\n</optgroup>\n"
+        def selected
+        if (attrs["fromPerson"]) {
+            selected = [ attrs["fromPerson"].species.id ]
+        } else if (attrs["fromSubmission"]) {
+            selected = attrs["fromSubmission"].species.collect { it.id }
         }
+
+        out << openfurry.Species.createCriteria().list() { isNull("parent") }.collect {
+            "<optgroup label=\"${it.speciesName}\">\n${_speciesOptions(it.subSpecies, 1, selected)}\n</optgroup>\n"
+        }.join("")
     }
 
-    private String _speciesOptions(species, depth) {
+    private String _speciesOptions(species, depth, selected) {
         StringBuffer toReturn = new StringBuffer()
         species.each { it ->
-            toReturn.append("<option value=\"${it.id}\">")
+            toReturn.append("<option value=\"${it.id}\"")
+            it.id in selected ? toReturn.append(" selected=\"selected\">") : toReturn.append(">")
             (0..depth).each { i -> toReturn.append('-') }
             toReturn.append("${it.speciesName}</option>")
-            toReturn.append(_speciesOptions(openfurry.Species.findAllWhere(parent: it), depth + 1) + '\n')
+            toReturn.append(_speciesOptions(openfurry.Species.findAllWhere(parent: it), depth + 1, selected) + '\n')
         }
         toReturn.toString()
     }

@@ -110,11 +110,11 @@ class AdminController {
         if (params.warningLevel && params.reasonCode) {
             warningService.warn(
                 user,
-                grailsApplication.config.openfurry.user.warning."%{params.warningLevel}",
+                grailsApplication.config.openfurry.user.warning."${params.warningLevel}",
                 params.reasonCode)
             // TODO message admin
 
-            redirect(controller: "person", action: "show", id: user.username)
+            redirect(controller: "person", action: "show", params: [username: user.username])
         } else {
             [user: user]
         }
@@ -131,11 +131,11 @@ class AdminController {
         if (params.praiseLevel && params.reasonCode) {
             warningService.praise(
                 user,
-                grailsApplication.config.openfurry.user.warning."%{params.praiseLevel}",
+                grailsApplication.config.openfurry.user.warning."${params.praiseLevel}",
                 params.reasonCode)
             // TODO message admin
 
-            redirect(controller: "person", action: "show", id: user.username)
+            redirect(controller: "person", action: "show", params: [username: user.username])
         } else {
             [user: user]
         }
@@ -146,7 +146,7 @@ class AdminController {
 
         warningService.ban(user)
 
-        redirect(controller: "person", action: "show", id: user.username)
+        redirect(controller: "person", action: "show", params: [username: user.username])
     }
 
     def unban = {
@@ -154,6 +154,6 @@ class AdminController {
 
         warningService.unban(user)
 
-        redirect(controller: "person", action: "show", id: user.username)
+        redirect(controller: "person", action: "show", params: [username: user.username])
     }
 }
