@@ -40,6 +40,7 @@ class Person {
 		passwd(blank: false)
 		enabled()
         profile(blank: true, nullable: true)
+        preferedLicense(nullable: true)
         memberType(range: 0..9)
         memberClass(range: 0..4)
         maxViewableRating(range: 0..2)

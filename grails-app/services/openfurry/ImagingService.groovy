@@ -25,7 +25,7 @@ class ImagingService {
     }
 
     def createThumbnailFile(multiPartFile, File dest) {
-        multPartFile.transferTo(dest)
+        multiPartFile.transferTo(dest)
 
         resizeImage(dest, 100, dest)
 

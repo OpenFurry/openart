@@ -38,14 +38,14 @@
 			<tr class='prop'>
 				<td valign='top' class='name'><label for='passwd'><g:message code="openfurry.user.password" default="Password" /></label></td>
 				<td valign='top' class='value ${hasErrors(bean:person,field:'passwd','errors')}'>
-					<input type="password" name='passwd' value="${person?.passwd?.encodeAsHTML()}"/>
+					<input type="password" name='passwd' />
 				</td>
 			</tr>
 
 			<tr class='prop'>
 				<td valign='top' class='name'><label for='repasswd'><g:message code="openfurry.user.confirmPassword" default="Confirm password" /></label></td>
 				<td valign='top' class='value ${hasErrors(bean:person,field:'passwd','errors')}'>
-					<input type="password" name='repasswd' value="${person?.passwd?.encodeAsHTML()}"/>
+					<input type="password" name='repasswd' />
 				</td>
 			</tr>
 
@@ -55,6 +55,15 @@
 					<input type="text" name='email' value="${person?.email?.encodeAsHTML()}"/>
 				</td>
 			</tr>
+
+            <tr class="prop">
+                <th class="name"><label for="species.id">Species:</label></th>
+                <td class="value ${hasErrors(bean: person, field: 'species', 'errors')}">
+                    <select name="species.id">
+                        <of:speciesOptions fromPerson="${person}" />
+                    </select>
+                </td>
+            </tr>
 
             <tr class="prop" style="display: none">
                 <th class="name"><label for="hp"><g:message code="openfurry.user.honeypot" default="Do not enter anything in this field; if you do, your registration will be rejected" />

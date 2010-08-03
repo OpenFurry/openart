@@ -3,6 +3,12 @@ package openfurry
 class ProfileController {
     def authenticateService
 
+    def fileUploadService
+
+    def imagingService
+
+    static defaultAction = "edit"
+
     def edit = {
         def person = Person.get(authenticateService.principal().domainClass.id)
         [person: person]
@@ -20,8 +26,16 @@ class ProfileController {
             }
         }
 
-        if (params.newspecies && params.newspecies != user.species.id) {
-            user.species = Species.get(params.newspecies)
+        def avatar = request.getFile("av")
+        if (!avatar.empty) {
+            // TODO bill user
+            if (avatar.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.image) {
+                def dest = new File(fileUploadService.getAvatarDirectory(servletContext.getRealPath("/"), user), "${(new Date()).time}.${avatar.originalFilename.split('\\.')[-1]}")
+                imagingService.createThumbnailFile(avatar, dest)
+                user.avatar = dest.getCanonicalPath().replaceAll(servletContext.getRealPath("/") + "avatars", '')
+            } else {
+                user.errors.rejectValue("avatar", "openfurry.errors.fileTypeMismatch", "The uploaded file does not meet the approved file-type requirements")
+            }
         }
 
         if (user.save(flush: true)) {
@@ -50,5 +64,20 @@ class ProfileController {
     }
 
     def deleteProperty = {
+        def prop = UserProperty.get(params.id)
+        if (!prop) {
+            response.sendError(404) // TODO i18n
+            return
+        }
+
+        if (!permissionsService.props.userCanDelete(prop)) {
+            response.sendError(403)
+            return
+        }
+
+        prop.delete()
+
+        // TODO message user
+        redirec(action: "props")
     }
 }

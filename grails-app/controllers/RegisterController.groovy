@@ -8,6 +8,7 @@ import org.springframework.security.context.SecurityContextHolder as SCH
  * Registration controller.
  */
 class RegisterController {
+    static defaultAction = "index"
 
 	def authenticateService
 	def daoAuthenticationProvider
@@ -33,7 +34,7 @@ class RegisterController {
 			return [person: person, tstart: new Date().getTime()]
 		}
 
-		redirect uri: '/'
+		redirect(uri: '/')
 	}
 
 	/**
@@ -44,10 +45,10 @@ class RegisterController {
 		// get user id from session's domain class.
 		def user = authenticateService.userDomain()
 		if (user) {
-			render view: 'show', model: [person: Person.get(user.id)]
+			render(view: 'show', model: [person: Person.get(user.id)])
 		}
 		else {
-			redirect action: index
+			redirect(action: index)
 		}
 	}
 
@@ -81,7 +82,7 @@ class RegisterController {
 			person = Person.get(user.id)
 		}
 		else {
-			redirect action: indexdd
+			redirect(action: index)
 			return
 		}
 
@@ -98,7 +99,7 @@ class RegisterController {
 			}
 			else {
 				person.passwd = ''
-                messagingService.flash('error', 'openfurry.errors.passwordMismatch', 'The passwords you entered did not match')
+                person.errors.rejectValue("passwd", "openfurry.errors.passwordMismatch", "The passwords you entered did not match")
 				render view: 'edit', model: [person: person]
 				return
 			}
@@ -128,7 +129,7 @@ class RegisterController {
 
 		// skip if already logged in
 		if (authenticateService.isLoggedIn()) {
-			redirect action: show
+			redirect(action: show)
 			return
 		}
 
@@ -136,7 +137,7 @@ class RegisterController {
 		person.properties = params
 
         // Redo if they triggered bot defenses (taking less than 5 seconds or filling in the honey pot
-        if ((new Date().getTime() - Long.parseLong(params.tstart) > 5000l) || params.hp) {
+        if ((new Date().getTime() - Long.parseLong(params.tstart) < 5000l) || params.hp) {
             /*
             Do not change the flash message!
 
@@ -145,9 +146,15 @@ class RegisterController {
 
             ~MJS
             */
-            messagingService.flash('error', 'openfurry.errors.passwordMismatch', 'The passwords you entered did not match')
-			render view: 'index', model: [person: person, tstart: new Date().getTime()]
+            person.errors.rejectValue("passwd", "openfurry.errors.passwordMismatch", "The passwords you entered did not match")
+			render(view: 'index', model: [person: person, tstart: new Date().getTime()])
             return
+        }
+
+        if (params.username =~ /[^\\w-]/) {
+            person.errors.rejectValue("username", "openfurry.user.username.allowedChars", "The allowed characters for usernames are letters, numbers, hyphens (-), and underscores (_)")
+			render(view: 'index', model: [person: person, tstart: new Date().getTime()])
+			return
         }
 
 		def config = authenticateService.securityConfig
@@ -157,22 +164,21 @@ class RegisterController {
 		if (!role) {
 			person.passwd = ''
 			flash.message = 'Default Role not found.' // If this happens, the DB is down, and we have bigger things to worry about
-			render view: 'index', model: [person: person, tstart: new Date().getTime()]
+			render(view: 'index', model: [person: person, tstart: new Date().getTime()])
 			return
 		}
 
-		if (params.passwd != params.repasswd) {
+		if (params.passwd != params.repasswd || params.passwd == '') {
 			person.passwd = ''
-            messagingService.flash('error', 'openfurry.errors.passwordMismatch', 'The passwords you entered did not match')
-			render view: 'index', model: [person: person, tstart: new Date().getTime()]
+            person.errors.rejectValue("passwd", "openfurry.errors.passwordMismatch", "The passwords you entered did not match")
+			render(view: 'index', model: [person: person, tstart: new Date().getTime()])
 			return
 		}
 
 		def pass = authenticateService.encodePassword(params.passwd)
 		person.passwd = pass
 		person.enabled = true
-		person.emailShow = true
-		person.description = ''
+		person.profile = ''
 		if (person.save()) {
 			role.addToPeople(person)
             /*
@@ -206,7 +212,7 @@ class RegisterController {
 			redirect uri: '/'
 		} else {
 			person.passwd = ''
-			render view: 'index', model: [person: person, tstart: new Date().getTime()]
+			render(view: 'index', model: [person: person, tstart: new Date().getTime()])
 		}
 	}
 }

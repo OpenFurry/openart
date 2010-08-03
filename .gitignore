@@ -1,5 +1,6 @@
 web-app/WEB-INF/*
 web-app/submissions/*
+web-app/avatars/*
 web-app/themes/*
 web-app/mediaplayer/*
 run-app

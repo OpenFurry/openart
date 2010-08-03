@@ -59,4 +59,14 @@ class PermissionsService {
             return false
         }
     ]
+
+    def props = [
+        userCanDelete: { prop ->
+            if (prop.owner == authenticateService.principal().domainClass
+                || authenticateService.ifAnyGranted("ROLE_ADMIN,ROLE_STAFF")) {
+                return true
+            }
+            return false
+        }
+    ]
 }

@@ -10,7 +10,7 @@
                 <g:renderErrors bean="${person}" as="list" />
             </div>
         </g:hasErrors>
-        <g:form action="save" method="post">
+        <g:uploadForm action="save" method="post">
             <table>
                 <thead>
                     <tr>
@@ -58,7 +58,7 @@
                     <tr class="prop">   
                         <th class="name">SPECIES</th>
                         <td class="value">
-                            <select name="newspecies">
+                            <select name="species.id">
                                 <of:speciesOptions fromPerson="${person}" />
                             </select>
                         </td><!-- TODO: pass species to tag, make it selected -->
@@ -69,7 +69,7 @@
                     </tr>
                     <tr class="prop">
                         <th class="name">AVATAR</th>
-                        <td class="value"><!-- TODO --></td>
+                        <td class="value"><input type="file" name="av" /></td>
                     </tr>
                     <tr class="prop">
                         <th class="name">ACCPETING COMMISSIONS</th>
@@ -101,6 +101,6 @@
                 </tbody>
             </table>
             <div class="buttons"><input type="submit" /></div>
-        </g:form>
+        </g:uploadForm>
     </body>
 </html>

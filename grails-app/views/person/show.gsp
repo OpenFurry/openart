@@ -7,11 +7,16 @@
     <body>
         <div id="watchlink">
             <g:isLoggedIn>
-                <g:if test="${watched}">
-                    <g:link controller="watch" action="removeUser" params="[id: person.username]">- <g:message code="openfurry.watch.user.remove" default="Unwatch user" /></g:link>
+                <g:if test="${loggedInUserInfo(field: 'username') != person.username}">
+                    <g:if test="${watched}">
+                        <g:link controller="watch" action="removeUser" params="[id: person.username]">- <g:message code="openfurry.watch.user.remove" default="Unwatch user" /></g:link>
+                    </g:if>
+                    <g:else>
+                        <g:link controller="watch" action="addUser" params="[id: person.username]">+ <g:message code="openfurry.watch.user.add" default="Watch user" /></g:link>
+                    </g:else>
                 </g:if>
                 <g:else>
-                    <g:link controller="watch" action="addUser" params="[id: person.username]">+ <g:message code="openfurry.watch.user.add" default="Watch user" /></g:link>
+                    <g:message code="openfurry.user.thatsyou" default="(That's you!)" />
                 </g:else>
             </g:isLoggedIn>
         </div>
@@ -79,6 +84,16 @@
                         <td class="value="><div style="background: url('${resource(dir: 'images', file: 'warning-gradient.jpg')}') top left no-repeat; width: 200px;"><div style="margin-left: ${person.warningLevel * 2}px"><strong>|</strong> (${person.warningLevel}%)</div></div></td>
                     </tr>
                     </g:if>
+                </tbody>
+                <thead>
+                    <tr>
+                        <th colspan="2">USER PROPERTIES<!-- TODO i18n --></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <g:each in="${person.props}">
+                        <of:userProperty key="${it.key}" value="${it.value}" />
+                    </g:each>
                 </tbody>
             </table>
         </div>

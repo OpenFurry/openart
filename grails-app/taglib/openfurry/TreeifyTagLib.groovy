@@ -6,7 +6,7 @@ class TreeifyTagLib {
 
     def speciesOptions = { attrs ->
         def selected
-        if (attrs["fromPerson"]) {
+        if (attrs["fromPerson"] && attrs["fromPerson"].species) {
             selected = [ attrs["fromPerson"].species.id ]
         } else if (attrs["fromSubmission"]) {
             selected = attrs["fromSubmission"].species.collect { it.id }
@@ -21,7 +21,7 @@ class TreeifyTagLib {
         StringBuffer toReturn = new StringBuffer()
         species.each { it ->
             toReturn.append("<option value=\"${it.id}\"")
-            it.id in selected ? toReturn.append(" selected=\"selected\">") : toReturn.append(">")
+            selected && it.id in selected ? toReturn.append(" selected=\"selected\">") : toReturn.append(">")
             (0..depth).each { i -> toReturn.append('-') }
             toReturn.append("${it.speciesName}</option>")
             toReturn.append(_speciesOptions(openfurry.Species.findAllWhere(parent: it), depth + 1, selected) + '\n')
