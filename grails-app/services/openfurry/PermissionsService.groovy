@@ -6,6 +6,15 @@ class PermissionsService {
 
     def authenticateService
 
+    def market = [
+        userCanAfford: { pennies ->
+            if (authenticateService.principal().domainClass.pennies - pennies < 0) {
+                return false
+            }
+            return true
+        }
+    ]
+
     def groups = [
         userIsMember: { group ->
             return (authenticateService.principal().domainClass in group.members)

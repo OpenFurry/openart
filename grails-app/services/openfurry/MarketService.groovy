@@ -9,11 +9,18 @@ class MarketService {
     // Required to warn of attempted stealing
     def warningService
 
+    // Required for checking if user can afford
+    def permissionsService
+
     // Required for reason for warning
     def messageSource
 
     def makePayment(Person userFrom, Person userTo, Integer amount) {
         if (amount < 0) {
+            if (!permissionsService.market.userCanAfford(unitPrice.price)) {
+                // TODO message user
+                return
+            }
             userFrom.pennies -= amount
             userTo.pennies += ammount
             userFrom.save(flush: true)
@@ -29,6 +36,10 @@ class MarketService {
         // Try to grab the unit price
         def unitPrice = UnitPrice.findBySignal(signal)
         if (unitPrice) {
+            if (!permissionsService.market.userCanAfford(unitPrice.price)) {
+                // TODO message user
+                return
+            }
             // Modify the user's balance
             user.pennies -= unitPrice.price
             user.interactionCount++
