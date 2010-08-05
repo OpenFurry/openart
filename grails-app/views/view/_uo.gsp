@@ -1,3 +1,6 @@
+<g:ifAnyGranted role="ROLE_STAFF,ROLE_ADMIN">
+    <g:render template="admin" />
+</g:ifAnyGranted>
 <div class="uoDisplay block">
     <div class="uoTitle shadow">${instance.title.encodeAsHTML()} - <of:linking noImages="true">${instance.owner.encodeAsHTML()}</of:linking></div>
     <div class="uoDescription">

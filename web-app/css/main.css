@@ -33,6 +33,14 @@ hr {
     background-color: #aaa;
 }
 
+dt {
+    font-weight: bold;
+}
+
+dd {
+    padding-left: 1em;
+}
+
 /*
 Header
 */
@@ -66,11 +74,11 @@ Navigation/user control
     width: 100%
 }
 
-#navigation ul {
+.admin ul, #navigation ul {
     list-style-type: none;
 }
 
-#navigation li {
+.admin li, #navigation li {
     display: inline;
     margin-left: 1em;
 }
@@ -276,7 +284,7 @@ td.errors textarea {
 }
 
 /*
-Success/Warning/Failure divs, issue types
+Success/Warning/Failure divs, issue types, admin
 */
 .success, .NewFeature {
     background-color: #E6EFC2;
@@ -292,11 +300,11 @@ Success/Warning/Failure divs, issue types
 .warning {
     border: 2px solid #FFd324;
 }
-.failure, .Bug {
-    background-color: #FBE3E4;
-    color: #000;
+.admin, .admin .shadow, .failure, .Bug {
+    background-color: #FBE3E4 !important;
+    color: #000 !important;
 }
-.failure {
+.admin, .failure {
     border: 2px solid #FbC2C4;
 }
 
@@ -575,6 +583,25 @@ Events
 /*
 UserObjects
 */
+.uoDisplay {
+    margin-top: 0.5em;
+}
+.uoDescription {
+    width: 70%;
+    margin: 0;
+    float: left;
+}
+
+.uoInfo {
+    width: 29%;
+    margin: 0;
+    float: right;
+}
+
+.uoLicense {
+    clear: both;
+}
+
 .uoList h3 {
     border-top: 1px solid #777;
     border-left: 1px solid #777;

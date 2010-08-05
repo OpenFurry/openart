@@ -9,6 +9,9 @@ class ListService {
     static transactional = true
 
     def listUOsForRating(Closure c, params) {
+        params.max = Math.min(params?.max?.toInteger() ?: 10, 100)
+        params.offset = params?.offset?.toInteger() ?: 0
+
         def maxRating = CH.config.openfurry.ratings.low
         def p = null
         if (authenticateService.isLoggedIn()) {
@@ -16,7 +19,12 @@ class ListService {
             maxRating = p.maxViewableRating
         }
         
-        UserObject.withCriteria {
+        UserObject.createCriteria().list(
+            max: params.max,
+            offset: params.offset,
+            sort: "lastUpdated",
+            order: "desc"
+        ) {
             and {
                 c.delegate = delegate
                 c() 
@@ -24,19 +32,27 @@ class ListService {
                 if (params?.type) {
                     eq('type', params.type)
                 }
-                if (p) {
-                    or {
-                        eq('published', true)
-                        and {
-                            eq('published', false)
-                            eq('owner', p)
+                if (p && !authenticateService.ifAnyGranted("ROLE_STAFF,ROLE_ADMIN")) {
+                    and {
+                        or {
+                            eq('published', true)
+                            and {
+                                eq('published', false)
+                                eq('owner', p)
+                            }
+                        }
+                        or {
+                            eq('takenDown', false)
+                            and {
+                                eq('takenDown', true)
+                                eq('owner', p)
+                            }
                         }
                     }
                 } else {
                     eq('published', true)
                 }
             }
-            order('lastUpdated', 'desc')
         }
 
     }
@@ -49,7 +65,8 @@ class ListService {
             max: params.max, 
             offset: params.offset,
             sort: "lastUpdated",
-            order: "desc") {
+            order: "desc"
+        ) {
             eq("group", group)
         }
     }

@@ -6,6 +6,46 @@ class PermissionsService {
 
     def authenticateService
 
+    def uo = [
+        userCanView: { uo ->
+            if (uo.published) {
+                if (uo.takenDown) {
+                    if (authenticateService.principal().domainClass.id == uo.owner.id
+                        || authenticateService.ifAnyGranted("ROLE_STAFF,ROLE_ADMIN")) {
+                        return true
+                    } else {
+                        return false
+                    }
+                } else {
+                    if (uo.friendsOnly) {
+                        if (authenticateService.principal().domainClass.id == uo.owner.id
+                            || authenticateService.principal().domainClass in uo.owner.friends
+                            || authenticateService.ifAnyGranted("ROLE_STAFF,ROLE_ADMIN")) {
+                            return true
+                        } else {
+                            return false
+                        }
+                    }
+                }
+            } else {
+                if (authenticateService.principal().domainClass.id == uo.owner.id
+                    || authenticateService.ifAnyGranted("ROLE_STAFF,ROLE_ADMIN")) {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        },
+        userCanEdit: { uo ->
+            if (authenticateService.principal().domainClass.id == uo.owner.id
+                || authenticateService.ifAnyGranted("ROLE_STAFF,ROLE_ADMIN")) {
+                return true
+            } else {
+                return false
+            }
+        }
+    ]
+
     def market = [
         userCanAfford: { pennies ->
             if (authenticateService.principal().domainClass.pennies - pennies < 0) {

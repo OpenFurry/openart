@@ -20,6 +20,9 @@ class SubmitController {
     // Needed for tagging
     def tagService
 
+    // Needed for checking permissions
+    def permissionsService
+
     def index = { }
 
     def chooseType = {
@@ -80,7 +83,7 @@ class SubmitController {
      */
     def edit = {
         def uo = UserObject.get(params.id)
-        if (uo.owner.username != authenticateService.principal().username) {
+        if (!uo || !permissionsService.uo.userCanEdit(uo)) {
             response.sendError(403) //TODO i18n, punish?
             return
         }
@@ -123,6 +126,37 @@ class SubmitController {
                 break;
         }
     }
+
+    /*
+     * Freezing and unfreezing of comments
+     */
+    def freezeComments = {
+        def uo = UserObject.get(params.id)
+        if (uo && permissionsService.uo.userCanEdit(uo)) {
+            uo.freezeComments = true
+            uo.save(flush: true)
+            // TODO message user
+            redirect(controller: "view", action: "show", id: uo.id)
+        } else {
+            response.sendError(404)
+            return
+        }
+    }
+
+    def unFreezeComments = {
+        def uo = UserObject.get(params.id)
+        if (uo && permissionsService.uo.userCanEdit(uo)) {
+            uo.freezeComments = false
+            uo.save(flush: true)
+            // TODO message user
+            redirect(controller: "view", action: "show", id: uo.id)
+        } else {
+            response.sendError(404)
+            return
+        }
+    }
+
+
 
     /*
      * Save views

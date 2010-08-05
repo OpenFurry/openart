@@ -2,48 +2,16 @@ package openfurry
 
 class ViewController {
 
+    def permissionsService
+
     def show = {
         def userObject = UserObject.get(params.id)
         
-        if (userObject) {
+        if (userObject && permissionsService.uo.userCanView(userObject)) {
             render(view: userObject.type, model: [instance: userObject])
         } else {
-            response.sendError 404
+            response.sendError(404) // TODO i18n
         }
-        /*
-        switch (userObject) {
-            case AudioUserObject:
-                render(view: 'audio', model:[instance: userObject])
-                break
-            case VideoUserObject:
-                render(view: 'video', model:[instance: userObject])
-                break
-            case FlashUserObject:
-                render(view: 'flash', model:[instance: userObject])
-                break
-            case ImageUserObject:
-                render(view: 'image', model:[instance: userObject])
-                break
-            case TextUserObject:
-                if (((TextUserObject) userObject).journal) {
-                    redirect(action: 'journal', id: userObject.id)
-                } else {
-                    render(view: 'text', model:[instance: userObject])
-                }
-                break
-            case ApplicationUserObject:
-                render(view: 'application', model:[instance: userObject])
-                break
-            case OrderedCollection:
-                render(view: 'orderedCollection', model:[instance: userObject])
-                break
-            case UnorderedCollection:
-                render(view: 'unorderedCollection', model:[instance: userObject])
-                break
-            default:
-                flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'UserObject.label', default: 'UserObject'), params.id])}"
-                response.sendError(404, "${message(code: 'default.not.found.message', args: [message(code: 'UserObject.label', default: 'UserObject'), params.id])}")
-        }*/
     }
 
     def audio = {

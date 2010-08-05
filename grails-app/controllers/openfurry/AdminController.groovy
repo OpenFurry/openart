@@ -156,4 +156,32 @@ class AdminController {
 
         redirect(controller: "person", action: "show", params: [username: user.username])
     }
+
+    def takeDown = {
+        def uo = UserObject.get(params.id)
+        if (!uo) {
+            response.sendError(404)
+            return
+        }
+        
+        uo.takenDown = true
+        uo.save()
+
+        // TODO message user, message admin
+        redirect(controller: "view", action: "show", id: uo.id)
+    }
+
+    def unTakeDown = {
+        def uo = UserObject.get(params.id)
+        if (!uo) {
+            response.sendError(404)
+            return
+        }
+
+        uo.takenDown = false
+        uo.save()
+
+        // TODO message user, message admin
+        redirect(controller: "view", action: "show", id: uo.id)
+    }
 }
