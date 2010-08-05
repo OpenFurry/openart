@@ -1,5 +1,6 @@
 import openfurry.Person
 import openfurry.Role
+import openfurry.UserInvitation
 
 import org.springframework.security.providers.UsernamePasswordAuthenticationToken as AuthToken
 import org.springframework.security.context.SecurityContextHolder as SCH
@@ -151,7 +152,7 @@ class RegisterController {
             return
         }
 
-        if (params.username =~ /[^\\w-]/) {
+        if (params.username =~ /[^a-zA-Z_0-9-]/) {
             person.errors.rejectValue("username", "openfurry.user.username.allowedChars", "The allowed characters for usernames are letters, numbers, hyphens (-), and underscores (_)")
 			render(view: 'index', model: [person: person, tstart: new Date().getTime()])
 			return
@@ -168,12 +169,26 @@ class RegisterController {
 			return
 		}
 
+        // Check for mismatched or blank passwords
 		if (params.passwd != params.repasswd || params.passwd == '') {
 			person.passwd = ''
             person.errors.rejectValue("passwd", "openfurry.errors.passwordMismatch", "The passwords you entered did not match")
 			render(view: 'index', model: [person: person, tstart: new Date().getTime()])
 			return
 		}
+        
+        // Check for invitation code if we need it
+        if (grailsApplication.config.openfurry.requireInvitation) {
+            def invitation = UserInvitation.findByCode(params.invitationCode)
+            if (!invitation) {
+                person.errors.rejectValue("enabled", "openfurry.userInvitation.doesNotExist", "Could not find that invitation code, please check your typing - this is case sensitive!")
+                render(view: "index", model: [person: person, tstart: new Date().getTime()])
+                return
+            } else {
+                invitation.delete()
+            }
+        }
+
 
 		def pass = authenticateService.encodePassword(params.passwd)
 		person.passwd = pass

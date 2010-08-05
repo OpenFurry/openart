@@ -94,6 +94,18 @@ log4j = {
 security.defaultRole='ROLE_USER'
 
 /**
+ * OpenFurry settings
+ */
+openfurry.readOnly = false
+openfurry.requireInvitation = true
+openfurry.enabledTypes.image = true
+openfurry.enabledTypes.audio = true
+openfurry.enabledTypes.video = true
+openfurry.enabledTypes.flash = true
+openfurry.enabledTypes.text = true
+openfurry.enabledTypes.application = true
+
+/**
  * OpenFurry Constants
  */
 
