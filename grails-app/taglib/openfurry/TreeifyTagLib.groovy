@@ -4,6 +4,29 @@ class TreeifyTagLib {
 
     static namespace = "of"
 
+    def authenticateService
+
+    def collectionsOptionsForUser = { attrs ->
+        def ordered = OrderedCollection.findByOwner(authenticateService.principal().domainClass)
+        def unordered = UnorderedCollection.findByOwner(authenticateService.principal().domainClass)
+        out << """
+        <optgroup label="${message(code: 'openfurry.collection.ordered', default: 'Ordered collection')}">
+        """
+        out << ordered.collect {
+            "<option value=\"${it.id}\">${it.title}</option>"
+        }.join("")
+        out << """
+        </optgroup>
+        <optgroup label="${message(code: 'openfurry.collection.unordered', default: 'Unordered collection')}">
+        """
+        out << unordered.collect {
+            "<option value=\"${it.id}\">${it.title}</option"
+        }.join("")
+        out << """
+        </optgroup>
+        """
+    }
+
     def speciesOptions = { attrs ->
         def selected
         if (attrs["fromPerson"] && attrs["fromPerson"].species) {

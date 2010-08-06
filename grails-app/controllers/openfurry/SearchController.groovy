@@ -38,6 +38,7 @@ class SearchController {
         }
 
         def list = listService.listUOsForRating(criteria, params)
+        params.totalSubmissions = list.totalCount
 
         [uoList: list, searchTerm: params.q]
     }

@@ -78,7 +78,12 @@
         </tr>
         <tr class="prop">
             <th class="name"><g:message code="openfurry.uo.collection" default="Collection" /></th>
-            <td class="value ${hasErrors(bean: instance, field: 'collection', 'errors')}">TODO</td>
+            <td class="value ${hasErrors(bean: instance, field: 'collection', 'errors')}">
+                <select name="collectionId">
+                    <option disabled="disabled" selected="selected"></option>
+                    <of:collectionsOptionsForUser />
+                </select>
+            </td>
         </tr>
         <tr class="prop">
             <th class="name"><g:message code="openfurry.uo.license" default="License" /></th>
