@@ -1,4 +1,4 @@
-import openfurry.*
+import com.mjs_svc.openfurry.*
 
 class BootStrap {
 

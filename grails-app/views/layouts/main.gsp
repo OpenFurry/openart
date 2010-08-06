@@ -68,7 +68,7 @@
             <!-- Message of the day -->
             <div id="motd">
                 <ul>
-                    <g:each in="${openfurry.MOTD.findAllByActive(true)}"><li>${it.content}</li></g:each>
+                    <g:each in="${com.mjs_svc.openfurry.MOTD.findAllByActive(true)}"><li>${it.content}</li></g:each>
                 </ul>
             </div>
 
