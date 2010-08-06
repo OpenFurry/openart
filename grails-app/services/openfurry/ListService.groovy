@@ -9,7 +9,7 @@ class ListService {
     static transactional = true
 
     def listUOsForRating(Closure c, params) {
-        params.max = Math.min(params?.max?.toInteger() ?: 10, 100)
+        params.max = Math.min(params?.max?.toInteger() ?: 16, 100)
         params.offset = params?.offset?.toInteger() ?: 0
 
         def maxRating = CH.config.openfurry.ratings.low

@@ -4,7 +4,7 @@
 </head>
 <body>
     <div class="applicationDisplay">
-        <a href="${resource(dir: 'submissions/application/' + instance.owner.username, file: instance.screenshot)}">APPLICATION SCREEN SHOT</a>
+        <img src="${resource(file: instance.screenShot)}" />
     </div>
     <g:render template="uo" />
 </body>

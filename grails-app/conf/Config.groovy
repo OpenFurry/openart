@@ -96,6 +96,9 @@ security.defaultRole='ROLE_USER'
 /**
  * OpenFurry settings
  */
+openfurry.version.number = "0.1"
+openfurry.version.name.latin = "Alopex Lagopus"
+openfurry.version.name.english = "Arctic Fox"
 openfurry.readOnly = false
 openfurry.requireInvitation = true
 openfurry.enabledTypes.image = true

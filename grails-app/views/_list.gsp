@@ -27,6 +27,6 @@
         </g:each>
         <g:if test="${uoList.size() < 1}"><g:message code="openfurry.technical.noSubmissions" default="No submissions to list" /></g:if>
         <hr style="width: 50%; clear: both; margin: auto">
-        <g:paginate total="${uoList.size()}" params="${params}" max="16" />
+        <g:paginate total="${params.totalSubmissions}" />
     </div>
 </div>

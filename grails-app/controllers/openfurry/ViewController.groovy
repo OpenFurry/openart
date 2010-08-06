@@ -8,6 +8,10 @@ class ViewController {
         def userObject = UserObject.get(params.id)
         
         if (userObject && permissionsService.uo.userCanView(userObject)) {
+            if (permissionsService.uo.userViewCounts(userObject)) {
+                userObject.views++
+                userObject.save(flush: true)
+            }
             render(view: userObject.type, model: [instance: userObject])
         } else {
             response.sendError(404) // TODO i18n

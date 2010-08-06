@@ -24,6 +24,16 @@ class PersonController {
 		[personList: Person.list(params)]
 	}
 
+    def friends = {
+        def user = Person.findByUsername(params.id)
+        if (!user) {
+            response.sendError(404)
+            return
+        }
+
+        [user: user]
+    }
+
 	def show = {
 		def person = params.username ? Person.findByUsername(params.username) : Person.get(params.id)
 		if (!person) {
@@ -50,6 +60,7 @@ class PersonController {
             eq("owner", person)
         }
         def submissions = listService.listUOsForRating(criteria, params)
+        params.totalSubmissions = submissions.totalCount
 
 		[person: person, watched: watched, roleNames: roleNames, submissions: submissions]
 	}

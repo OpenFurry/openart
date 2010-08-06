@@ -179,7 +179,7 @@ class AdminController {
         }
 
         uo.takenDown = false
-        uo.save()
+        uo.save(flush: true)
 
         // TODO message user, message admin
         redirect(controller: "view", action: "show", id: uo.id)

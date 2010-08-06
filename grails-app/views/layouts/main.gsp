@@ -91,6 +91,7 @@
             <g:layoutBody />
         </div>
         <div id="footer">
+            <p>OpenFurry v${grailsApplication.config.openfurry.version.number} - "<g:message code="openfurry.version.${grailsApplication.config.openfurry.version.number}" default="${grailsApplication.config.openfurry.version.name.english}" /> (<em>${grailsApplication.config.openfurry.version.name.latin}</em>)"</p>
             <p>An <a href="http://mjs-svc.com">MJS Services</a> project | Powered by <a href="http://grails.org">Grails</a><br />
                 <g:link controller="flatpage" action="show" params="[slug: 'ip']">Intellectual Property Information</g:link></p>
         </div>

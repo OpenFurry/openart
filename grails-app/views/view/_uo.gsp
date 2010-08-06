@@ -2,7 +2,7 @@
     <g:render template="admin" />
 </g:ifAnyGranted>
 <div class="uoDisplay block">
-    <div class="uoTitle shadow">${instance.title.encodeAsHTML()} - <of:linking noImages="true">${instance.owner.encodeAsHTML()}</of:linking></div>
+    <div class="uoTitle shadow"><strong>${instance.title.encodeAsHTML()}</strong> - <of:linking noImages="true">${instance.owner.encodeAsHTML()}</of:linking></div>
     <div class="uoDescription">
         <of:linking><markdown:renderHtml>${instance.description?.encodeAsHTML()}</markdown:renderHtml></of:linking>
     </div>
@@ -68,6 +68,9 @@
                     <g:each in="${instance.tags}"><li><a href="${createLink(controller: 'tag', action: 'show', id: it.tag)}">${it.tag}</a></li></g:each>
                 </ul>
             </dd>
+
+            <dt class="odd"><g:message code="openfurry.uo.externalLink" default="External link" /></dt>
+            <dd class="odd"><g:if test="${instance.externalLink}"><a target="_blank" href="${instance.externalLink.encodeAsHTML()}">${instance.externalLink.encodeAsHTML()}</a></g:if></dd>
         </dl>
     </div>
     <div class="uoLicense shadow">Submission <a href="${instance.license.url}">${instance.license.display} ${instance.owner.userRealName} <g:formatDate format="yyyy" date="${instance.dateCreated}" /></a> - ${instance.license.description}</div>

@@ -25,6 +25,8 @@ class PermissionsService {
                         } else {
                             return false
                         }
+                    } else {
+                        return true
                     }
                 }
             } else {
@@ -34,6 +36,17 @@ class PermissionsService {
                 } else {
                     return false
                 }
+            }
+        },
+        userViewCounts: { uo ->
+            if (authenticateService.isLoggedIn()) {
+                if (authenticateService.principal().domainClass.id == uo.owner.id) {
+                    return false
+                } else {
+                    return true
+                }
+            } else {
+                return false
             }
         },
         userCanEdit: { uo ->

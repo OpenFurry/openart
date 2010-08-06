@@ -404,6 +404,7 @@ class SubmitController {
         textUserObjectInstance.owner = owner
         textUserObjectInstance.type = "text"
         textUserObjectInstance.journal = false
+        def time = new Date().getTime()
 
         def uploadedFile = request.getFile('attachment')
         if (!uploadedFile.empty) {
@@ -482,15 +483,17 @@ class SubmitController {
         def owner = Person.findByUsername(authenticateService.principal().username)
         applicationUserObjectInstance.type = "application"
         applicationUserObjectInstance.owner = owner
+        def time = new Date().getTime()
 
         def uploadedFile = request.getFile("fileUpload")
         if (!uploadedFile.empty) {
-            if (uploadedFile.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.pplication) {
-                def dest = new File(fileUploadService.getSubmissionDirectory(servletConapplication.getRealPath("/"), owner, "application"), "${time}.${owner.username}_${uploadedFile.originalFilename}")
+                log.warn "Saving file..3"
+            if (uploadedFile.originalFilename.split("\\.")[-1].toLowerCase() in grailsApplication.config.openfurry.fileTypes.application) {
+                def dest = new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "application"), "${time}.${owner.username}_${uploadedFile.originalFilename}")
                 uploadedFile.transferTo(dest)
-                applicationUserObjectInstance.screenshot = dest.getCanonicalPath().replaceAll(servletConapplication.getRealPath("/"), '')
+                applicationUserObjectInstance.screenShot = dest.getCanonicalPath().replaceAll(servletContext.getRealPath("/"), '')
             } else {
-                applicationUserObjectInstance.errors.rejectValue("screenshot", "openfurry.errors.fileTypeMismatch", "The uploaded file does not meet the approved file-type requirements")
+                applicationUserObjectInstance.errors.rejectValue("screenShot", "openfurry.errors.fileTypeMismatch", "The uploaded file does not meet the approved file-type requirements")
             }
         }
 
