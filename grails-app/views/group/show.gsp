@@ -22,6 +22,9 @@
                     <g:link controller="group" action="join" id="${group.slug}"><g:message code="openfurry.group.views.join" default="Join this group" /></g:link>
                 </g:else>
             </g:else>
+            <of:withPermission class="groups" permission="userIsAdmin" arg="${group}">
+                <g:link controller="group" action="edit" id="${group.slug}"><g:message code="openfurry.group.views.edit" default="Edit group" /></g:link>
+            </of:withPermission>
         </div>
         <div class="groupEvents">
             <g:link controller="event" action="calendar" id="${group.slug}"><g:message code="openfurry.event.views.calendar" default="Calendar" /></g:link>

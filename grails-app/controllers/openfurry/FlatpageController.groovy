@@ -31,7 +31,7 @@ class FlatpageController {
     }
 
     def show = {
-        def flatpageInstance = Flatpage.get(params.id)
+        def flatpageInstance = Flatpage.findBySlug(params.id)
         if (!flatpageInstance) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'flatpage.label', default: 'Flatpage'), params.id])}"
             redirect(action: "list")

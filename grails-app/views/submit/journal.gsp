@@ -42,7 +42,13 @@
                         </td>
                     </tr>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.journal.journal" default="Journal entry" /></th>
+                        <th class="name">
+                            <g:message code="openfurry.journal.journal" default="Journal entry" />
+                            <div class="message">
+                                <p><g:link controller="flatpage" action="show" id="markdown"><g:message code="openfurry.messages.markdownOkay" default="Markdown allowed" /></g:link></p>
+                                <p><g:link controller="flatpage" action="show" id="linking"><g:message code="openfurry.messages.linkingOkay" default="Linking allowed" /></g:link></p>
+                            </div>
+                        </th>
                         <td class="value ${hasErrors(bean: instance, field: 'text', 'errors')}"><g:textArea name="journal" rows="10" cols="75" /></td>
                     </tr>
                 </tbody>

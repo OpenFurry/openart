@@ -12,9 +12,11 @@ class CalendarTagLib {
         // Empty first cells
         out << "<tr>\n"
         def dayOfWeek = Calendar.SUNDAY
-        for (i in (Calendar.SUNDAY..(start.get(Calendar.DAY_OF_WEEK) - 1))) {
-            out << '<td class="empty"></td>\n'
-            dayOfWeek++
+        if (start.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
+            for (i in (Calendar.SUNDAY..(start.get(Calendar.DAY_OF_WEEK) - 1))) {
+                out << '<td class="empty"></td>\n'
+                dayOfWeek++
+            }
         }
 
         // Loop through each date, print out any events

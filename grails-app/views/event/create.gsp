@@ -24,7 +24,12 @@
                         <td class="value"><g:textField name="title" value="${instance?.title}" /></td>
                     </tr>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.event.description" default="Description" /></th>
+                        <th class="name"><g:message code="openfurry.event.description" default="Description" />
+                            <div class="message">
+                                <p><g:link controller="flatpage" action="show" id="markdown"><g:message code="openfurry.messages.markdownOkay" default="Markdown allowed" /></g:link></p>
+                                <p><g:link controller="flatpage" action="show" id="linking"><g:message code="openfurry.messages.linkingOkay" default="Linking allowed" /></g:link></p>
+                            </div>
+                        </th>
                         <td class="value"><g:textArea name="description" rows="10" cols="50" value="${instance?.description}" /></td>
                     </tr>
                     <tr class="prop">

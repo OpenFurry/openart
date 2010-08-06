@@ -25,7 +25,13 @@ class CommentTagLib {
                             <td class="value"><input type="text" name="title"  value="${attrs['defaultTitle'] ?: ''}" /></td>
                         </tr>
                         <tr class="prop">
-                            <th class="name">${message(code: 'openfurry.comment.body', default: 'Comment')}</th>
+                            <th class="name">
+                                ${message(code: 'openfurry.comment.body', default: 'Comment')}
+                                <div class="message">
+                                    <p><a href="${createLink(controller: 'flatpage', action: 'show', id: 'markdown')}">${message(code: "openfurry.messages.markdownOkay", default: "Markdown allowed")}</a></p>
+                                    <p><a href="${createLink(controller: 'flatpage', action: 'show', id: 'linking')}">${message(code: "openfurry.messages.linkingOkay", default: "Linking allowed")}</a></p>
+                                </div>
+                            </th>
                             <td class="value"><textarea name="comment" rows="10" cols="50">${attrs['defaultBody'] ?: ''}</textarea></td>
                         </tr>
                         <tr>

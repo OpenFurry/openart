@@ -17,8 +17,8 @@ class EventController {
             return
         }
 
-        def month = params.month ? params.month - 1 : new GregorianCalendar().get(Calendar.MONTH)
-        def year = params.year ?: new GregorianCalendar().get(Calendar.YEAR)
+        def month = params.month ? Integer.parseInt(params.month) - 1 : new GregorianCalendar().get(Calendar.MONTH)
+        def year = params.year ? Integer.parseInt(params.year) : new GregorianCalendar().get(Calendar.YEAR)
 
         // Get the start of the month given the year and month data
         def monthStart = new GregorianCalendar(year, month, 1)
@@ -41,7 +41,17 @@ class EventController {
             // order("eventDateStart", "desc")
         }
 
-        [monthStart: monthStart, monthEnd: monthEnd, events: events]
+        def prevMonth = [
+            month: monthStart.get(Calendar.MONTH) == 0 ? 11 : monthStart.get(Calendar.MONTH) - 1,
+            year: monthStart.get(Calendar.MONTH) == 0 ? monthStart.get(Calendar.YEAR) - 1 : monthStart.get(Calendar.YEAR)
+        ]
+
+        def nextMonth = [
+            month: (monthStart.get(Calendar.MONTH) + 1) % 12,
+            year: monthStart.get(Calendar.MONTH) == 11 ? monthStart.get(Calendar.YEAR) + 1 : monthStart.get(Calendar.YEAR)
+        ]
+
+        [prevMonth: prevMonth, nextMonth: nextMonth, monthStart: monthStart, monthEnd: monthEnd, events: events, group: group]
     }
 
     def create = {

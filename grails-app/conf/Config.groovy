@@ -99,6 +99,7 @@ security.defaultRole='ROLE_USER'
 openfurry.version.number = "0.1"
 openfurry.version.name.latin = "Alopex Lagopus"
 openfurry.version.name.english = "Arctic Fox"
+//openfurry.assetURL = "http://assets.openfurry.com"
 openfurry.readOnly = false
 openfurry.requireInvitation = true
 openfurry.enabledTypes.image = true
