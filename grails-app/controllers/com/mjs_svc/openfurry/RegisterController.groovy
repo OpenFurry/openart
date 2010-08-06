@@ -28,9 +28,9 @@ class RegisterController {
 		}
 
 		if (session.id) {
-			def person = new Person()
-			person.properties = params
-			return [person: person, tstart: new Date().getTime()]
+			def user = new User()
+			user.properties = params
+			return [user: user, tstart: new Date().getTime()]
 		}
 
 		redirect(uri: '/')
@@ -44,7 +44,7 @@ class RegisterController {
 		// get user id from session's domain class.
 		def user = authenticateService.userDomain()
 		if (user) {
-			render(view: 'show', model: [person: Person.get(user.id)])
+			render(view: 'show', model: [user: User.get(user.id)])
 		}
 		else {
 			redirect(action: index)
@@ -56,18 +56,17 @@ class RegisterController {
 	 */
 	def edit = {
 
-		def person
 		def user = authenticateService.userDomain()
 		if (user) {
-			person = Person.get(user.id)
+			user = User.get(user.id)
 		}
 
-		if (!person) {
+		if (!user) {
             response.sendError(404) // TODO i18n
 			return
 		}
 
-		[person: person]
+		[user: user]
 	}
 
 	/**
@@ -75,17 +74,16 @@ class RegisterController {
 	 */
 	def update = {
 
-		def person
 		def user = authenticateService.userDomain()
 		if (user) {
-			person = Person.get(user.id)
+			user = User.get(user.id)
 		}
 		else {
 			redirect(action: index)
 			return
 		}
 
-		if (!person) {
+		if (!user) {
             reponse.sendError(404) // TODO i18n
 			return
 		}
@@ -94,35 +92,35 @@ class RegisterController {
 		if (params.passwd && params.passwd.length() > 0
 				&& params.repasswd && params.repasswd.length() > 0) {
 			if (params.passwd == params.repasswd) {
-				person.passwd = authenticateService.encodePassword(params.passwd)
+				user.passwd = authenticateService.encodePassword(params.passwd)
 			}
 			else {
-				person.passwd = ''
-                person.errors.rejectValue("passwd", "openfurry.errors.passwordMismatch", "The passwords you entered did not match")
-				render view: 'edit', model: [person: person]
+				user.passwd = ''
+                user.errors.rejectValue("passwd", "openfurry.errors.passwordMismatch", "The passwords you entered did not match")
+				render view: 'edit', model: [user: user]
 				return
 			}
 		}
 
-		person.userRealName = params.userRealName
-		person.email = params.email
+		user.userRealName = params.userRealName
+		user.email = params.email
 		if (params.emailShow) {
-			person.emailShow = true
+			user.emailShow = true
 		}
 		else {
-			person.emailShow = false
+			user.emailShow = false
 		}
 
-		if (person.save()) {
-			redirect action: show, id: person.id
+		if (user.save()) {
+			redirect action: show, id: user.id
 		}
 		else {
-			render view: 'edit', model: [person: person]
+			render view: 'edit', model: [user: user]
 		}
 	 }
 
 	/**
-	 * Person save action.
+	 * User save action.
 	 */
 	def save = {
 
@@ -132,8 +130,8 @@ class RegisterController {
 			return
 		}
 
-		def person = new Person()
-		person.properties = params
+		def user = new User()
+		user.properties = params
 
         // Redo if they triggered bot defenses (taking less than 5 seconds or filling in the honey pot
         if ((new Date().getTime() - Long.parseLong(params.tstart) < 5000l) || params.hp) {
@@ -145,14 +143,14 @@ class RegisterController {
 
             ~MJS
             */
-            person.errors.rejectValue("passwd", "openfurry.errors.passwordMismatch", "The passwords you entered did not match")
-			render(view: 'index', model: [person: person, tstart: new Date().getTime()])
+            user.errors.rejectValue("passwd", "openfurry.errors.passwordMismatch", "The passwords you entered did not match")
+			render(view: 'index', model: [user: user, tstart: new Date().getTime()])
             return
         }
 
         if (params.username =~ /[^a-zA-Z_0-9-]/) {
-            person.errors.rejectValue("username", "openfurry.user.username.allowedChars", "The allowed characters for usernames are letters, numbers, hyphens (-), and underscores (_)")
-			render(view: 'index', model: [person: person, tstart: new Date().getTime()])
+            user.errors.rejectValue("username", "openfurry.user.username.allowedChars", "The allowed characters for usernames are letters, numbers, hyphens (-), and underscores (_)")
+			render(view: 'index', model: [user: user, tstart: new Date().getTime()])
 			return
         }
 
@@ -161,17 +159,17 @@ class RegisterController {
 
 		def role = Role.findByAuthority(defaultRole)
 		if (!role) {
-			person.passwd = ''
+			user.passwd = ''
 			flash.message = 'Default Role not found.' // If this happens, the DB is down, and we have bigger things to worry about
-			render(view: 'index', model: [person: person, tstart: new Date().getTime()])
+			render(view: 'index', model: [user: user, tstart: new Date().getTime()])
 			return
 		}
 
         // Check for mismatched or blank passwords
 		if (params.passwd != params.repasswd || params.passwd == '') {
-			person.passwd = ''
-            person.errors.rejectValue("passwd", "openfurry.errors.passwordMismatch", "The passwords you entered did not match")
-			render(view: 'index', model: [person: person, tstart: new Date().getTime()])
+			user.passwd = ''
+            user.errors.rejectValue("passwd", "openfurry.errors.passwordMismatch", "The passwords you entered did not match")
+			render(view: 'index', model: [user: user, tstart: new Date().getTime()])
 			return
 		}
         
@@ -179,8 +177,8 @@ class RegisterController {
         if (grailsApplication.config.openfurry.requireInvitation) {
             def invitation = UserInvitation.findByCode(params.invitationCode)
             if (!invitation) {
-                person.errors.rejectValue("enabled", "openfurry.userInvitation.doesNotExist", "Could not find that invitation code, please check your typing - this is case sensitive!")
-                render(view: "index", model: [person: person, tstart: new Date().getTime()])
+                user.errors.rejectValue("enabled", "openfurry.userInvitation.doesNotExist", "Could not find that invitation code, please check your typing - this is case sensitive!")
+                render(view: "index", model: [user: user, tstart: new Date().getTime()])
                 return
             } else {
                 invitation.delete()
@@ -189,11 +187,11 @@ class RegisterController {
 
 
 		def pass = authenticateService.encodePassword(params.passwd)
-		person.passwd = pass
-		person.enabled = true
-		person.profile = ''
-		if (person.save()) {
-			role.addToPeople(person)
+		user.passwd = pass
+		user.enabled = true
+		user.profile = ''
+		if (user.save()) {
+			role.addToPeople(user)
             /*
 			if (config.security.useMail) {
 				String emailContent = """You have signed up for an account at:
@@ -202,14 +200,14 @@ class RegisterController {
 
  Here are the details of your account:
  -------------------------------------
- LoginName: ${person.username}
- Email: ${person.email}
- Full Name: ${person.userRealName}
+ LoginName: ${user.username}
+ Email: ${user.email}
+ Full Name: ${user.userRealName}
  Password: ${params.passwd}
 """
 
 				def email = [
-					to: [person.email], // 'to' expects a List, NOT a single email address
+					to: [user.email], // 'to' expects a List, NOT a single email address
 					subject: "[${request.contextPath}] Account Signed Up",
 					text: emailContent // 'text' is the email body
 				]
@@ -217,15 +215,15 @@ class RegisterController {
 			}
             */
 
-			person.save(flush: true)
+			user.save(flush: true)
 
-			def auth = new AuthToken(person.username, params.passwd)
+			def auth = new AuthToken(user.username, params.passwd)
 			def authtoken = daoAuthenticationProvider.authenticate(auth)
 			SCH.context.authentication = authtoken
 			redirect uri: '/'
 		} else {
-			person.passwd = ''
-			render(view: 'index', model: [person: person, tstart: new Date().getTime()])
+			user.passwd = ''
+			render(view: 'index', model: [user: user, tstart: new Date().getTime()])
 		}
 	}
 }

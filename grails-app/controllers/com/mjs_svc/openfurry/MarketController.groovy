@@ -42,7 +42,7 @@ class MarketController {
             return
         }
 
-        def userTo = Person.findByUsername(params.to)
+        def userTo = User.findByUsername(params.to)
         if (!userTo) {
             response.sendError(404)
             return
@@ -62,14 +62,14 @@ class MarketController {
     }
 
     def give = {
-        def userTo = Person.findByUsername(params.id)
+        def userTo = User.findByUsername(params.id)
         if (!userTo) {
             response.sendError(404)
             return
         }
 
-        marketService.makePayment(Person.get(authenticateService.principal().domainClass.id), userTo, params.amount)
+        marketService.makePayment(User.get(authenticateService.principal().domainClass.id), userTo, params.amount)
 
-        redirect(controller: "person", action: "show", params: [username: userTo.username])
+        redirect(controller: "user", action: "show", params: [username: userTo.username])
     }
 }

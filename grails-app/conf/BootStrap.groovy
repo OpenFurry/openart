@@ -62,7 +62,7 @@ class BootStrap {
         /**
          * User definitions
          */
-        def userGod = new Person(
+        def userGod = new User(
             username: "god",
             userRealName: "God Almighty",
             title: "Site owner",
@@ -84,7 +84,7 @@ class BootStrap {
         roleGovernor.addToPeople(userGod)
         roleUser.addToPeople(userGod)
 
-        def userSlave = new Person(
+        def userSlave = new User(
             username: "slave",
             userRealName: "Slave",
             enabled: true,
@@ -110,7 +110,7 @@ class BootStrap {
          * Request mapping definitions
          */
         // Acegi requests
-        secure("/person/**", "ROLE_STAFF")
+        secure("/user/**", "ROLE_STAFF")
         secure("/authority/**", "ROLE_ADMIN")
         secure("/requestmap/**", "ROLE_ADMIN")
 

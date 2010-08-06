@@ -8,9 +8,9 @@
     <g:if test="${flash.message}">
     <div class="message">${flash.message}</div>
     </g:if>
-    <g:hasErrors bean="${person}">
+    <g:hasErrors bean="${user}">
     <div class="errors">
-        <g:renderErrors bean="${person}" as="list" />
+        <g:renderErrors bean="${user}" as="list" />
     </div>
     </g:hasErrors>
 
@@ -21,44 +21,44 @@
 
         <tr class='prop'>
             <th valign='top' class='name'><label for='username'><g:message code="openfurry.user.username" default="Username" /></label></th>
-            <td valign='top' class='value ${hasErrors(bean:person,field:'username','errors')}'>
-                <input type="text" name='username' value="${person?.username?.encodeAsHTML()}"/>
+            <td valign='top' class='value ${hasErrors(bean:user,field:'username','errors')}'>
+                <input type="text" name='username' value="${user?.username?.encodeAsHTML()}"/>
             </td>
         </tr>
 
         <tr class='prop'>
             <th valign='top' class='name'><label for='userRealName'><g:message code="openfurry.user.userRealName" default="Display name" /></label></th>
-            <td valign='top' class='value ${hasErrors(bean:person,field:'userRealName','errors')}'>
-                <input type="text" name='userRealName' value="${person?.userRealName?.encodeAsHTML()}"/>
+            <td valign='top' class='value ${hasErrors(bean:user,field:'userRealName','errors')}'>
+                <input type="text" name='userRealName' value="${user?.userRealName?.encodeAsHTML()}"/>
             </td>
         </tr>
 
         <tr class='prop'>
             <th valign='top' class='name'><label for='passwd'><g:message code="openfurry.user.password" default="Password" /></label></th>
-            <td valign='top' class='value ${hasErrors(bean:person,field:'passwd','errors')}'>
+            <td valign='top' class='value ${hasErrors(bean:user,field:'passwd','errors')}'>
                 <input type="password" name='passwd' />
             </td>
         </tr>
 
         <tr class='prop'>
             <th valign='top' class='name'><label for='repasswd'><g:message code="openfurry.user.confirmPassword" default="Confirm password" /></label></th>
-            <td valign='top' class='value ${hasErrors(bean:person,field:'passwd','errors')}'>
+            <td valign='top' class='value ${hasErrors(bean:user,field:'passwd','errors')}'>
                 <input type="password" name='repasswd' />
             </td>
         </tr>
 
         <tr class='prop'>
             <th valign='top' class='name'><label for='email'>Email:</label></th>
-            <td valign='top' class='value ${hasErrors(bean:person,field:'email','errors')}'>
-                <input type="text" name='email' value="${person?.email?.encodeAsHTML()}"/>
+            <td valign='top' class='value ${hasErrors(bean:user,field:'email','errors')}'>
+                <input type="text" name='email' value="${user?.email?.encodeAsHTML()}"/>
             </td>
         </tr>
 
         <tr class="prop">
             <th class="name"><label for="species.id">Species:</label></th>
-            <td class="value ${hasErrors(bean: person, field: 'species', 'errors')}">
+            <td class="value ${hasErrors(bean: user, field: 'species', 'errors')}">
                 <select name="species.id">
-                    <of:speciesOptions fromPerson="${person}" />
+                    <of:speciesOptions fromPerson="${user}" />
                 </select>
             </td>
         </tr>

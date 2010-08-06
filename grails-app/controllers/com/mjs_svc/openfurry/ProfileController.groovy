@@ -10,12 +10,12 @@ class ProfileController {
     static defaultAction = "edit"
 
     def edit = {
-        def person = Person.get(authenticateService.principal().domainClass.id)
-        [person: person]
+        def user = User.get(authenticateService.principal().domainClass.id)
+        [user: user]
     }
 
     def save = {
-        def user = Person.get(authenticateService.principal().domainClass.id)
+        def user = User.get(authenticateService.principal().domainClass.id)
 
         user.properties = params
         if (params.passwd && params.passwd != "") {
@@ -41,14 +41,14 @@ class ProfileController {
         if (user.save(flush: true)) {
             // TODO message user
 
-            redirect(controller: "person", action: "show", params: [username: user.username])
+            redirect(controller: "user", action: "show", params: [username: user.username])
         } else {
-            render(view: "edit", model: [person: user])
+            render(view: "edit", model: [user: user])
         }
     }
 
     def props = {
-        def user = Person.get(authenticateService.principal().domainClass.id)
+        def user = User.get(authenticateService.principal().domainClass.id)
         [user: user]
     }
 

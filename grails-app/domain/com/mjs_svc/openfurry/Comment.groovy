@@ -3,7 +3,7 @@ package com.mjs_svc.openfurry
 class Comment {
     String parentType
     String parentId
-    Person owner
+    User owner
     Comment parentComment
     String title
     String comment

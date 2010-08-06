@@ -44,7 +44,7 @@ class SearchController {
     }
 
     def users = {
-        def list = Person.withCriteria {}
+        def list = User.withCriteria {}
 
         [people: list]
     }

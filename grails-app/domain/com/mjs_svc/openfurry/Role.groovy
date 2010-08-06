@@ -5,7 +5,7 @@ package com.mjs_svc.openfurry
  */
 class Role {
 
-	static hasMany = [people: Person]
+	static hasMany = [people: User]
 
 	/** description */
 	String description

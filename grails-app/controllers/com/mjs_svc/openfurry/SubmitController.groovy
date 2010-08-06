@@ -169,7 +169,7 @@ class SubmitController {
             audioUserObjectInstance = new AudioUserObject()
         }
         audioUserObjectInstance.properties = params
-        def owner = Person.findByUsername(authenticateService.principal().username)
+        def owner = User.findByUsername(authenticateService.principal().username)
         audioUserObjectInstance.owner = owner
         audioUserObjectInstance.type = "audio"
 
@@ -231,7 +231,7 @@ class SubmitController {
         }
         videoUserObjectInstance.properties = params
 
-        def owner = Person.findByUsername(authenticateService.principal().username)
+        def owner = User.findByUsername(authenticateService.principal().username)
         videoUserObjectInstance.owner = owner
         videoUserObjectInstance.type = "video"
         
@@ -284,7 +284,7 @@ class SubmitController {
         }
         flashUserObjectInstance.properties = params
 
-        def owner = Person.findByUsername(authenticateService.principal().username)
+        def owner = User.findByUsername(authenticateService.principal().username)
         flashUserObjectInstance.owner = owner
         flashUserObjectInstance.type = "flash"
         
@@ -337,7 +337,7 @@ class SubmitController {
         }
         imageUserObjectInstance.properties = params
 
-        def owner = Person.findByUsername(authenticateService.principal().username)
+        def owner = User.findByUsername(authenticateService.principal().username)
         imageUserObjectInstance.owner = owner
         imageUserObjectInstance.type = "image"
 
@@ -400,7 +400,7 @@ class SubmitController {
         }
         textUserObjectInstance.properties = params
 
-        def owner = Person.findByUsername(authenticateService.principal().username)
+        def owner = User.findByUsername(authenticateService.principal().username)
         textUserObjectInstance.owner = owner
         textUserObjectInstance.type = "text"
         textUserObjectInstance.journal = false
@@ -456,7 +456,7 @@ class SubmitController {
         }
         textUserObjectInstance.properties = params
 
-        def owner = Person.findByUsername(authenticateService.principal().username)
+        def owner = User.findByUsername(authenticateService.principal().username)
         textUserObjectInstance.owner = owner
         textUserObjectInstance.type = "text"
         textUserObjectInstance.journal = true
@@ -480,7 +480,7 @@ class SubmitController {
         }
         applicationUserObjectInstance.properties = params
 
-        def owner = Person.findByUsername(authenticateService.principal().username)
+        def owner = User.findByUsername(authenticateService.principal().username)
         applicationUserObjectInstance.type = "application"
         applicationUserObjectInstance.owner = owner
         def time = new Date().getTime()
@@ -532,7 +532,7 @@ class SubmitController {
         }
         orderedCollectionInstance.properties = params
 
-        def owner = Person.findByUsername(authenticateService.principal().username)
+        def owner = User.findByUsername(authenticateService.principal().username)
         orderedCollectionInstance.owner = owner
         orderedCollectionInstance.type = "orderedCollection"
 
@@ -564,7 +564,7 @@ class SubmitController {
         }
         unorderedCollectionInstance.properties = params
 
-        def owner = Person.findByUsername(authenticateService.principal().username)
+        def owner = User.findByUsername(authenticateService.principal().username)
         unorderedCollectionInstance.owner = owner
         unorderedCollectioninstance.type = "unorderedCollection"
 

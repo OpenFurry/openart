@@ -19,7 +19,7 @@ class UserObject implements Comparable {
     Integer weight = 0
     Long viewCount = 0
     Long favoriteCount = 0
-    Person owner
+    User owner
     License license
 
     static constraints = {
@@ -40,7 +40,7 @@ class UserObject implements Comparable {
 
     static hasMany = [comments: Comment, species: Species, categories: Category, tags: Tag]
     
-    static belongsTo = Person
+    static belongsTo = User
 
     int compareTo(obj) {
         weight.compareTo(obj.weight)

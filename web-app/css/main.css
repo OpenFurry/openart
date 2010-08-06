@@ -83,6 +83,10 @@ Navigation/user control
     margin-left: 1em;
 }
 
+.admin form {
+    display: inline;
+}
+
 #usercontrol {
     float: right;
     width: 40%;

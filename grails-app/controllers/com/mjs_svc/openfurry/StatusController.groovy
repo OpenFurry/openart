@@ -8,8 +8,8 @@ class StatusController {
     }
 
     def list = {
-        def person = Person.findByUsername(params.username)
-        if (!person) {
+        def user = User.findByUsername(params.username)
+        if (!user) {
             response.sendError(404) // TODO i18n
             return
         }

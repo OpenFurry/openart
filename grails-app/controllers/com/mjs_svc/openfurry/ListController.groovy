@@ -4,7 +4,7 @@ class ListController {
     def listService
 
     def user = { 
-        def user = Person.findByUsername(params.id)
+        def user = User.findByUsername(params.id)
         if (!user) {
             response.sendError(404)
             return
@@ -20,7 +20,7 @@ class ListController {
     }
 
     def friends = {
-        def user = Person.findByUsername(params.id)
+        def user = User.findByUsername(params.id)
         def criteria = {
             "in"("owner", user.friends)
         }

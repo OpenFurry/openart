@@ -2,8 +2,8 @@ package com.mjs_svc.openfurry
 
 class UserTrinket {
     String name
-    Person userFrom
-    Person owner
+    User userFrom
+    User owner
     Trinket trinket
     Date dateCreated
 

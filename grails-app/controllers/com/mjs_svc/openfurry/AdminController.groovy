@@ -100,7 +100,7 @@ class AdminController {
     }
 
     def warn = {
-        def user = Person.findByUsername(params.id)
+        def user = User.findByUsername(params.id)
 
         if (!user) {
             response.sendError(404)
@@ -114,14 +114,14 @@ class AdminController {
                 params.reasonCode)
             // TODO message admin
 
-            redirect(controller: "person", action: "show", params: [username: user.username])
+            redirect(controller: "user", action: "show", params: [username: user.username])
         } else {
             [user: user]
         }
     }
 
     def praise = {
-        def user = Person.findByUsername(params.id)
+        def user = User.findByUsername(params.id)
 
         if (!user) {
             response.sendError(404)
@@ -135,26 +135,26 @@ class AdminController {
                 params.reasonCode)
             // TODO message admin
 
-            redirect(controller: "person", action: "show", params: [username: user.username])
+            redirect(controller: "user", action: "show", params: [username: user.username])
         } else {
             [user: user]
         }
     }
 
     def ban = {
-        def user = Person.findByUsername(params.id)
+        def user = User.findByUsername(params.id)
 
         warningService.ban(user)
 
-        redirect(controller: "person", action: "show", params: [username: user.username])
+        redirect(controller: "user", action: "show", params: [username: user.username])
     }
 
     def unban = {
-        def user = Person.findByUsername(params.id)
+        def user = User.findByUsername(params.id)
 
         warningService.unban(user)
 
-        redirect(controller: "person", action: "show", params: [username: user.username])
+        redirect(controller: "user", action: "show", params: [username: user.username])
     }
 
     def takeDown = {

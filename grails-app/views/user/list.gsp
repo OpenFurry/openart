@@ -27,15 +27,15 @@
 				</tr>
 			</thead>
 			<tbody>
-			<g:each in="${personList}" status="i" var="person">
+			<g:each in="${userList}" status="i" var="user">
 				<tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-					<td>${person.id}</td>
-					<td>${person.username?.encodeAsHTML()}</td>
-					<td>${person.userRealName?.encodeAsHTML()}</td>
-					<td>${person.enabled?.encodeAsHTML()}</td>
+					<td>${user.id}</td>
+					<td>${user.username?.encodeAsHTML()}</td>
+					<td>${user.userRealName?.encodeAsHTML()}</td>
+					<td>${user.enabled?.encodeAsHTML()}</td>
 					<td class="actionButtons">
 						<span class="actionButton">
-							<g:link action="show" id="${person.id}">Show</g:link>
+							<g:link action="show" id="${user.id}">Show</g:link>
 						</span>
 					</td>
 				</tr>

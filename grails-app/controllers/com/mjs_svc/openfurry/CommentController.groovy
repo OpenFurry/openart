@@ -25,7 +25,7 @@ class CommentController {
             return
         }
 
-        def person = authenticateService.principal().domainClass
+        def user = authenticateService.principal().domainClass
         def parentComment = null
         if (params.parentId) {
             parentComment = Comment.get(params.parentId)
@@ -34,7 +34,7 @@ class CommentController {
         def comment = new Comment(
             parentType: params.objectType,
             parentId: params.objectId,
-            owner: person,
+            owner: user,
             parentComment: parentComment,
             title: params.title,
             comment: params.comment,

@@ -11,7 +11,7 @@ class InboxController {
     }
 
     def dismiss = {
-        def user = Person.get(authenticateService.principal().domainClass.id)
+        def user = User.get(authenticateService.principal().domainClass.id)
         params.id.each {
             def message = UserMessage.get(Long.parseLong(it.getKey().replaceAll('_', '')))
             if (message) {

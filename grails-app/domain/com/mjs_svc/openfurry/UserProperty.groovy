@@ -1,7 +1,7 @@
 package com.mjs_svc.openfurry
 
 class UserProperty {
-    Person user
+    User user
     String key
     String value
 

@@ -1,7 +1,7 @@
 package com.mjs_svc.openfurry
 
 class CommissionInfo {
-    Person owner
+    User owner
     String type
     String medium
     String price

@@ -9,7 +9,7 @@ class Event {
     Date dateCreated
     Date lastUpdated
     UserGroup group
-    Person owner
+    User owner
 
     static constraints = {
         description(maxSize: 5000)

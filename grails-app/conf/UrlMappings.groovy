@@ -24,7 +24,7 @@ class UrlMappings {
         }
 
         "/~$username" {
-            controller = "person"
+            controller = "user"
             action = "show"
             constraints {
             }
@@ -32,7 +32,7 @@ class UrlMappings {
 
         // Needed for when browsers convert ~
         "/%7E$username" {
-            controller = "person"
+            controller = "user"
             action = "show"
             constraints {
             }

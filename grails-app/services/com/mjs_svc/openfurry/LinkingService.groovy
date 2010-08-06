@@ -27,13 +27,13 @@ class LinkingService {
 
         // ~user
         text = text.replaceAll(/(?!(<=\\))~([a-zA-Z0-9_.-]+)/, {full, lookAhead, username -> 
-            def p = Person.findByUsername(username)
+            def p = User.findByUsername(username)
             if (p) {
                 if (noImages) {
-                    "<a style=\"display: inline\" href=\"${g.createLink(controller: 'person', action: 'show', params: [username: username])}\">${full}</a>"
+                    "<a style=\"display: inline\" href=\"${g.createLink(controller: 'user', action: 'show', params: [username: username])}\">${full}</a>"
                 } else {
                     """
-                    <a href=\"${g.createLink(controller: 'person', action: 'show', params: [username: username])}\">
+                    <a href=\"${g.createLink(controller: 'user', action: 'show', params: [username: username])}\">
                         <img src=\"${g.resource(dir: 'avatars', file: p.avatar)}\" class=\"avatar\" align=\"middle\"/> ${full}
                     </a>
                     """
@@ -43,10 +43,10 @@ class LinkingService {
 
         // ~!user
         text = text.replaceAll(/(?!(<=\\))~!([a-zA-Z0-9_.-]+)/, {full, lookAhead, username -> 
-            def p = Person.findByUsername(username)
+            def p = User.findByUsername(username)
             if (p) {
                 """
-                <a href=\"${g.createLink(controller: 'person', action: 'show', params: [username: username])}\">
+                <a href=\"${g.createLink(controller: 'user', action: 'show', params: [username: username])}\">
                     <img src=\"${g.resource(dir: 'avatars', file: p.avatar)}\" class=\"avatar\" align=\"middle\"/>
                 </a>
                 """

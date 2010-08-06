@@ -34,7 +34,7 @@ class ThemeController {
 
         themeInstance.style = styleText
 
-        def owner=Person.findByUsername(authenticateService.principal().username)
+        def owner=User.findByUsername(authenticateService.principal().username)
         themeInstance.creator = owner
 
         themeInstance.name = params.name ? params.name : "${owner.username}'s theme"

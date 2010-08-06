@@ -1,7 +1,7 @@
 package com.mjs_svc.openfurry
 
 class IssueVote {
-    Person voter
+    User voter
     Issue issue
 
     static constraints = {

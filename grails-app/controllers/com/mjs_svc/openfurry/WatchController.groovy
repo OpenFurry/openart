@@ -9,14 +9,14 @@ class WatchController {
     def listService
 
     def list = {
-        def person = Person.get(authenticateService.principal().domainClass.id)
+        def user = User.get(authenticateService.principal().domainClass.id)
         def criteria = {
             or {
-                'in'('owner', person.watches)
-                if (person.watchedTags.size() > 0) {
+                'in'('owner', user.watches)
+                if (user.watchedTags.size() > 0) {
                     tags {
                         or {
-                            for (t in person.watchedTags) {
+                            for (t in user.watchedTags) {
                                 eq('tag', t.tag)
                             }
                         }
@@ -31,47 +31,47 @@ class WatchController {
     }
     
     def addUser = {
-        def person = Person.get(authenticateService.principal().domainClass.id)
-        def toAdd = Person.findByUsername(params.id)
+        def user = User.get(authenticateService.principal().domainClass.id)
+        def toAdd = User.findByUsername(params.id)
 
         if (!toAdd) {
             response.sendError(404) // TODO i18n
             return
         }
 
-        for (w in person.watches) {
+        for (w in user.watches) {
             if (toAdd == w) {
                 messagingService.transientMessage(
-                    person,
+                    user,
                     grailsApplication.config.openfurry.user.messageTypes.warning,
                     "openfurry.messages.alreadyWatching",
                     "You're already watching {0}!",
-                    Person.class.toString().split("\\.")[-1],
+                    User.class.toString().split("\\.")[-1],
                     toAdd.id)
                 return
             }
         }
 
-        person.addToWatches(toAdd).save()
+        user.addToWatches(toAdd).save()
 
         messagingService.transientMessage(
-            person,
+            user,
             grailsApplication.config.openfurry.user.messageTypes.success,
             "openfurry.messages.watching",
             "You've watched {0}",
-            Person.class.toString().split("\\.")[-1],
+            User.class.toString().split("\\.")[-1],
             toAdd.id)
         messagingService.persistentMessage(
             toAdd,
             grailsApplication.config.openfurry.user.messageTypes.success,
             "openfurry.messages.watched",
             "You've been watched by {0}",
-            Person.class.toString().split("\\.")[-1],
-            person.id)
+            User.class.toString().split("\\.")[-1],
+            user.id)
     }
     
     def addTag = {
-        def person = Person.get(authenticateService.principal().domainClass.id)
+        def user = User.get(authenticateService.principal().domainClass.id)
         def tag = Tag.findByTag(params.id)
 
         if (!tag) {
@@ -79,34 +79,34 @@ class WatchController {
             return
         }
 
-        for (w in person.watchedTags) {
+        for (w in user.watchedTags) {
             if (tag.tag == w.tag) {
                 // TODO flash user to let them know they're already watching that tag
                 return
             }
         }
 
-        person.addToWatchedTags(tag).save(flush: true)
+        user.addToWatchedTags(tag).save(flush: true)
 
-        // TODO flash person
+        // TODO flash user
     }
 
     def removeUser = {
-        def person = Person.get(authenticateService.principal().domainClass.id)
-        def toRemove = Person.findByUsername(params.id)
+        def user = User.get(authenticateService.principal().domainClass.id)
+        def toRemove = User.findByUsername(params.id)
 
         if (!toRemove) {
             response.sendError(404) // TODO i18n
             return
         }
 
-        person.removeFromWatches(toRemove).save(flush: true)
+        user.removeFromWatches(toRemove).save(flush: true)
 
-        // TODO flash person
+        // TODO flash user
     }
     
     def removeTag = {
-        def person = Person.get(authenticateService.principal().domainClass.id)
+        def user = User.get(authenticateService.principal().domainClass.id)
         def tag = Tag.findByTag(params.id)
 
         if (!tag) {
@@ -114,62 +114,62 @@ class WatchController {
             return
         }
 
-        person.removeFromWatchedTags(tag).save(flush: true)
+        user.removeFromWatchedTags(tag).save(flush: true)
 
-        // TODO flash person
+        // TODO flash user
     }
 
     def addFriend = {
-        def person = Person.get(authenticateService.principal().domainClass.id)
-        def toAdd = Person.findByUsername(params.id)
+        def user = User.get(authenticateService.principal().domainClass.id)
+        def toAdd = User.findByUsername(params.id)
 
         if (!toAdd) {
             response.sendError(404) // TODO i18n
             return
         }
 
-        for (f in person.friends) {
+        for (f in user.friends) {
             if (toAdd == f) {
                 messagingService.transientMessage(
-                    person,
+                    user,
                     grailsApplication.config.openfurry.user.messageTypes.warning,
                     "openfurry.messages.alreadyFriended",
                     "You've already friended {0}!",
-                    Person.class.toString().split("\\.")[-1],
+                    User.class.toString().split("\\.")[-1],
                     toAdd.id)
                 return
             }
         }
 
-        person.addToFriends(toAdd).save()
+        user.addToFriends(toAdd).save()
 
         messagingService.transientMessage(
-            person,
+            user,
             grailsApplication.config.openfurry.user.messageTypes.success,
             "openfurry.messages.friend",
             "You've watched {0}",
-            Person.class.toString().split("\\.")[-1],
+            User.class.toString().split("\\.")[-1],
             toAdd.id)
         messagingService.persistentMessage(
             toAdd,
             grailsApplication.config.openfurry.user.messageTypes.success,
             "openfurry.messages.friended",
             "You've been watched by {0}",
-            Person.class.toString().split("\\.")[-1],
-            person.id)
+            User.class.toString().split("\\.")[-1],
+            user.id)
     }
 
     def removeFriend = {
-        def person = Person.get(authenticateService.principal().domainClass.id)
-        def toRemove = Person.findByUsername(params.id)
+        def user = User.get(authenticateService.principal().domainClass.id)
+        def toRemove = User.findByUsername(params.id)
 
         if (!toRemove) {
             response.sendError(404) // TODO i18n
             return
         }
 
-        person.removeFromFriends(toRemove).save(flush: true)
+        user.removeFromFriends(toRemove).save(flush: true)
 
-        // TODO flash person
+        // TODO flash user
     }
 }

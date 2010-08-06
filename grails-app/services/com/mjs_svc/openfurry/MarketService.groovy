@@ -15,7 +15,7 @@ class MarketService {
     // Required for reason for warning
     def messageSource
 
-    def makePayment(Person userFrom, Person userTo, Integer amount) {
+    def makePayment(User userFrom, User userTo, Integer amount) {
         if (amount < 0) {
             if (!permissionsService.market.userCanAfford(unitPrice.price)) {
                 // TODO message user
@@ -32,7 +32,7 @@ class MarketService {
         }
     }
 
-    def transact(Person user, String signal) {
+    def transact(User user, String signal) {
         // Try to grab the unit price
         def unitPrice = UnitPrice.findBySignal(signal)
         if (unitPrice) {

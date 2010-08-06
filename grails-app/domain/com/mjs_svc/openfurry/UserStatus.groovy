@@ -2,7 +2,7 @@ package com.mjs_svc.openfurry
 
 class UserStatus {
     String status
-    Person owner
+    User owner
 
     static constraints = {
         status(maxSize: 140)

@@ -88,13 +88,13 @@ class IssueController {
             response.sendError(404) // TODO i18n
             return
         }
-        def person = authenticateService.principal().domainClass
+        def user = authenticateService.principal().domainClass
 
         // Make sure user hasn't already voted on the issue
         def issueVote = IssueVote.withCriteria {
             and {
                 eq('issue', issue)
-                eq('voter', person)
+                eq('voter', user)
             }
         }
         if(issueVote) {
@@ -110,12 +110,12 @@ class IssueController {
         // Create issue vote
         issueVote = new IssueVote(
             issue: issue,
-            voter: person
+            voter: user
         )
         issueVote.save()
 
         // charge the user
-        marketService.transact(person, "Issue.vote(memberClass:${person.memberClass})")
+        marketService.transact(user, "Issue.vote(memberClass:${user.memberClass})")
 
         // Show success, message, issue
         render(view: 'show', model: [issue: issue])

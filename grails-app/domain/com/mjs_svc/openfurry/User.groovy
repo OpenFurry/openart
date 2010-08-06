@@ -5,7 +5,7 @@ import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 /**
  * User domain class.
  */
-class Person {
+class User {
 	String username
 	String userRealName
     String title
@@ -64,8 +64,8 @@ class Person {
         userObjects: UserObject, 
         likes: UserObject,
         favorites: UserObject,
-        friends: Person,
-        watches: Person,
+        friends: User,
+        watches: User,
         watchedTags: Tag,
         comments: Comment, 
         statuses: UserStatus,

@@ -9,7 +9,7 @@ class Species {
         parent(blank: true, nullable: true)
     }
 
-    static hasMany = [subSpecies: Species, users: Person]
+    static hasMany = [subSpecies: Species, users: User]
 
     static belongsTo = Species
 }

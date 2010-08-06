@@ -1,7 +1,7 @@
 package com.mjs_svc.openfurry
 
 class GroupPost {
-    Person owner
+    User owner
     UserGroup group
     String title
     String post

@@ -1,7 +1,7 @@
 package com.mjs_svc.openfurry
 
 class GroupRequest {
-    Person requester
+    User requester
     UserGroup group
     String requestersReason
     String adminsReason

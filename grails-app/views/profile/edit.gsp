@@ -5,9 +5,9 @@
         <meta name="layout" content="main" />
     </head>
     <body>
-        <g:hasErrors bean="${person}">
+        <g:hasErrors bean="${user}">
             <div class="errors">
-                <g:renderErrors bean="${person}" as="list" />
+                <g:renderErrors bean="${user}" as="list" />
             </div>
         </g:hasErrors>
         <g:uploadForm action="save" method="post">
@@ -20,15 +20,15 @@
                 <tbody>
                     <tr class="prop">
                         <th class="name"><g:message code="openfurry.user.username" default="Username" /></th>
-                        <td class="value">${person.username}</td>
+                        <td class="value">${user.username}</td>
                     </tr>
                     <tr class="prop">
                         <th class="name"><g:message code="openfurry.user.userRealName" default="Display name" /></th>
-                        <td class="value"><g:textField name="userRealName" value="${person.userRealName}" /></td>
+                        <td class="value"><g:textField name="userRealName" value="${user.userRealName}" /></td>
                     </tr>
                     <tr class="prop">
                         <th class="name"><g:message code="openfurry.user.email" default="Email" /></th>
-                        <td class="value"><g:textField name="email" value="${person.email}" /></td>
+                        <td class="value"><g:textField name="email" value="${user.email}" /></td>
                     </tr>
                     <tr class="prop">
                         <th class="name"><g:message code="openfurry.user.password" default="Password" /></th>
@@ -50,7 +50,7 @@
                         <td class=value">
                             <select name="memberType">
                                 <g:each in="${0..9}" var="i">
-                                    <option value="${i}"${person.memberType == i ? ' selected="selected"' : ''}><g:message code="openfurry.user.types.${grailsApplication.config.openfurry.user.types.repr[i]}" default="${grailsApplication.config.openfurry.user.types.repr[i]}" /></option>
+                                    <option value="${i}"${user.memberType == i ? ' selected="selected"' : ''}><g:message code="openfurry.user.types.${grailsApplication.config.openfurry.user.types.repr[i]}" default="${grailsApplication.config.openfurry.user.types.repr[i]}" /></option>
                                 </g:each>
                             </select>
                         </td>
@@ -59,7 +59,7 @@
                         <th class="name"><g:message code="openfurry.user.species" default="Species" /></th>
                         <td class="value">
                             <select name="species.id">
-                                <of:speciesOptions fromPerson="${person}" />
+                                <of:speciesOptions fromPerson="${user}" />
                             </select>
                         </td>
                     </tr>
@@ -71,7 +71,7 @@
                                 <p><g:link controller="flatpage" action="show" id="linking"><g:message code="openfurry.messages.linkingOkay" default="Linking allowed" /></g:link></p>
                             </div>
                         </th>
-                        <td class="value"><g:textArea name="profile" rows="10" cols="75" value="${person.profile}" /></td>
+                        <td class="value"><g:textArea name="profile" rows="10" cols="75" value="${user.profile}" /></td>
                     </tr>
                     <tr class="prop">
                         <th class="name"><g:message code="openfurry.user.avatar" default="Avatar" /></th>
@@ -79,15 +79,15 @@
                     </tr>
                     <tr class="prop">
                         <th class="name"><g:message code="openfurry.user.commissionStatus" default="Accepting commissions" /></th>
-                        <td class="value"><g:checkBox name="commissionStatus" value="${person.commissionStatus}" /></td>
+                        <td class="value"><g:checkBox name="commissionStatus" value="${user.commissionStatus}" /></td>
                     </tr>
                     <tr class="prop">
                         <th class="name"><g:message code="openfurry.user.tradeStatus" default="Accepting trades" /></th>
-                        <td class="value"><g:checkBox name="tradeStatus" value="${person.tradeStatus}" /></td>
+                        <td class="value"><g:checkBox name="tradeStatus" value="${user.tradeStatus}" /></td>
                     </tr>
                     <tr class="prop">
                         <th class="name"><g:message code="openfurry.user.giftStatus" default="Accepting gift requests" /></th>
-                        <td class="value"><g:checkBox name="giftStatus" value="${person.giftStatus}" /></td>
+                        <td class="value"><g:checkBox name="giftStatus" value="${user.giftStatus}" /></td>
                     </tr>
                 </tbody>
                 <thead>
@@ -101,7 +101,7 @@
                         <td class="value">
                             <select name="preferedLicense.id">
                                 <g:each in="${openfurry.License.list()}">
-                                    <option value="${it.id}"${it.id == person.preferedLicense.id ? " selected=\"selected\"" : ""}>${it.title}</option>
+                                    <option value="${it.id}"${it.id == user.preferedLicense.id ? " selected=\"selected\"" : ""}>${it.title}</option>
                                 </g:each>
                             </select>
                         </td>

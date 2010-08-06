@@ -6,7 +6,7 @@ class UserMessage {
     String regardingType
     Long regardingId
     Integer type
-    Person userTo
+    User userTo
     Boolean dismissOnRead = true
     Date dateCreated
 
@@ -18,7 +18,7 @@ class UserMessage {
         type(range: 0..3)
     }
 
-    static belongsTo = Person
+    static belongsTo = User
 
     static transients = ['argumentString']
 

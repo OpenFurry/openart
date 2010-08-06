@@ -15,7 +15,7 @@ class MessagingService {
     /*
     Message a user with a flash-type message (dismiss on read)
     */
-    def transientMessage(Person user, Integer type, String code, String defaultMessage, String regardingType = null, Long regardingId = null) {
+    def transientMessage(User user, Integer type, String code, String defaultMessage, String regardingType = null, Long regardingId = null) {
         user.addToMessages(
             new UserMessage(code: code, defaultMessage: defaultMessage, type: type, regardingType: regardingType, regardingId: regardingId))
             .save(flush: true)
@@ -24,14 +24,14 @@ class MessagingService {
     /*
     Message a user with a persistent message (no dismiss on read)
     */
-    def persistentMessage(Person user, Integer type, String code, String defaultMessage, String regardingType = null, Long regardingId = null) {
+    def persistentMessage(User user, Integer type, String code, String defaultMessage, String regardingType = null, Long regardingId = null) {
         user.addToMessages(
             new UserMessage(code: code, defaultMessage: defaultMessage, type: type, regardingType: regardingType, regardingId: regardingId, dismissOnRead: false))
             .save(flush: true)
     }
 
-    def userTransientMessages(Person user) {
-        user = Person.get(user.id)
+    def userTransientMessages(User user) {
+        user = User.get(user.id)
         // Grab all the pertinent messages
         def list = UserMessage.withCriteria {
             and {
@@ -63,7 +63,7 @@ class MessagingService {
         messages
     }
 
-    def userPersistentMessages(Person user) {
+    def userPersistentMessages(User user) {
         // Return all pertinent messages
         UserMessage.withCriteria {
             and {

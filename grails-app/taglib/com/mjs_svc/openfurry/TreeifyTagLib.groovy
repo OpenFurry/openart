@@ -29,8 +29,8 @@ class TreeifyTagLib {
 
     def speciesOptions = { attrs ->
         def selected
-        if (attrs["fromPerson"] && attrs["fromPerson"].species) {
-            selected = [ attrs["fromPerson"].species.id ]
+        if (attrs["fromUser"] && attrs["fromUser"].species) {
+            selected = [ attrs["fromUser"].species.id ]
         } else if (attrs["fromSubmission"]) {
             selected = attrs["fromSubmission"].species.collect { it.id }
         }

@@ -49,7 +49,7 @@ class GroupController {
             return
         }
 
-        def user = Person.get(authenticateService.principal().domainClass.id)
+        def user = User.get(authenticateService.principal().domainClass.id)
         user.addToGroups(group).save(flush: true)
 
         // TODO message user, admin
@@ -64,7 +64,7 @@ class GroupController {
             return
         }
 
-        def user = Person.get(authenticateService.principal().domainClass.id)
+        def user = User.get(authenticateService.principal().domainClass.id)
 
         def groupRequest = new GroupRequest(requester: user, group: group, requestersReason: params.reason).save(flush: true)
 
@@ -159,7 +159,7 @@ class GroupController {
             return
         }
 
-        def user = Person.get(authenticateService.principal().domainClass.id)
+        def user = User.get(authenticateService.principal().domainClass.id)
         if (!(user in group.members)) {
             response.sendError(403) // TODO i18n 
             return
@@ -189,7 +189,7 @@ class GroupController {
             return
         }
 
-        def newAdmin = Person.findByUsername(params.to)
+        def newAdmin = User.findByUsername(params.to)
         if (!newAdmin) {    
             response.sendError(404)
             return
@@ -322,7 +322,7 @@ class GroupController {
                 // set error on field
             }
             groupInstance = new UserGroup()
-            def admin = Person.get(authenticateService.principal().domainClass.id)
+            def admin = User.get(authenticateService.principal().domainClass.id)
             groupInstance.adminId = admin.id
             groupInstance.addToMembers(admin)
         }

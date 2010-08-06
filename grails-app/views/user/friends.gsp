@@ -5,7 +5,7 @@
     </head>
     <body>
         <div class="breadcrumbs">
-            <g:link controller="person" action="show" params="[username: user.username]">~${user.username}</g:link> &raquo;
+            <g:link controller="user" action="show" params="[username: user.username]">~${user.username}</g:link> &raquo;
             FRIENDS
         </div>
         <ul>
