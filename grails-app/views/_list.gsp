@@ -10,23 +10,25 @@
         <li class="block ${params.type == 'orderedCollection' ? 'selected' : ''}"><strong><a href="?type=orderedCollection${params.q ? '&q=' + params.q + '&includeTags=' + (params.includeTags ?: '') + '&includeCategories=' + (params.includeCategories ?: '') + '&includeSpecies=' + (params.includeSpecies ?: '') : ''}"><g:message code="openfurry.collection.ordered.plural" default="Ordered collections" /></a></strong></li>
         <li class="block ${params.type == 'unorderedCollection' ? 'selected' : ''}"><strong><a href="?type=unorderedCollection${params.q ? '&q=' + params.q + '&includeTags=' + (params.includeTags ?: '') + '&includeCategories=' + (params.includeCategories ?: '') + '&includeSpecies=' + (params.includeSpecies ?: '') : ''}"><g:message code="openfurry.collection.unordered.plural" default="Unordered collections" /></a></strong></li>
     </ul>
-    <div class="content block">
+    <div class="content block uoList">
         <g:set var="dateString" value="" />
         <g:each in="${uoList}" var="uo" status="count">
-            <g:if test="${dateString != formatDate(date: uo.dateCreated, format: 'yyyy-MM-dd')}">
-            <h3 style="margin-bottom: 0.5em"><g:formatDate date="${uo.dateCreated}" format="EEEEEEEEEEE MMMMMMMMMMMM d, yyyy" /></h3>
-            <g:set var="dateString" value="${formatDate(date: uo.dateCreated, format: 'yyyy-MM-dd')}" />
+            <g:if test="${dateString != formatDate(date: uo.lastUpdated, format: 'yyyy-MM-dd')}">
+                <h3 style="margin-bottom: 0.5em"><g:formatDate date="${uo.lastUpdated}" format="EEEEEEEEEEE MMMMMMMMMMMM d, yyyy" /></h3>
+                <g:set var="dateString" value="${formatDate(date: uo.lastUpdated, format: 'yyyy-MM-dd')}" />
             </g:if>
-            <div class="submission" style="width: 25%; display: block; float: left; text-align: center; margin-bottom: 1em">
+            <div class="submission${params.controller == 'watch' ? ' ' + of.classForSubmissionListing(submission: uo) : ''}">
                 <a href="${createLink(controller: 'view', action: 'show', id: uo.id)}">
                     <img src="${resource(file: uo.thumbnail)}" /><br />
                     ${uo.title}
                 </a><br />
-                <g:link controller="person" action="show" params="[username: uo.owner.username]">~${uo.owner.username}</g:link>
+                <g:link controller="person" action="show" params="[username: uo.owner.username]">~${uo.owner.username}</g:link> 
             </div>
+            <g:set var="resetUser" value="${false}" />
         </g:each>
         <g:if test="${uoList.size() < 1}"><g:message code="openfurry.technical.noSubmissions" default="No submissions to list" /></g:if>
         <hr style="width: 50%; clear: both; margin: auto">
         <g:paginate total="${uoList.totalCount}" />
+        <g:link controller="watch" action="updateCursors"><g:message code="openfurry.watch.views.updateCursors" default="Mark all unread submissions as read" /></g:link>
     </div>
 </div>

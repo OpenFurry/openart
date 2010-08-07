@@ -24,8 +24,8 @@ class User {
     Long interactionCount = 1 // for joining
     Long pennies = 10
     Integer warningLevel = 0
-    Date watchlistCursorUltimate
-    Date watchlistCursorPenultimate
+    Date watchlistCursorUltimate = new Date()
+    Date watchlistCursorPenultimate = new Date()
     Date watchlistCursorBookmark
     Date watchlistCursorBookmarkDate
     Boolean commissionStatus = false

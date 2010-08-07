@@ -610,17 +610,30 @@ UserObjects
 .uoList h3 {
     border-top: 1px solid #777;
     border-left: 1px solid #777;
+    padding: 0.5em;
+}
+
+.uoList .submission {
+    width: 24%;
+    display: block;
+    float: left;
+    text-align: center;
+    margin-bottom: 1em;
 }
 
 .uoList .bookmark {
     background-color: #eee;
 }
 
-.uoList .previouslyUnseen {
+.uoList .unread {
+    background-color: #fff;
+}
+
+.uoList .prev-unread {
     background-color: #ddd;
 }
 
-.uoList .seen {
+.uoList .read {
     background-color: #ccc;
 }
 

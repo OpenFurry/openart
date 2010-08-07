@@ -7,6 +7,7 @@ class WatchController {
     def authenticateService
     def messagingService
     def listService
+    def refreshUserService
 
     def list = {
         def user = User.get(authenticateService.principal().domainClass.id)
@@ -28,6 +29,38 @@ class WatchController {
         def list = listService.listUOsForRating(criteria, params)
         
         [uoList: list]
+    }
+
+    def updateCursors = {
+        def user = User.get(authenticateService.principal().domainClass.id)
+        user.watchlistCursorPenultimate = user.watchlistCursorUltimate.clone()
+        user.watchlistCursorUltimate = new Date()
+
+        if (user.watchlistCursorBookmarkDate?.before(user.watchlistCursorUltimate)) {
+            user.watchlistCursorBookmark = null
+            user.watchlistCursorBookmarkDate = null
+        }
+
+        if (user.save(flush: true)) {
+            refreshUserService.refresh()
+            redirect(action: "list", params: params)
+        } else {
+            response.sendError(500)
+        }
+    }
+
+    def bookmark = {
+        def user = User.get(authenticateService.principal().domainClass.id)
+        def submission = UserObject.get(params.id)
+
+        if (!submission.lastUpdated.before(user.watchlistCursorUltimate)) {
+            user.watchlistCursorBookmarkDate = new Date()
+            user.watchlistCursorBookmark = submission.lastUpdated
+            user.save(flush: true)
+        }
+
+        refreshUserService.refresh()
+        redirect(action: "list", params: params)
     }
     
     def addUser = {

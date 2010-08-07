@@ -413,7 +413,7 @@ class SubmitController {
                 uploadedFile.transferTo(dest)
                 textUserObjectInstance.attachmentFile = dest.getCanonicalPath().replaceAll(servletContext.getRealPath("/"), '')
             } else {
-                textUserObjectInstance.errors.rejectValue("attachment", "openfurry.errors.fileTypeMismatch", "The uploaded file does not meet the approved file-type requirements")
+                textUserObjectInstance.errors.rejectValue("attachmentFile", "openfurry.errors.fileTypeMismatch", "The uploaded file does not meet the approved file-type requirements")
             }
         }
 
@@ -440,7 +440,7 @@ class SubmitController {
                 "${message(code: 'default.created.message', args: [message(code: 'textUserObject.label', default: 'Text submission'), params.id])}"
             redirect(controller: "view", action: "text", id: textUserObjectInstance.id)
         } else {
-            if (textUserObjectInstance.attachment != null) {
+            if (textUserObjectInstance.attachmentFile != null) {
                 def f = new File(fileUploadService.getSubmissionDirectory(servletContext.getRealPath("/"), owner, "text"), uploadedFile.originalFilename)
                 f.delete()
             }
