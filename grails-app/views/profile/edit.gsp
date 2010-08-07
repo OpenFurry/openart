@@ -89,6 +89,10 @@
                         <th class="name"><g:message code="openfurry.user.giftStatus" default="Accepting gift requests" /></th>
                         <td class="value"><g:checkBox name="giftStatus" value="${user.giftStatus}" /></td>
                     </tr>
+                    <tr class="prop">
+                        <th class="name"><g:message code="openfurry.user.properties" default="Properties" /></th>
+                        <td class="value"><g:link action="props"><g:message code="openfurry.user.properties.edit" default="Edit properties" /></g:link></td>
+                    </tr>
                 </tbody>
                 <thead>
                     <tr>
@@ -100,7 +104,7 @@
                         <th class="name"><g:message code="openfurry.user.preferedLicense" default="Prefered license" /></th>
                         <td class="value">
                             <select name="preferedLicense.id">
-                                <g:each in="${openfurry.License.list()}">
+                                <g:each in="${com.mjs_svc.openfurry.License.list()}">
                                     <option value="${it.id}"${it.id == user.preferedLicense.id ? " selected=\"selected\"" : ""}>${it.title}</option>
                                 </g:each>
                             </select>

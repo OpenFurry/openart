@@ -1,13 +1,13 @@
 <html><!-- TODO i18n -->
     <head>
-        <title>PROPERTIES</title>
+        <title><g:message code="openfurry.user.properties" default="Properties" /></title>
         <meta name="layout" content="main" />
     </head>
     <body>
         <table>
             <thead>
                 <tr>
-                    <th colspan="2">PROPERTIES</th>
+                    <th colspan="2"><g:message code="openfurry.user.properties.yours" default="Your properties" /></th>
                 </tr>
             </thead>
             <tbody>
@@ -20,7 +20,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th colspan="2">ADD PROPERTY</th>
+                        <th colspan="2"><g:message code="openfurry.user.properties.add" default="Add property" /></th>
                     </tr>
                 </thead>
                 <tbody>

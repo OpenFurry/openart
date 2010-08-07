@@ -35,7 +35,7 @@ class TreeifyTagLib {
             selected = attrs["fromSubmission"].species.collect { it.id }
         }
 
-        out << openfurry.Species.createCriteria().list() { isNull("parent") }.collect {
+        out << Species.createCriteria().list() { isNull("parent") }.collect {
             "<optgroup label=\"${it.speciesName}\">\n${_speciesOptions(it.subSpecies, 1, selected)}\n</optgroup>\n"
         }.join("")
     }
@@ -47,7 +47,7 @@ class TreeifyTagLib {
             selected && it.id in selected ? toReturn.append(" selected=\"selected\">") : toReturn.append(">")
             (0..depth).each { i -> toReturn.append('-') }
             toReturn.append("${it.speciesName}</option>")
-            toReturn.append(_speciesOptions(openfurry.Species.findAllWhere(parent: it), depth + 1, selected) + '\n')
+            toReturn.append(_speciesOptions(Species.findAllWhere(parent: it), depth + 1, selected) + '\n')
         }
         toReturn.toString()
     }
@@ -98,7 +98,7 @@ class TreeifyTagLib {
     }
 
     def categoryOptions = { attrs ->
-        out << openfurry.Category.createCriteria().list() { isNull("parent") }.collect {
+        out << Category.createCriteria().list() { isNull("parent") }.collect {
             "<optgroup label=\"${it.categoryName}\">\n${_categoryOptions(it.subcategories, 1)}\n</optgroup>\n"
         }
     }
@@ -109,7 +109,7 @@ class TreeifyTagLib {
             toReturn.append("<option value=\"${it.id}\">")
             (0..depth).each { i -> toReturn.append('-') }
             toReturn.append("${it.categoryName}</option>")
-            toReturn.append(_categoryOptions(openfurry.Category.findAllWhere(parent: it), depth + 1))
+            toReturn.append(_categoryOptions(Category.findAllWhere(parent: it), depth + 1))
         }
         toReturn.toString()
     }
