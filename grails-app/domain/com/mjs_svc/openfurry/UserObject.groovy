@@ -32,6 +32,7 @@ class UserObject implements Comparable {
         lastUpdated(nullable: true)
         rating(range: 0..2)
         tags(blank: true)
+        license(nullable: true)
     }
 
     static mapping = {

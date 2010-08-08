@@ -1,5 +1,7 @@
 package com.mjs_svc.openfurry
 
+import org.springframework.context.i18n.LocaleContextHolder as LCH 
+
 class FlatpageController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
@@ -31,14 +33,15 @@ class FlatpageController {
     }
 
     def show = {
-        def flatpageInstance = Flatpage.findBySlug(params.id)
+        def flatpageInstance = Flatpage.findBySlugAndLanguage(params.id, LCH.getLocale()?.getLanguage() ?: "en")
         if (!flatpageInstance) {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'flatpage.label', default: 'Flatpage'), params.id])}"
-            redirect(action: "list")
+            flatpageInstance = Flatpage.FindBySlugAndLanguage(params.id, "en")
+            if (!flatpageInstance) {
+                response.sendError(404) // TODO i18n
+                return
+            }
         }
-        else {
-            [flatpageInstance: flatpageInstance]
-        }
+        [flatpageInstance: flatpageInstance]
     }
 
     def edit = {

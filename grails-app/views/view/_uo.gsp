@@ -73,5 +73,5 @@
             <dd class="odd"><g:if test="${instance.externalLink}"><a target="_blank" href="${instance.externalLink.encodeAsHTML()}">${instance.externalLink.encodeAsHTML()}</a></g:if></dd>
         </dl>
     </div>
-    <div class="uoLicense shadow">Submission <a href="${instance.license.url}">${instance.license.display} ${instance.owner.userRealName} <g:formatDate format="yyyy" date="${instance.dateCreated}" /></a> - ${instance.license.description}</div>
+    <div class="uoLicense shadow">Submission <a href="${instance.license.url}">${instance.license.display} ${instance.owner.userRealName} <g:formatDate format="yyyy" date="${instance.dateCreated}" /></a> - ${instance.license.description} | <g:message code="openfurry.technical.shareLink" default="Share link" />: <g:link controller="view" action="show" id="${instance.id}" base="${grailsApplication.config.openfurry.permalinkBase}">${createLink(controller: 'view', action: 'show', id: instance.id, base: grailsApplication.config.openfurry.permalinkBase)}</g:link></div>
 </div>

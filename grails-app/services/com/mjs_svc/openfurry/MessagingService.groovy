@@ -29,6 +29,14 @@ class MessagingService {
             new UserMessage(code: code, defaultMessage: defaultMessage, type: type, regardingType: regardingType, regardingId: regardingId, dismissOnRead: false))
             .save(flush: true)
     }
+    def persistentMessageRole(String authority, Integer type, String code, String defaultMessage, String regardingType = null, Long regardingId = null) {
+        def role = Role.findByAuthority(authority)
+        if (role) {
+            for (user in role.people) {
+                persistentMessage(user, type, code, defaultMessage, regardingType, regardingId)
+            }
+        }
+    }
 
     def userTransientMessages(User user) {
         user = User.get(user.id)
@@ -75,7 +83,7 @@ class MessagingService {
     }
 
     def argumentString(UserMessage message) {
-        Class.forName("openfurry.${message.regardingType}", true, Thread.currentThread().getContextClassLoader())
+        Class.forName("com.mjs_svc.openfurry.${message.regardingType}", true, Thread.currentThread().getContextClassLoader())
             .get(message.regardingId)
             .toString()
     }

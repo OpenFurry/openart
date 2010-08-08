@@ -28,7 +28,14 @@
         </g:each>
         <g:if test="${uoList.size() < 1}"><g:message code="openfurry.technical.noSubmissions" default="No submissions to list" /></g:if>
         <hr style="width: 50%; clear: both; margin: auto">
-        <g:paginate total="${uoList.totalCount}" />
-        <g:link controller="watch" action="updateCursors"><g:message code="openfurry.watch.views.updateCursors" default="Mark all unread submissions as read" /></g:link>
+        <g:if test="${params.controller == 'user'}">
+            <g:link controller="list" action="user" id="${loggedInUserInfo(field: 'username')}">USER SUBMISSIONS</g:link>
+        </g:if>
+        <g:else>
+            <g:paginate total="${uoList.totalCount}" />
+        </g:else>
+        <g:if test="${params.controller == 'watch'}">
+            <g:link controller="watch" action="updateCursors"><g:message code="openfurry.watch.views.updateCursors" default="Mark all unread submissions as read" /></g:link>
+        </g:if>
     </div>
 </div>

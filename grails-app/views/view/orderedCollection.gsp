@@ -1,10 +1,13 @@
-<head>
-    <title>UNODERED COLLECTION - ${instance.title.encodeAsHTML()}</title>
-    <meta name="layout" content="main" />
-</head>
-<body>
-    <div class="collectionDisplay block">
-        <img src="${resource(file: instance.thumbnail)}" />
-    </div>
+<html>
+    <head>
+        <title>UNODERED COLLECTION - ${instance.title.encodeAsHTML()}</title>
+        <meta name="layout" content="main" />
+    </head>
+    <body>
         <g:render template="uo" />
-</body>
+        <div class="collectionDisplay block">
+            <g:render template="/list" model="[uoList: instance.userObjects]" />
+        </div>
+        <g:render template="/comments" model="[object: instance]" />
+    </body>
+</html>

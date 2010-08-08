@@ -19,7 +19,7 @@ class CommentController {
             response.sendError(500) // TODO i18n
             return
         }
-        def object = Class.forName("openfurry.${params.objectType}", true, Thread.currentThread().getContextClassLoader()).get(Integer.parseInt(params.objectId))
+        def object = Class.forName("com.mjs_svc.openfurry.${params.objectType}", true, Thread.currentThread().getContextClassLoader()).get(Integer.parseInt(params.objectId))
         if (!object) {
             response.sendError(500) // TODO i18n
             return

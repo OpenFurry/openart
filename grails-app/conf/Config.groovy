@@ -108,6 +108,7 @@ openfurry.enabledTypes.video = true
 openfurry.enabledTypes.flash = true
 openfurry.enabledTypes.text = true
 openfurry.enabledTypes.application = true
+openfurry.permalinkBase = "http://o-f.co"
 
 /**
  * OpenFurry Constants

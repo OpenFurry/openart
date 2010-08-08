@@ -109,5 +109,11 @@
                 <g:checkBox name="friendsOnly" value="${instance?.friendsOnly}" />
             </td>
         </tr>
+        <tr class="prop">
+            <th class="name"><g:message code="openfurry.uo.freezeComments" default="Disallow comments" /></th>
+            <td class="Value ${hasErrors(bean: instance, field: 'freezeComments', 'errors')}">
+                <g:checkBox name="freezeComments" value="${instance?.freezeComments}" />
+            </td>
+        </tr>
     </tbody>
 </table>

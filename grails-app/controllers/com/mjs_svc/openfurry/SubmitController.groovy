@@ -36,26 +36,31 @@ class SubmitController {
         if (params.id) {
             params.id = null
         }
+        [instance: new AudioUserObject()]
     }
     def video = {
         if (params.id) {
             params.id = null
         }
+        [instance: new VideoUserObject()]
     }
     def flash = {
         if (params.id) {
             params.id = null
         }
+        [instance: new FlashUserObject()]
     }
     def image = {
         if (params.id) {
             params.id = null
         }
+        [instance: new ImageUserObject()]
     }
     def text = {
         if (params.id) {
             params.id = null
         }
+        [instance: new TextUserObject()]
     }
     def journal = {
         if (params.id) {
@@ -66,16 +71,19 @@ class SubmitController {
         if (params.id) {
             params.id = null
         }
+        [instance: new ApplicationUserObject()]
     }
     def orderedCollection = {
         if (params.id) {
             params.id = null
         }
+        [instance: new OrderedCollection()]
     }
     def unorderedCollection = {
         if (params.id) {
             params.id = null
         }
+        [instance: new UnorderedCollection()]
     }
 
     /*
@@ -460,7 +468,7 @@ class SubmitController {
         textUserObjectInstance.owner = owner
         textUserObjectInstance.type = "text"
         textUserObjectInstance.journal = true
-        textUserObjectInstance.attachment = null
+        textUserObjectInstance.attachmentFile = null
         if (textUserObjectInstance.save(flush: true)) {
             marketService.transact(owner, "Journal.create(memberClass:${owner.memberClass})")
 

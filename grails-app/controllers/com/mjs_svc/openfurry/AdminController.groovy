@@ -9,6 +9,10 @@ class AdminController {
 
     def permissionsService
 
+    def messagingService
+
+    def marketService
+
     def index = {
         if (!authenticateService.ifAnyGranted("ROLE_STAFF.ROLE_ADMIN")) {
             redirect(action: "list")
@@ -37,8 +41,23 @@ class AdminController {
         ticket.votes = 0
 
         if (ticket.save(flush: true)) {
-            // TODO message user, staff
-            // TODO transaction
+            def user = User.get(authenticateService.principal().domainClass.id)
+            messagingService.transientMessage(
+                user,
+                grailsApplication.config.openfurry.user.messageTypes.success,
+                'openfurry.messages.ticket.new',
+                "Ticket submitted"
+            )
+            messagingService.persistentMessageRole(
+                "ROLE_STAFF",
+                grailsApplication.config.openfurry.user.messageTypes.warning,
+                'openfurry.messages.ticket.new',
+                "New trouble ticket: {0}",
+                ticket.class.toString().split("\\.")[-1],
+                ticket.id
+            )
+
+            marketService.transact(user, "TroubleTicket.create(memberClass:${user.memberClass})")
 
             redirect(action: "ticket", id: ticket.id)
         } else {

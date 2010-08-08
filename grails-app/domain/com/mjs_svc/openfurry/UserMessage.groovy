@@ -23,9 +23,11 @@ class UserMessage {
     static transients = ['argumentString']
 
     String argumentString() {
-        Class.forName("openfurry.${this.regardingType}", true, Thread.currentThread().getContextClassLoader())
-            .get(this.regardingId)
-            .toString()
+        if (regardingType && regardingId) {
+            Class.forName("com.mjs_svc.openfurry.${this.regardingType}", true, Thread.currentThread().getContextClassLoader())
+                .get(this.regardingId)
+                .toString()
+        }
     }
 
 }

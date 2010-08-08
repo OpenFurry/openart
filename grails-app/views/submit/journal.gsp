@@ -49,7 +49,7 @@
                                 <p><g:link controller="flatpage" action="show" id="linking"><g:message code="openfurry.messages.linkingOkay" default="Linking allowed" /></g:link></p>
                             </div>
                         </th>
-                        <td class="value ${hasErrors(bean: instance, field: 'text', 'errors')}"><g:textArea name="journal" rows="10" cols="75" /></td>
+                        <td class="value ${hasErrors(bean: instance, field: 'text', 'errors')}"><g:textArea name="text" rows="10" cols="75" /></td>
                     </tr>
                 </tbody>
             </table>

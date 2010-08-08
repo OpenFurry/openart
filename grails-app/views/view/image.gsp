@@ -10,5 +10,6 @@
             </a>
         </div>
         <g:render template="uo" />
+        <g:render template="/comments" model="[object: instance]" />
     </body>
 </html>
