@@ -15,7 +15,7 @@
                 <ul>
                 <g:set var="currentReType" value="${msg.regardingType}" />
             </g:if>
-            <li class="${grailsApplication.config.openfurry.user.messageTypes.repr[msg.type]}"><g:checkBox name="id.${msg.id}" /><of:linking noImages="true"><g:message code="${msg.code}" default="${msg.defaultMessage}" args="[msg.argumentString()]" /></of:linking></li>
+            <li class="${grailsApplication.config.openfurry.user.messageTypes.repr[msg.type]}"><g:checkBox name="id.${msg.id}" /><of:linking noImages="true"><g:message code="${msg.code}" default="${msg.defaultMessage}" args="[msg.argumentString(), msgregardingUser]" /></of:linking></li>
         </g:each>
         <div class="buttons"><input type="submit" value="${message(code: 'openfurry.inbox.clear', default: 'Clear checked messages')}" /></div>
         </g:form>

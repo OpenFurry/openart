@@ -24,16 +24,24 @@ class MessagingService {
     /*
     Message a user with a persistent message (no dismiss on read)
     */
-    def persistentMessage(User user, Integer type, String code, String defaultMessage, String regardingType = null, Long regardingId = null) {
+    def persistentMessage(User user, Integer type, String code, String defaultMessage, String regardingType = null, Long regardingId = null, User regardingUser = null) {
         user.addToMessages(
-            new UserMessage(code: code, defaultMessage: defaultMessage, type: type, regardingType: regardingType, regardingId: regardingId, dismissOnRead: false))
-            .save(flush: true)
+            new UserMessage(
+                code: code, 
+                defaultMessage: defaultMessage, 
+                type: type, 
+                regardingType: regardingType, 
+                regardingId: regardingId, 
+                regardingUser: regardingUser, 
+                dismissOnRead: false
+            )
+        ).save(flush: true)
     }
-    def persistentMessageRole(String authority, Integer type, String code, String defaultMessage, String regardingType = null, Long regardingId = null) {
+    def persistentMessageRole(String authority, Integer type, String code, String defaultMessage, String regardingType = null, Long regardingId = null, User regardingUser = null) {
         def role = Role.findByAuthority(authority)
         if (role) {
             for (user in role.people) {
-                persistentMessage(user, type, code, defaultMessage, regardingType, regardingId)
+                persistentMessage(user, type, code, defaultMessage, regardingType, regardingId, regardingUser)
             }
         }
     }
@@ -55,7 +63,8 @@ class MessagingService {
                 type: it.type,
                 code: it.code,
                 defaultMessage: it.defaultMessage,
-                argument: it.argumentString()
+                argument: it.argumentString(),
+                regardingUser: it.regardingUser
             ]
         }
 

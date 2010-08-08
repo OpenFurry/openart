@@ -131,7 +131,13 @@ class AdminController {
                 user,
                 grailsApplication.config.openfurry.user.warning."${params.warningLevel}",
                 params.reasonCode)
-            // TODO message admin
+            messagingService.transientMessage(
+                user,
+                grailsApplication.config.openfurry.user.messageTypes.success,
+                'openfurry.messages.warning.applied',
+                "Warning applied"
+            )
+
 
             redirect(controller: "user", action: "show", params: [username: user.username])
         } else {
@@ -152,7 +158,12 @@ class AdminController {
                 user,
                 grailsApplication.config.openfurry.user.warning."${params.praiseLevel}",
                 params.reasonCode)
-            // TODO message admin
+            messagingService.transientMessage(
+                user,
+                grailsApplication.config.openfurry.user.messageTypes.success,
+                'openfurry.messages.warning.applied',
+                "Warning applied"
+            )
 
             redirect(controller: "user", action: "show", params: [username: user.username])
         } else {
@@ -164,6 +175,12 @@ class AdminController {
         def user = User.findByUsername(params.id)
 
         warningService.ban(user)
+        messagingService.transientMessage(
+            user,
+            grailsApplication.config.openfurry.user.messageTypes.success,
+            'openfurry.message.ban.applied',
+            "Ban applied"
+        )
 
         redirect(controller: "user", action: "show", params: [username: user.username])
     }
@@ -172,6 +189,12 @@ class AdminController {
         def user = User.findByUsername(params.id)
 
         warningService.unban(user)
+        messagingService.transientMessage(
+            user,
+            grailsApplication.config.openfurry.user.messageTypes.success,
+            'openfurry.messages.ban.lifted',
+            "Ban lifted"
+        )
 
         redirect(controller: "user", action: "show", params: [username: user.username])
     }
@@ -186,7 +209,21 @@ class AdminController {
         uo.takenDown = true
         uo.save()
 
-        // TODO message user, message admin
+        messagingService.transientMessage(
+            User.get(authenticateService.principal().domainClass.id),
+            grailsApplication.config.openfurry.user.messageTypes.success,
+            "openfurry.messages.uo.takedown.applied",
+            "Submission taken down"
+        )
+        messagingService.persistentMessage(
+            uo.owner,
+            grailsApplication.config.openfurry.user.messageTypes.failure,
+            "openfurry.messages.uo.takenDown",
+            "Your submission, {0}, was taken down by a staff member; see the submission for details.",
+            uo.class.toString().split("\\.")[-1],
+            uo.id
+        )
+        
         redirect(controller: "view", action: "show", id: uo.id)
     }
 
@@ -200,7 +237,21 @@ class AdminController {
         uo.takenDown = false
         uo.save(flush: true)
 
-        // TODO message user, message admin
+        messagingService.transientMessage(
+            User.get(authenticateService.principal().domainClass.id),
+            grailsApplication.config.openfurry.user.messageTypes.success,
+            "openfurry.messages.uo.takedown.lifted",
+            "Submission put back up"
+        )
+        messagingService.persistentMessage(
+            uo.owner,
+            grailsApplication.config.openfurry.user.messageTypes.success,
+            "openfurry.messages.uo.unTakenDown",
+            "Your submission, {0}, was put back up by a staff member; see the submission for details.",
+            uo.class.toString().split("\\.")[-1],
+            uo.id
+        )
+
         redirect(controller: "view", action: "show", id: uo.id)
     }
 }

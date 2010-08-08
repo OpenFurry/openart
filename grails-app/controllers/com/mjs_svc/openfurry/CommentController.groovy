@@ -42,6 +42,57 @@ class CommentController {
         )
         if (comment.save(flush: true)) {
             // TODO Notify poster and object owner
+            messagingService.transientMessage(
+                user,
+                grailsApplication.config.openfurry.user.messageTypes.success,
+                "openfurry.messages.comment.posted",
+                "Comment successfully posted"
+            )
+
+            def reTypeCode
+            def reTypeDefault
+            def reType = params.parentType
+            def reId = params.parentId
+            def owner
+            switch (params.objectType) {
+                case "UserObject":
+                case "AudioUserObject":
+                case "VideoUserObject":
+                case "FlashUserObject":
+                case "ImageUserObject":
+                case "TextUserObject":
+                case "ApplicationUserObject":
+                case "OrderedCollection":
+                case "UnorderedCollection":
+                    reTypeCode = "openfurry.messages.comment.onUo"
+                    reTypeDefault = "{1} has commented on your submission, {0}"
+                    owner = object.owner
+                    break
+                case "GroupPost":
+                    reTypeCode = "openfurry.messages.comment.onThread"
+                    reTypeDefault = "{1} has commented on your thread, {0}"
+                    owner =  object.owner
+                    break
+                case "User":
+                    reTypeCode = "openfurry.messages.comment.onUser"
+                    reTypeDefault = "{0} has PM'd you"
+                    reType = "User"
+                    reId = user.id
+                    owner = object
+                    break
+                default:
+                    reTypeCode = "openfurry.messages.comment.default"
+                    reTypeDefault = "A comment has been posted on {0} by {1}"
+            }
+            messagingService.persistentMessage(
+                owner,
+                grailsApplication.config.openfurry.user.messageTypes.success,
+                reTypeCode,
+                reTypeDefault,
+                reType,
+                reId,
+                user
+            )
 
             object.save(flush: true) // update object
             if (params.targetURI) {
@@ -54,6 +105,35 @@ class CommentController {
         }
     }
 
-    def flag = {}
-    def delete = {}
+    def delete = {
+        def comment = Comment.get(params.id)
+        
+        if (!comment) {
+            response.sendError(404)
+            return
+        }
+
+        if (!permissionsService.comments.userCanDelete(comment)) {
+            response.sendError(403)
+            return
+        }
+
+        // Do this so we can flush
+        Comment.withCriteria {
+            eq("parentComment", comment)
+        }.each {
+            _delTree(it)
+        }
+
+        comment.delete(flush: true)
+    }
+
+    private _delTree(comment) {
+        Comment.withCriteria {
+            eq("parentComment", comment)
+        }.each {
+            _delTree(it)
+        }
+        comment.delete()
+    }
 }

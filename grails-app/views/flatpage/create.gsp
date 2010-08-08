@@ -1,5 +1,3 @@
-
-
 <%@ page import="com.mjs_svc.openfurry.Flatpage" %>
 <html>
     <head>

@@ -10,6 +10,8 @@ class GroupController {
     def listService
 
     def commentService
+    
+    def messagingService
 
     def list = {
         [groups: UserGroup.list()]
@@ -52,7 +54,20 @@ class GroupController {
         def user = User.get(authenticateService.principal().domainClass.id)
         user.addToGroups(group).save(flush: true)
 
-        // TODO message user, admin
+        messagingService.transientMessage(
+            user,
+            grailsApplication.config.openfurry.user.messageTypes.success,
+            "openfurry.messages.group.join",
+            "Group joined"
+        )
+        messagingService.persistentMessage(
+            User.get(group.adminId),
+            grailsApplication.config.openfurry.user.messageTypes.warning,
+            "openfurry.messages.group.joined",
+            "A new member has joined {0}",
+            group.class.toString().split("\\.")[-1],
+            group.id
+        )
 
         redirect(action: "show", id: group.slug)
     }
@@ -66,9 +81,26 @@ class GroupController {
 
         def user = User.get(authenticateService.principal().domainClass.id)
 
+        if (GroupRequest.findByRequesterAndGroup(user, group).size() > 0) {
+            redirect(action: 'show', id: group.slug)
+        }
+
         def groupRequest = new GroupRequest(requester: user, group: group, requestersReason: params.reason).save(flush: true)
 
-        // TODO message user, admin
+        messagingService.transientMessage(
+            user,
+            grailsApplication.config.openfurry.user.messageTypes.success,
+            "openfurry.messages.group.request",
+            "Request posted"
+        )
+        messagingService.persistentMessage(
+            User.get(group.adminId),
+            grailsApplication.config.openfurry.user.messageTypes.warning,
+            "openfurry.messages.group.newRequest",
+            "You have received a new request to join {0}",
+            group.class.toString().split("\\.")[-1],
+            group.id
+        )
 
         redirect(action: 'show', id: group.slug)
     }
@@ -126,7 +158,20 @@ class GroupController {
         def id = groupRequest.group.slug
         groupRequest.delete()
 
-        // TODO message user, admin
+        messagingService.transientMessage(
+            User.get(authenticateService.principal().domainClass.id),
+            grailsApplication.config.openfurry.user.messageTypes.success,
+            "openfurry.messages.group.approveRequest",
+            "Request approved"
+        )
+        messagingService.persistentMessage(
+            groupRequest.requester,
+            grailsApplicaton.config.openfurry.user.messageTypes.success,
+            "openfurry.messages.group.requestApproved",
+            "Your request to join {0} has been approved",
+            groupRequest.group.class.toString().split("\\.")[-1],
+            groupRequest.group.id
+        )
 
         redirect(action: "listRequests", id: id)
     }
@@ -147,6 +192,20 @@ class GroupController {
         groupRequest.save(flush: true)
 
         // TODO message user, admin
+        messagingService.transientMessage(
+            User.get(authenticateService.principal().domainClass.id),
+            grailsApplication.config.openfurry.user.messageTypes.success,
+            "openfurry.messages.group.denyRequest",
+            "Request denied"
+        )
+        messagingService.persistentMessage(
+            groupRequest.requester,
+            grailsApplicaton.config.openfurry.user.messageTypes.failure,
+            "openfurry.messages.group.requestDenied",
+            "Your request to join {0} has been denied",
+            groupRequest.group.class.toString().split("\\.")[-1],
+            groupRequest.group.id
+        )
 
         redirect(action: "listRequests", id: groupRequest.group.slug)
     }
@@ -172,7 +231,12 @@ class GroupController {
 
         group.removeFromMembers(user)
 
-        // TODO message user, admin
+        messagingService.transientMessage(
+            user,
+            grailsApplication.config.openfurry.user.messageTypes.success,
+            "openfurry.messages.group.leave",
+            "Group left"
+        )
 
         redirect(action: "show", id: group.slug)
     }
@@ -189,6 +253,7 @@ class GroupController {
             return
         }
 
+        def oldAdmin = User.get(group.adminId)
         def newAdmin = User.findByUsername(params.to)
         if (!newAdmin) {    
             response.sendError(404)
@@ -197,7 +262,18 @@ class GroupController {
 
         group.adminId = newAdmin.id
 
-        // TODO message user, admin
+        messagingService.transientMessage(
+            oldAdmin,
+            grailsApplication.config.openfurry.user.messageTypes.success,
+            "openfurry.messages.group.adminTransfered",
+            "Admin status transfered"
+        )
+        messagingService.persistentMessage(
+            newAdmin,
+            grailsApplication.config.openfurry.user.messageTypes.success,
+            "openfurry.messages.group.adminReceived",
+            "The admin of {0} has transfered his admin status to you, rule wisely!"
+        )
 
         redirect(action: "show", id: group.slug)
     }
@@ -262,7 +338,24 @@ class GroupController {
         post.owner = owner
 
         if (post.save(flush: true)) {
-            // TODO notify all members, transact
+            // TODO transact
+            messagingService.transientMessage(
+                owner,
+                grailsApplicaton.config.openfurry.user.messageTypes.success,
+                "openfurry.messages.group.post",
+                "Thread posted"
+            )
+            group.members.each {
+                messagingService.persistentMessage (
+                    it,
+                    grailsApplication.config.openfurry.user.messageTypes.success,
+                    "openfurry.messages.group.newPost",
+                    "A new thread has been posted in {0} by {1}",
+                    group.class.toString().split("\\.")[-1],
+                    group.id,
+                    owner
+                )
+            }
 
             redirect(action: 'thread', id: post.id)
         } else {
@@ -284,9 +377,17 @@ class GroupController {
         }
         
         def groupId = post.group.id
+        def owner = post.owner
+        commentService.deleteCommentsForObject(post)
         post.delete()
 
-        // TODO message
+        //TODO transact
+        messagingService.transientMessage(
+            owner,
+            grailsApplication.config.openfurry.user.messageTypes.success,
+            "openfurry.messages.group.deletePost",
+            "Thread deleted"
+        )
 
         redirect(action: 'show', id: groupId)
     }
@@ -319,7 +420,7 @@ class GroupController {
             groupInstance = UserGroup.get(params.id)
         } else {
             if (UserGroup.findBySlug(params.slug) > 0) {
-                // set error on field
+                groupInstance.errors.rejectValue("slug", "openfurry.technical.slugUnique", "Slug field must be unique")
             }
             groupInstance = new UserGroup()
             def admin = User.get(authenticateService.principal().domainClass.id)
@@ -329,7 +430,13 @@ class GroupController {
         groupInstance.properties = params
 
         if (groupInstance.save(flush: true)) {
-            // TODO message, transact
+            // TODO transact
+            messagingService.transientMessage(
+                User.get(groupInstance.adminId),
+                grailsApplication.config.openfurry.user.messageTypes.success,
+                "openfurry.messages.group.save",
+                "Group saved"
+            )
 
             redirect(action: 'show', id: groupInstance.slug)
         } else {
@@ -354,9 +461,25 @@ class GroupController {
             commentService.deleteCommentsForObject(it)
             it.delete()
         }
+        def members = group.members
         group.delete()
 
-        // TODO charge user, notify user, members
+        // TODO charge user
+        messagingService.transientMessage(
+            User.get(authenticateService.principal().domainClass.id),
+            grailsApplication.config.openfurry.user.messageTypes.success,
+            "openfurry.messages.group.delete",
+            "Group deleted"
+        )
+        members.each {
+            messagingService.persistentMessage(
+                it,
+                grailsApplication.config.openfurry.user.messageTypes.failure,
+                "openfurry.messages.group.deleted",
+                "{0} has been deleted by the admin"
+            )
+        }
+
         redirect(action: "list")
     }
 

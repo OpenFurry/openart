@@ -59,6 +59,37 @@ class PermissionsService {
         }
     ]
 
+    def comments = [
+        userCanDelete: { comment ->
+            if (authenticateService.principal().domainClass.id == comment.owner.id
+                || authenticateService.ifAnyGranted("ROLE_STAFF,ROLE_ADMIN")) {
+                return true
+            }
+            switch (comment.parentType) {
+                case "UserObject":
+                case "AudioUserObject":
+                case "VideoUserObject":
+                case "FlashUserObject":
+                case "ImageUserObject":
+                case "TextUserObject":
+                case "ApplicationUserObject":
+                case "OrderedCollection":
+                case "UnorderedCollection":
+                    def obj = UserObject.get(comment.parentId)
+                    if (authenticateService.principal().domainClass.id == obj.owner.id) {
+                        return true
+                    }
+                    break
+                case "GroupPost":
+                    def obj = GroupPost.get(comment.parentId)
+                    if(authenticateService.principal().domainClass.id == obj.group.adminId) {
+                        return true
+                    }
+            }
+            return false
+        }
+    ]
+
     def market = [
         userCanAfford: { pennies ->
             if (authenticateService.principal().domainClass.pennies - pennies < 0) {

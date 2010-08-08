@@ -3,6 +3,7 @@ package com.mjs_svc.openfurry
 class IssueController {
     def authenticateService
     def marketService
+    def messagingService
 
     static defaultAction = "list"
 
@@ -98,7 +99,12 @@ class IssueController {
             }
         }
         if(issueVote) {
-            // TODO let user know that they can't vote twice
+            messagingService.transientMessage(
+                user,
+                grailsApplication.config.openfurry.user.messageTypes.failure,
+                "openfurry.messages.issue.voteTwice",
+                "You cannot vote twice on the same issue"
+            )
             render(view: 'show', model: [issue: issue])
             return
         }
@@ -116,6 +122,21 @@ class IssueController {
 
         // charge the user
         marketService.transact(user, "Issue.vote(memberClass:${user.memberClass})")
+        messagingService.transientMessage(
+            user,
+            grailsApplication.config.openfurry.user.messageTypes.success,
+            "openfurry.messages.issue.vote",
+            "Vote cast"
+        )
+        messagingService.transientMessage(
+            issue.submitter,
+            grailsApplication.config.openfurry.user.messageTypes.success,
+            "openfurry.messages.issue.voted",
+            "{1} voted on your issue, {0}",
+            issue.class.toString().split("\\.")[-1],
+            issue.id,
+            user
+        )
 
         // Show success, message, issue
         render(view: 'show', model: [issue: issue])

@@ -6,6 +6,7 @@ class UserMessage {
     String regardingType
     Long regardingId
     Integer type
+    User regardingUser
     User userTo
     Boolean dismissOnRead = true
     Date dateCreated
@@ -16,6 +17,7 @@ class UserMessage {
         regardingType(maxSize: 60, blank: true, nullable: true)
         regardingId(blank: true, nullable: true)
         type(range: 0..3)
+        regardingUser(nullable: true)
     }
 
     static belongsTo = User
