@@ -10,6 +10,7 @@ class UserProperty {
 
     static mapping = {
         columns {
+            key column: 'property_key'
             value column: 'property_value'
         }
     }
