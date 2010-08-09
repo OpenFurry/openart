@@ -7,4 +7,10 @@ class UserProperty {
 
     static constraints = {
     }
+
+    static mapping = {
+        columns {
+            value column: 'property_value'
+        }
+    }
 }
