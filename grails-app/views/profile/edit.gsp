@@ -32,11 +32,11 @@
                     </tr>
                     <tr class="prop">
                         <th class="name"><g:message code="openfurry.user.password" default="Password" /></th>
-                        <td class="value"><g:textField name="password" /></td>
+                        <td class="value"><g:passwordField name="passwd" /></td>
                     </tr>
                     <tr class="prop">
                         <th class="name"><g:message code="openfurry.user.confirmPassword" default="Confirm password" /></th>
-                        <td class="value"><g:textField name="pass" /></td>
+                        <td class="value"><g:passwordField name="pass" /></td>
                     </tr>
                 </tbody>
                 <thead>

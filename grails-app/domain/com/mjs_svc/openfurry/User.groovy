@@ -75,7 +75,7 @@ class User {
         trinkets: UserTrinket,
     ]
 	static belongsTo = Role
-    static mappedBy = [trinkets: 'owner']
+    static mappedBy = [trinkets: 'owner', messages: 'userTo']
 
     String toString() {
         "${this.userRealName} (~${this.username})"
