@@ -109,8 +109,8 @@ openfurry.enabledTypes.flash = true
 openfurry.enabledTypes.text = true
 openfurry.enabledTypes.application = true
 openfurry.permalinkBase = "http://o-f.co"
-openfurry.mediaplayer.swf = "http://media.mjs-svc.com/of/player.swf"
-openfurry.mediaplayer.swfObj = "http://media.mjs-svc.com/of/swfobject.js"
+openfurry.mediaplayer.player = "http://media.mjs-svc.com/of/player.swf"
+openfurry.mediaplayer.swfobject = "http://media.mjs-svc.com/of/swfobject.js"
 
 /**
  * OpenFurry Constants
