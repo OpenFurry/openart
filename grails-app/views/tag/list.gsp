@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>TAG CLOUD</title>
+        <title><g:message code="openfurry.tag.list" default="Tag Cloud" /></title>
         <meta name="layout" content="main" />
     </head>
     <body>

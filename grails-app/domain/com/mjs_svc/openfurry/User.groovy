@@ -43,13 +43,13 @@ class User {
         memberType(range: 0..9)
         memberClass(range: 0..4)
         maxViewableRating(range: 0..2)
-        preferedTheme(blank: true, nullable: true)
+        preferedTheme(nullable: true)
         pennies()
         warningLevel(min: 0, max: 100)
-        watchlistCursorUltimate(blank: true, nullable: true)
-        watchlistCursorPenultimate(blank: true, nullable: true)
-        watchlistCursorBookmark(blank: true, nullable: true)
-        watchlistCursorBookmarkDate(blank: true, nullable: true)
+        watchlistCursorUltimate(nullable: true)
+        watchlistCursorPenultimate(nullable: true)
+        watchlistCursorBookmark(nullable: true)
+        watchlistCursorBookmarkDate(nullable: true)
     }
 
     static mapping = {

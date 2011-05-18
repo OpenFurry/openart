@@ -14,7 +14,7 @@ class CommissionInfo {
         type(inList: ["audio", "video", "flash", "image", "text", "application"])
         price(maxSize: 20)
         description(maxSize: 5000)
-        example(blank: true, nullable: true)
-        maxApplicants(blank: true, nullable: true)
+        example(nullable: true)
+        maxApplicants(nullable: true)
     }
 }

@@ -31,7 +31,7 @@ class UserObject implements Comparable {
         dateCreated(nullable: true)
         lastUpdated(nullable: true)
         rating(range: 0..2)
-        tags(blank: true)
+        tags(nullable: true)
         license(nullable: true)
     }
 
