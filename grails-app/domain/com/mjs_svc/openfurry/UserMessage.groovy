@@ -15,7 +15,7 @@ class UserMessage {
         code(maxSize: 1000)
         defaultMessage(maxSize: 1000)
         regardingType(maxSize: 60, blank: true, nullable: true)
-        regardingId(blank: true, nullable: true)
+        regardingId(nullable: true)
         type(range: 0..3)
         regardingUser(nullable: true)
     }

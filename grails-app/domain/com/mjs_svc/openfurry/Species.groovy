@@ -6,7 +6,7 @@ class Species {
 
     static constraints = {
         speciesName(maxSize: 60, blank: false)
-        parent(blank: true, nullable: true)
+        parent(nullable: true)
     }
 
     static hasMany = [subSpecies: Species, users: User]
