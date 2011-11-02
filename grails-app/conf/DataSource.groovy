@@ -25,12 +25,8 @@ environments {
     }
     production {
         dataSource {
-            driverClassName = "com.mysql.jdbc.Driver"
-            dialect = "org.hibernate.dialect.MySQLDialect"
             dbCreate = "update"
-            url = "jdbc:mysql://mysqlhost/dbname"
-            username = "username"
-            password = "s3cr3t"
+            url = "jdbc:hsqldb:file:prodDB;shutdown=true"
         }
     }
 }
