@@ -119,5 +119,5 @@ Licensing
 Credits
 -------
 
-* Matthew Scott (Makyo) - [MJS Services](http://mjs-svc.com)
+* Matthew Scott (Makyo) - [JNSQ](http://jnsq.us)
 * (Add yourself if you contribute!)
