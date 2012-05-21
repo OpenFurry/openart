@@ -4,7 +4,7 @@ security {
 
 	active = true
 
-	loginUserDomainClass = "com.mjs_svc.openfurry.User"
-	authorityDomainClass = "com.mjs_svc.openfurry.Role"
-	requestMapClass = "com.mjs_svc.openfurry.Requestmap"
+	loginUserDomainClass = "us.jnsq.openfurry.User"
+	authorityDomainClass = "us.jnsq.openfurry.Role"
+	requestMapClass = "us.jnsq.openfurry.Requestmap"
 }

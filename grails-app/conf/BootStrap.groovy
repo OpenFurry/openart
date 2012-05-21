@@ -1,4 +1,4 @@
-import com.mjs_svc.openfurry.*
+import us.jnsq.openfurry.*
 import grails.util.Environment
 
 class BootStrap {
@@ -22,6 +22,20 @@ class BootStrap {
         def roleUser  = new Role(authority: "ROLE_USER", description: "Authenticated user")
         roleUser.save()
 
+        /**
+         * License definitions
+         */
+        def licenseCopyright = new License(
+            title: "Copyright",
+            description: "All rights reserved",
+            display: "&copy;",
+            url: "http://loc.gov"
+        )
+        licenseCopyright.save()
+
+        def speciesDeity = new Species(speciesName: "Anthropomorphic Deity", parent: speciesTest)
+        speciesDeity.save()
+            
         /**
          * User definitions
          */
@@ -98,9 +112,6 @@ class BootStrap {
             def speciesTest = new Species(speciesName: "Test species")
             speciesTest.save()
 
-            def speciesDeity = new Species(speciesName: "Anthropomorphic Deity", parent: speciesTest)
-            speciesDeity.save()
-            
             def speciesTestSubject = new Species(speciesName: "Crash test dummy", parent: speciesTest)
             speciesTestSubject.save()
 
@@ -117,17 +128,6 @@ class BootStrap {
             categoryPainting.save(flush: true)
 
             categoryVisual.save(flush: true)
-
-            /**
-             * License definitions
-             */
-            def licenseCopyright = new License(
-                title: "Copyright",
-                description: "All rights reserved",
-                display: "&copy;",
-                url: "http://loc.gov"
-            )
-            licenseCopyright.save()
 
 
             def userSlave = new User(
