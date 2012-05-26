@@ -45,7 +45,7 @@
 		</div>
 
 		<div class="paginateButtons">
-			<g:paginate total="${openfurry.Person.count()}" />
+			<g:paginate total="${openart.Person.count()}" />
 		</div>
 
 	</div>

@@ -20,28 +20,28 @@
     <tbody>
 
         <tr class='prop'>
-            <th valign='top' class='name'><label for='username'><g:message code="openfurry.user.username" default="Username" /></label></th>
+            <th valign='top' class='name'><label for='username'><g:message code="openart.user.username" default="Username" /></label></th>
             <td valign='top' class='value ${hasErrors(bean:user,field:'username','errors')}'>
                 <input type="text" name='username' value="${user?.username?.encodeAsHTML()}"/>
             </td>
         </tr>
 
         <tr class='prop'>
-            <th valign='top' class='name'><label for='userRealName'><g:message code="openfurry.user.userRealName" default="Display name" /></label></th>
+            <th valign='top' class='name'><label for='userRealName'><g:message code="openart.user.userRealName" default="Display name" /></label></th>
             <td valign='top' class='value ${hasErrors(bean:user,field:'userRealName','errors')}'>
                 <input type="text" name='userRealName' value="${user?.userRealName?.encodeAsHTML()}"/>
             </td>
         </tr>
 
         <tr class='prop'>
-            <th valign='top' class='name'><label for='passwd'><g:message code="openfurry.user.password" default="Password" /></label></th>
+            <th valign='top' class='name'><label for='passwd'><g:message code="openart.user.password" default="Password" /></label></th>
             <td valign='top' class='value ${hasErrors(bean:user,field:'passwd','errors')}'>
                 <input type="password" name='passwd' />
             </td>
         </tr>
 
         <tr class='prop'>
-            <th valign='top' class='name'><label for='repasswd'><g:message code="openfurry.user.confirmPassword" default="Confirm password" /></label></th>
+            <th valign='top' class='name'><label for='repasswd'><g:message code="openart.user.confirmPassword" default="Confirm password" /></label></th>
             <td valign='top' class='value ${hasErrors(bean:user,field:'passwd','errors')}'>
                 <input type="password" name='repasswd' />
             </td>
@@ -63,15 +63,15 @@
             </td>
         </tr>
 
-        <g:if test="${grailsApplication.config.openfurry.requireInvitation}">
+        <g:if test="${grailsApplication.config.openart.requireInvitation}">
             <tr class="prop">
-                <th class="name"><label for="invitationCode"><g:message code="openfurry.userInvitation.code" default="Invitation Code" /></label></th>
+                <th class="name"><label for="invitationCode"><g:message code="openart.userInvitation.code" default="Invitation Code" /></label></th>
                 <td class="value"><g:textField name="invitationCode" value="${params?.invitationCode ?: ''}" /></td>
             </tr>
         </g:if>
 
         <tr class="prop" style="display: none">
-            <th class="name"><label for="hp"><g:message code="openfurry.user.honeypot" default="Do not enter anything in this field; if you do, your registration will be rejected" />
+            <th class="name"><label for="hp"><g:message code="openart.user.honeypot" default="Do not enter anything in this field; if you do, your registration will be rejected" />
             <td class="value"><input type="text" name="hp" /></td>
         </tr>
 

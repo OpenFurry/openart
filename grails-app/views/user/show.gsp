@@ -12,14 +12,14 @@
             <g:isLoggedIn>
                 <g:if test="${loggedInUserInfo(field: 'username') != user.username}">
                     <g:if test="${watched}">
-                        <g:link controller="watch" action="removeUser" params="[id: user.username]">- <g:message code="openfurry.watch.user.remove" default="Unwatch user" /></g:link>
+                        <g:link controller="watch" action="removeUser" params="[id: user.username]">- <g:message code="openart.watch.user.remove" default="Unwatch user" /></g:link>
                     </g:if>
                     <g:else>
-                        <g:link controller="watch" action="addUser" params="[id: user.username]">+ <g:message code="openfurry.watch.user.add" default="Watch user" /></g:link>
+                        <g:link controller="watch" action="addUser" params="[id: user.username]">+ <g:message code="openart.watch.user.add" default="Watch user" /></g:link>
                     </g:else>
                 </g:if>
                 <g:else>
-                    <g:message code="openfurry.user.thatsyou" default="(That's you!)" />
+                    <g:message code="openart.user.thatsyou" default="(That's you!)" />
                 </g:else>
             </g:isLoggedIn>
         </div>
@@ -28,7 +28,7 @@
                 <thead>
                     <tr>
                         <th class="shadow">
-                            <g:message code="openfurry.user.profile" default="Profile" />
+                            <g:message code="openart.user.profile" default="Profile" />
                         </th>
                     </tr>
                 </thead>
@@ -45,45 +45,45 @@
             <table>
                 <thead>
                     <tr>
-                        <th colspan="2" class="shadow"><g:message code="openfurry.user.details" default="User details" /></th>
+                        <th colspan="2" class="shadow"><g:message code="openart.user.details" default="User details" /></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.user.username" default="Username" /></th>
+                        <th class="name"><g:message code="openart.user.username" default="Username" /></th>
                         <td class="value">${user.username}</td>
                     </tr>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.user.userRealName" default="Display name" /></th>
+                        <th class="name"><g:message code="openart.user.userRealName" default="Display name" /></th>
                         <td class="value">${user.userRealName?.encodeAsHTML()}</td>
                     </tr>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.user.species" default="User's species" /></th>
+                        <th class="name"><g:message code="openart.user.species" default="User's species" /></th>
                         <td class="value"><of:speciesString species="${user.species}" /></th>
                     </tr>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.user.preferedLicense" default="Prefered license" /></th>
+                        <th class="name"><g:message code="openart.user.preferedLicense" default="Prefered license" /></th>
                         <td class="value"><g:if test="${user.preferedLicense}"><a href="${user.preferedLicense.url}" target="_blank">${user.preferedLicense.title} - ${user.preferedLicense.display}</a></g:if></td>
                     </tr>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.user.type" default="User type" /></th>
-                        <td class="value">${grailsApplication.config.openfurry.user.types.repr[user.memberType]}</td>
+                        <th class="name"><g:message code="openart.user.type" default="User type" /></th>
+                        <td class="value">${grailsApplication.config.openart.user.types.repr[user.memberType]}</td>
                     </tr>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.user.class" default="User class" /></th>
-                        <td class="value">${grailsApplication.config.openfurry.user.classes.repr[user.memberClass]}</td>
+                        <th class="name"><g:message code="openart.user.class" default="User class" /></th>
+                        <td class="value">${grailsApplication.config.openart.user.classes.repr[user.memberClass]}</td>
                     </tr>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.user.preferedTheme" default="Prefered theme" /></th>
+                        <th class="name"><g:message code="openart.user.preferedTheme" default="Prefered theme" /></th>
                         <td class="value">${user.preferedTheme?.id ?: "default"}</td>
                     </tr>
                     <g:if test="${loggedInUserInfo(field:'username').toString() == user.username}">
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.user.pennies" default="Pennies" /></th>
+                        <th class="name"><g:message code="openart.user.pennies" default="Pennies" /></th>
                         <td class="value">${user.pennies}</td>
                     </tr>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.user.warningLevel" default="Warning level" /></th>
+                        <th class="name"><g:message code="openart.user.warningLevel" default="Warning level" /></th>
                         <td class="value="><div style="background: url('${resource(dir: 'images', file: 'warning-gradient.jpg')}') top left no-repeat; width: 200px;"><div style="margin-left: ${user.warningLevel * 2}px"><strong>|</strong> (${user.warningLevel}%)</div></div></td>
                     </tr>
                     </g:if>

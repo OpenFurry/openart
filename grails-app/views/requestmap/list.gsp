@@ -43,7 +43,7 @@
 		</div>
 
 		<div class="paginateButtons">
-			<g:paginate total="${openfurry.Requestmap.count()}" />
+			<g:paginate total="${openart.Requestmap.count()}" />
 		</div>
 
 	</div>

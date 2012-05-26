@@ -1,4 +1,4 @@
-<%@ page import="com.mjs_svc.openfurry.Flatpage" %>
+<%@ page import="com.mjs_svc.openart.Flatpage" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />

@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title><g:message code="openfurry.collection.ordered.view.create" default="New ordered collection" /></title>
+        <title><g:message code="openart.collection.ordered.view.create" default="New ordered collection" /></title>
         <meta name="layout" content="main" />
     </head>
     <body>
@@ -15,12 +15,12 @@
                 <table>
                     <thead>
                         <tr>
-                            <th colspan="2"><g:message code="openfurry.collection.ordered.sectionTitle" default="Ordered collection details" /></th>
+                            <th colspan="2"><g:message code="openart.collection.ordered.sectionTitle" default="Ordered collection details" /></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="prop">
-                            <th class="name"><g:message code="openfurry.collection.description" default="Collection description" /></th>
+                            <th class="name"><g:message code="openart.collection.description" default="Collection description" /></th>
                             <td class="value"><g:textArea name="description" rows="10" cols="75" /></td>
                         </tr>
                     </tbody>

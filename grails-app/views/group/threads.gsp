@@ -1,20 +1,20 @@
 <html><!-- TODO i18n -->
     <head>
-        <title><g:message code="openfurry.group.thread.plural" default="Threads" /> - ${group.title}</title>
+        <title><g:message code="openart.group.thread.plural" default="Threads" /> - ${group.title}</title>
         <meta name="layout" content="main" />
     </head>
     <body>
         <div class="breadcrumbs">
-            <g:link controller="group"><g:message code="openfurry.display.navigation.groups" default="Groups and events" /></g:link> &raquo;
+            <g:link controller="group"><g:message code="openart.display.navigation.groups" default="Groups and events" /></g:link> &raquo;
             <g:link controller="group" action="show" id="${group.slug}">${group.title}</g:link> &raquo;
-            <g:message code="openfurry.group.thread.plural" default="threads" />
+            <g:message code="openart.group.thread.plural" default="threads" />
         </div>
         <table class="list">
             <thead>
                 <tr>
-                    <th style="width: 60%"><g:message code="openfurry.group.thread"  default="Thread" /></th>
-                    <th style="width: 10%"><g:message code="openfurry.group.thread.replies" default="Replies" /></th>
-                    <th style="width: 30%"><g:message code="openfurry.group.thread.owner" default="Poster" /></th>
+                    <th style="width: 60%"><g:message code="openart.group.thread"  default="Thread" /></th>
+                    <th style="width: 10%"><g:message code="openart.group.thread.replies" default="Replies" /></th>
+                    <th style="width: 30%"><g:message code="openart.group.thread.owner" default="Poster" /></th>
                 </tr>
             </thead>
             <tbody>

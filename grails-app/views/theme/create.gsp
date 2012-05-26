@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title><g:message code="openfurry.theme.view.create" default="New OpenFurry theme" /></title>
+        <title><g:message code="openart.theme.view.create" default="New OpenArt theme" /></title>
         <meta name="layout" content="main" />
     </head>
     <body>
@@ -13,20 +13,20 @@
             <table>
                 <thead>
                     <tr>
-                        <th class="shadow" colspan="2"><g:message code="openfurry.theme.section.body" default="Body" /></th>
+                        <th class="shadow" colspan="2"><g:message code="openart.theme.section.body" default="Body" /></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.theme.types.bgcolor" default="Background color" /></th>
+                        <th class="name"><g:message code="openart.theme.types.bgcolor" default="Background color" /></th>
                         <td class="value"><g:textField name="theme.body.bgcolor" /></td>
                     </tr>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.theme.types.fgcolor" default="Font color" /></th>
+                        <th class="name"><g:message code="openart.theme.types.fgcolor" default="Font color" /></th>
                         <td class="value"><g:textField name="theme.body.fgcolor" /></td>
                     </tr>
                     <tr>
-                        <th class="name"><g:message code="openfurry.theme.types.font" default="Font" /></th>
+                        <th class="name"><g:message code="openart.theme.types.font" default="Font" /></th>
                         <td class="value">
                             <select name="theme.body.font">
                                 <option value="serif" style="font-family: serif">Serif</option>
@@ -38,7 +38,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="name"><g:message code="openfurry.theme.types.fontSize" default="Font size" /></th>
+                        <th class="name"><g:message code="openart.theme.types.fontSize" default="Font size" /></th>
                         <td class="value"><g:textField name="theme.body.fontSize" /></td>
                     </tr>
                 </tbody>
@@ -46,20 +46,20 @@
             <table>
                 <thead>
                     <tr>
-                        <th class="shadow" colspan="2"><g:message code="openfurry.theme.section.header" default="Header" /></th>
+                        <th class="shadow" colspan="2"><g:message code="openart.theme.section.header" default="Header" /></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.theme.types.bgcolor" default="Background color" /></th>
+                        <th class="name"><g:message code="openart.theme.types.bgcolor" default="Background color" /></th>
                         <td class="value"><g:textField name="theme.header.bgcolor" /></td>
                     </tr>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.theme.types.fgcolor" default="Font color" /></th>
+                        <th class="name"><g:message code="openart.theme.types.fgcolor" default="Font color" /></th>
                         <td class="value"><g:textField name="theme.header.fgcolor" /></td>
                     </tr>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.theme.types.border" default="Border" /></th>
+                        <th class="name"><g:message code="openart.theme.types.border" default="Border" /></th>
                         <td class="value">
                             <select name="theme.header.borderStyle">
                                 <option value="none">None</option>
@@ -75,12 +75,12 @@
             <table>
                 <thead>
                     <tr>
-                        <th class="shadow" colspan="2"><g:message code="openfurry.theme.section.navigation" default="Navigation" /></th>
+                        <th class="shadow" colspan="2"><g:message code="openart.theme.section.navigation" default="Navigation" /></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.theme.types.fgcolor" default="Font color" /></th>
+                        <th class="name"><g:message code="openart.theme.types.fgcolor" default="Font color" /></th>
                         <td class="value"><g:textField name="theme.navigation.fgcolor" /></td>
                     </tr>
                 </tbody>
@@ -88,16 +88,16 @@
             <table>
                 <thead>
                     <tr>
-                        <th class="shadow" colspan="2"><g:message code="openfurry.theme.section.content" default="Content" /></th>
+                        <th class="shadow" colspan="2"><g:message code="openart.theme.section.content" default="Content" /></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.theme.types.bgcolor" default="Background color" /></th>
+                        <th class="name"><g:message code="openart.theme.types.bgcolor" default="Background color" /></th>
                         <td class="value"><g:textField name="theme.content.bgcolor" /></td>
                     </tr>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.theme.types.fgcolor" default="Font color" /></th>
+                        <th class="name"><g:message code="openart.theme.types.fgcolor" default="Font color" /></th>
                         <td class="value"><g:textField name="theme.content.fgcolor" /></td>
                     </tr>
                 </tbody>
@@ -105,20 +105,20 @@
             <table>
                 <thead>
                     <tr>
-                        <th class="shadow" colspan="2"><g:message code="openfurry.theme.section.blocks" default="Blocks" /></th>
+                        <th class="shadow" colspan="2"><g:message code="openart.theme.section.blocks" default="Blocks" /></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.theme.types.bgcolor" default="Background color" /></th>
+                        <th class="name"><g:message code="openart.theme.types.bgcolor" default="Background color" /></th>
                         <td class="value"><g:textField name="theme.block.bgcolor" /></td>
                     </tr>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.theme.types.fgcolor" default="Font color" /></th>
+                        <th class="name"><g:message code="openart.theme.types.fgcolor" default="Font color" /></th>
                         <td class="value"><g:textField name="theme.block.fgcolor" /></td>
                     </tr>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.theme.types.border" default="Border" /></th>
+                        <th class="name"><g:message code="openart.theme.types.border" default="Border" /></th>
                         <td class="value">
                             <select name="theme.block.borderStyle">
                                 <option value="none">None</option>
@@ -134,20 +134,20 @@
             <table>
                 <thead>
                     <tr>
-                        <th class="shadow" colspan="2"><g:message code="openfurry.theme.section.htags" default="Header tags (h2, h3, ...)" /></th>
+                        <th class="shadow" colspan="2"><g:message code="openart.theme.section.htags" default="Header tags (h2, h3, ...)" /></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.theme.types.bgcolor" default="Background color" /></th>
+                        <th class="name"><g:message code="openart.theme.types.bgcolor" default="Background color" /></th>
                         <td class="value"><g:textField name="theme.headers.bgcolor" /></td>
                     </tr>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.theme.types.fgcolor" default="Font color" /></th>
+                        <th class="name"><g:message code="openart.theme.types.fgcolor" default="Font color" /></th>
                         <td class="value"><g:textField name="theme.headers.fgcolor" /></td>
                     </tr>
                     <tr>
-                        <th class="name"><g:message code="openfurry.theme.types.fontSize" default="Font size" /></th>
+                        <th class="name"><g:message code="openart.theme.types.fontSize" default="Font size" /></th>
                         <td class="value"><g:textField name="theme.headers.fontSize" /></td>
                     </tr>
                 </tbody>
@@ -155,28 +155,28 @@
             <table>
                 <thead>
                     <tr>
-                        <th class="shadow" colspan="2"><g:message code="openfurry.theme.section.forms" default="Forms" /></th>
+                        <th class="shadow" colspan="2"><g:message code="openart.theme.section.forms" default="Forms" /></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.theme.types.bgcolor" default="Background color" /> - <g:message code="openfurry.theme.label" default="Label" /></th>
+                        <th class="name"><g:message code="openart.theme.types.bgcolor" default="Background color" /> - <g:message code="openart.theme.label" default="Label" /></th>
                         <td class="value"><g:textField name="theme.th.bgcolor" /></td>
                     </tr>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.theme.types.fgcolor" default="Font color" /> - <g:message code="openfurry.theme.label" default="Label" /></th>
+                        <th class="name"><g:message code="openart.theme.types.fgcolor" default="Font color" /> - <g:message code="openart.theme.label" default="Label" /></th>
                         <td class="value"><g:textField name="theme.th.fgcolor" /></td>
                     </tr>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.theme.types.bgcolor" default="Background color" /> - <g:message code="openfurry.theme.field" default="Field" /></th>
+                        <th class="name"><g:message code="openart.theme.types.bgcolor" default="Background color" /> - <g:message code="openart.theme.field" default="Field" /></th>
                         <td class="value"><g:textField name="theme.td.bgcolor" /></td>
                     </tr>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.theme.types.fgcolor" default="Font color" /> - <g:message code="openfurry.theme.field" default="Field" /></th>
+                        <th class="name"><g:message code="openart.theme.types.fgcolor" default="Font color" /> - <g:message code="openart.theme.field" default="Field" /></th>
                         <td class="value"><g:textField name="theme.td.fgcolor" /></td>
                     </tr>
                     <tr class="prop">
-                        <th class="name"><g:message code="openfurry.theme.types.border" default="Border" /></th>
+                        <th class="name"><g:message code="openart.theme.types.border" default="Border" /></th>
                         <td class="value">
                             <select name="theme.th.borderStyle">
                                 <option value="none">None</option>

@@ -1,39 +1,39 @@
 <html>
     <head>
-        <title><g:message code="openfurry.issue.plural" default="Issues" /></title>
+        <title><g:message code="openart.issue.plural" default="Issues" /></title>
         <meta name="layout" content="main" />
     </head>
     <body>
         <div class="verticalTabs">
             <ul class="nav">
-                <li class="block ${params.type ? '' : 'selected'}"><a href="${params.status ? '?status=' + params.status : ''}"><g:message code="openfurry.issue.types.all" default="All" /></a></li>
-                <li class="block ${params.type == '0' ? 'selected' : ''}"><a href="?type=0${params.status ? '&status=' + params.status : ''}"><g:message code="openfurry.issue.types.Bug" default="Bug" /></a></li>
-                <li class="block ${params.type == '1' ? 'selected' : ''}"><a href="?type=1${params.status ? '&status=' + params.status : ''}"><g:message code="openfurry.issue.types.Improvement" default="Improvement" /></a></li>
-                <li class="block ${params.type == '2' ? 'selected' : ''}"><a href="?type=2${params.status ? '&status=' + params.status : ''}"><g:message code="openfurry.issue.types.NewFeature" default="New Feature Request" /></a></li>
+                <li class="block ${params.type ? '' : 'selected'}"><a href="${params.status ? '?status=' + params.status : ''}"><g:message code="openart.issue.types.all" default="All" /></a></li>
+                <li class="block ${params.type == '0' ? 'selected' : ''}"><a href="?type=0${params.status ? '&status=' + params.status : ''}"><g:message code="openart.issue.types.Bug" default="Bug" /></a></li>
+                <li class="block ${params.type == '1' ? 'selected' : ''}"><a href="?type=1${params.status ? '&status=' + params.status : ''}"><g:message code="openart.issue.types.Improvement" default="Improvement" /></a></li>
+                <li class="block ${params.type == '2' ? 'selected' : ''}"><a href="?type=2${params.status ? '&status=' + params.status : ''}"><g:message code="openart.issue.types.NewFeature" default="New Feature Request" /></a></li>
             </ul>
             <div class="content block" style="min-height: 20em;">
                 <div class="horizontalTabs">
                     <ul class="nav">
-                        <li class="block ${params.status ? '' : 'selected'}"><a href="${params.type ? '?type=' + params.type : ''}"><g:message code="openfurry.issue.status.all" default="All" /></a></li>
-                        <li class="block ${params.status == '0' ? 'selected' : ''}"><a href="?status=${0}${params.type ? '&type=' + params.type : ''}"><g:message code="openfurry.issue.status.Suggestion" default="Suggestion" /></a></li>
-                        <li class="block ${params.status == '1' ? 'selected' : ''}"><a href="?status=${1}${params.type ? '&type=' + params.type : ''}"><g:message code="openfurry.issue.statusSeconded" default="Seconded" /></a></li>
-                        <li class="block ${params.status == '2' ? 'selected' : ''}"><a href="?status=${2}${params.type ? '&type=' + params.type : ''}"><g:message code="openfurry.issue.status.Accepted" default="Accepted" /></a></li>
-                        <li class="block ${params.status == '3' ? 'selected' : ''}"><a href="?status=${3}${params.type ? '&type=' + params.type : ''}"><g:message code="openfurry.issue.status.Completed" default="Completed" /></a></li>
-                        <li class="block ${params.status == '4' ? 'selected' : ''}"><a href="?status=${4}${params.type ? '&type=' + params.type : ''}"><g:message code="openfurry.issue.status.Rejected" default="Rejected" /></a></li>
+                        <li class="block ${params.status ? '' : 'selected'}"><a href="${params.type ? '?type=' + params.type : ''}"><g:message code="openart.issue.status.all" default="All" /></a></li>
+                        <li class="block ${params.status == '0' ? 'selected' : ''}"><a href="?status=${0}${params.type ? '&type=' + params.type : ''}"><g:message code="openart.issue.status.Suggestion" default="Suggestion" /></a></li>
+                        <li class="block ${params.status == '1' ? 'selected' : ''}"><a href="?status=${1}${params.type ? '&type=' + params.type : ''}"><g:message code="openart.issue.statusSeconded" default="Seconded" /></a></li>
+                        <li class="block ${params.status == '2' ? 'selected' : ''}"><a href="?status=${2}${params.type ? '&type=' + params.type : ''}"><g:message code="openart.issue.status.Accepted" default="Accepted" /></a></li>
+                        <li class="block ${params.status == '3' ? 'selected' : ''}"><a href="?status=${3}${params.type ? '&type=' + params.type : ''}"><g:message code="openart.issue.status.Completed" default="Completed" /></a></li>
+                        <li class="block ${params.status == '4' ? 'selected' : ''}"><a href="?status=${4}${params.type ? '&type=' + params.type : ''}"><g:message code="openart.issue.status.Rejected" default="Rejected" /></a></li>
                     </ul>
                 </div>
                 <div style="float:right">
-                    <strong><a href="${createLink(action: 'create')}">+ <g:message code="openfurry.issue.views.create" default="Create issue" /></a></strong>
+                    <strong><a href="${createLink(action: 'create')}">+ <g:message code="openart.issue.views.create" default="Create issue" /></a></strong>
                 </div>
                 <table class="list">
                     <thead>
                         <tr class="shadow">
                             <%-- We have to do these by hand, because g:sortableColumn doesn't pay attention to the query string's current data --%>
-                            <th style="width: 10%" class="sortable${params.sort == 'id' ? ' sorted' + (params.order == 'asc' ? ' asc' : ' desc') : ''}"><a href="?sort=id&order=${params.order == 'asc' ? 'desc' : 'asc'}${params.type ? '&type=' + params.type : ''}${params.status ? '&status=' + params.status : ''}"><g:message code="openfurry.issue.id" default="ID" /></a></th>
-                            <th style="width: 50%" class="sortable${params.sort == 'title' ? ' sorted' + (params.order == 'asc' ? ' asc' : ' desc') : ''}"><a href="?sort=title&order=${params.order == 'asc' ? 'desc' : 'asc'}${params.type ? '&type=' + params.type : ''}${params.status ? '&status=' + params.status : ''}"><g:message code="openfurry.issue.title" default="Issue" /></a></th>
-                            <th style="width: 15%" class="sortable${params.sort == 'type' ? ' sorted' + (params.order == 'asc' ? ' asc' : ' desc') : ''}"><a href="?sort=type&order=${params.order == 'asc' ? 'desc' : 'asc'}${params.type ? '&type=' + params.type : ''}${params.status ? '&status=' + params.status : ''}"><g:message code="openfurry.issue.type" default="Issue type" /></a></th>
-                            <th style="width: 15%" class="sortable${params.sort == 'status' ? ' sorted' + (params.order == 'asc' ? ' asc' : ' desc') : ''}"><a href="?sort=status&order=${params.order == 'asc' ? 'desc' : 'asc'}${params.type ? '&type=' + params.type : ''}${params.status ? '&status=' + params.status : ''}"><g:message code="openfurry.issue.status" default="Issue status" /></a></th>
-                            <th style="width: 10%" class="sortable${params.sort == 'votes' ? ' sorted' + (params.order == 'asc' ? ' asc' : ' desc') : ''}"><a href="?sort=votes&order=${params.order == 'asc' ? 'desc' : 'asc'}${params.type ? '&type=' + params.type : ''}${params.votes ? '&votes=' + params.votes : ''}"><g:message code="openfurry.issue.votes" default="Votes" />/<g:message code="openfurry.comment.plural" default="Comments" /></a></th>
+                            <th style="width: 10%" class="sortable${params.sort == 'id' ? ' sorted' + (params.order == 'asc' ? ' asc' : ' desc') : ''}"><a href="?sort=id&order=${params.order == 'asc' ? 'desc' : 'asc'}${params.type ? '&type=' + params.type : ''}${params.status ? '&status=' + params.status : ''}"><g:message code="openart.issue.id" default="ID" /></a></th>
+                            <th style="width: 50%" class="sortable${params.sort == 'title' ? ' sorted' + (params.order == 'asc' ? ' asc' : ' desc') : ''}"><a href="?sort=title&order=${params.order == 'asc' ? 'desc' : 'asc'}${params.type ? '&type=' + params.type : ''}${params.status ? '&status=' + params.status : ''}"><g:message code="openart.issue.title" default="Issue" /></a></th>
+                            <th style="width: 15%" class="sortable${params.sort == 'type' ? ' sorted' + (params.order == 'asc' ? ' asc' : ' desc') : ''}"><a href="?sort=type&order=${params.order == 'asc' ? 'desc' : 'asc'}${params.type ? '&type=' + params.type : ''}${params.status ? '&status=' + params.status : ''}"><g:message code="openart.issue.type" default="Issue type" /></a></th>
+                            <th style="width: 15%" class="sortable${params.sort == 'status' ? ' sorted' + (params.order == 'asc' ? ' asc' : ' desc') : ''}"><a href="?sort=status&order=${params.order == 'asc' ? 'desc' : 'asc'}${params.type ? '&type=' + params.type : ''}${params.status ? '&status=' + params.status : ''}"><g:message code="openart.issue.status" default="Issue status" /></a></th>
+                            <th style="width: 10%" class="sortable${params.sort == 'votes' ? ' sorted' + (params.order == 'asc' ? ' asc' : ' desc') : ''}"><a href="?sort=votes&order=${params.order == 'asc' ? 'desc' : 'asc'}${params.type ? '&type=' + params.type : ''}${params.votes ? '&votes=' + params.votes : ''}"><g:message code="openart.issue.votes" default="Votes" />/<g:message code="openart.comment.plural" default="Comments" /></a></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,8 +44,8 @@
                                 <g:else>${issue.id}</g:else>
                                 </a></td>
                             <td>${issue.title.encodeAsHTML()}</td>
-                            <td style="text-align: center;" class="${grailsApplication.config.openfurry.issue.type.repr[issue.type]}"><g:message code="openfurry.issue.type.${grailsApplication.config.openfurry.issue.type.repr[issue.type]}" default="${grailsApplication.config.openfurry.issue.type.repr[issue.type]}" /></td>
-                            <td style="text-align: center;"><g:message code="openfurry.issue.status.${grailsApplication.config.openfurry.issue.status.repr[issue.status]}" default="${grailsApplication.config.openfurry.issue.status.repr[issue.status]}" /></td>
+                            <td style="text-align: center;" class="${grailsApplication.config.openart.issue.type.repr[issue.type]}"><g:message code="openart.issue.type.${grailsApplication.config.openart.issue.type.repr[issue.type]}" default="${grailsApplication.config.openart.issue.type.repr[issue.type]}" /></td>
+                            <td style="text-align: center;"><g:message code="openart.issue.status.${grailsApplication.config.openart.issue.status.repr[issue.status]}" default="${grailsApplication.config.openart.issue.status.repr[issue.status]}" /></td>
                             <td style="text-align: center;">${issue.votes}/<of:commentCountForObject object="${issue}" /></td>
                         </tr>
                         </g:each>

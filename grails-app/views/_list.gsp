@@ -1,14 +1,14 @@
 <div class="verticalTabs">
     <ul class="nav">
-        <li class="block ${params.type ? '' : 'selected'}"><strong><a href="${params.q ? '?q=' + params.q + '&includeTags=' + (params.includeTags ?: '') + '&includeCategories=' + (params.includeCategories ?: '') + '&includeSpecies=' + (params.includeSpecies ?: '') : ''}"><g:message code="openfurry.allUO" default="All" /></a></strong></li>
-        <li class="block ${params.type == 'image' ? 'selected' : ''}"><strong><a href="?type=image${params.q ? '&q=' + params.q + '&includeTags=' + (params.includeTags ?: '') + '&includeCategories=' + (params.includeCategories ?: '') + '&includeSpecies=' + (params.includeSpecies ?: '') : ''}"><g:message code="openfurry.imageUO.plural" default="Images" /></a></strong></li>
-        <li class="block ${params.type == 'text' ? 'selected' : ''}"><strong><a href="?type=text${params.q ? '&q=' + params.q + '&includeTags=' + (params.includeTags ?: '') + '&includeCategories=' + (params.includeCategories ?: '') + '&includeSpecies=' + (params.includeSpecies ?: '') : ''}"><g:message code="openfurry.textUO.plural" default="Text" /></strong></a></li>
-        <li class="block ${params.type == 'audio' ? 'selected' : ''}"><strong><a href="?type=audio${params.q ? '&q=' + params.q + '&includeTags=' + (params.includeTags ?: '') + '&includeCategories=' + (params.includeCategories ?: '') + '&includeSpecies=' + (params.includeSpecies ?: '') : ''}"><g:message code="openfurry.audioUO.plural" default="Audio" /></strong></a></li>
-        <li class="block ${params.type == 'video' ? 'selected' : ''}"><strong><a href="?type=video${params.q ? '&q=' + params.q + '&includeTags=' + (params.includeTags ?: '') + '&includeCategories=' + (params.includeCategories ?: '') + '&includeSpecies=' + (params.includeSpecies ?: '') : ''}"><g:message code="openfurry.videoUO.plural" default="Videos" /></strong></a></li>
-        <li class="block ${params.type == 'flash' ? 'selected' : ''}"><strong><a href="?type=flash${params.q ? '&q=' + params.q + '&includeTags=' + (params.includeTags ?: '') + '&includeCategories=' + (params.includeCategories ?: '') + '&includeSpecies=' + (params.includeSpecies ?: '') : ''}"><g:message code="openfurry.flashUO.plural" default="Flash" /></strong></a></li>
-        <li class="block ${params.type == 'application' ? 'selected' : ''}"><strong><a href="?type=application${params.q ? '&q=' + params.q + '&includeTags=' + (params.includeTags ?: '') + '&includeCategories=' + (params.includeCategories ?: '') + '&includeSpecies=' + (params.includeSpecies ?: '') : ''}"><g:message code="openfurry.applicationUO.plural" default="Applications" /></a></strong></li>
-        <li class="block ${params.type == 'orderedCollection' ? 'selected' : ''}"><strong><a href="?type=orderedCollection${params.q ? '&q=' + params.q + '&includeTags=' + (params.includeTags ?: '') + '&includeCategories=' + (params.includeCategories ?: '') + '&includeSpecies=' + (params.includeSpecies ?: '') : ''}"><g:message code="openfurry.collection.ordered.plural" default="Ordered collections" /></a></strong></li>
-        <li class="block ${params.type == 'unorderedCollection' ? 'selected' : ''}"><strong><a href="?type=unorderedCollection${params.q ? '&q=' + params.q + '&includeTags=' + (params.includeTags ?: '') + '&includeCategories=' + (params.includeCategories ?: '') + '&includeSpecies=' + (params.includeSpecies ?: '') : ''}"><g:message code="openfurry.collection.unordered.plural" default="Unordered collections" /></a></strong></li>
+        <li class="block ${params.type ? '' : 'selected'}"><strong><a href="${params.q ? '?q=' + params.q + '&includeTags=' + (params.includeTags ?: '') + '&includeCategories=' + (params.includeCategories ?: '') + '&includeSpecies=' + (params.includeSpecies ?: '') : ''}"><g:message code="openart.allUO" default="All" /></a></strong></li>
+        <li class="block ${params.type == 'image' ? 'selected' : ''}"><strong><a href="?type=image${params.q ? '&q=' + params.q + '&includeTags=' + (params.includeTags ?: '') + '&includeCategories=' + (params.includeCategories ?: '') + '&includeSpecies=' + (params.includeSpecies ?: '') : ''}"><g:message code="openart.imageUO.plural" default="Images" /></a></strong></li>
+        <li class="block ${params.type == 'text' ? 'selected' : ''}"><strong><a href="?type=text${params.q ? '&q=' + params.q + '&includeTags=' + (params.includeTags ?: '') + '&includeCategories=' + (params.includeCategories ?: '') + '&includeSpecies=' + (params.includeSpecies ?: '') : ''}"><g:message code="openart.textUO.plural" default="Text" /></strong></a></li>
+        <li class="block ${params.type == 'audio' ? 'selected' : ''}"><strong><a href="?type=audio${params.q ? '&q=' + params.q + '&includeTags=' + (params.includeTags ?: '') + '&includeCategories=' + (params.includeCategories ?: '') + '&includeSpecies=' + (params.includeSpecies ?: '') : ''}"><g:message code="openart.audioUO.plural" default="Audio" /></strong></a></li>
+        <li class="block ${params.type == 'video' ? 'selected' : ''}"><strong><a href="?type=video${params.q ? '&q=' + params.q + '&includeTags=' + (params.includeTags ?: '') + '&includeCategories=' + (params.includeCategories ?: '') + '&includeSpecies=' + (params.includeSpecies ?: '') : ''}"><g:message code="openart.videoUO.plural" default="Videos" /></strong></a></li>
+        <li class="block ${params.type == 'flash' ? 'selected' : ''}"><strong><a href="?type=flash${params.q ? '&q=' + params.q + '&includeTags=' + (params.includeTags ?: '') + '&includeCategories=' + (params.includeCategories ?: '') + '&includeSpecies=' + (params.includeSpecies ?: '') : ''}"><g:message code="openart.flashUO.plural" default="Flash" /></strong></a></li>
+        <li class="block ${params.type == 'application' ? 'selected' : ''}"><strong><a href="?type=application${params.q ? '&q=' + params.q + '&includeTags=' + (params.includeTags ?: '') + '&includeCategories=' + (params.includeCategories ?: '') + '&includeSpecies=' + (params.includeSpecies ?: '') : ''}"><g:message code="openart.applicationUO.plural" default="Applications" /></a></strong></li>
+        <li class="block ${params.type == 'orderedCollection' ? 'selected' : ''}"><strong><a href="?type=orderedCollection${params.q ? '&q=' + params.q + '&includeTags=' + (params.includeTags ?: '') + '&includeCategories=' + (params.includeCategories ?: '') + '&includeSpecies=' + (params.includeSpecies ?: '') : ''}"><g:message code="openart.collection.ordered.plural" default="Ordered collections" /></a></strong></li>
+        <li class="block ${params.type == 'unorderedCollection' ? 'selected' : ''}"><strong><a href="?type=unorderedCollection${params.q ? '&q=' + params.q + '&includeTags=' + (params.includeTags ?: '') + '&includeCategories=' + (params.includeCategories ?: '') + '&includeSpecies=' + (params.includeSpecies ?: '') : ''}"><g:message code="openart.collection.unordered.plural" default="Unordered collections" /></a></strong></li>
     </ul>
     <div class="content block uoList">
         <g:set var="dateString" value="" />
@@ -26,7 +26,7 @@
             </div>
             <g:set var="resetUser" value="${false}" />
         </g:each>
-        <g:if test="${uoList.size() < 1}"><g:message code="openfurry.technical.noSubmissions" default="No submissions to list" /></g:if>
+        <g:if test="${uoList.size() < 1}"><g:message code="openart.technical.noSubmissions" default="No submissions to list" /></g:if>
         <hr style="width: 50%; clear: both; margin: auto">
         <g:if test="${params.controller == 'user'}">
             <g:link controller="list" action="user" id="${loggedInUserInfo(field: 'username')}">USER SUBMISSIONS</g:link>
@@ -35,7 +35,7 @@
             <g:paginate total="${uoList.totalCount}" />
         </g:else>
         <g:if test="${params.controller == 'watch'}">
-            <g:link controller="watch" action="updateCursors"><g:message code="openfurry.watch.views.updateCursors" default="Mark all unread submissions as read" /></g:link>
+            <g:link controller="watch" action="updateCursors"><g:message code="openart.watch.views.updateCursors" default="Mark all unread submissions as read" /></g:link>
         </g:if>
     </div>
 </div>

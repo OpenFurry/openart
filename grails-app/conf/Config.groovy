@@ -94,84 +94,84 @@ log4j = {
 security.defaultRole='ROLE_USER'
 
 /**
- * OpenFurry settings
+ * OpenArt settings
  */
-openfurry.version.number = "0.1"
-openfurry.version.name.latin = "Acinonyx jubatus"
-openfurry.version.name.english = "Cheetah"
-//openfurry.assetURL = "http://assets.openfurry.com"
-openfurry.readOnly = false
-openfurry.requireInvitation = true
-openfurry.enabledTypes.image = true
-openfurry.enabledTypes.audio = true
-openfurry.enabledTypes.video = true
-openfurry.enabledTypes.flash = true
-openfurry.enabledTypes.text = true
-openfurry.enabledTypes.application = true
-openfurry.permalinkBase = "http://o-f.co"
-openfurry.mediaplayer.player = "http://media.mjs-svc.com/of/player.swf"
-openfurry.mediaplayer.swfobject = "http://media.mjs-svc.com/of/swfobject.js"
+openart.version.number = "0.1"
+openart.version.name.latin = "Acinonyx jubatus"
+openart.version.name.english = "Cheetah"
+//openart.assetURL = "http://assets.openart.com"
+openart.readOnly = false
+openart.requireInvitation = true
+openart.enabledTypes.image = true
+openart.enabledTypes.audio = true
+openart.enabledTypes.video = true
+openart.enabledTypes.flash = true
+openart.enabledTypes.text = true
+openart.enabledTypes.application = true
+openart.permalinkBase = "http://o-f.co"
+openart.mediaplayer.player = "http://media.mjs-svc.com/of/player.swf"
+openart.mediaplayer.swfobject = "http://media.mjs-svc.com/of/swfobject.js"
 
 /**
- * OpenFurry Constants
+ * OpenArt Constants
  */
 
 // Warning levels
-openfurry.user.warning.small = 1
-openfurry.user.warning.medium = 5
-openfurry.user.warning.large = 10
-openfurry.user.warning.min = 0
-openfurry.user.warning.max = 100
+openart.user.warning.small = 1
+openart.user.warning.medium = 5
+openart.user.warning.large = 10
+openart.user.warning.min = 0
+openart.user.warning.max = 100
 
 // User types
 // Range used in: (due to static typing)
 // - grails-app/domain/Person.groovy
 // - grails-app/domain/UserObject.groovy
 // TODO move to i18n, put codes in repr
-openfurry.user.types.repr = ["lurker", "visualArtist", "sculptor", "textileArtist", "composer", "videographer", "flashArtist", "programmer", "performer", "fursuiter"]
-openfurry.user.types.lurker = 0
-openfurry.user.types.visualArtist = 1
-openfurry.user.types.sculptor = 2
-openfurry.user.types.textileArtist = 3
-openfurry.user.types.composer = 4
-openfurry.user.types.videographer = 5
-openfurry.user.types.flashArtist = 6
-openfurry.user.types.programmer = 7
-openfurry.user.types.performer = 8
-openfurry.user.types.fursuiter = 9
+openart.user.types.repr = ["lurker", "visualArtist", "sculptor", "textileArtist", "composer", "videographer", "flashArtist", "programmer", "performer", "fursuiter"]
+openart.user.types.lurker = 0
+openart.user.types.visualArtist = 1
+openart.user.types.sculptor = 2
+openart.user.types.textileArtist = 3
+openart.user.types.composer = 4
+openart.user.types.videographer = 5
+openart.user.types.flashArtist = 6
+openart.user.types.programmer = 7
+openart.user.types.performer = 8
+openart.user.types.fursuiter = 9
 
 // User classes
 // Range used in: (due to static typing)
 // - grails-app/domain/Person.groovy
 // TODO move repr to i18n, store codes in repr
-openfurry.user.classes.repr = ["Bronze", "Silver", "Gold", "Platinum", "Black"]
-openfurry.user.classes.bronze = 0
-openfurry.user.classes.silver = 1
-openfurry.user.classes.gold = 2
-openfurry.user.classes.platinum = 3
-openfurry.user.classes.black = 4
-openfurry.user.classes.thresholds = [10, 100, 1000, 10000, 100000]
+openart.user.classes.repr = ["Bronze", "Silver", "Gold", "Platinum", "Black"]
+openart.user.classes.bronze = 0
+openart.user.classes.silver = 1
+openart.user.classes.gold = 2
+openart.user.classes.platinum = 3
+openart.user.classes.black = 4
+openart.user.classes.thresholds = [10, 100, 1000, 10000, 100000]
 
 // User message types
 // Range used in: (due to static typing)
 // - grails-app/domain/UserMessage
-openfurry.user.messageTypes.repr = ["success", "warning", "failure", "transaction"]
-openfurry.user.messageTypes.success = 0
-openfurry.user.messageTypes.warning = 1
-openfurry.user.messageTypes.failure = 2
-openfurry.user.messageTypes.transaction = 3
+openart.user.messageTypes.repr = ["success", "warning", "failure", "transaction"]
+openart.user.messageTypes.success = 0
+openart.user.messageTypes.warning = 1
+openart.user.messageTypes.failure = 2
+openart.user.messageTypes.transaction = 3
 
 // User properties
-openfurry.user.properties = [
-    [key: 'openfurry.user.properties.website', default: 'Website', display: '<a href="{value}" target="_blank">{value}</a>'],
-    [key: 'openfurry.user.properties.furaffinity', default: 'FurAffinity user', display: '<a href="http://furaffinity.net/user/{value}" target="_blank">{value}</a>'],
-    [key: 'openfurry.user.properties.badger', default: 'Badger! user', display: '<link rel="stylesheet" type="text/css" href="http://media.mjs-svc.com/badger/badge.css" /><span class="badgerjax-{value}"></span><script type="text/javascript" src="http://mjs-svc.com/js/jquery-1.4.2.min.js"></script><script type="text/javascript" src="http://badgerific.com/b/{value}/"></script>'],
-    [key: 'openfurry.user.properties.aim', default: 'AOL Instant Messenger', display: '<a href="aim:addbuddy?screenname={value}">{value}</a>'],
-    [key: 'openfurry.user.properties.yim', default: 'Yahoo! Messenger', display: '<a href="ymsgr:addfriend?{value}">{value}</a>'],
-    [key: 'openfurry.user.properties.msnim', default: 'Windows Live Messenger', display: '<a href="msnim:add?contact={value}">{value}</a>'],
-    [key: 'openfurry.user.properties.blog', default: 'Blog website', display: '<a href="{value}" target="_blank">{value}</a>'],
-    [key: 'openfurry.user.properties.os', default: 'Operating system of choice', display: '{value}'],
-    [key: 'openfurry.user.properties.shell', default: 'Shell of choice', display: '{value}'],
+openart.user.properties = [
+    [key: 'openart.user.properties.website', default: 'Website', display: '<a href="{value}" target="_blank">{value}</a>'],
+    [key: 'openart.user.properties.furaffinity', default: 'FurAffinity user', display: '<a href="http://furaffinity.net/user/{value}" target="_blank">{value}</a>'],
+    [key: 'openart.user.properties.badger', default: 'Badger! user', display: '<link rel="stylesheet" type="text/css" href="http://media.mjs-svc.com/badger/badge.css" /><span class="badgerjax-{value}"></span><script type="text/javascript" src="http://mjs-svc.com/js/jquery-1.4.2.min.js"></script><script type="text/javascript" src="http://badgerific.com/b/{value}/"></script>'],
+    [key: 'openart.user.properties.aim', default: 'AOL Instant Messenger', display: '<a href="aim:addbuddy?screenname={value}">{value}</a>'],
+    [key: 'openart.user.properties.yim', default: 'Yahoo! Messenger', display: '<a href="ymsgr:addfriend?{value}">{value}</a>'],
+    [key: 'openart.user.properties.msnim', default: 'Windows Live Messenger', display: '<a href="msnim:add?contact={value}">{value}</a>'],
+    [key: 'openart.user.properties.blog', default: 'Blog website', display: '<a href="{value}" target="_blank">{value}</a>'],
+    [key: 'openart.user.properties.os', default: 'Operating system of choice', display: '{value}'],
+    [key: 'openart.user.properties.shell', default: 'Shell of choice', display: '{value}'],
 ]
 
 // Rating levels
@@ -179,13 +179,13 @@ openfurry.user.properties = [
 // - grails-app/domain/Person.groovy
 // - grails-app/domain/UserObject.groovy
 // TODO move to i18n, put codes in repr
-openfurry.ratings.repr = ["General", "Mature", "Adult"]
-openfurry.ratings.low = 0
-openfurry.ratings.medium = 1
-openfurry.ratings.high = 2
+openart.ratings.repr = ["General", "Mature", "Adult"]
+openart.ratings.low = 0
+openart.ratings.medium = 1
+openart.ratings.high = 2
 
 // Maximum upload sizes in MBytes
-openfurry.maxUploadSize = [
+openart.maxUploadSize = [
     audio: 10,
     video: 50,
     flash: 50,
@@ -195,7 +195,7 @@ openfurry.maxUploadSize = [
 ]
 
 // Acceptable filetypes
-openfurry.fileTypes = [
+openart.fileTypes = [
     audio: ["wav", "mp3", "mid", "ogg"],
     video: ["mpg", "mpeg", "mp4", "m4v", "avi", "ogm", "flv"],
     flash: ["swf"],
@@ -206,7 +206,7 @@ openfurry.fileTypes = [
 
 // Default thumbnail icons
 // Path from web-apps
-openfurry.defaultIcons = [
+openart.defaultIcons = [
     audio: "/submissions/thumbs/,default-audio.png",
     video: "/submissions/thumbs/,default-video.png",
     flash: "/submissions/thumbs/,default-flash.png",
@@ -215,48 +215,48 @@ openfurry.defaultIcons = [
     audio: "/submissions/thumbs/,default-audio.png",
 ]
 
-// OpenFurry commissions
+// OpenArt commissions
 // TODO move to i18n, put codes in repr
-openfurry.commissions.status.repr = ["Commissioned", "Accepted", "Rejected", "Paid", "In-progress", "Completed"]
-openfurry.commissions.status.commissioned = 0
-openfurry.commissions.status.accepted = 1
-openfurry.commissions.status.rejected = 2
-openfurry.commissions.status.paid = 3
-openfurry.commissions.status.inprogress = 4
-openfurry.commissions.status.completed = 5
+openart.commissions.status.repr = ["Commissioned", "Accepted", "Rejected", "Paid", "In-progress", "Completed"]
+openart.commissions.status.commissioned = 0
+openart.commissions.status.accepted = 1
+openart.commissions.status.rejected = 2
+openart.commissions.status.paid = 3
+openart.commissions.status.inprogress = 4
+openart.commissions.status.completed = 5
 
-// OpenFurry issue statuses
+// OpenArt issue statuses
 // TODO move to i18n, put codes in repr
-openfurry.issue.status.repr = [
+openart.issue.status.repr = [
     "Suggestion", 
     "Seconded", 
     "Accepted", 
     "Completed", 
     "Rejected"
 ]
-openfurry.issue.status.suggestion = 0
-openfurry.issue.status.seconded = 1
-openfurry.issue.status.accepted = 2
-openfurry.issue.status.completed = 3
-openfurry.issue.status.rejected = 4
+openart.issue.status.suggestion = 0
+openart.issue.status.seconded = 1
+openart.issue.status.accepted = 2
+openart.issue.status.completed = 3
+openart.issue.status.rejected = 4
 
 
-// OpenFurry issue types
-openfurry.issue.type.repr = ["Bug", "Improvement", "NewFeature", "ToSViolation", "AUPViolation", "AccountIssue", "Harrassment"]
-openfurry.issue.type.bug = 0
-openfurry.issue.type.improvement = 1
-openfurry.issue.type.newFeature = 2
-openfurry.issue.type.violation = 3
-openfurry.issue.type.AUPViolation = 4
-openfurry.issue.type.accountIssue = 5
-openfurry.issue.type.harrassment = 6
+// OpenArt issue types
+openart.issue.type.repr = ["Bug", "Improvement", "NewFeature", "ToSViolation", "AUPViolation", "AccountIssue", "Harrassment"]
+openart.issue.type.bug = 0
+openart.issue.type.improvement = 1
+openart.issue.type.newFeature = 2
+openart.issue.type.violation = 3
+openart.issue.type.AUPViolation = 4
+openart.issue.type.accountIssue = 5
+openart.issue.type.harrassment = 6
 
 // Group categories
 // Count used in UserGroup domain
-openfurry.group.category.repr = ["Location", "GeneralInterest", "AdultInterest", "Species", "ArtMedium", "Other"]
-openfurry.group.category.location = 0
-openfurry.group.category.generalInterest = 1
-openfurry.group.category.adultInterest = 2
-openfurry.group.category.species = 3
-openfurry.group.category.artMedium = 4
-openfurry.group.category.other = 5
+openart.group.category.repr = ["Location", "GeneralInterest", "AdultInterest", "Species", "ArtMedium", "Other"]
+openart.group.category.location = 0
+openart.group.category.generalInterest = 1
+openart.group.category.adultInterest = 2
+openart.group.category.species = 3
+openart.group.category.artMedium = 4
+openart.group.category.other = 5

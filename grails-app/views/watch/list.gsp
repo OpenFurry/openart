@@ -1,6 +1,6 @@
 <html>
     <head>  
-        <title><g:message code="openfurry.watch.views.list" default="Watches" /></title>
+        <title><g:message code="openart.watch.views.list" default="Watches" /></title>
         <meta name="layout" content="main" />
     </head>
     <body>

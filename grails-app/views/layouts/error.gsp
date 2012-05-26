@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>OpenFurry - <g:layoutTitle default="Error" /></title>
+        <title>OpenArt - <g:layoutTitle default="Error" /></title>
         <link rel="stylesheet" type="text/css" href="${resource(dir: 'css', file: 'main.css')}" />
         <link rel="stylesheet" type="text/css" href="${resource(dir: 'css', file: 'error.css')}" />
         <g:layoutHead />

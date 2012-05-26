@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta name="layout" content="main" />
-        <title><g:message code="openfurry.audioUO.view.create" default="New audio submission" /></title>
+        <title><g:message code="openart.audioUO.view.create" default="New audio submission" /></title>
     </head>
 
     <body>
@@ -16,17 +16,17 @@
                 <table>
                     <thead>
                         <tr>
-                            <th colspan="2"><g:message code="openfurry.audioUO.sectionTitle" default="Audio submission details" /></th>
+                            <th colspan="2"><g:message code="openart.audioUO.sectionTitle" default="Audio submission details" /></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="prop">
-                            <th class="name"><g:message code="openfurry.audioUO.file" defualt="Audio file" /></th>
+                            <th class="name"><g:message code="openart.audioUO.file" defualt="Audio file" /></th>
                             <td class="value">
                                 <g:if test="${instance?.file}">Current audio file: ${instance.file}<input type="hidden" name="file" value="${instance.file}" /></g:if>
                                 <input type="file" name="audioFile" /> <br />
-                                <div class="message"><g:message code="openfurry.technical.allowedTypes" defualt="Allowed file types" /> ${grailsApplication.config.openfurry.fileTypes.audio}<br />
-                                    <g:message code="openfurry.technical.maxFileSize" default="Maximum file size" /> ${grailsApplication.config.openfurry.maxUploadSize.audio}MB
+                                <div class="message"><g:message code="openart.technical.allowedTypes" defualt="Allowed file types" /> ${grailsApplication.config.openart.fileTypes.audio}<br />
+                                    <g:message code="openart.technical.maxFileSize" default="Maximum file size" /> ${grailsApplication.config.openart.maxUploadSize.audio}MB
                                 </div>
                             </td>
                         </tr>

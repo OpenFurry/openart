@@ -1,5 +1,5 @@
 /*
- * Dynamic theme for OpenFurry
+ * Dynamic theme for OpenArt
  */
 
 <g:if test="${theme.header.bgcolor || theme.header.borderStyle || theme.header.borderColor}">

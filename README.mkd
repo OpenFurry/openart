@@ -1,4 +1,4 @@
-OpenFurry
+OpenArt
 =========
 
     __,,,_^..^_,,,__
@@ -6,11 +6,11 @@ OpenFurry
 Synopsis
 --------
 
-OpenFurry is an open-source online community for furries of all types, giving
+OpenArt is an open-source online community for artists and audiences of all types, giving
 all comers the interaction that is best for them, whether they are the artists
 or the audience, the talkers or the lurkers.  It is designed from the ground
 up to be able to allow for user feedback and design suggestions.  With
-OpenFurry, the user base is the number-one priority.
+OpenArt, the user base is the number-one priority.
 
 Features
 --------
@@ -74,7 +74,7 @@ Possible features:
 * Dashboards - organize the site how you want
 * Explorer view - view collections as an intuitive tree view, edit by dragging
   and dropping
-* Log into other OpenFurry instances using OAuth in order to view art, comment,
+* Log into other OpenArt instances using OAuth in order to view art, comment,
   and favorite
 * Gravatar support
 
@@ -100,7 +100,7 @@ Issues, Source, Documentation, Integration
 Licensing
 ---------
 
-	OpenFurry - an open-source social and artistic website for furries
+	OpenArt - an open-source social and artistic website for artists and their audiences
 	Copyright (C) 2010 Matthew Scott
 
 	This program is free software: you can redistribute it and/or modify

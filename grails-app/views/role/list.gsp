@@ -43,7 +43,7 @@
 		</div>
 
 		<div class="paginateButtons">
-			<g:paginate total="${openfurry.Role.count()}" />
+			<g:paginate total="${openart.Role.count()}" />
 		</div>
 	</div>
 </body>

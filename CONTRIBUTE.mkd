@@ -1,7 +1,7 @@
-Contribute to OpenFurry
+Contribute to OpenArt
 =======================
 
-Thank you for your interest in contributing to OpenFurry, the open-source social
+Thank you for your interest in contributing to OpenArt, the open-source social
 and art community for furries of all types.  There are many ways in which you
 can contribute, and only a few guidelines to follow.  Read on for more info!
 
@@ -9,8 +9,8 @@ First, a guideline for everyone
 -------------------------------
 
 Please, make sure you understand the concepts behind open-source and the license
-that OpenFurry uses, the Affero GNU General Public License v.3.  All work on
-OpenFurry is released under this license - if you contribute to this project,
+that OpenArt uses, the Affero GNU General Public License v.3.  All work on
+OpenArt is released under this license - if you contribute to this project,
 then all the work you contribute will be licensed under the AGPL.  What this
 means is that you're donating time, energy, and knowledge to the project in
 order to benefit all of the other users and developers.  This does not mean that
@@ -45,12 +45,12 @@ that it all follows the coding guidelines set down later on.
 
 Again, if you can understand the code but don't really want to write any
 yourself, helping us out with documentation would be much appreciated.  Although
-it's not yet set up properly, documentation for OpenFurry will be housed at the
+it's not yet set up properly, documentation for OpenArt will be housed at the
 MJS Services [Atlassian Confluence instance](http://atl.mjs-svc.com:8090).
 
 ### Writing
 
-OpenFurry includes a method for displaying flatpages - that is, pages that just
+OpenArt includes a method for displaying flatpages - that is, pages that just
 contain information and aren't dynamic, in the sense that the information is
 relatively static, even though they're stored in the database.  These pages are
 stored as [Markdown](http://daringfireball.net/projects/markdown/), so you don't
@@ -61,31 +61,31 @@ mean time, read up on Markdown to see how to use it.
 
 ### Internationalization
 
-One of the goals of OpenFurry is to be as fully internationalized as possible;
-however, we can't afford to hire translators, so if you want to see OpenFurry
+One of the goals of OpenArt is to be as fully internationalized as possible;
+however, we can't afford to hire translators, so if you want to see OpenArt
 in your own language (the site, that is; not the submissions), this is easily
 done.  All that is required is a knowledge of English and your primary language.
 The text for I18N is stored in a simple-to-understand properties format - for
 example, if you see in the English file:
 
-    openfurry.welcome=Welcome to OpenFurry!
+    openart.welcome=Welcome to OpenArt!
 
 You can add the following to the French file:
 
-    openfurry.welcome=Bienvenue à OpenFurry!
+    openart.welcome=Bienvenue à OpenArt!
 
-The more languages in which OpenFurry is internationalized, the more accessible
+The more languages in which OpenArt is internationalized, the more accessible
 it is to those in our community!
 
 ### Adding content
 
 This may seem like a no-brainer.  However, more than just uploading files is
-necessary with a site like OpenFurry.  If you've got a sense for color, you can
+necessary with a site like OpenArt.  If you've got a sense for color, you can
 contribute a theme that will be publicly available to the site's users, and
 could be voted up to be the default theme.  Once the site is up and running, the
 theme builder will be available for you to work your magic!
 
-In addition to themes, OpenFurry includes a system for submitting bugs,
+In addition to themes, OpenArt includes a system for submitting bugs,
 improvements, and feature requests to be considered by the programmers.  If you
 notice something broken, want to see something improved, or just plain want more
 to do with the site, feel free to submit an issue!  Can't think of anything off
@@ -104,7 +104,7 @@ with the following command in ~/.vimrc
 
     set ts=4 sts=4 sw=4 et
 
-You can have vim do that for the files used in OpenFurry automatically with the
+You can have vim do that for the files used in OpenArt automatically with the
 following:
 
     if has("autocmd")
@@ -127,6 +127,13 @@ Although Groovy is lenient on parantheses, try to use them for function calls an
 do
 
     response.sendError(404)
+
+The only portion that differs from this is when the final argument of a function
+call is a closure, such as with the list methods "each", "collect", and so on:
+
+    list.each { foo ->
+        // do something...
+    }
 
 ### Brackets and indenting
 
@@ -271,7 +278,7 @@ snippets (i.e.: no initials in comments, just put your name at the top)
 * Groovy-style returns are okay (i.e.: last line of the method), and don't worry
 about parentheses when using `return`.
 * Internationalize every string (i.e.: not `<th>Title</th>`, but `<th><g:message
-code="openfurry.blah.title" default="Title" /></th>` - always use defaults)
+code="openart.blah.title" default="Title" /></th>` - always use defaults)
 * When in doubt, this section has a lot in common with Haiku's programming and
 human interface guildelines.  Check them out to see more info than is presented
 here:

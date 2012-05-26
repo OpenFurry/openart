@@ -1,4 +1,4 @@
-import us.jnsq.openfurry.*
+import us.jnsq.openart.*
 import grails.util.Environment
 
 class BootStrap {
@@ -46,7 +46,7 @@ class BootStrap {
             profile: "a ~god ~!god b #1 #!1",
             enabled: true,
             emailShow: true,
-            email: "god@openfurry.com",
+            email: "god@openart.com",
             passwd: authenticateService.encodePassword('god'),
             memberType: "Lurker",
             maxViewableRating: 2,
