@@ -1,19 +1,19 @@
 package us.jnsq.openart
 
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
+import us.jnsq.openart.security.User
 
 /**
  * User domain class.
  */
-class User {
-	String username
-	String userRealName
+class OAUser {
+    User user
+    String userRealName
     String title
     String avatar = ",default.png"
-	String passwd
-	String pass = '[secret]'
-	boolean enabled
-	String email
+    String pass = '[secret]'
+    boolean enabled
+    String email
     String profile
     Species species
     License preferedLicense
@@ -32,12 +32,10 @@ class User {
     Boolean tradeStatus = false
     Boolean giftStatus = false
 
-	static constraints = {
-		username(blank: false, unique: true)
-		userRealName(blank: true)
+    static constraints = {
+        userRealName(blank: true)
         title(blank: true, nullable: true)
-		passwd(blank: false)
-		enabled()
+        enabled()
         profile(blank: true, nullable: true)
         preferedLicense(nullable: true)
         memberType(range: 0..9)
@@ -55,10 +53,10 @@ class User {
     static mapping = {
         table 'auth_user'
         profile type: "text"
-	}
+    }
 
-	static transients = ['pass']
-	static hasMany = [
+    static transients = ['pass']
+    static hasMany = [
         authorities: Role, 
         votes: IssueVote, 
         userObjects: UserObject, 
@@ -74,7 +72,7 @@ class User {
         props: UserProperty,
         trinkets: UserTrinket,
     ]
-	static belongsTo = Role
+    static belongsTo = Role
     static mappedBy = [trinkets: 'owner', messages: 'userTo']
 
     String toString() {
