@@ -260,3 +260,10 @@ openart.group.category.adultInterest = 2
 openart.group.category.species = 3
 openart.group.category.artMedium = 4
 openart.group.category.other = 5
+
+// Added by the Spring Security Core plugin:
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'us.jnsq.openart.security.User'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'us.jnsq.openart.security.UserRole'
+grails.plugins.springsecurity.authority.className = 'us.jnsq.openart.security.Role'
+grails.plugins.springsecurity.requestMap.className = 'us.jnsq.openart.security.RequestMap'
+grails.plugins.springsecurity.securityConfigType = 'Requestmap'
