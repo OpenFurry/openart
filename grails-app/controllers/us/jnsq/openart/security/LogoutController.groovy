@@ -1,3 +1,5 @@
+package us.jnsq.us.security
+
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 
 class LogoutController {

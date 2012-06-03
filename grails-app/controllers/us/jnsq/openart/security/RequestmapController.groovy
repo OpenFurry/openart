@@ -1,4 +1,4 @@
-package us.jnsq.openart
+package us.jnsq.openart.security
 
 import org.springframework.util.StringUtils
 import us.jnsq.openart.security.*
