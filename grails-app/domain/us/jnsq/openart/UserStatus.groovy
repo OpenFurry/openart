@@ -2,7 +2,7 @@ package us.jnsq.openart
 
 class UserStatus {
     String status
-    User owner
+    OAUser owner
 
     static constraints = {
         status(maxSize: 140)

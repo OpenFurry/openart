@@ -1,7 +1,7 @@
 package us.jnsq.openart
 
 class GroupRequest {
-    User requester
+    OAUser requester
     UserGroup group
     String requestersReason
     String adminsReason

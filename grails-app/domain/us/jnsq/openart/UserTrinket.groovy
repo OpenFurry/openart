@@ -2,8 +2,8 @@ package us.jnsq.openart
 
 class UserTrinket {
     String name
-    User userFrom
-    User owner
+    OAUser userFrom
+    OAUser owner
     Trinket trinket
     Date dateCreated
 

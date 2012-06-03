@@ -1,7 +1,7 @@
 package us.jnsq.openart
 
 class GroupPost {
-    User owner
+    OAUser owner
     UserGroup group
     String title
     String post

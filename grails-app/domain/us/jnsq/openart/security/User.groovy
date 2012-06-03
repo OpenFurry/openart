@@ -1,5 +1,7 @@
 package us.jnsq.openart.security
 
+import us.jnsq.openart.OAUser
+
 class User {
 
     transient springSecurityService
@@ -20,6 +22,8 @@ class User {
         password column: '`password`'
     }
 
+    static hasOne = [oaUser: OAUser]
+    
     Set<Role> getAuthorities() {
         UserRole.findAllByUser(this).collect { it.role } as Set
     }

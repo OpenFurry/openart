@@ -1,7 +1,7 @@
 package us.jnsq.openart
 
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
-import us.jnsq.openart.security.User
+import us.jnsq.openart.security.*
 
 /**
  * User domain class.
@@ -57,13 +57,12 @@ class OAUser {
 
     static transients = ['pass']
     static hasMany = [
-        authorities: Role, 
         votes: IssueVote, 
         userObjects: UserObject, 
         likes: UserObject,
         favorites: UserObject,
-        friends: User,
-        watches: User,
+        friends: OAUser,
+        watches: OAUser,
         watchedTags: Tag,
         comments: Comment, 
         statuses: UserStatus,
@@ -72,7 +71,6 @@ class OAUser {
         props: UserProperty,
         trinkets: UserTrinket,
     ]
-    static belongsTo = Role
     static mappedBy = [trinkets: 'owner', messages: 'userTo']
 
     String toString() {

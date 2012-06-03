@@ -10,11 +10,11 @@ class ImagingService {
 
     static transactional = false
 
-    def createImageUserObjectFiles(User user, multiPartFile, File path, Long time) {
+    def createImageUserObjectFiles(OAUser user, multiPartFile, File path, Long time) {
 
-        def full = new File(path, "${time}.${user.username}_${multiPartFile.getOriginalFilename()}")
-        def sized = new File(path, "sized.${time}.${user.username}_${multiPartFile.getOriginalFilename()}")
-        def thumb = new File(path, "thumb.${time}.${user.username}_${multiPartFile.getOriginalFilename()}")
+        def full = new File(path, "${time}.${user.user.username}_${multiPartFile.getOriginalFilename()}")
+        def sized = new File(path, "sized.${time}.${user.user.username}_${multiPartFile.getOriginalFilename()}")
+        def thumb = new File(path, "thumb.${time}.${user.user.username}_${multiPartFile.getOriginalFilename()}")
 
         multiPartFile.transferTo(full)
         resizeImage(full, 1280, full)

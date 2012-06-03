@@ -1,7 +1,7 @@
 package us.jnsq.openart
 
 class CommissionInfo {
-    User owner
+    OAUser owner
     String type
     String medium
     String price

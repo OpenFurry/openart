@@ -15,7 +15,7 @@ class UserGroup {
         description(maxSize: 5000)
     }
 
-    static hasMany = [members: User, posts: GroupPost, events: Event]
-    static hasOne = [admin: User]
-    static belongsTo = User
+    static hasMany = [members: OAUser, posts: GroupPost, events: Event]
+    static hasOne = [admin: OAUser]
+    static belongsTo = OAUser
 }

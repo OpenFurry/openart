@@ -7,7 +7,7 @@ class Issue {
     Integer status = 0
     Integer type
     String JIRAIssue
-    User submitter
+    OAUser submitter
     Date dateCreated
 
     static constraints = {

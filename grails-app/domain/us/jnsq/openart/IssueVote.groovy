@@ -1,7 +1,7 @@
 package us.jnsq.openart
 
 class IssueVote {
-    User voter
+    OAUser voter
     Issue issue
 
     static constraints = {

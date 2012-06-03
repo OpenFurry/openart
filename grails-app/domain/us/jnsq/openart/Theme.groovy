@@ -4,7 +4,7 @@ class Theme {
     String name
     String description
     String style
-    User creator
+    OAUser creator
 
     static constraints = {
         name(maxSize: 30, blank: false)

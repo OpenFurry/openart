@@ -1,7 +1,7 @@
 package us.jnsq.openart
 
 class UserProperty {
-    User user
+    OAUser user
     String key
     String value
 

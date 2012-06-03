@@ -13,7 +13,7 @@ class License {
         url(url: true)
     }
 
-    static hasMany = [userObjects: UserObject, preferedLicenseForUsers: User, userObjects: UserObject]
+    static hasMany = [userObjects: UserObject, preferedLicenseForUsers: OAUser, userObjects: UserObject]
 
     String toString() {
         this.title
