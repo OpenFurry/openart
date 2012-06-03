@@ -3,7 +3,7 @@ package us.jnsq.openart
 class Comment {
     String parentType
     String parentId
-    User owner
+    OAUser owner
     Comment parentComment
     String title
     String comment

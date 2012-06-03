@@ -1,5 +1,7 @@
 package us.jnsq.openart
 
+import us.jnsq.openart.security.*
+
 /**
  * User controller.
  */

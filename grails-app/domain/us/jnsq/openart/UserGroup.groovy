@@ -6,7 +6,7 @@ class UserGroup {
     String description
     Integer category
     Boolean exclusive = false
-    Long adminId // The id of the User object who created the group
+    //Long adminId // The id of the User object who created the group
     // See http://jira.codehaus.org/browse/GRAILS-3154 for why this has to be this way
 
     static constraints = {
@@ -16,5 +16,6 @@ class UserGroup {
     }
 
     static hasMany = [members: User, posts: GroupPost, events: Event]
+    static hasOne = [admin: User]
     static belongsTo = User
 }

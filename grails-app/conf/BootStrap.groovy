@@ -1,4 +1,5 @@
 import us.jnsq.openart.*
+import us.jnsq.openart.security.*
 import grails.util.Environment
 
 class BootStrap {
@@ -39,7 +40,11 @@ class BootStrap {
         /**
          * User definitions
          */
-        def userGod = new User(
+        /*def godUser = new User(
+            username: "god",
+            
+        )*/
+        def userGod = new OAUser(
             username: "god",
             userRealName: "God Almighty",
             title: "Site owner",
@@ -130,7 +135,7 @@ class BootStrap {
             categoryVisual.save(flush: true)
 
 
-            def userSlave = new User(
+            def userSlave = new OAUser(
                 username: "slave",
                 userRealName: "Slave",
                 enabled: true,
@@ -157,6 +162,6 @@ class BootStrap {
     }
 
     private secure(url, roles) {
-        new Requestmap(url: url, configAttribute: roles).save()
+        new RequestMap(url: url, configAttribute: roles).save()
     }
 }

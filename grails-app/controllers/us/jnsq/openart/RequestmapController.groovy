@@ -1,11 +1,12 @@
 package us.jnsq.openart
 
 import org.springframework.util.StringUtils
+import us.jnsq.openart.security.*
 
 /**
- * Requestmap controller.
+ * RequestMap controller.
  */
-class RequestmapController {
+class RequestMapController {
 
 	def authenticateService
 
@@ -20,13 +21,13 @@ class RequestmapController {
 		if (!params.max) {
 			params.max = 10
 		}
-		[requestmapList: Requestmap.list(params)]
+		[requestmapList: RequestMap.list(params)]
 	}
 
 	def show = {
-		def requestmap = Requestmap.get(params.id)
+		def requestmap = RequestMap.get(params.id)
 		if (!requestmap) {
-			flash.message = "Requestmap not found with id $params.id"
+			flash.message = "RequestMap not found with id $params.id"
 			redirect action:list
 			return
 		}
@@ -34,25 +35,25 @@ class RequestmapController {
 	}
 
 	def delete = {
-		def requestmap = Requestmap.get(params.id)
+		def requestmap = RequestMap.get(params.id)
 		if (!requestmap) {
-			flash.message = "Requestmap not found with id $params.id"
+			flash.message = "RequestMap not found with id $params.id"
 			redirect action:list
 			return
 		}
 
 		requestmap.delete()
 
-		authenticateService.clearCachedRequestmaps()
+		authenticateService.clearCachedRequestMaps()
 
-		flash.message = "Requestmap $params.id deleted."
+		flash.message = "RequestMap $params.id deleted."
 		redirect(action: list)
 	}
 
 	def edit = {
-		def requestmap = Requestmap.get(params.id)
+		def requestmap = RequestMap.get(params.id)
 		if (!requestmap) {
-			flash.message = "Requestmap not found with id $params.id"
+			flash.message = "RequestMap not found with id $params.id"
 			redirect(action: list)
 			return
 		}
@@ -61,13 +62,13 @@ class RequestmapController {
 	}
 
 	/**
-	 * Update action, called when an existing Requestmap is updated.
+	 * Update action, called when an existing RequestMap is updated.
 	 */
 	def update = {
 
-		def requestmap = Requestmap.get(params.id)
+		def requestmap = RequestMap.get(params.id)
 		if (!requestmap) {
-			flash.message = "Requestmap not found with id $params.id"
+			flash.message = "RequestMap not found with id $params.id"
 			redirect(action: edit, id :params.id)
 			return
 		}
@@ -75,14 +76,14 @@ class RequestmapController {
 		long version = params.version.toLong()
 		if (requestmap.version > version) {
 			requestmap.errors.rejectValue 'version', "requestmap.optimistic.locking.failure",
-				"Another user has updated this Requestmap while you were editing."
+				"Another user has updated this RequestMap while you were editing."
 			render view: 'edit', model: [requestmap: requestmap]
 			return
 		}
 
 		requestmap.properties = params
 		if (requestmap.save()) {
-			authenticateService.clearCachedRequestmaps()
+			authenticateService.clearCachedRequestMaps()
 			redirect action: show, id: requestmap.id
 		}
 		else {
@@ -91,16 +92,16 @@ class RequestmapController {
 	}
 
 	def create = {
-		[requestmap: new Requestmap(params)]
+		[requestmap: new RequestMap(params)]
 	}
 
 	/**
-	 * Save action, called when a new Requestmap is created.
+	 * Save action, called when a new RequestMap is created.
 	 */
 	def save = {
-		def requestmap = new Requestmap(params)
+		def requestmap = new RequestMap(params)
 		if (requestmap.save()) {
-			authenticateService.clearCachedRequestmaps()
+			authenticateService.clearCachedRequestMaps()
 			redirect action: show, id: requestmap.id
 		}
 		else {
